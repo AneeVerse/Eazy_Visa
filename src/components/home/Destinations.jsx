@@ -80,7 +80,6 @@ export default function DestinationSlider() {
         >
           <FaChevronLeft size={20} />
         </button>
-
         <button
           onClick={() => scroll("right")}
           className="hidden md:flex absolute cursor-pointer right-0 top-1/2 z-10 transform translate-y-1/2 bg-white shadow-lg p-2 rounded-full"
