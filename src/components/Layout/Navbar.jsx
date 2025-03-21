@@ -28,7 +28,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6">
+          <div className="hidden md:flex justify-around gap-6 lg:gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -42,8 +42,8 @@ export default function Navbar() {
 
           {/* Search and CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="text-blue-500 text-lg">
-              <FiSearch />
+            <button className="text-blue-700 flex gap-2 items-center text-lg">
+              <FiSearch /> <span className="hidden text-[15px] text-gray-600 font-medium md:inline">Where to?</span>
             </button>
             <Link
               href="/get-started"
@@ -65,8 +65,8 @@ export default function Navbar() {
 
       {/* Sidebar (Mobile Menu) */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-50 transform ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 bg-opacity-50 z-50 transform ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 md:hidden`}
         onClick={() => setIsOpen(false)}
       >

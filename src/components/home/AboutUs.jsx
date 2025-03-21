@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { FaMapMarkerAlt, FaSuitcase, FaPlane } from "react-icons/fa";
+import Layout from "../common/Layout";
 
 export default function AboutUs() {
   return (
     <section className="py-16 bg-gradient-to-r from-white to-blue-50">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col md:flex-row items-center gap-10">
+      <Layout className="flex flex-col md:flex-row items-center gap-10">
         
         {/* Left Content */}
         <div className="md:w-1/2 space-y-6">
@@ -69,7 +70,7 @@ export default function AboutUs() {
             className="w-full rounded-xl shadow-lg"
           />
         </div>
-      </div>
+      </Layout>
     </section>
   );
 }

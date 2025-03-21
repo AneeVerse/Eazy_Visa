@@ -22,9 +22,9 @@ export default function HeroSection() {
           <Paragraph className="mt-4 text-gray-600">
             Plan and book your perfect trip with expert advice, travel tips, destination information, and inspiration from us!
           </Paragraph>
-          <motion.button whileHover={{ scale: 1.05 }} className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg">
+          <button  className="mt-6 cursor-pointer px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg">
             Get Started
-          </motion.button>
+          </button>
         </motion.div>
       </div>
       
