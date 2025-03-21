@@ -3,20 +3,21 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Layout from "../common/Layout";
 
 const destinations = [
   {
     id: 1,
     country: "United Arab Emirates",
     price: "₹6,500",
-    image: "/images/uae.jpg",
+    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
     visas: "53K+ Visas on Time",
   },
   {
     id: 2,
     country: "Japan",
     price: "₹2,340",
-    image: "/images/japan.jpg",
+    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
     visas: "21K+ Visas on Time",
     trending: true,
   },
@@ -24,21 +25,21 @@ const destinations = [
     id: 3,
     country: "Singapore",
     price: "₹3,200",
-    image: "/images/singapore.jpg",
+    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
     visas: "11K+ Visas on Time",
   },
   {
     id: 4,
     country: "Vietnam",
     price: "₹2,150",
-    image: "/images/vietnam.jpg",
+    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
     visas: "27K+ Visas on Time",
   },
   {
     id: 5,
     country: "Germany",
     price: "₹4,700",
-    image: "/images/germany.jpg",
+    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
     visas: "25K+ Visas on Time",
   },
 ];
@@ -59,7 +60,7 @@ export default function DestinationSlider() {
 
   return (
     <section className="py-10 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 relative">
+      <Layout className=" relative">
         {/* Section Heading */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl md:text-2xl font-bold text-gray-900">
@@ -119,7 +120,7 @@ export default function DestinationSlider() {
             </div>
           ))}
         </div>
-      </div>
+      </Layout>
     </section>
   );
 }
