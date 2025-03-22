@@ -5,45 +5,10 @@ import { useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import Layout from "../common/Layout";
+import VisaCard from "../cards/VisaCard";
+import { countryData } from "@/data/countryData";
 
-const destinations = [
-  {
-    id: 1,
-    country: "United Arab Emirates",
-    price: "₹6,500",
-    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-    visas: "53K+ Visas on Time",
-  },
-  {
-    id: 2,
-    country: "Japan",
-    price: "₹2,340",
-    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-    visas: "21K+ Visas on Time",
-    trending: true,
-  },
-  {
-    id: 3,
-    country: "Singapore",
-    price: "₹3,200",
-    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-    visas: "11K+ Visas on Time",
-  },
-  {
-    id: 4,
-    country: "Vietnam",
-    price: "₹2,150",
-    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-    visas: "27K+ Visas on Time",
-  },
-  {
-    id: 5,
-    country: "Germany",
-    price: "₹4,700",
-    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-    visas: "25K+ Visas on Time",
-  },
-];
+
 
 export default function DestinationSlider() {
   const scrollRef = useRef(null);
@@ -90,36 +55,10 @@ export default function DestinationSlider() {
         {/* Scrollable Cards */}
         <div
           ref={scrollRef}
-          className="flex space-x-4 hide-scrollbar overflow-x-auto scroll-smooth no-scrollbar py-4"
+          className="flex space-x-4 hide-scrollbar overflow-x-auto scroll-smooth  py-4"
         >
-          {destinations.map((item) => (
-            <div
-              key={item.id}
-              className="min-w-[250px] md:min-w-[280px] bg-white rounded-lg shadow-md overflow-hidden"
-            >
-              <div className="relative">
-                <Image
-                  src={item.image}
-                  alt={item.country}
-                  width={300}
-                  height={200}
-                  className="w-full h-40 object-cover"
-                />
-                <span className="absolute top-2 left-2 bg-purple-600 text-white text-xs px-2 py-1 rounded">
-                  {item.visas}
-                </span>
-                {item.trending && (
-                  <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                    🔥 Trending
-                  </span>
-                )}
-              </div>
-              <div className="p-4">
-                <p className="text-sm text-gray-500">Sticker Visa</p>
-                <h3 className="text-lg font-semibold text-gray-900">{item.country}</h3>
-                <p className="text-md font-bold text-gray-800">{item.price}</p>
-              </div>
-            </div>
+          {countryData.map((country) => (
+             <VisaCard key={country.id} {...country} />
           ))}
         </div>
       </Layout>
