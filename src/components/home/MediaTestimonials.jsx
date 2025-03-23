@@ -10,63 +10,44 @@ const MediaTestimonials = () => {
   const mediaContainerRef = useRef(null); // Ref for the popup media container
 
   const testimonials = [
-    { id: 1, type: "video", mediaUrl: "/videos/vid1.mp4", description: "Client Testimonial 1" },
-    { id: 2, type: "video", mediaUrl: "/videos/vid2.mov", description: "Client Testimonial 2" },
-    { id: 5, type: "image", mediaUrl: "/images/testimonials/3.png", description: "Client Review 1" },
-    { id: 8, type: "image", mediaUrl: "/images/testimonials/6.png", description: "Client Review 2" },
-    { id: 6, type: "image", mediaUrl: "/images/testimonials/2.png", description: "Client Review 3" },
-    { id: 3, type: "image", mediaUrl: "/images/testimonials/1.png", description: "Client Review 4" },
-    { id: 4, type: "image", mediaUrl: "/images/testimonials/4.png", description: "Client Review 5" },
-    { id: 7, type: "image", mediaUrl: "/images/testimonials/5.png", description: "Client Review 6" },
-    { id: 9, type: "image", mediaUrl: "/images/testimonials/7.png", description: "Client Review 7" },
-    { id: 10, type: "image", mediaUrl: "/images/testimonials/client-with-certificate.jpg", description: "Client Review 8" },
+    // { id: 1, type: "video", mediaUrl: "/videos/vid1.mp4", description: "Client Testimonial 1" },
+    // { id: 2, type: "video", mediaUrl: "/videos/vid2.mov", description: "Client Testimonial 2" },
+  
     {
       id: 11,
       type: "image",
-      mediaUrl: "/images/testimonials/client-1.jpg",
+      mediaUrl: "/images/home/men.webp",
       description: "Client Review 9"
     },
     {
       id: 12,
       type: "image",
-      mediaUrl: "/images/testimonials/client-2.jpg",
+      mediaUrl: "/images/home/men.webp",
       description: "Client Review 10"
     },
     {
       id: 13,
       type: "image",
-      mediaUrl: "/images/testimonials/client-3.jpg",
+      mediaUrl: "/images/home/men.webp",
       description: "Client Review 11"
     },
     {
       id: 14,
       type: "image",
-      mediaUrl: "/images/testimonials/client-4.jpg",
+      mediaUrl: "/images/home/men.webp",
       description: "Client Review 12"
     },
     {
       id: 15,
       type: "image",
-      mediaUrl: "/images/testimonials/client-5.jpg",
+      mediaUrl: "/images/home/men.webp",
       description: "Client Review 13"
     },
     {
       id: 16,
       type: "image",
-      mediaUrl: "/images/testimonials/client-6.jpg",
+      mediaUrl: "/images/home/men.webp",
       description: "Client Review 14"
-    },
-    {
-      id: 17,
-      type: "image",
-      mediaUrl: "/images/testimonials/client-7.jpg",
-      description: "Client Review 15"
-    },
-    {
-      id: 18,
-      type: "image",
-      mediaUrl: "/images/testimonials/client-8.jpg",
-      description: "Client Review 16"
     },
   
   ];

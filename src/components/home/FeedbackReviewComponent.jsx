@@ -58,7 +58,7 @@ const FeedbackReviewComponent = () => {
   };
 
   return (
-    <section className="pt-16">
+    <section className="py-16">
       <Layout>
       <div className=" text-left">
         {/* ✅ Heading */}

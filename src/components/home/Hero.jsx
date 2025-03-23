@@ -62,7 +62,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <Layout className="relative w-full mt-[120px] flex flex-col lg:flex-row items-center gap-12">
+    <Layout className="relative w-full mt-[120px] flex flex-col lg:flex-row items-center gap-12 pb-16">
       {/* Left Content */}
       <div className="lg:w-1/2 text-center lg:text-left space-y-8">
         <motion.div
@@ -103,7 +103,7 @@ export default function HeroSection() {
         <FaMapMarkerAlt className="absolute bottom-0 right-1/3 bg-[#2fa6d9] p-2 rounded-full text-4xl text-white drop-shadow-lg" />
         <RiSendPlaneFill className="absolute -top-22 -rotate-90 right-1/3 bg-[#facd49] p-2 rounded-full text-4xl text-white drop-shadow-lg" />
 
-        <div className="w-[200px] bg-white  mt-[30px] rounded-xl overflow-hidden relative">
+        <div className="w-[200px] bg-transparent  mt-[30px] rounded-xl overflow-hidden relative">
           <div
             ref={scrollContainerUpRef}
             className="absolute h-[200%] w-full"
@@ -140,7 +140,7 @@ export default function HeroSection() {
           
 
         {/* Column 2 - Scroll Down */}
-        <div className="w-[200px] bg-white -mt-[30px] mb-[60px] rounded-xl overflow-hidden relative">
+        <div className="w-[200px] bg-transparent -mt-[30px] mb-[60px] rounded-xl overflow-hidden relative">
           <div
             ref={scrollContainerDownRef}
             className="absolute translate-y-[-160%] h-[200%] w-full"

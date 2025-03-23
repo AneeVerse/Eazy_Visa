@@ -17,11 +17,11 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <nav className="bg-white top-0 left-0 shadow-md  fixed w-full z-50">
+      <nav className="bg-white top-0 left-0 shadow-md  fixed w-full z-30">
         <Layout className=" flex justify-between h-[80px] items-center">
           {/* Logo */}
           <Link href="/">
-            <div className="text-xl font-bold text-blue-500 flex items-center gap-2 cursor-pointer">
+            <div className="text-xl  font-bold text-blue-500 flex items-center gap-2 cursor-pointer">
               <img src="/images/logo/logo.png" alt="Logo" className="w-full h-8" />
              
             </div>

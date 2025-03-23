@@ -26,7 +26,7 @@ export default function DestinationSlider() {
   };
 
   return (
-    <section className="py-10 ">
+    <section className="py-16 ">
       <Layout className=" relative">
         {/* Section Heading */}
         <div className="flex items-center justify-between mb-6">

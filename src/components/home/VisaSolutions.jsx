@@ -52,7 +52,7 @@ const places = [
 
 export default function VisaSolutions() {
   return (
-    <section className="py-10 ">
+    <section className="py-16 ">
       <Layout>
       <div className="px-4 text-center">
         <Heading level={2} className="text-secondary-500 mb-10">
