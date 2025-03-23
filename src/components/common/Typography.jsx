@@ -2,15 +2,15 @@
 import { motion } from 'framer-motion';
 
 // Heading Component
-export const Heading = ({ level = 1, children, className, animate = false }) => {
+export const Heading = ({ level = 1, weight = "semibold",  children, className, animate = false }) => {
   const Tag = `h${level}`;
   const sizes = {
     1: 'text-4xl md:text-5xl font-bold',
-    2: 'text-3xl md:text-4xl font-semibold',
-    3: 'text-2xl md:text-3xl font-semibold',
-    4: 'text-xl md:text-2xl font-semibold',
-    5: 'text-lg md:text-xl font-semibold',
-    6: 'text-base md:text-lg font-semibold',
+    2: `text-3xl md:text-4xl font-${weight}`,
+    3: `text-2xl md:text-3xl font-${weight}`,
+    4: `text-xl md:text-2xl font-${weight}`,
+    5: `text-lg md:text-xl font-${weight}`,
+    6: `text-base md:text-lg font-${weight}`,
   };
 
   const animationProps = animate
@@ -44,7 +44,7 @@ export const Subheading = ({ children, className, animate = false }) => {
 
   return (
     <motion.div {...animationProps}>
-      <h2 className={`text-xl md:text-2xl font-semibold text-gray-600 ${className}`}>
+      <h2 className={`text-xl md:text-2xl font-semibold  ${className}`}>
         {children}
       </h2>
     </motion.div>

@@ -3,71 +3,85 @@
 import Image from "next/image";
 import { FaMapMarkerAlt, FaSuitcase, FaPlane } from "react-icons/fa";
 import Layout from "../common/Layout";
+import Button from "../common/Button";
+import { IoIosArrowForward } from "react-icons/io";
+import { Heading } from "../common/Typography";
 
 export default function AboutUs() {
   return (
-    <section className="py-16 bg-gradient-to-r from-white to-blue-50">
-      <Layout className="flex flex-col md:flex-row items-center gap-10">
-        
+    <section className="py-20 ">
+      <Layout className="flex flex-col md:flex-row items-start gap-12">
         {/* Left Content */}
-        <div className="md:w-1/2 space-y-6">
-          <h2 className="text-3xl font-bold text-gray-900">About <span className="text-blue-600">US</span></h2>
-          <p className="text-gray-600">
-            Set your travel goals, optimize your itinerary, and explore Norway with ease. 
-            Our smart technology helps you plan the perfect adventure, from fjord cruises to Northern Lights excursions.
-          </p>
+        <div className="md:w-1/2  space-y-8">
+          {/* Heading */}
+          <div className="space-y-4">
+            <div className="flex justify-between gap-2">
+              <Heading level={2} weight={"bold"} className="text-secondary-500">
+                About <span className="text-blue-600">US</span>
+              </Heading>
+           
+            <Button variant="primary" icon={<IoIosArrowForward/>} size="medium" href="#">
+              Read More
+            </Button>
+            </div>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Set your travel goals, optimize your itinerary, and explore Norway with ease. 
+              Our smart technology helps you plan the perfect adventure, from fjord cruises to Northern Lights excursions.
+            </p>
+          </div>
 
-          <div className="space-y-5">
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-gray-200 rounded-full">
-                <FaMapMarkerAlt className="text-xl text-blue-600" />
+          {/* Features List */}
+          <div className="space-y-6">
+            <div className="flex items-center space-x-6">
+              <div className="p-4 bg-white rounded-full shadow-md">
+                <FaMapMarkerAlt className="text-2xl text-secondary-500" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-800">Choose Your Destination</h3>
-                <p className="text-gray-600 text-sm">Select from thousands of beautiful places</p>
+                <h3 className="text-xl font-semibold text-gray-800">Choose Your Destination</h3>
+                <p className="text-gray-600">Select from thousands of beautiful places</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-gray-200 rounded-full">
-                <FaSuitcase className="text-xl text-blue-600" />
+            <div className="flex items-center space-x-6">
+              <div className="p-4 bg-white rounded-full shadow-md">
+                <FaSuitcase className="text-2xl text-secondary-500" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-800">Personalize Your Trip</h3>
-                <p className="text-gray-600 text-sm">Get custom itineraries tailored to your preferences</p>
+                <h3 className="text-xl font-semibold text-gray-800">Personalize Your Trip</h3>
+                <p className="text-gray-600">Get custom itineraries tailored to your preferences</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <div className="p-3 bg-gray-200 rounded-full">
-                <FaPlane className="text-xl text-blue-600" />
+            <div className="flex items-center space-x-6">
+              <div className="p-4 bg-white rounded-full shadow-md">
+                <FaPlane className="text-2xl text-secondary-500" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-800">Travel Effortlessly</h3>
-                <p className="text-gray-600 text-sm">Book and explore Norway without hassle</p>
+                <h3 className="text-xl font-semibold text-gray-800">Travel Effortlessly</h3>
+                <p className="text-gray-600">Book and explore Norway without hassle</p>
               </div>
             </div>
           </div>
 
           {/* Buttons */}
-          <div className="flex space-x-4">
-            <button className="bg-blue-600 text-white px-5 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
-              Get Started
-            </button>
-            <button className="text-blue-600 font-semibold flex items-center space-x-2 hover:underline">
-              <span>Read More</span> <span className="ml-1">→</span>
-            </button>
+          <div className="flex space-x-6">
+            
+          <Button variant="secondary" size="medium" href="#">
+          Get Started
+            </Button>
+          
+          
           </div>
         </div>
 
         {/* Right Image */}
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 mx-auto mt-8 md:mt-0">
           <Image
             src="/images/home/about-img.png"
             alt="Norway Travel"
-            width={500}
-            height={400}
-            className="w-full rounded-xl shadow-lg"
+            width={600}
+            height={500}
+            className="w-full rounded-xl max-h-[500px] shadow-lg"
           />
         </div>
       </Layout>

@@ -25,7 +25,7 @@ const services = [
 
 export default function OneStopSolutions() {
   return (
-    <section className="py-16 bg-gradient-to-r from-white to-blue-50 text-center">
+    <section className="py-16  text-center">
       <Layout>
         <Heading level={2} className="text-secondary-500 mb-10">
         One Stop Solutions
@@ -35,7 +35,8 @@ export default function OneStopSolutions() {
         {services.map((service, index) => (
           <motion.div 
             key={index} 
-            className="bg-white p-[26px] rounded-2xl shadow-lg text-center flex flex-col items-center"
+            // style={{boxShadow: '0px 1px 20px rgba(220, 220, 220, 0.3)'}}
+            className="bg-white myshadow p-[26px] rounded-2xl  text-center flex flex-col items-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -44,7 +45,7 @@ export default function OneStopSolutions() {
             <div className="bg-gray-100 p-4 rounded-full mb-[30px]">
               {service.icon}
             </div>
-            <Heading level={5} className="text-secondary-500 mb-4">
+            <Heading level={4} className="text-secondary-500 mb-4">
        {service.title}
          </Heading>
             <p className="text-gray-600 max-w-[210px] text-md">{service.description}</p>

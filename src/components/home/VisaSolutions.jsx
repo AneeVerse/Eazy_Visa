@@ -52,7 +52,7 @@ const places = [
 
 export default function VisaSolutions() {
   return (
-    <section className="py-10 bg-gray-50">
+    <section className="py-10 ">
       <Layout>
       <div className="px-4 text-center">
         <Heading level={2} className="text-secondary-500 mb-10">
@@ -75,11 +75,11 @@ export default function VisaSolutions() {
             />
             <div className="absolute bottom-4 left-4 right-4 bg-white shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-medium text-gray-900">
                   {place.title}
                 </h3>
                 <p className="text-sm text-gray-600">{place.location}</p>
-                <div className="inline-flex mt-1 items-center bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-[12px]">
+                <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
                   <FaStar className="mr-1" />
                   {place.rating}
                 </div>
@@ -104,11 +104,11 @@ export default function VisaSolutions() {
             />
             <div className="absolute bottom-4 left-4 right-4 bg-white shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-medium text-gray-900">
                   {place.title}
                 </h3>
                 <p className="text-sm text-gray-600">{place.location}</p> 
-                <div className="inline-flex mt-1 items-center bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-[12px]">
+                <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
                   <FaStar className="mr-1" />
                   {place.rating}
                 </div>

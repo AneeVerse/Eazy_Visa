@@ -18,17 +18,17 @@ export default function Button({
 }) {
   // Variant Styles
   const variantStyles = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-gray-100 text-gray-700 hover:bg-gray-200',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50',
-    ghost: 'text-blue-600 hover:bg-blue-50',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
+    primary: ' cursor-pointer bg-[#6FBCFD]/40 text-primary-500 hover:bg-[#6FBCFD]',
+    secondary: ' cursor-pointer bg-primary-500 text-white hover:bg-primary-600',
+    outline: ' cursor-pointer border-2 border-blue-600 text-blue-600 hover:bg-blue-50',
+    ghost: ' cursor-pointer text-blue-600 hover:bg-blue-50',
+    danger: ' cursor-pointer bg-red-600 text-white hover:bg-red-700',
   };
 
   // Size Styles
   const sizeStyles = {
-    small: 'px-4 py-2 text-sm',
-    medium: 'px-6 py-3 text-base',
+    small: 'px-5 py-2 text-sm',
+    medium: 'px-7 py-3 text-md',
     large: 'px-8 py-4 text-lg',
   };
 
@@ -67,7 +67,7 @@ export default function Button({
   );
 
   // Common Button Styles
-  const buttonStyles = `flex items-center justify-center rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+  const buttonStyles = `flex items-center justify-center rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
     variantStyles[variant]
   } ${sizeStyles[size]} ${disabled || loading ? 'opacity-50 cursor-not-allowed' : ''} ${className}`;
 
