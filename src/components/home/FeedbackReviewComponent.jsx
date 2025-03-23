@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Layout from "../common/Layout";
 
 const FeedbackReviewComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -58,7 +59,8 @@ const FeedbackReviewComponent = () => {
 
   return (
     <section className="pt-16">
-      <div className="container mx-auto px-6 text-left">
+      <Layout>
+      <div className=" text-left">
         {/* ✅ Heading */}
         <div className="flex  mb-10 gap-6 flex-col sm:flex-row justify-between items-center">
           <div>
@@ -157,6 +159,7 @@ const FeedbackReviewComponent = () => {
           <p className="text-white font-semibold">{notification.message}</p>
         </motion.div>
       )}
+      </Layout>
     </section>
   );
 };

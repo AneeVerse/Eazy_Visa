@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import Layout from "../common/Layout";
 
 const MediaTestimonials = () => {
   const [selectedIndex, setSelectedIndex] = useState(null); // Track selected media index
@@ -98,7 +99,8 @@ const MediaTestimonials = () => {
 
   return (
     <section className="relative pb-16">
-      <div className="container mx-auto px-5 sm:px-6 lg:px-12">
+    <Layout>
+      <div className="">
         <div className="relative">
           {/* Left scroll button */}
           <button
@@ -203,6 +205,7 @@ const MediaTestimonials = () => {
           </div>
         </div>
       )}
+      </Layout>
     </section>
   );
 };

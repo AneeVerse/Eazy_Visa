@@ -51,13 +51,13 @@ export default function DestinationSlider() {
         {/* Scroll Buttons (Only for large screens) */}
         <button
           onClick={() => scroll("left")}
-          className="hidden md:flex absolute cursor-pointer left-0 top-1/2 transform z-10 translate-y-[100%] bg-white shadow-lg p-2 rounded-full"
+          className="hidden md:flex absolute cursor-pointer left-8 lg:left-15 top-1/2 transform z-10 translate-y-[100%] bg-white/50 hover:bg-white transition-all shadow-lg p-2 rounded-full"
         >
           <FaChevronLeft size={20} />
         </button>
         <button
           onClick={() => scroll("right")}
-          className="hidden md:flex absolute cursor-pointer right-0 top-1/2 z-10 transform translate-y-[100%] bg-white shadow-lg p-2 rounded-full"
+          className="hidden md:flex absolute cursor-pointer right-8  lg:right-15 top-1/2 z-10 transform translate-y-[100%] bg-white/50 hover:bg-white transition-all shadow-lg p-2 rounded-full"
         >
           <FaChevronRight size={20} />
         </button>
