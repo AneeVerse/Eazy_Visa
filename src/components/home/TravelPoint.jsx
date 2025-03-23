@@ -25,7 +25,7 @@ const states = [
 
 export default function TravelPoint() {
   return (
-    <section className="relative ">
+    <section className="relative py-16 ">
       <Layout className="flex flex-col md:flex-row items-center gap-10">
         {/* Left Image */}
         <div className="relative md:w-1/2">

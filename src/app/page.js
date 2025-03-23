@@ -12,15 +12,31 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div>
+      {/* blur bg color effect */}
+      
+      <div className="absolute blur-[200px] top-[0%] -left-[30px]  w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
+      <div  className="relative">
+        
+      <div className="absolute blur-[200px] rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
      <Hero />
      <OneStopSolutions />
+     </div>
      <VisaSolutions />
         <Destinations />
+        <div  className="relative">
+        
+        <div className="absolute blur-[200px] rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
         <AboutUs />
         <TravelPoint />
+        </div>
         <FeedbackReviewComponent />
         <MediaTestimonials />
+        <div  className="relative">
+        
+        {/* <div className="absolute blur-[200px] rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div> */}
+        <div className="absolute blur-[200px] rounded-full top-[20%] -left-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
         <BlogSection />
+        </div>
     </div>
   );
 }
