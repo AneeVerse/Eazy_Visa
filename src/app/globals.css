@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+
+body{
+  overflow-x: hidden;
+}
+
 @layer components {
   .section-padding {
     @apply py-16 lg:py-24 px-4;
