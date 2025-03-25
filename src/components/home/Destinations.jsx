@@ -13,7 +13,8 @@ import { Heading, Subheading } from "../common/Typography";
 
 export default function DestinationSlider() {
   const scrollRef = useRef(null);
-
+  // Flatten country data from all continents
+  const allCountries = Object.values(countryData).flat();
   const scroll = (direction) => {
     if (scrollRef.current) {
       const scrollAmount = 300; // Scroll distance
@@ -42,7 +43,7 @@ export default function DestinationSlider() {
             variant="primary"
             icon={<IoIosArrowForward />}
             size="medium"
-            href={"#"}
+            href={"/countries"}
           >
             See All
           </Button>
@@ -67,8 +68,16 @@ export default function DestinationSlider() {
           ref={scrollRef}
           className="flex space-x-4 hide-scrollbar overflow-x-auto scroll-smooth  py-4"
         >
-          {countryData.map((country) => (
-            <VisaCard key={country.id} {...country} />
+          {allCountries.map((country) => (
+            <VisaCard 
+            key={country.id} 
+            image={country.landmark}
+            name={country.name}
+            continent={country.continent}
+            price={`₹${country.price}`}
+            visasOnTime={country.visasOnTime}
+            isTrending={country.isTrending || false}
+            visaType={country.basicInfo?.visaType || "Tourist Visa"} />
           ))}
         </div>
       </Layout>

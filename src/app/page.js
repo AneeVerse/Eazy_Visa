@@ -1,3 +1,4 @@
+import Layout from "@/components/common/Layout";
 import AboutUs from "@/components/home/AboutUs";
 import BlogSection from "@/components/home/BlogSection";
 import Destinations from "@/components/home/Destinations";
@@ -11,7 +12,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       {/* blur bg color effect */}
       
       <div className="absolute blur-[200px] top-[0%] -left-[30px]  w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
@@ -29,8 +30,11 @@ export default function Home() {
         <AboutUs />
         <TravelPoint />
         </div>
+        <Layout>
         <FeedbackReviewComponent />
         <MediaTestimonials />
+
+        </Layout>
         <div  className="relative">
         
         {/* <div className="absolute blur-[200px] rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div> */}

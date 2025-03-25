@@ -1,17 +1,19 @@
 // src/components/VisaCard.tsx
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function VisaCard({
   name,
   price,
+  continent,
   visaType,
   image,
   visasOnTime,
   isTrending,
 }) {
   return (
-    <div
+    <Link href={`/countries/${continent.toLowerCase()}/${name.toLowerCase()}`}
     
 
      className="bg-white hover-myshadow rounded-xl cursor-pointer min-w-64 w-64 relative border border-gray-200">
@@ -49,6 +51,6 @@ export default function VisaCard({
         <h3 className="text-lg font-semibold">{name}</h3>
         <p className="text-gray-700 font-bold">{price}</p>
       </div>
-    </div>
+    </Link>
   );
 }

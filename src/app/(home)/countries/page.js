@@ -8,7 +8,8 @@ import Layout from "@/components/common/Layout";
 import CountryBanner from "@/components/countries/CountryBanner";
 import BlogSection from "@/components/home/BlogSection";
 import VisaSolutions from "@/components/home/VisaSolutions";
-import { FiChevronDown, FiCheck } from "react-icons/fi";
+import { FiChevronDown, FiCheck, FiSearch } from "react-icons/fi";
+import { IoMdClose } from "react-icons/io";
 
 const CustomSelect = ({ 
   options, 
@@ -80,6 +81,80 @@ const CustomSelect = ({
   );
 };
 
+const CountryFilter = ({ 
+  search, 
+  setSearch, 
+  continent, 
+  setContinent, 
+  sortBy, 
+  setSortBy,
+  resetFilters
+}) => {
+  return (
+    <div className="flex flex-wrap gap-5 justify-between items-center mb-10">
+      <div className="relative w-full md:w-1/3">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <FiSearch className="h-5 w-5 text-gray-400" />
+        </div>
+        <input
+          type="text"
+          placeholder="Search for countries..."
+          className="pl-10 w-full px-4 py-3 border rounded-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        {search && (
+          <button
+            onClick={() => setSearch("")}
+            className="absolute inset-y-0 right-0 pr-3 flex items-center"
+          >
+            <IoMdClose className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+          </button>
+        )}
+      </div>
+
+      <CustomSelect
+        options={[
+          "All Continents",
+          "Asia",
+          "Europe",
+          "North America",
+          "South America",
+          "Africa",
+          "Oceania"
+        ]}
+        value={continent}
+        onChange={setContinent}
+        placeholder="Select Continent"
+        className="w-full md:w-1/4"
+      />
+
+      <CustomSelect
+        options={[
+          "Most Popular",
+          "Lowest Price",
+          "Highest Price",
+          "Shortest Processing",
+          "Longest Validity"
+        ]}
+        value={sortBy}
+        onChange={setSortBy}
+        placeholder="Sort By"
+        className="w-full md:w-1/4"
+      />
+
+      {(search !== "" || continent !== "All Continents" || sortBy !== "Most Popular") && (
+        <button
+          onClick={resetFilters}
+          className="text-blue-600 hover:text-blue-800 flex items-center text-sm font-medium"
+        >
+          Reset Filters
+        </button>
+      )}
+    </div>
+  );
+};
+
 export default function Countries() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -87,44 +162,37 @@ export default function Countries() {
   const [sortBy, setSortBy] = useState("Most Popular");
   const itemsPerPage = 8;
 
-  // Continent options
-  const continentOptions = [
-    "All Continents",
-    "Asia",
-    "Europe",
-    "North America",
-    "South America",
-    "Africa",
-    "Oceania"
-  ];
-
-  // Sort options
-  const sortOptions = [
-    "Most Popular",
-    "Lowest Price",
-    "Highest Price"
-  ];
+  // Flatten country data from all continents
+  const allCountries = Object.values(countryData).flat();
 
   // Filter by continent
   const filteredByContinent =
     continent === "All Continents"
-      ? countryData
-      : countryData.filter((country) => country.continent === continent);
+      ? allCountries
+      : allCountries.filter((country) => country.continent === continent);
 
   // Search Filter
   const searchedCountries = filteredByContinent.filter((country) =>
-    country.name.toLowerCase().includes(search.toLowerCase())
+    country.name.toLowerCase().includes(search.toLowerCase()) ||
+    country.description.toLowerCase().includes(search.toLowerCase())
   );
 
   // Sorting Logic
   const sortedCountries = [...searchedCountries].sort((a, b) => {
     if (sortBy === "Lowest Price") {
-      return parseInt(a.price.replace("₹", "")) - parseInt(b.price.replace("₹", ""));
+      return a.price - b.price;
     }
     if (sortBy === "Highest Price") {
-      return parseInt(b.price.replace("₹", "")) - parseInt(a.price.replace("₹", ""));
+      return b.price - a.price;
     }
-    return 0;
+    if (sortBy === "Shortest Processing") {
+      return parseInt(a.processingTime) - parseInt(b.processingTime);
+    }
+    if (sortBy === "Longest Validity") {
+      return parseInt(b.validity) - parseInt(a.validity);
+    }
+    // Default: Most Popular (sort by popularity or visaOnTime)
+    return (b.visasOnTime || 0) - (a.visasOnTime || 0);
   });
 
   // Pagination Logic
@@ -134,62 +202,77 @@ export default function Countries() {
     currentPage * itemsPerPage
   );
 
+  const resetFilters = () => {
+    setSearch("");
+    setContinent("All Continents");
+    setSortBy("Most Popular");
+    setCurrentPage(1);
+  };
+
   return (
     <div className="">
       <CountryBanner
         image="/images/countries/banner.png"
-        title="Discovering the wonders of our planet, one adventure at a time"
+        title="Discover Visa Options for Your Dream Destinations"
+        subtitle="Find the perfect visa solution for your next adventure"
       />
 
       <Layout className="mt-20">
         {/* Filters */}
-        <div className="flex flex-wrap gap-5 justify-between items-center mb-10">
-          <input
-            type="text"
-            placeholder="Search for places, hotels or restaurants"
-            className="w-full md:w-1/3 px-4 py-3 border rounded-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+        <CountryFilter
+          search={search}
+          setSearch={setSearch}
+          continent={continent}
+          setContinent={setContinent}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          resetFilters={resetFilters}
+        />
 
-          <CustomSelect
-            options={continentOptions}
-            value={continent}
-            onChange={setContinent}
-            placeholder="Select Continent"
-            className="w-full md:w-1/4"
-          />
-
-          <CustomSelect
-            options={sortOptions}
-            value={sortBy}
-            onChange={setSortBy}
-            placeholder="Sort By"
-            className="w-full md:w-1/4"
-          />
+        {/* Results Count */}
+        <div className="mb-6 text-gray-600">
+          Showing {visibleCountries.length} of {sortedCountries.length} countries
         </div>
 
-
-{/*  if visiblecoutnries length 0 */}
+        {/* No Results */}
         {visibleCountries.length === 0 && (
-          <div className="flex items-center justify-center h-[200px]">
-            <p className="text-lg text-gray-500">No countries found</p>
+          <div className="flex flex-col items-center justify-center h-[200px]">
+            <p className="text-lg text-gray-500 mb-4">No countries found matching your criteria</p>
+            <button
+              onClick={resetFilters}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            >
+              Reset Filters
+            </button>
           </div>
         )}
+
         {/* Visa Cards */}
-        <div className="flex mt-12 flex-wrap justify-center gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {visibleCountries.map((country) => (
-            <VisaCard key={country.id} {...country} />
+            <VisaCard 
+              key={country.id} 
+              image={country.landmark}
+              name={country.name}
+              continent={country.continent}
+              price={`₹${country.price}`}
+              visasOnTime={country.visasOnTime}
+              isTrending={country.isTrending || false}
+              visaType={country.basicInfo?.visaType || "Tourist Visa"}
+            />
           ))}
         </div>
 
         {/* Pagination */}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        )}
       </Layout>
+
       <VisaSolutions />
       <BlogSection />
     </div>
