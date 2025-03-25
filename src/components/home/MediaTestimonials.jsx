@@ -80,7 +80,7 @@ const MediaTestimonials = () => {
 
   return (
     <section className="relative pb-16">
-    <Layout>
+   
       <div className="">
         <div className="relative">
           {/* Left scroll button */}
@@ -186,7 +186,6 @@ const MediaTestimonials = () => {
           </div>
         </div>
       )}
-      </Layout>
     </section>
   );
 };
