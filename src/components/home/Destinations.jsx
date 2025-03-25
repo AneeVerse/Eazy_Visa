@@ -68,9 +68,9 @@ export default function DestinationSlider() {
           ref={scrollRef}
           className="flex space-x-4 hide-scrollbar overflow-x-auto scroll-smooth  py-4"
         >
-          {allCountries.map((country) => (
+          {allCountries.slice(0,15).map((country) => (
             <VisaCard 
-            key={country.id} 
+            key={`${country.continent}-${country.id}`} 
             image={country.landmark}
             name={country.name}
             continent={country.continent}

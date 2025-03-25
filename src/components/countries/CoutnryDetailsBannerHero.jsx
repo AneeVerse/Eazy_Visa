@@ -18,7 +18,7 @@ const SCROLL_IMAGES = [
   '/images/home/hero3.png',
 ];
 
-export default function CoutnryDetailsBannerHero() {
+export default function CoutnryDetailsBannerHero({title, image}) {
   const scrollContainerUpRef = useRef(null);
   const scrollContainerDownRef = useRef(null);
 
@@ -67,8 +67,8 @@ export default function CoutnryDetailsBannerHero() {
       <div className="lg:w-2/3 relative">
         <div className="relative">
           <img
-            src='/images/home/hero1.png'
-            alt='Country'
+            src={image}
+            alt={title}
             className='w-full h-[500px] rounded-xl object-cover'
           />
           {/* Text Overlay at Bottom */}

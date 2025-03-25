@@ -9,7 +9,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="w-[50px] h-[50px] flex justify-center border-gray-500 items-center border rounded-md bg-gray-200 disabled:opacity-50"
+          className="w-[50px] h-[50px] flex justify-center border-gray-500 items-center border cursor-pointer rounded-md bg-gray-200 disabled:opacity-50"
         >
           <FaAngleLeft />
         </button>
@@ -18,7 +18,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
           <button
             key={index}
             onClick={() => onPageChange(index + 1)}
-            className={`w-[50px] h-[50px] border rounded-md ${
+            className={`w-[50px] h-[50px] border cursor-pointer rounded-md ${
               currentPage === index + 1 ? "bg-blue-500 text-white border-blue-500" : "bg-gray-200 border-gray-500"
             }`}
           >
@@ -29,7 +29,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="w-[50px] h-[50px] flex justify-center items-center border border-gray-500 rounded-md bg-gray-200 disabled:opacity-50"
+          className="w-[50px] h-[50px] flex justify-center items-center border border-gray-500 rounded-md cursor-pointer bg-gray-200 disabled:opacity-50"
         >
             <FaAngleRight />
         </button>

@@ -10,7 +10,6 @@ import BlogSection from "@/components/home/BlogSection";
 import VisaSolutions from "@/components/home/VisaSolutions";
 import { FiChevronDown, FiCheck, FiSearch } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
-
 const CustomSelect = ({ 
   options, 
   value, 
@@ -160,7 +159,7 @@ export default function Countries() {
   const [currentPage, setCurrentPage] = useState(1);
   const [continent, setContinent] = useState("All Continents");
   const [sortBy, setSortBy] = useState("Most Popular");
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
   // Flatten country data from all continents
   const allCountries = Object.values(countryData).flat();
@@ -251,7 +250,7 @@ export default function Countries() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {visibleCountries.map((country) => (
             <VisaCard 
-              key={country.id} 
+              key={`${country.continent}-${country.id}`} 
               image={country.landmark}
               name={country.name}
               continent={country.continent}

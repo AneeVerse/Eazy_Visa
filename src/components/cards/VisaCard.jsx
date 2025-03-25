@@ -13,7 +13,7 @@ export default function VisaCard({
   isTrending,
 }) {
   return (
-    <Link href={`/countries/${continent.toLowerCase()}/${name.toLowerCase()}`}
+    <Link href={`/countries/${continent.replace(" ", "").toLowerCase()}/${name.toLowerCase()}`}
     
 
      className="bg-white hover-myshadow rounded-xl cursor-pointer min-w-64 w-64 relative border border-gray-200">
@@ -30,14 +30,12 @@ export default function VisaCard({
         </div>
       )}
       <div className="relative rounded-xl">
-        <Image
+        <img
           src={image}
           alt={name}
-          width={256}
-          height={160}
           className="w-full h-[250px] object-cover  rounded-t-xl"
         />
-        <span className="absolute top-3 left-0 bg-primary-500 text-white text-xs px-3 py-[6px] rounded-r-lg">
+        <span className="absolute top-6 left-0 bg-[#5355e7] text-white text-xs px-3 py-[6px] rounded-r-lg">
           {visasOnTime} Visas on Time
         </span>
         <div className="flex absolute bottom-0 w-full justify-center ">
