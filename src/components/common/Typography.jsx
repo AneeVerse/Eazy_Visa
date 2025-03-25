@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export const Heading = ({ level = 1, weight = "semibold",  children, className, animate = false }) => {
   const Tag = `h${level}`;
   const sizes = {
-    1: 'text-4xl md:text-5xl font-bold',
+    1: 'text-3xl sm:text-4xl md:text-5xl font-bold',
     2: `text-3xl md:text-4xl font-${weight}`,
     3: `text-2xl md:text-3xl font-${weight}`,
     4: `text-xl md:text-2xl font-${weight}`,

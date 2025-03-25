@@ -33,7 +33,7 @@ export default function VisaCard({
           alt={name}
           width={256}
           height={160}
-          className="w-full h-52 object-cover  rounded-t-xl"
+          className="w-full h-[250px] object-cover  rounded-t-xl"
         />
         <span className="absolute top-3 left-0 bg-primary-500 text-white text-xs px-3 py-[6px] rounded-r-lg">
           {visasOnTime} Visas on Time

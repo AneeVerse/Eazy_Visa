@@ -31,7 +31,7 @@ export default function DestinationSlider() {
         {/* Section Heading */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <Subheading className="text-primary-500 mb-2">Countries</Subheading>
+            <Subheading className="text-primary-500 uppercase mb-2">Countries</Subheading>
             <Heading level={2} className="text-secondary-500 mb-10">
               Explore top destinations
             </Heading>

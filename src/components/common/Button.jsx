@@ -67,7 +67,7 @@ export default function Button({
   );
 
   // Common Button Styles
-  const buttonStyles = `flex items-center justify-center rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+  const buttonStyles = `flex items-center min-w-fit  whitespace-nowrap justify-center rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
     variantStyles[variant]
   } ${sizeStyles[size]} ${disabled || loading ? 'opacity-50 cursor-not-allowed' : ''} ${className}`;
 

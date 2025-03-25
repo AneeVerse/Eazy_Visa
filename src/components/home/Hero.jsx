@@ -76,7 +76,7 @@ export default function HeroSection() {
             <FaCompass className="text-blue-600 text-xl" />
           </div>
 
-          <Heading level={1} className="text-5xl uppercase md:text-6xl font-bold">
+          <Heading level={1} className="uppercase font-bold">
             Stress Free Visa, <br />
             <span className="text-blue-600">Every Time.</span>
           </Heading>
