@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 
 // Heading Component
-export const Heading = ({ level = 1, weight = "semibold",  children, className, animate = false }) => {
+export const Heading = ({ level = 1, weight = "semibold", children, className, animate = false }) => {
   const Tag = `h${level}`;
   const sizes = {
     1: 'text-3xl sm:text-4xl md:text-5xl font-bold',
@@ -12,14 +12,13 @@ export const Heading = ({ level = 1, weight = "semibold",  children, className, 
     5: `text-lg md:text-xl font-${weight}`,
     6: `text-base md:text-lg font-${weight}`,
   };
-
   const animationProps = animate
     ? {
-        initial: { opacity: 0, y: 20 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true },
-        transition: { duration: 0.5 },
-      }
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5 },
+    }
     : {};
 
   return (
@@ -35,11 +34,11 @@ export const Heading = ({ level = 1, weight = "semibold",  children, className, 
 export const Subheading = ({ children, className, animate = false }) => {
   const animationProps = animate
     ? {
-        initial: { opacity: 0, y: 20 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true },
-        transition: { duration: 0.5, delay: 0.2 },
-      }
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5, delay: 0.2 },
+    }
     : {};
 
   return (
@@ -55,11 +54,11 @@ export const Subheading = ({ children, className, animate = false }) => {
 export const Paragraph = ({ children, className, animate = false }) => {
   const animationProps = animate
     ? {
-        initial: { opacity: 0, y: 20 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true },
-        transition: { duration: 0.5, delay: 0.4 },
-      }
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5, delay: 0.4 },
+    }
     : {};
 
   return (
@@ -75,11 +74,11 @@ export const Paragraph = ({ children, className, animate = false }) => {
 export const Caption = ({ children, className, animate = false }) => {
   const animationProps = animate
     ? {
-        initial: { opacity: 0, y: 20 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true },
-        transition: { duration: 0.5, delay: 0.6 },
-      }
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5, delay: 0.6 },
+    }
     : {};
 
   return (
@@ -95,11 +94,11 @@ export const Caption = ({ children, className, animate = false }) => {
 export const Label = ({ children, className, animate = false }) => {
   const animationProps = animate
     ? {
-        initial: { opacity: 0, y: 20 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true },
-        transition: { duration: 0.5, delay: 0.8 },
-      }
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5, delay: 0.8 },
+    }
     : {};
 
   return (
