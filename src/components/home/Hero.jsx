@@ -99,70 +99,70 @@ export default function HeroSection() {
       <div className="lg:w-1/2 mt-[90px]  relative  w-full ">
         {/* Column 1 - Scroll Up */}
         <div className='w-full md:w-[424px] mx-auto relative flex h-[400px] md:h-[500px] gap-3 sm:gap-6 justify-center'>
-          
-        <FaMapMarkerAlt className="absolute bottom-0 right-1/3 bg-[#2fa6d9] p-2 rounded-full text-4xl text-white drop-shadow-lg" />
-        <RiSendPlaneFill className="absolute -top-22 -rotate-90 right-1/3 bg-[#facd49] p-2 rounded-full text-4xl text-white drop-shadow-lg" />
 
-        <div className="w-[200px] bg-transparent  mt-[30px] rounded-xl overflow-hidden relative">
-          <div
-            ref={scrollContainerUpRef}
-            className="absolute h-[200%] w-full"
-          >
-            {[...SCROLL_IMAGES, ...SCROLL_IMAGES].map((src, index) => (
-              <motion.div
-                key={index}
-                className="relative group w-full mb-3 sm:mb-6 "
-              >
-                <Image
-                  src={src}
-                  width={300}
-                  height={400}
-                  alt={`Destination ${index + 1}`}
-                  className="rounded-2xl  object-cover h-[250px] w-full"
-                  loading="lazy"
-                />
-              </motion.div>
-            ))}
+          <FaMapMarkerAlt className="absolute bottom-0 right-1/3 bg-[#2fa6d9] p-2 rounded-full text-4xl text-white drop-shadow-lg" />
+          <RiSendPlaneFill className="absolute -top-22 -rotate-90 right-1/3 bg-[#facd49] p-2 rounded-full text-4xl text-white drop-shadow-lg" />
 
+          <div className="w-[200px] bg-transparent  mt-[30px] rounded-xl overflow-hidden relative">
+            <div
+              ref={scrollContainerUpRef}
+              className="absolute h-[200%] w-full"
+            >
+              {[...SCROLL_IMAGES, ...SCROLL_IMAGES].map((src, index) => (
+                <motion.div
+                  key={index}
+                  className="relative group w-full mb-3 sm:mb-6 "
+                >
+                  <Image
+                    src={src}
+                    width={300}
+                    height={400}
+                    alt={`Destination ${index + 1}`}
+                    className="rounded-2xl  object-cover h-[250px] w-full"
+                    loading="lazy"
+                  />
+                </motion.div>
+              ))}
+
+            </div>
           </div>
-        </div>
 
-          <img 
+          <img
             src="/images/home/svg/plain1.svg"
             alt="Decorative Airplane"
             className="absolute -top-16 -left-26  -z-10 "
           />
-          <img 
+          <img
             src="/images/home/svg/plain2.svg"
             alt="Decorative Airplane"
             className="absolute bottom-16 -right-36 hidden md:block  -z-10 "
           />
-          
 
-        {/* Column 2 - Scroll Down */}
-        <div className="w-[200px] bg-transparent -mt-[30px] mb-[60px] rounded-xl overflow-hidden relative">
-          <div
-            ref={scrollContainerDownRef}
-            className="absolute translate-y-[-160%] h-[200%] w-full"
-          >
-            {[...SCROLL_IMAGES, ...SCROLL_IMAGES].map((src, index) => (
-              <motion.div
-                key={index}
-                className="relative group w-full mb-3 sm:mb-6 "
-              >
-                <Image
-                  src={src}
-                  width={300}
-                  height={400}
-                  alt={`Destination ${index + 1}`}
-                  className="rounded-2xl object-cover h-[250px] w-full"
-                  loading="lazy"
-                />
-                {/* <FaMapMarkerAlt className="absolute top-4 right-4 text-2xl text-yellow-400 drop-shadow-lg" /> */}
-              </motion.div>
-            ))}
+
+          {/* Column 2 - Scroll Down */}
+          <div className="w-[200px] bg-transparent -mt-[30px] mb-[60px] rounded-xl overflow-hidden relative">
+            <div
+              ref={scrollContainerDownRef}
+              className="absolute translate-y-[-160%] h-[200%] w-full"
+            >
+              {[...SCROLL_IMAGES, ...SCROLL_IMAGES].map((src, index) => (
+                <motion.div
+                  key={index}
+                  className="relative group w-full mb-3 sm:mb-6 "
+                >
+                  <Image
+                    src={src}
+                    width={300}
+                    height={400}
+                    alt={`Destination ${index + 1}`}
+                    className="rounded-2xl object-cover h-[250px] w-full"
+                    loading="lazy"
+                  />
+                  {/* <FaMapMarkerAlt className="absolute top-4 right-4 text-2xl text-yellow-400 drop-shadow-lg" /> */}
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
         </div>
       </div>
 

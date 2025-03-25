@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Heading } from "../common/Typography";
 
 export default function CountryBanner({ image, title }) {
   return (
@@ -13,12 +14,12 @@ export default function CountryBanner({ image, title }) {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute inset-0 bg-black/30"></div>
 
       {/* Text Content */}
-      <h1 className="relative text-white text-3xl  md:text-5xl font-bold leading-tight px-4">
+      <Heading level={1} weight="bold" className="text-white max-w-[1440px] md:leading-14 mx-auto relative z-10">
         {title}
-      </h1>
+      </Heading>
     </div>
   );
 }
