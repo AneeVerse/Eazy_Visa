@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Heading } from "../common/Typography";
+import Layout from "../common/Layout";
 
 export default function CountryBanner({ image, title }) {
   return (
@@ -17,9 +18,12 @@ export default function CountryBanner({ image, title }) {
       <div className="absolute inset-0 bg-black/30"></div>
 
       {/* Text Content */}
-      <Heading level={1} weight="bold" className="text-white max-w-[1440px] md:leading-14 mx-auto relative z-10">
+      <Layout>
+      <Heading level={1} weight="bold" className="text-white  md:leading-14 mx-auto relative z-10">
         {title}
       </Heading>
+
+      </Layout>
     </div>
   );
 }
