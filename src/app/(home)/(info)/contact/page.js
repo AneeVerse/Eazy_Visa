@@ -34,13 +34,13 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Contact Card */}
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-indigo-100">
+          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-blue-100">
             <div className="space-y-8">
               {/* Contact Info */}
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-indigo-100 rounded-xl">
-                    <FiMapPin className="w-6 h-6 text-indigo-600" />
+                  <div className="p-3 bg-blue-100 rounded-xl">
+                    <FiMapPin className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Our Headquarters</h3>
@@ -49,8 +49,8 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-indigo-100 rounded-xl">
-                    <FiPhone className="w-6 h-6 text-indigo-600" />
+                  <div className="p-3 bg-blue-100 rounded-xl">
+                    <FiPhone className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Call Us</h3>
@@ -59,8 +59,8 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-indigo-100 rounded-xl">
-                    <FiMail className="w-6 h-6 text-indigo-600" />
+                  <div className="p-3 bg-blue-100 rounded-xl">
+                    <FiMail className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Email Us</h3>
@@ -73,16 +73,16 @@ const Contact = () => {
               <div className="pt-8 border-t border-gray-200">
                 <h4 className="text-lg font-medium text-gray-900 mb-4">Follow Us</h4>
                 <div className="flex space-x-5">
-                  <a href="#" className="text-gray-500 hover:text-indigo-600 transition-colors">
+                  <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaTwitter className="w-6 h-6" />
                   </a>
-                  <a href="https://www.instagram.com/eazyvisas/" className="text-gray-500 hover:text-indigo-600 transition-colors">
+                  <a href="https://www.instagram.com/eazyvisas/" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaInstagram className="w-6 h-6" />
                   </a>
-                  <a href="#" className="text-gray-500 hover:text-indigo-600 transition-colors">
+                  <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaLinkedinIn className="w-6 h-6" />
                   </a>
-                  <a href="#" className="text-gray-500 hover:text-indigo-600 transition-colors">
+                  <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaGithub className="w-6 h-6" />
                   </a>
                 </div>
@@ -91,7 +91,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-indigo-100">
+          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-blue-100">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
@@ -100,7 +100,7 @@ const Contact = () => {
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all outline-none"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="John Doe"
                     required
                   />
@@ -114,7 +114,7 @@ const Contact = () => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all outline-none"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="john@company.com"
                     required
                   />
@@ -128,7 +128,7 @@ const Contact = () => {
                     rows="4"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all outline-none"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="Write your message here..."
                     required
                   ></textarea>
@@ -137,7 +137,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white px-6 py-3.5 rounded-lg font-medium transition-all transform hover:scale-[1.02]"
+                className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white px-6 py-3.5 rounded-lg font-medium transition-all transform hover:scale-[1.02]"
               >
                 <FiSend className="w-5 h-5" />
                 <span>Send Message</span>
@@ -147,7 +147,7 @@ const Contact = () => {
         </div>
 
         {/* Map Section */}
-        <div className="mt-20 rounded-2xl overflow-hidden shadow-2xl shadow-indigo-100">
+        <div className="mt-20 rounded-2xl overflow-hidden shadow-2xl shadow-blue-100">
           <iframe
             width="100%"
             height="400"
