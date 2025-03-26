@@ -133,8 +133,8 @@ const CountryFilter = ({
           "Most Popular",
           "Lowest Price",
           "Highest Price",
-          "Shortest Processing",
-          "Longest Validity"
+          // "Shortest Processing",
+          // "Longest Validity"
         ]}
         value={sortBy}
         onChange={setSortBy}
@@ -179,10 +179,10 @@ export default function Countries() {
   // Sorting Logic
   const sortedCountries = [...searchedCountries].sort((a, b) => {
     if (sortBy === "Lowest Price") {
-      return a.price - b.price;
+      return parseInt(a.price.replace(",","")) - parseInt(b.price.replace(",",""));
     }
     if (sortBy === "Highest Price") {
-      return b.price - a.price;
+      return  parseInt(b.price.replace(",","")) - parseInt(a.price.replace(",",""));
     }
     if (sortBy === "Shortest Processing") {
       return parseInt(a.processingTime) - parseInt(b.processingTime);
