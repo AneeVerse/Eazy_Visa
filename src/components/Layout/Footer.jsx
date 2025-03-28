@@ -1,6 +1,7 @@
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import Layout from "../common/Layout";
 import Image from "next/image";
+import Link from "next/link";
 
 const footerLinks = [
   { name: "Home", href: "/" },
@@ -14,6 +15,8 @@ const socialLinks = [
   { icon: FaFacebookF, href: "https://facebook.com" },
   { icon: FaTwitter, href: "https://twitter.com" },
   { icon: FaInstagram, href: "https://instagram.com" },
+  { icon: FaLinkedinIn, href: "https://linkedin.com" },
+  { icon: FaYoutube, href: "https://youtube.com" },
 ];
 
 export default function Footer() {
@@ -25,13 +28,14 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 justify-between">
             {/* Left Section - Brand Info and Links */}
             <div className="space-y-4">
-             <div>
-              <Image src="/images/logo/logo-white.svg" alt="Logo" width={120} height={32} draggable={false} />
-             </div>
+              <div>
+                <Image src="/images/logo/logo-white.svg" alt="Logo" width={120} height={32} draggable={false} />
+              </div>
               <p className="text-sm sm:text-base">
                 We help travelers explore Norway's wonders effortlessly with smart
                 planning and expert guides.
               </p>
+
 
               {/* Footer Links */}
               <div className="flex flex-wrap gap-4">
@@ -60,6 +64,21 @@ export default function Footer() {
                   Subscribe
                 </button>
               </div>
+
+              {/* Social Media Icons */}
+              <div className="flex gap-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-white border text-white hover:bg-opacity-30 p-2 rounded-full transition-all"
+                  >
+                    <social.icon className="text-lg" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -78,6 +97,24 @@ export default function Footer() {
               <a href="/cookies" className="text-sm sm:text-base hover:underline">
                 Cookies
               </a>
+            </div>
+            {/* manage and powered by */}
+            <div className="text-sm sm:text-base md:mt-0">
+              Design & Managed by{" "}
+              <Link
+                href={"https://aneeverse.com/"}
+                target="_blank"
+                className="hover:underline inline-flex  flex-row items-center gap-2 min-h-fit"
+              >
+                <span>Aneeverse</span>
+                <Image
+                  src={"/logo/aneeverse-logo.png"}
+                  alt="Aneeverse Logo"
+                  width={20}
+                  height={20}
+                  className="inline-block"
+                />
+              </Link>
             </div>
           </div>
         </div>

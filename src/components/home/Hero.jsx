@@ -62,7 +62,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <Layout className="relative w-full mt-[120px] flex flex-col lg:flex-row items-center gap-12 pb-16">
+    <Layout className="relative w-full mt-[20px] lg:mt-[110px] flex flex-col lg:flex-row items-center gap-12 pb-16">
       {/* Left Content */}
       <div className="lg:w-1/2 text-center lg:text-left space-y-8">
         <motion.div
@@ -81,7 +81,7 @@ export default function HeroSection() {
             <span className="text-blue-600">Every Time.</span>
           </Heading>
 
-          <Paragraph className="text-lg text-gray-600 max-w-2xl">
+          <Paragraph className="text-sm sm:text-lg text-gray-600 max-w-2xl">
             Plan and book your perfect trip with expert advice, travel tips, destination information,
             and inspiration from us!
           </Paragraph>
@@ -96,12 +96,12 @@ export default function HeroSection() {
       </div>
 
       {/* Right Content - Scrolling Images */}
-      <div className="lg:w-1/2 mt-[90px]  relative  w-full ">
+      <div className="lg:w-1/2 mt-[10px] lg:mt-[0px]  relative  w-full ">
         {/* Column 1 - Scroll Up */}
         <div className='w-full md:w-[424px] mx-auto relative flex h-[400px] md:h-[500px] gap-3 sm:gap-6 justify-center'>
 
           <FaMapMarkerAlt className="absolute bottom-0 right-1/3 bg-[#2fa6d9] p-2 rounded-full text-4xl text-white drop-shadow-lg" />
-          <RiSendPlaneFill className="absolute -top-22 -rotate-90 right-1/3 bg-[#facd49] p-2 rounded-full text-4xl text-white drop-shadow-lg" />
+          <RiSendPlaneFill className="absolute -top-22 hidden lg:block -rotate-90 right-1/3 bg-[#facd49] p-2 rounded-full text-4xl text-white drop-shadow-lg" />
 
           <div className="w-[200px] bg-transparent  mt-[30px] rounded-xl overflow-hidden relative">
             <div

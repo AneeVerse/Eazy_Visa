@@ -215,7 +215,7 @@ export const countryData = {
       description: "Spain dazzles with its vibrant culture, stunning architecture, and beautiful Mediterranean coastline.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
       },
@@ -275,7 +275,7 @@ export const countryData = {
       description: "Switzerland offers breathtaking Alpine scenery, precision watches, and world-famous chocolates.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
       },
@@ -324,7 +324,7 @@ export const countryData = {
       description: "The Netherlands charms visitors with its iconic canals, tulip fields, and rich artistic heritage.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
       },
@@ -373,7 +373,7 @@ export const countryData = {
       description: "Portugal enchants visitors with its golden beaches, historic landmarks, and world-famous port wine.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
       },
@@ -440,7 +440,7 @@ export const countryData = {
       description: "Austria offers imperial palaces, Alpine ski resorts, and the cultural riches of Vienna - the city of music.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
       },
@@ -506,7 +506,7 @@ export const countryData = {
       description: "Belgium delights visitors with medieval towns, world-class chocolates, and being the heart of EU politics.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
         entryType: "Single/Multiple"
@@ -574,7 +574,7 @@ export const countryData = {
       description: "Greece offers sun-drenched islands, ancient ruins, and the birthplace of Western civilization.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
         entryType: "Single/Multiple"
@@ -642,7 +642,7 @@ export const countryData = {
       description: "Norway mesmerizes with its dramatic fjords, northern lights, and vibrant Viking heritage.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
         entryType: "Single/Multiple"
@@ -710,7 +710,7 @@ export const countryData = {
       description: "Denmark charms with hygge culture, colorful harbors, and being the birthplace of LEGO.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
         entryType: "Single/Multiple"
@@ -776,7 +776,7 @@ export const countryData = {
       description: "Finland offers magical Northern Lights, midnight sun, sauna culture, and Santa Claus Village in Rovaniemi.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
         entryType: "Single/Multiple",
@@ -820,7 +820,7 @@ export const countryData = {
       faqs: [
         {
           question: "Can I visit Estonia by ferry with this visa?",
-          answer: "Yes, Tallinn ferries accept Schengen visas"
+          answer: "Yes, Tallinn ferries accept Sticker Visas"
         },
         {
           question: "Is Aurora hunting itinerary mandatory?",
@@ -846,7 +846,7 @@ export const countryData = {
       description: "Sweden delights with its archipelago landscapes, innovative design, and the original ABBA Museum.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
         entryType: "Single/Multiple",
@@ -915,7 +915,7 @@ export const countryData = {
       description: "Iceland enchants with geothermal wonders, glaciers, volcanoes, and the magical Northern Lights.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
         entryType: "Single/Multiple",
@@ -1055,7 +1055,7 @@ export const countryData = {
       description: "Poland fascinates with medieval old towns, hearty cuisine, and resilient historical sites from WWII.",
       
       basicInfo: {
-        visaType: "Schengen Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "6 months",
         entryType: "Single/Multiple",

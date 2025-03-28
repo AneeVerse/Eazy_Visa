@@ -6,27 +6,30 @@ import { Heading } from "../common/Typography";
 import Layout from "../common/Layout";
 import Link from "next/link";
 
-const places = [
+const services = [
   {
     id: 1,
-    title: "Arctic Glacier Retreat",
-    location: "Svalbard, Norway",
+    title: "Tourist Visa",
+    url: "/tourist-visa",
+    location: "Geiranger, Norway",
     image:
       "/images/landmarks/Sultan Qaboos Mosque tourist places in Oman Visa.webp",
-    rating: 4.8,
+    rating: 4.9,
     size: "small",
   },
   {
     id: 2,
-    title: "Northern Lights Escape",
+    title: "Business Visa",
+    url: "/business-visa",
     location: "Tromsø, Norway",
     image: "/images/landmarks/Sydney Opera House in Australia Visa.webp",
-    rating: 4.5,
+    rating: 4.3,
     size: "small",
   },
   {
     id: 3,
-    title: "Hidden Lake Cabin",
+    title: "End To End Tourist Visa Aeestence",
+    url: "/end-to-end",
     location: "Oslo, Norway",
     image: "/images/landmarks/Atomium in Belgium Visa.webp",
     rating: 4.7,
@@ -34,8 +37,9 @@ const places = [
   },
   {
     id: 4,
-    title: "Snowy Haven Resort",
-    location: "Bergen, Norway",
+    title: "Dummy Flights",
+    url: "/dummy-flights",
+    location: "Geiranger, Norway",
     image:
       "/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp",
     rating: 4.9,
@@ -43,8 +47,9 @@ const places = [
   },
   {
     id: 5,
-    title: "Aurora Borealis Lodge",
-    location: "Lapland, Finland",
+    title: "Dummy Hotel",
+    url: "/dummy-hotel",
+    location: "Tromsø, Norway",
     image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
     rating: 4.6,
     size: "large",
@@ -62,9 +67,9 @@ export default function VisaSolutions() {
       </div>
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {places.slice(0, 3).map((place) => (
+        {services.slice(0, 3).map((place) => (
           <Link
-          href={`/places/${place.id}`}
+          href={`/services/${place.url}`}
             key={place.id}
             className="relative group bg-white rounded-2xl overflow-hidden shadow-lg"
           >
@@ -73,7 +78,7 @@ export default function VisaSolutions() {
               alt={place.title}
               width={500}
               height={300}
-              className="w-full h-[400px] object-cover"
+              className="w-full h-[400px] group-hover:scale-105 transition-all duration-300 object-cover"
             />
             <div className="absolute bottom-4 left-4 right-4 bg-white group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
@@ -92,9 +97,9 @@ export default function VisaSolutions() {
       </div>
 
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {places.slice(3, 5).map((place) => (
+        {services.slice(3, 5).map((place) => (
           <Link
-          href={`/places/${place.id}`}
+          href={`/services/${place.url}`}
             key={place.id}
             className="relative group bg-white rounded-2xl overflow-hidden shadow-lg"
           >
@@ -103,7 +108,7 @@ export default function VisaSolutions() {
               alt={place.title}
               width={600}
               height={350}
-              className="w-full h-[400px] object-cover"
+              className="w-full h-[400px] group-hover:scale-105 transition-all duration-300 object-cover"
             />
             <div className="absolute bottom-4 left-4 right-4 bg-white group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
