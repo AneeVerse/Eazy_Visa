@@ -56,7 +56,7 @@ export default function HotelBookingComponent() {
         {/* Hotel Booking Content */}
         <div className="mb-8">
           <Heading level={3} className="font-bold text-gray-800 mb-2">Discover your ideal stay</Heading>
-          <p className="text-gray-500 text-lg">Find hotels that match your preferences and budget</p>
+          <p className="text-gray-500  text-md md:text-lg">Find hotels that match your preferences and budget</p>
         </div>
         <div className="flex flex-wrap gap-6 mb-6">
         <div className="flex-1 min-w-[60%]">

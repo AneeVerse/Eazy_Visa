@@ -94,7 +94,7 @@ export default function FlightBookingComponent() {
                 {/* Flight Booking Content */}
                 <div className="mb-8">
                     <Heading level={3} className="font-bold text-gray-800 mb-2">Find and book your perfect flight</Heading>
-                    <p className="text-gray-500 text-lg">Compare prices across airlines and get the best deals</p>
+                    <p className="text-gray-500 text-md md:text-lg">Compare prices across airlines and get the best deals</p>
                 </div>
 
                 {/* Flight Type Tabs */}
