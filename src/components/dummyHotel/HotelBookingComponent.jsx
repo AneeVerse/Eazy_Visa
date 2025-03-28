@@ -51,7 +51,7 @@ export default function HotelBookingComponent() {
         </button>
       </div>
 
-      <div className="p-8">
+      <div className="p-3 sm:p-4 md:p-8">
         {/* Hotel Booking Content */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-800 mb-2">Discover your ideal stay</h2>
