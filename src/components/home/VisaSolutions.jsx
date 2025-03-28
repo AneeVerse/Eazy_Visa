@@ -78,9 +78,9 @@ export default function VisaSolutions() {
               alt={place.title}
               width={500}
               height={300}
-              className="w-full h-[400px] group-hover:scale-105 transition-all duration-300 object-cover"
+              className="w-full h-[400px] group-hover:scale-105 group-active:scale-105 transition-all duration-300 object-cover"
             />
-            <div className="absolute bottom-4 left-4 right-4 bg-white group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
+            <div className="absolute bottom-4 left-4 right-4 bg-white group-active:-translate-y-2 group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-medium text-gray-900">
                   {place.title}

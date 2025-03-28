@@ -52,9 +52,9 @@ const flightsData = [
 export default function FlightsComponent() {
   return (
     <Layout className=" my-16 ">
-      <div className="grid grid-cols-1 rounded-xl p-6 shadow-md md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 rounded-xl p-6 shadow-md md:grid-cols-2 lg:grid-cols-3 gap-5">
         {flightsData.map((flight, index) => (
-          <div key={index} className="flex items-center space-x-4 bg-white p-4 rounded-lg shadow">
+          <div key={index} className="flex items-center space-x-4 bg-white p-4 rounded-lg">
             <div className="w-12 min-w-12 h-12 relative">
               <Image
                 src={`/${flight.image}`}
