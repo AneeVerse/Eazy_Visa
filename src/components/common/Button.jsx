@@ -19,7 +19,7 @@ export default function Button({
   // Variant Styles
   const variantStyles = {
     primary: ' cursor-pointer bg-[#6FBCFD]/40 text-primary-500 hover:bg-blue-500 hover:text-white',
-    secondary: ' cursor-pointer bg-primary-500 text-white hover:bg-primary-600',
+    secondary: ' cursor-pointer bg-primary-500 text-white hover:bg-blue-600',
     outline: ' cursor-pointer border-2 border-blue-600 text-blue-600 hover:bg-blue-50',
     ghost: ' cursor-pointer text-blue-600 hover:bg-blue-50',
     danger: ' cursor-pointer bg-red-600 text-white hover:bg-red-700',

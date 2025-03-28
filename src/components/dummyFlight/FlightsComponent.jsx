@@ -52,7 +52,7 @@ const flightsData = [
 export default function FlightsComponent() {
   return (
     <Layout className=" my-16 bg-white ">
-      <div className="grid grid-cols-1  rounded-xl p-3  sm:p-6 shadow-md md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 bg-white border border-gray-200 rounded-xl p-3  sm:p-6 shadow-md md:grid-cols-2 lg:grid-cols-3 gap-6">
         {flightsData.map((flight, index) => (
           <div key={index} className="flex items-center space-x-4 bg-white">
             <div className="w-12 min-w-12 h-12 relative">
@@ -64,8 +64,8 @@ export default function FlightsComponent() {
               />
             </div>
             <div>
-              <h3 className="text-lg font-semibold">{flight.city} Flights</h3>
-              <p className="text-sm text-gray-600">Via - {flight.routes}</p>
+              <h3 className="text-md text-secondary-500 font-semibold">{flight.city} Flights</h3>
+              <p className="text-sm text-gray-500">Via - {flight.routes}</p>
             </div>
           </div>
         ))}

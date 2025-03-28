@@ -8,6 +8,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import { RiSendPlaneFill } from "react-icons/ri";
 import { IoAirplane } from 'react-icons/io5';
 import Layout from '../common/Layout';
+import Link from 'next/link';
 
 const SCROLL_IMAGES = [
   '/images/home/hero1.png',
@@ -87,10 +88,10 @@ export default function HeroSection() {
           </Paragraph>
 
           <div className="flex gap-4 justify-center lg:justify-start">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full
+            <Link href={"/contact"} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full
               font-semibold transition-all shadow-lg hover:shadow-xl">
               Get Started
-            </button>
+            </Link>
           </div>
         </motion.div>
       </div>

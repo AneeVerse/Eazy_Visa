@@ -5,6 +5,7 @@ import { FaPlane, FaHotel, FaUserFriends } from "react-icons/fa";
 import Link from "next/link";
 import Layout from "../common/Layout";
 import { Heading } from "../common/Typography";
+import Button from "../common/Button";
 
 export default function FlightBookingComponent() {
     const [tripType, setTripType] = useState("one-way");
@@ -70,11 +71,11 @@ export default function FlightBookingComponent() {
 
     return (
         <Layout>
-        <div className=" bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+        <div className=" bg-white rounded-2xl shadow-md border border-gray-100">
             {/* Header with Flight and Hotel Navigation */}
             <div className="flex border-b border-gray-200 bg-gray-50">
                 <button
-                    className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-blue-600 shadow-md`}
+                    className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-primary-500 rounded-tl-2xl shadow-md`}
 
                 >
                     <FaPlane className="text-xl" />
@@ -91,11 +92,7 @@ export default function FlightBookingComponent() {
             </div>
 
             <div className="p-3 sm:p-4 md:p-8">
-                {/* Flight Booking Content */}
-                <div className="mb-8">
-                    <Heading level={3} className="font-bold text-gray-800 mb-2">Find and book your perfect flight</Heading>
-                    <p className="text-gray-500 text-md md:text-lg">Compare prices across airlines and get the best deals</p>
-                </div>
+                
 
                 {/* Flight Type Tabs */}
                 <div className="flex bg-gray-100 rounded-lg p-1 mb-8">
@@ -290,15 +287,12 @@ export default function FlightBookingComponent() {
                     </div>
 
                     {/* CTA Button */}
-                    <div className="pt-6">
-                        <Link
-                            href="/flig
-                            hts/search"
-                            className="flex items-center justify-center w-full md:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium rounded-xl hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl text-lg"
-                        >
+                    <div className="pt-6 flex justify-center">
+                        <Button variant="secondary" size="large" className="w-full md:w-auto" href="/flights/search">
                             Search Flights
                             <FiArrowRight className="ml-3 text-xl" />
-                        </Link>
+                        </Button>
+
                     </div>
                 </div>
             </div>

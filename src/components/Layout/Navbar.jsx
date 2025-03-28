@@ -171,7 +171,7 @@ export default function Navbar() {
               <span className="text-sm font-medium">Search</span>
             </button>
             <Link
-              href="/get-started"
+              href="/contact"
               className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-5 py-2.5 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-sm hover:shadow-md font-medium"
             >
               Get Started
@@ -410,7 +410,7 @@ export default function Navbar() {
             {/* Footer */}
             <div className="p-5 border-t border-gray-100">
               <Link
-                href="/get-started"
+                href="/contact"
                 className="block w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white text-center py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-600 transition-all font-medium shadow-sm"
                 onClick={() => setIsOpen(false)}
               >

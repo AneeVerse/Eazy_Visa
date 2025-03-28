@@ -20,7 +20,7 @@ export default function AboutUs() {
                 About <span className="text-blue-600">US</span>
               </Heading>
            
-            <Button variant="primary" icon={<IoIosArrowForward/>} size="medium" href="#">
+            <Button variant="primary" icon={<IoIosArrowForward/>} size="medium" href="/about">
               Read More
             </Button>
             </div>
@@ -66,7 +66,7 @@ export default function AboutUs() {
           {/* Buttons */}
           <div className="flex space-x-6">
             
-          <Button variant="secondary" size="medium" href="#">
+          <Button variant="secondary" size="medium" href="/contact">
           Get Started
             </Button>
           
