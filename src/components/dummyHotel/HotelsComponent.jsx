@@ -90,7 +90,7 @@ export default function HotelsComponent() {
     <Layout className="my-16">
       <div className="grid grid-cols-1 rounded-xl p-3  sm:p-6 shadow-md md:grid-cols-2 lg:grid-cols-3 gap-5">
         {hotelsData.map((hotel, index) => (
-          <div key={index} className="flex items-center space-x-4 bg-white p-4 rounded-lg shadow">
+          <div key={index} className="flex items-center space-x-4 bg-white">
             <div className="w-12 min-w-12 h-12 relative">
               <Image
                 src={`/${hotel.image}`}
