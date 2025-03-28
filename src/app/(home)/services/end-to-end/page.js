@@ -1,8 +1,12 @@
+import TouristVisaHero from '@/components/touristVisa/TouristVisaHero'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      
+            <TouristVisaHero />
+    </div>
   )
 }
 
