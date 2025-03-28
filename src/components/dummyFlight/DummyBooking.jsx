@@ -4,6 +4,7 @@ import { FiChevronDown, FiPlus, FiMinus, FiArrowRight, FiCalendar } from "react-
 import { FaPlane, FaHotel, FaUserFriends } from "react-icons/fa";
 import Link from "next/link";
 import Layout from "../common/Layout";
+import { Heading } from "../common/Typography";
 
 export default function FlightBookingComponent() {
     const [tripType, setTripType] = useState("one-way");
@@ -92,7 +93,7 @@ export default function FlightBookingComponent() {
             <div className="p-3 sm:p-4 md:p-8">
                 {/* Flight Booking Content */}
                 <div className="mb-8">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-2">Find and book your perfect flight</h2>
+                    <Heading level={3} className="font-bold text-gray-800 mb-2">Find and book your perfect flight</Heading>
                     <p className="text-gray-500 text-lg">Compare prices across airlines and get the best deals</p>
                 </div>
 

@@ -7,7 +7,7 @@ export const Heading = ({ level = 1, weight = "semibold", children, className, a
   const sizes = {
     1: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold',
     2: `text-2xl md:text-4xl font-${weight}`,
-    3: `text-2xl md:text-3xl font-${weight}`,
+    3: `text-xl md:text-3xl font-${weight}`,
     4: `text-xl md:text-2xl font-${weight}`,
     5: `text-lg md:text-xl font-${weight}`,
     6: `text-base md:text-lg font-${weight}`,

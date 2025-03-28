@@ -4,6 +4,7 @@ import { FiSearch, FiCalendar, FiChevronDown, FiPlus, FiMinus, FiArrowRight } fr
 import { FaPlane, FaHotel, FaUserFriends } from "react-icons/fa";
 import Link from "next/link";
 import Layout from "../common/Layout";
+import { Heading } from "../common/Typography";
 
 export default function HotelBookingComponent() {
   const [location, setLocation] = useState("Gold India");
@@ -54,7 +55,7 @@ export default function HotelBookingComponent() {
       <div className="p-3 sm:p-4 md:p-8">
         {/* Hotel Booking Content */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">Discover your ideal stay</h2>
+          <Heading level={3} className="font-bold text-gray-800 mb-2">Discover your ideal stay</Heading>
           <p className="text-gray-500 text-lg">Find hotels that match your preferences and budget</p>
         </div>
         <div className="flex flex-wrap gap-6 mb-6">
