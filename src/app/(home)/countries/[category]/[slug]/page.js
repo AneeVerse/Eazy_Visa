@@ -15,6 +15,7 @@ import FeedbackReviewComponent from "@/components/home/FeedbackReviewComponent";
 import MediaTestimonials from "@/components/home/MediaTestimonials";
 import { MdOutlinePhoneAndroid } from "react-icons/md";
 import { PiClockCountdownFill } from "react-icons/pi";
+import Footer from "@/components/Layout/Footer";
 
 const CountryDetails = () => {
   const params = useParams();
@@ -367,6 +368,7 @@ const CountryDetails = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <Footer />
     </div>
   );
 };

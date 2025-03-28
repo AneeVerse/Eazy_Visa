@@ -1,279 +1,37 @@
-"use client";
+import Layout from '@/components/common/Layout'
+import CountryBanner from '@/components/countries/CountryBanner'
+import CountrySection from '@/components/countries/CountrySection'
+import VisaSolutions from '@/components/countries/CountryVisaSolution'
+import BlogSection from '@/components/home/BlogSection'
+import Footer from '@/components/Layout/Footer'
+import React from 'react'
 
-import { useState, useRef, useEffect } from "react";
-import VisaCard from "@/components/cards/VisaCard";
-import Pagination from "@/components/common/Pagination";
-import { countryData } from "@/data/countryData";
-import Layout from "@/components/common/Layout";
-import CountryBanner from "@/components/countries/CountryBanner";
-import BlogSection from "@/components/home/BlogSection";
-import VisaSolutions from "@/components/home/VisaSolutions";
-import { FiChevronDown, FiCheck, FiSearch } from "react-icons/fi";
-import { IoMdClose } from "react-icons/io";
-const CustomSelect = ({ 
-  options, 
-  value, 
-  onChange, 
-  placeholder = "Select an option",
-  className = ""
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const selectRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (selectRef.current && !selectRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
+const page = () => {
   return (
-    <div 
-      ref={selectRef}
-      className={`relative ${className}`}
-    >
-      <button
-        type="button"
-        className={`w-full flex items-center justify-between px-4 py-3 border rounded-full bg-white transition-all duration-200 ${
-          isOpen ? "border-blue-500 ring-2 ring-blue-200" : "border-gray-300 hover:border-gray-400"
-        }`}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <span className="truncate">{value || placeholder}</span>
-        <FiChevronDown 
-          className={`ml-2 h-5 w-5 text-gray-500 transition-transform duration-200 ${
-            isOpen ? "transform rotate-180" : ""
-          }`}
-        />
-      </button>
+    <div>
 
-      {isOpen && (
-        <div className="absolute z-30 mt-1 w-full bg-white shadow-lg rounded-xl py-1 max-h-60 overflow-auto">
-          {options.map((option, index) => (
-            <div
-              key={index}
-              className={`px-4 py-2 cursor-pointer flex items-center justify-between ${
-                value === option
-                  ? "bg-blue-50 text-blue-600"
-                  : "hover:bg-gray-50"
-              }`}
-              onClick={() => {
-                onChange(option);
-                setIsOpen(false);
-              }}
-            >
-              <span>{option}</span>
-              {value === option && (
-                <FiCheck className="h-5 w-5 text-blue-500" />
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
-
-const CountryFilter = ({ 
-  search, 
-  setSearch, 
-  continent, 
-  setContinent, 
-  sortBy, 
-  setSortBy,
-  resetFilters
-}) => {
-  return (
-    <div className="flex flex-wrap gap-5 justify-between items-center mb-10">
-      <div className="relative w-full md:w-1/3">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <FiSearch className="h-5 w-5 text-gray-400" />
-        </div>
-        <input
-          type="text"
-          placeholder="Search for countries..."
-          className="pl-10 w-full px-4 py-3 border rounded-full border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        {search && (
-          <button
-            onClick={() => setSearch("")}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center"
-          >
-            <IoMdClose className="h-5 w-5 text-gray-400 hover:text-gray-600" />
-          </button>
-        )}
-      </div>
-
-      <CustomSelect
-        options={[
-          "All Continents",
-          "Asia",
-          "Europe",
-          "North America",
-          "South America",
-          "Africa",
-          "Oceania"
-        ]}
-        value={continent}
-        onChange={setContinent}
-        placeholder="Select Continent"
-        className="w-full md:w-1/4"
-      />
-
-      <CustomSelect
-        options={[
-          "Most Popular",
-          "Lowest Price",
-          "Highest Price",
-          // "Shortest Processing",
-          // "Longest Validity"
-        ]}
-        value={sortBy}
-        onChange={setSortBy}
-        placeholder="Sort By"
-        className="w-full md:w-1/4"
-      />
-
-      {(search !== "" || continent !== "All Continents" || sortBy !== "Most Popular") && (
-        <button
-          onClick={resetFilters}
-          className="text-blue-600 hover:text-blue-800 flex items-center text-sm font-medium"
-        >
-          Reset Filters
-        </button>
-      )}
-    </div>
-  );
-};
-
-export default function Countries() {
-  const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [continent, setContinent] = useState("All Continents");
-  const [sortBy, setSortBy] = useState("Most Popular");
-  const itemsPerPage = 12;
-
-  // Flatten country data from all continents
-  const allCountries = Object.values(countryData).flat();
-
-  // Filter by continent
-  const filteredByContinent =
-    continent === "All Continents"
-      ? allCountries
-      : allCountries.filter((country) => country.continent === continent);
-
-  // Search Filter
-  const searchedCountries = filteredByContinent.filter((country) =>
-    country.name.toLowerCase().includes(search.toLowerCase()) ||
-    country.description.toLowerCase().includes(search.toLowerCase())
-  );
-
-  // Sorting Logic
-  const sortedCountries = [...searchedCountries].sort((a, b) => {
-    if (sortBy === "Lowest Price") {
-      return parseInt(a.price.replace(",","")) - parseInt(b.price.replace(",",""));
-    }
-    if (sortBy === "Highest Price") {
-      return  parseInt(b.price.replace(",","")) - parseInt(a.price.replace(",",""));
-    }
-    if (sortBy === "Shortest Processing") {
-      return parseInt(a.processingTime) - parseInt(b.processingTime);
-    }
-    if (sortBy === "Longest Validity") {
-      return parseInt(b.validity) - parseInt(a.validity);
-    }
-    // Default: Most Popular (sort by popularity or visaOnTime)
-    return (b.visasOnTime || 0) - (a.visasOnTime || 0);
-  });
-
-  // Pagination Logic
-  const totalPages = Math.ceil(sortedCountries.length / itemsPerPage);
-  const visibleCountries = sortedCountries.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
-  const resetFilters = () => {
-    setSearch("");
-    setContinent("All Continents");
-    setSortBy("Most Popular");
-    setCurrentPage(1);
-  };
-
-  return (
-    <div className="">
       <CountryBanner
         image="/images/countries/banner.png"
         title="Discover Visa Options for Your Dream Destinations"
         subtitle="Find the perfect visa solution for your next adventure"
       />
+      <Layout>
+        <CountrySection />
 
-      <Layout className="mt-20">
-        {/* Filters */}
-        <CountryFilter
-          search={search}
-          setSearch={setSearch}
-          continent={continent}
-          setContinent={setContinent}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          resetFilters={resetFilters}
-        />
-
-        {/* Results Count */}
-        <div className="mb-6 text-gray-600">
-          Showing {visibleCountries.length} of {sortedCountries.length} countries
-        </div>
-
-        {/* No Results */}
-        {visibleCountries.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-[200px]">
-            <p className="text-lg text-gray-500 mb-4">No countries found matching your criteria</p>
-            <button
-              onClick={resetFilters}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-            >
-              Reset Filters
-            </button>
-          </div>
-        )}
-
-        {/* Visa Cards */}
-        <div className="flex flex-wrap justify-around gap-6">
-          {visibleCountries.map((country) => (
-            <VisaCard 
-              key={`${country.continent}-${country.id}`} 
-              image={country.landmark}
-              name={country.name}
-              continent={country.continent}
-              price={`₹${country.price}`}
-              visasOnTime={country.visasOnTime}
-              isTrending={country.isTrending || false}
-              visaType={country.basicInfo?.visaType || "Tourist Visa"}
-            />
-          ))}
-        </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
-        )}
       </Layout>
 
       <VisaSolutions />
-      <BlogSection />
+      <div className="relative overflow-hidden">
+
+        {/* <div className="absolute blur-[200px] rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div> */}
+        <div className="absolute blur-[200px] rounded-full top-[30%] md:top-[40%] -left-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
+        <BlogSection />
+        <div className="relative  z-30">
+          <Footer />
+        </div>
+      </div>
     </div>
-  );
+  )
 }
+
+export default page
