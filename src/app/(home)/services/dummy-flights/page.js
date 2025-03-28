@@ -1,5 +1,5 @@
 import Layout from '@/components/common/Layout'
-import DummyBooking from '@/components/dummyFlight/dummyBooking'
+import DummyBooking from '@/components/dummyFlight/DummyBooking'
 import FlightsComponent from '@/components/dummyFlight/FlightsComponent'
 import FeedbackReviewComponent from '@/components/home/FeedbackReviewComponent'
 import MediaTestimonials from '@/components/home/MediaTestimonials'
