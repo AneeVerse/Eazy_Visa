@@ -69,7 +69,7 @@ const RelatedBlogsSidebar = ({ currentBlogSlug }) => {
 
       <div className="mt-6 pt-5 border-t border-gray-100/70">
         <Link 
-          href="/blog" 
+          href="/blogs" 
           className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors group"
         >
           Explore more articles
