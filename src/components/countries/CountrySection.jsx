@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import VisaCard from "@/components/cards/VisaCard";
 import Pagination from "@/components/common/Pagination";
 import { countryData } from "@/data/countryData";
 import Layout from "@/components/common/Layout";
@@ -10,6 +9,7 @@ import BlogSection from "@/components/home/BlogSection";
 import VisaSolutions from "@/components/home/VisaSolutions";
 import { FiChevronDown, FiCheck, FiSearch } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
+import CountryCard from "../cards/CountryCard";
 const CustomSelect = ({ 
   options, 
   value, 
@@ -241,9 +241,9 @@ export default function CountrySection() {
         )}
 
         {/* Visa Cards */}
-        <div className="flex flex-wrap justify-around gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-around gap-3 md:gap-6">
           {visibleCountries.map((country) => (
-            <VisaCard 
+            <CountryCard 
               key={`${country.continent}-${country.id}`} 
               image={country.landmark}
               name={country.name}
