@@ -4,20 +4,21 @@ import { motion } from 'framer-motion';
 import { FaSuitcaseRolling, FaPlaneDeparture, FaCreditCard } from 'react-icons/fa';
 import { Heading, Subheading } from '../common/Typography';
 import Layout from '../common/Layout';
+import Image from 'next/image';
 
 const services = [
   {
-    icon: <FaSuitcaseRolling className="text-purple-600 text-4xl" />,
+    iconUrl: "/images/icon/bag.svg",
     title: 'End to end visa solutions',
     description: 'From flights, stays, to sights, just count on our complete products.'
   },
   {
-    icon: <FaPlaneDeparture className="text-purple-600 text-4xl" />,
+    iconUrl: "/images/icon/book.svg",
     title: 'Fast track',
     description: 'From flights, stays, to sights, just count on our complete products.'
   },
   {
-    icon: <FaCreditCard className="text-purple-600 text-4xl" />,
+    iconUrl: "/images/icon/card.svg",
     title: 'Secure Payment',
     description: 'From flights, stays, to sights, just count on our complete products.'
   }
@@ -42,8 +43,8 @@ export default function OneStopSolutions() {
             transition={{ duration: 0.5, delay: index * 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="bg-gray-100 p-4 rounded-full mb-[30px]">
-              {service.icon}
+            <div className=" mb-[30px]">
+              <Image src={service.iconUrl} alt={service.title} width={60} height={60} className="w-[60px] h-[60px]" />
             </div>
             <Heading level={4} className="text-secondary-500 mb-4">
        {service.title}

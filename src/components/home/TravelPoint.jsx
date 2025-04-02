@@ -70,7 +70,12 @@ const useCountUp = (target, duration = 2000) => {
 
 export default function TravelPoint() {
   return (
-    <section className="relative py-16">
+    <section className="relative  py-16">
+      <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-bl from-[#F6E5C1] via-[#F3F3EC] to-[#F3F3EC]"></div>
+
+      <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-br from-[#F6E5C1] via-transparent to-transparent"></div>
+
+      <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-r from-transparent via-[#F3F3EC] to-transparent"></div>
       <Layout className="flex flex-col md:flex-row items-center gap-10">
         {/* Left Image */}
         <div className="relative md:w-1/2">
@@ -86,7 +91,7 @@ export default function TravelPoint() {
           </div>
           {/* Background Circle Design */}
           <div className="absolute top-0 lg:top-10 left-5 lg:left-20 w-[30px] h-[30px] bg-blue-300 rounded-full blur-[2px]"></div>
-          <div className="absolute top-16 right-5 w-5 h-5 bg-white rounded-full opacity-70"></div>
+          {/* <div className="absolute top-16 right-5 w-5 h-5 bg-white rounded-full opacity-70"></div> */}
           <div className="absolute top-0 lg:top-2 right-0 lg:right-5 w-[80px] h-[80px] bg-gradient-to-b from-purple-400 to-purple-900 rounded-full blur-[5px]"></div>
         </div>
 
