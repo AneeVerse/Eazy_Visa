@@ -6,6 +6,10 @@ import React from 'react'
 const layout = ({ children }) => {
     return (
         <div className='mt-[100px]'>
+            
+      <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
+
+      <div className="absolute blur-[200px] -z-10 rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
             {children}
             <VisaSolutions />
             <div className="relative overflow-hidden">

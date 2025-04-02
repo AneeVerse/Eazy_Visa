@@ -12,11 +12,8 @@ import TravelPoint from "@/components/home/TravelPoint";
 import VisaSolutions from "@/components/home/VisaSolutions";
 import Footer from "@/components/Layout/Footer";
 import Image from "next/image";
-import { useRef } from "react";
 
 export default function Home() {
-
-  const containerRef = useRef(null);
   return (
     <div className="overflow-hidden">
       {/* blur bg color effect */}
@@ -26,10 +23,10 @@ export default function Home() {
 
         <div className="absolute blur-[200px] -z-10 rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
         <div
-          ref={containerRef}  >
+          >
           <Hero />
           <Layout>
-            <FlightPathAnimation containerRef={containerRef} />
+            <FlightPathAnimation />
 
           </Layout>
         </div>
