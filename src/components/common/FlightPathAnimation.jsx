@@ -1,16 +1,34 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const FlightPathAnimation = () => {
   const containerRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(0);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  // Plane position animation - fixed percentages
-  const planeX = useTransform(scrollYProgress, [0, 1], ["-0%", "-3000%"]);
+  // Calculate container width on mount and resize
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
+  // Calculate exact pixel movement (container width - plane width)
+  const planeX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, -containerWidth + 40] // Moves from 0 to -(full width - plane width)
+  );
 
   return (
     <div 
@@ -39,12 +57,13 @@ const FlightPathAnimation = () => {
         </svg>
       </div>
 
-      {/* Animated plane */}
+      {/* Animated plane - starts at right edge */}
       <motion.div
         style={{
           x: planeX,
+          right: 0 // Starts at right edge
         }}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10"
+        className="absolute top-1/2 -translate-y-1/2 z-10"
       >
         <img 
           src="/images/icon/flight.svg" 
