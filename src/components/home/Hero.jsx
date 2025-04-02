@@ -72,10 +72,10 @@ export default function HeroSection() {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
-          <div className="inline-flex  items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full myshadow border border-gray-200">
+          <Link href={"/countries"} className="inline-flex  items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full myshadow border border-gray-200">
             <span className="text-blue-500 font-semibold">Explore the world!</span>
             <FaCompass className="text-[#facd49] text-xl" />
-          </div>
+          </Link>
 
           <Heading level={1} className="uppercase font-bold">
             Stress Free Visa, <br />

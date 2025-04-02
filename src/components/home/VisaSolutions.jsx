@@ -11,7 +11,7 @@ const services = [
     id: 1,
     title: "Tourist Visa",
     url: "/tourist-visa",
-    location: "Geiranger, Norway",
+    description: "Complete assistance for tourist visa applications to your dream destinations",
     image:
       "/images/landmarks/Sultan Qaboos Mosque tourist places in Oman Visa.webp",
     rating: 4.9,
@@ -21,7 +21,7 @@ const services = [
     id: 2,
     title: "Business Visa",
     url: "/business-visa",
-    location: "Tromsø, Norway",
+    description: "Streamlined business visa processing for corporate travelers",
     image: "/images/landmarks/Sydney Opera House in Australia Visa.webp",
     rating: 4.3,
     size: "small",
@@ -30,7 +30,7 @@ const services = [
     id: 3,
     title: "End To End Tourist Visa Aeestence",
     url: "/end-to-end",
-    location: "Oslo, Norway",
+    description: "Comprehensive visa support from documentation to approval",
     image: "/images/landmarks/Atomium in Belgium Visa.webp",
     rating: 4.7,
     size: "small",
@@ -39,7 +39,7 @@ const services = [
     id: 4,
     title: "Dummy Flights",
     url: "/dummy-flights",
-    location: "Geiranger, Norway",
+    description: "Best deals on international flights with flexible options",
     image:
       "/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp",
     rating: 4.9,
@@ -49,7 +49,7 @@ const services = [
     id: 5,
     title: "Dummy Hotel",
     url: "/dummy-hotel",
-    location: "Tromsø, Norway",
+    description: "Curated hotel selections for your perfect stay abroad",
     image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
     rating: 4.6,
     size: "large",
@@ -85,7 +85,7 @@ export default function VisaSolutions() {
                 <h3 className="text-lg font-medium text-gray-900">
                   {place.title}
                 </h3>
-                <p className="text-sm text-gray-600">{place.location}</p>
+                <p className="text-sm line-clamp-2 text-gray-500">{place.description}</p>
                 {/* <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
                   <FaStar className="mr-1" />
                   {place.rating}
@@ -115,7 +115,7 @@ export default function VisaSolutions() {
                 <h3 className="text-lg font-medium text-gray-900">
                   {place.title}
                 </h3>
-                <p className="text-sm text-gray-600">{place.location}</p> 
+                <p className="text-sm line-clamp-2 text-gray-500">{place.description}</p> 
                 {/* <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
                   <FaStar className="mr-1" />
                   {place.rating}

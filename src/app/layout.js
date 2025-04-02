@@ -3,7 +3,6 @@ import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 
-import { LazyMotion, domAnimation } from "framer-motion";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -47,12 +46,10 @@ export default function RootLayout({ children }) {
         {/* You can also add additional meta tags here if needed */}
       </head>
       <body className="font-sans">
-      <LazyMotion features={domAnimation}>
-          <Navbar />
-          <div className="mt-[80px]">
-            {children}
-          </div>
-        </LazyMotion>
+        <Navbar />
+        <div className="mt-[80px]">
+          {children}
+        </div>
       </body>
     </html>
   );

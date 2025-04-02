@@ -9,7 +9,7 @@ import Image from 'next/image';
 const services = [
   {
     iconUrl: "/images/icon/bag.svg",
-    title: 'End to end visa solutions',
+    title: 'End to End visa solutions',
     description: 'From flights, stays, to sights, just count on our complete products.'
   },
   {
@@ -37,13 +37,14 @@ export default function OneStopSolutions() {
           <motion.div 
             key={index} 
             // style={{boxShadow: '0px 1px 20px rgba(220, 220, 220, 0.3)'}}
-            className="bg-white myshadow p-[26px] rounded-2xl  text-center flex flex-col items-center"
+            className=" p-[26px] relative   text-center flex flex-col items-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
             viewport={{ once: true }}
           >
-            <div className=" mb-[30px]">
+         {  index != 2 &&   <img src={"/images/icon/aeroplane.png"} alt={service.title} className="absolute top-[15px] hidden md:block opacity-80 left-[60%] lg:left-[60%] xl:left-[253px] w-auto h-[45px] lg:h-[55px] z-20" />}
+            <div className=" relative mb-[30px]">
               <Image src={service.iconUrl} alt={service.title} width={60} height={60} className="w-[60px] h-[60px]" />
             </div>
             <Heading level={4} className="text-secondary-500 mb-4">

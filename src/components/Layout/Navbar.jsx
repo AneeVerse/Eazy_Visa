@@ -123,7 +123,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             <div className="flex items-center gap-2">
               <img 
-                src="/images/logo/logo.png" 
+                src="/logo/logo-blue.png" 
                 alt="Eazy Visa Logo" 
                 className="h-8 w-auto"
                 width={32}
@@ -331,7 +331,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between p-4 border-b border-gray-100">
               <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                 <img 
-                  src="/images/logo/logo.png" 
+                  src="/logo/logo-blue.png" 
                   alt="Eazy Visa Logo" 
                   className="h-8 w-auto"
                 />
