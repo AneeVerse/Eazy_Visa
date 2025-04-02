@@ -28,9 +28,9 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 justify-between">
             {/* Left Section - Brand Info and Links */}
             <div className="space-y-4">
-              <div>
+              <Link href={"/"}>
                 <Image src="/logo/logo-white.png" alt="Logo" width={100} height={26} draggable={false} />
-              </div>
+              </Link>
               <p className="text-sm sm:text-base">
                 We help travelers explore Norway's wonders effortlessly with smart
                 planning and expert guides.
