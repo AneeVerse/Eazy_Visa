@@ -123,7 +123,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             <div className="flex items-center gap-2">
               <img 
-                src="/images/logo/logo.png" 
+                src="/logo/logo-blue.png" 
                 alt="Eazy Visa Logo" 
                 className="h-8 w-auto"
                 width={32}
@@ -232,8 +232,8 @@ export default function Navbar() {
                             <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                               {service.title}
                             </h3>
-                            <p className="text-sm text-gray-500 mt-1 line-clamp-1">{service.description}</p>
-                            <div className="flex items-center mt-2">
+                            <p className="text-sm text-gray-500 mt-1 line-clamp-2">{service.description}</p>
+                            {/* <div className="flex items-center mt-2">
                               <div className="flex items-center">
                                 {[...Array(5)].map((_, i) => (
                                   <FiStar
@@ -245,7 +245,7 @@ export default function Navbar() {
                               <span className="text-xs text-gray-500 ml-1.5">{service.rating}</span>
                               <span className="text-xs text-gray-400 mx-1.5">•</span>
                               <span className="text-xs text-gray-500">{service.location}</span>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                         <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-blue-600">
@@ -331,7 +331,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between p-4 border-b border-gray-100">
               <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                 <img 
-                  src="/images/logo/logo.png" 
+                  src="/logo/logo-blue.png" 
                   alt="Eazy Visa Logo" 
                   className="h-8 w-auto"
                 />

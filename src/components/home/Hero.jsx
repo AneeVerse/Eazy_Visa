@@ -72,9 +72,9 @@ export default function HeroSection() {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
-          <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full myshadow border border-gray-200">
-            <span className="text-blue-600 font-semibold">Explore the world!</span>
-            <FaCompass className="text-blue-600 text-xl" />
+          <div className="inline-flex  items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full myshadow border border-gray-200">
+            <span className="text-[#facd49] font-semibold">Explore the world!</span>
+            <FaCompass className="text-[#facd49] text-xl" />
           </div>
 
           <Heading level={1} className="uppercase font-bold">

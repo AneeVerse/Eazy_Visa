@@ -29,7 +29,7 @@ export default function Footer() {
             {/* Left Section - Brand Info and Links */}
             <div className="space-y-4">
               <div>
-                <Image src="/images/logo/logo-white.svg" alt="Logo" width={120} height={32} draggable={false} />
+                <Image src="/logo/logo-white.png" alt="Logo" width={100} height={26} draggable={false} />
               </div>
               <p className="text-sm sm:text-base">
                 We help travelers explore Norway's wonders effortlessly with smart

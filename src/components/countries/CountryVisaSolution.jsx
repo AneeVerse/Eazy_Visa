@@ -86,10 +86,10 @@ export default function VisaSolutions() {
                   {place.title}
                 </h3>
                 <p className="text-sm text-gray-600">{place.location}</p>
-                <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
+                {/* <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
                   <FaStar className="mr-1" />
                   {place.rating}
-                </div>
+                </div> */}
               </div>
             </div>
           </Link>
