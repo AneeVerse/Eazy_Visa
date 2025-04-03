@@ -159,6 +159,7 @@ export default function CountrySection() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [continent, setContinent] = useState("All Continents");
+  const [loading, setLoading] = useState(true);
   const [countries, setCountries] = useState([]);
   const [sortBy, setSortBy] = useState("Most Popular");
   const itemsPerPage = 12;
@@ -167,12 +168,10 @@ export default function CountrySection() {
       const fetchCountries = async () => {
         try {
           // 1. Fetch from API
-          const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLib-zX2S7i5qK5In1NK_6uNuuDCHXZg_Ob91mSseJOLe5mJs6Cmibo9NaksvRHTenjQKPfKrdpc_nnYGVDrDAfNKzSkdJ5OdfRoxNVqSO2NSTOismSN5N0Q-HIcthcSVqLchmFAeUSyStl9dR5K_wCTAS5IXKJCYhOc9Q3OV3tV4p_gDmOmnUEm8tXwgW3I99JOdHnIYm7d0jq8auQ26aQN-icz8e5cdmiUX9U41RUu6Nx_PT8pARbwXQsKv0us2Izgf-ptVxPIzOtmooFBAf_h9ffSKQ&lib=MNOr_3U-ifGUiHYeVYNtbhEhiku5JnKVW');
+          const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjs4OV12cMUkGj_OV7CYQpYE2q5cr9vzPlf5OqQAnowj7hifoxD0w3nrgqRPVIxAMe2ZEet6H2Uojsb-4Fy3gC5ahoF6ICREzopNHQBp20sLfhyWfQ5AFdCjBJS-qDLark3BHaWlzXAoS304j-GtnMHjw0a0g3YHTnZW67poaoPIK45HNUeoJ3lysgCG36e4WUszaLhB4_pkLcE0vcHN13Uv7qR_3nEHcF_JslMjliXHfUS_aL7Uv0jRDOyo3AToAf85CkOiZMl3_xuRkqymvwjN92aIw&lib=MNOr_3U-ifGUiHYeVYNtbhEhiku5JnKVW');
           const apiCountries = await response.json();
           
-          // 2. Merge with local data
-          const mergedCountries = mergeCountryData(apiCountries);
-          setCountries(mergedCountries);
+          setCountries(apiCountries);
         } catch (error) {
           console.error("Error fetching countries:", error);
           // Fallback to local data
@@ -194,7 +193,7 @@ export default function CountrySection() {
       );
     }
   // Flatten country data from all continents
-  const allCountries = Object.values(countries).flat();
+  const allCountries = countries;
 
   // Filter by continent
   const filteredByContinent =
