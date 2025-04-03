@@ -21,8 +21,9 @@ export default function DestinationSlider() {
         // 1. Fetch from API
         const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjs4OV12cMUkGj_OV7CYQpYE2q5cr9vzPlf5OqQAnowj7hifoxD0w3nrgqRPVIxAMe2ZEet6H2Uojsb-4Fy3gC5ahoF6ICREzopNHQBp20sLfhyWfQ5AFdCjBJS-qDLark3BHaWlzXAoS304j-GtnMHjw0a0g3YHTnZW67poaoPIK45HNUeoJ3lysgCG36e4WUszaLhB4_pkLcE0vcHN13Uv7qR_3nEHcF_JslMjliXHfUS_aL7Uv0jRDOyo3AToAf85CkOiZMl3_xuRkqymvwjN92aIw&lib=MNOr_3U-ifGUiHYeVYNtbhEhiku5JnKVW');
         const apiCountries = await response.json();
+        console.log("API Countries:", apiCountries.filter(country => country.isTop == true));
        
-        setCountries(apiCountries);
+        setCountries(apiCountries.filter(country => country.isTop == true));
       } catch (error) {
         console.error("Error fetching countries:", error);
         // Fallback to local data
