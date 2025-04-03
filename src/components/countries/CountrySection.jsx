@@ -10,6 +10,7 @@ import VisaSolutions from "@/components/home/VisaSolutions";
 import { FiChevronDown, FiCheck, FiSearch } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import CountryCard from "../cards/CountryCard";
+import { mergeCountryData } from "@/utils/mergeCountryData";
 const CustomSelect = ({ 
   options, 
   value, 
@@ -158,11 +159,42 @@ export default function CountrySection() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [continent, setContinent] = useState("All Continents");
+  const [countries, setCountries] = useState([]);
   const [sortBy, setSortBy] = useState("Most Popular");
   const itemsPerPage = 12;
 
+  useEffect(() => {
+      const fetchCountries = async () => {
+        try {
+          // 1. Fetch from API
+          const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLib-zX2S7i5qK5In1NK_6uNuuDCHXZg_Ob91mSseJOLe5mJs6Cmibo9NaksvRHTenjQKPfKrdpc_nnYGVDrDAfNKzSkdJ5OdfRoxNVqSO2NSTOismSN5N0Q-HIcthcSVqLchmFAeUSyStl9dR5K_wCTAS5IXKJCYhOc9Q3OV3tV4p_gDmOmnUEm8tXwgW3I99JOdHnIYm7d0jq8auQ26aQN-icz8e5cdmiUX9U41RUu6Nx_PT8pARbwXQsKv0us2Izgf-ptVxPIzOtmooFBAf_h9ffSKQ&lib=MNOr_3U-ifGUiHYeVYNtbhEhiku5JnKVW');
+          const apiCountries = await response.json();
+          
+          // 2. Merge with local data
+          const mergedCountries = mergeCountryData(apiCountries);
+          setCountries(mergedCountries);
+        } catch (error) {
+          console.error("Error fetching countries:", error);
+          // Fallback to local data
+          const allLocalCountries = Object.values(countryData).flat();
+          setCountries(allLocalCountries);
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchCountries();
+    }, []);
+
+    if (countries.length === 0) {
+      return (
+        <div className="flex justify-center items-center h-screen">
+          <div className="text-gray-500">Loading countries...</div>
+        </div>
+      );
+    }
   // Flatten country data from all continents
-  const allCountries = Object.values(countryData).flat();
+  const allCountries = Object.values(countries).flat();
 
   // Filter by continent
   const filteredByContinent =
