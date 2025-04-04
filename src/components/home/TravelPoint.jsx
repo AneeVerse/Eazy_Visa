@@ -126,7 +126,7 @@ export default function TravelPoint() {
             We help you find your dream destination
           </Heading>
 
-          <p className="text-[#A8A8A8]">
+          <p className="text-[#7e7e7e]">
             Hey! Travelo there to help you find your dream holiday. Easy, you
             just find where you want to go and buy the ticket.
           </p>
@@ -138,12 +138,13 @@ export default function TravelPoint() {
               return (
                 <div
                   key={index}
-                  className="bg-white flex flex-col gap-2 justify-center items-center h-[150px] px-6 py-4 rounded-3xl border border-[#191825]/10 hover:shadow-lg transition-all duration-300"
+                  className=" flex flex-col gap-3"
                 >
-                  <h3 className="text-2xl sm:text-4xl text-[#872BFF] font-bold">
+                  <h3 className="text-2xl sm:text-[45px] md:text-[45px] lg:text-[60px] xl:text-[70px] text-[#222222] font-bold">
                     {count.toLocaleString()}{state.suffix}
                   </h3>
-                  <p className="text-md text-center sm:text-lg text-[#A8A8A8]">
+                  <div className="h-[1px] w-full bg-gray-300" />
+                  <p className="text-md text-left font-semibold sm:text-lg md:text-xl text-[#222222]">
                     {state.title}
                   </p>
                 </div>
