@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Heading, Subheading } from "../common/Typography";
 import Layout from "../common/Layout";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const states = [
   {
@@ -70,33 +71,54 @@ const useCountUp = (target, duration = 2000) => {
 
 export default function TravelPoint() {
   return (
-    <section className="relative  py-16">
+    <section className="relative py-24">
       <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-bl from-[#F6E5C1] via-[#F3F3EC] to-[#F3F3EC]"></div>
-
       <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-br from-[#F6E5C1] via-transparent to-transparent"></div>
-
       <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-r from-transparent via-[#F3F3EC] to-transparent"></div>
-      <Layout className="flex flex-col md:flex-row items-center gap-10">
-        {/* Left Image */}
-        <div className="relative md:w-1/2">
-          <div className="relative w-full z-10">
-            <Image
-              src="/images/home/person.png"
-              alt="Traveler"
-              width={500}
-              height={500}
-              className="w-full"
-              draggable={false}
-            />
+      
+      <Layout className="flex flex-col md:flex-row gap-10">
+        {/* Left Image - Sticky Container */}
+        <div className="md:w-1/2 flex justify-center md:justify-start md:items-start relative">
+          <div className="sticky top-10 h-fit max-w-[70%] sm:max-w-[80%]">
+            {/* Base Image */}
+            <div className="px-5 sm:px-7 pt-5 sm:pt-7 max-w-[400px] shadow-md pb-16 sm:pb-20 bg-white">
+              <Image
+                src="/images/home/discover-2.jpg"
+                alt="Norway Travel"
+                width={400}
+                height={500}
+                className="w-full h-auto"
+              />
+            </div>
+            
+            {/* Rotating Image */}
+            <motion.div
+              initial={{ rotate: 10 }}
+              animate={{ rotate: [10, 15, 10] }}
+              transition={{ 
+                duration: 5, 
+                repeat: Infinity,
+                ease: "easeInOut",
+                times: [0, 0.5, 1]
+              }}
+              style={{
+                transformOrigin: 'center bottom',
+              }}
+              className="px-5 sm:px-7 pt-5 sm:pt-7 max-w-[400px]  absolute top-2 pb-16 sm:pb-20 shadow-md bg-white"
+            >
+              <Image
+                src="/images/home/discover-1.jpg"
+                alt="Norway Travel"
+                width={400}
+                height={500}
+                className="w-full h-auto"
+              />
+            </motion.div>
           </div>
-          {/* Background Circle Design */}
-          <div className="absolute top-0 lg:top-10 left-5 lg:left-20 w-[30px] h-[30px] bg-blue-300 rounded-full blur-[2px]"></div>
-          {/* <div className="absolute top-16 right-5 w-5 h-5 bg-white rounded-full opacity-70"></div> */}
-          <div className="absolute top-0 lg:top-2 right-0 lg:right-5 w-[80px] h-[80px] bg-gradient-to-b from-purple-400 to-purple-900 rounded-full blur-[5px]"></div>
         </div>
 
         {/* Right Content */}
-        <div className="md:w-1/2 space-y-6 text-white">
+        <div className="md:w-1/2  space-y-6 text-white">
           <Subheading className="text-primary-500 mb-2 uppercase tracking-widest">
             Travel Point
           </Subheading>
