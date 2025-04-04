@@ -11,6 +11,7 @@ import { FiChevronDown, FiCheck, FiSearch } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import CountryCard from "../cards/CountryCard";
 import { mergeCountryData } from "@/utils/mergeCountryData";
+import CountryCardSkeleton from "../common/CountryCardSkeleton";
 const CustomSelect = ({ 
   options, 
   value, 
@@ -170,13 +171,14 @@ export default function CountrySection() {
           // 1. Fetch from API
           const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjs4OV12cMUkGj_OV7CYQpYE2q5cr9vzPlf5OqQAnowj7hifoxD0w3nrgqRPVIxAMe2ZEet6H2Uojsb-4Fy3gC5ahoF6ICREzopNHQBp20sLfhyWfQ5AFdCjBJS-qDLark3BHaWlzXAoS304j-GtnMHjw0a0g3YHTnZW67poaoPIK45HNUeoJ3lysgCG36e4WUszaLhB4_pkLcE0vcHN13Uv7qR_3nEHcF_JslMjliXHfUS_aL7Uv0jRDOyo3AToAf85CkOiZMl3_xuRkqymvwjN92aIw&lib=MNOr_3U-ifGUiHYeVYNtbhEhiku5JnKVW');
           const apiCountries = await response.json();
+          console.log("API Countries:", apiCountries);
           
           setCountries(apiCountries);
         } catch (error) {
           console.error("Error fetching countries:", error);
           // Fallback to local data
-          const allLocalCountries = Object.values(countryData).flat();
-          setCountries(allLocalCountries);
+          // const allLocalCountries = Object.values(countryData).flat();
+          // setCountries(allLocalCountries);
         } finally {
           setLoading(false);
         }
@@ -187,8 +189,10 @@ export default function CountrySection() {
 
     if (countries.length === 0) {
       return (
-        <div className="flex justify-center items-center h-screen">
-          <div className="text-gray-500">Loading countries...</div>
+        <div className="grid grid-cols-2 mt-12 md:grid-cols-3 lg:grid-cols-4 justify-around gap-3 md:gap-6">
+          {Array.from({ length: itemsPerPage }, (_, index) => (
+            <CountryCardSkeleton isWidthFull={true} key={index} />
+          ))}
         </div>
       );
     }
@@ -210,10 +214,10 @@ export default function CountrySection() {
   // Sorting Logic
   const sortedCountries = [...searchedCountries].sort((a, b) => {
     if (sortBy === "Lowest Price") {
-      return parseInt(a.price.replace(",","")) - parseInt(b.price.replace(",",""));
+      return parseInt(a.price) - parseInt(b.price);
     }
     if (sortBy === "Highest Price") {
-      return  parseInt(b.price.replace(",","")) - parseInt(a.price.replace(",",""));
+      return  parseInt(b.price) - parseInt(a.price);
     }
     if (sortBy === "Shortest Processing") {
       return parseInt(a.processingTime) - parseInt(b.processingTime);

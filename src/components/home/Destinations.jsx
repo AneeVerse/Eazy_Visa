@@ -9,6 +9,7 @@ import { mergeCountryData } from "@/utils/mergeCountryData";
 import Button from "../common/Button";
 import { FiArrowRight } from "react-icons/fi";
 import { Heading, Subheading } from "../common/Typography";
+import CountryCardSkeleton from "../common/CountryCardSkeleton";
 
 export default function DestinationSlider() {
   const scrollRef = useRef(null);
@@ -47,9 +48,13 @@ export default function DestinationSlider() {
     }
   };
 
-  if (loading) {
-    return <div className="py-16 text-center">Loading countries...</div>;
-  }
+  // if (loading) {
+  //   return (
+  //     <Layout className="flex w-full flex-row gap-4">
+  //   { )}
+  //     </Layout>
+  //   );
+  // }
 
   return (
     <section className="py-16">
@@ -91,18 +96,26 @@ export default function DestinationSlider() {
           ref={scrollRef}
           className="flex space-x-4 hide-scrollbar overflow-x-auto scroll-smooth py-4"
         >
-          {countries.slice(0, 15).map((country) => (
-            <VisaCard 
-              key={`${country.continent}-${country.id}`}
-              image={country.landmark}
-              name={country.name}
-              continent={country.continent}
-              price={country.price ? `₹${Number(country.price).toLocaleString()}` : "Price not available"}
-              visasOnTime={country.visasOnTime || "N/A"}
-              isTrending={country.isTrending || false}
-              visaType={country.visaType || country.basicInfo?.visaType || "Tourist Visa"}
-            />
-          ))}
+          {loading ? (
+            Array.from({ length: 6 }, (_, index) => (
+              <CountryCardSkeleton key={index} />
+            ))
+          ) : (
+            <div className="flex items-center gap-4">
+              {countries.slice(0, 15).map((country) => (
+                <VisaCard 
+                  key={`${country.continent}-${country.id}`}
+                  image={country.landmark}
+                  name={country.name}
+                  continent={country.continent}
+                  price={country.price ? `₹${Number(country.price).toLocaleString()}` : "Price not available"}
+                  visasOnTime={country.visasOnTime || "N/A"}
+                  isTrending={country.isTrending || false}
+                  visaType={country.visaType || country.basicInfo?.visaType || "Tourist Visa"}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </Layout>
     </section>
