@@ -1,6 +1,7 @@
 import Layout from '@/components/common/Layout'
 import CountryBanner from '@/components/countries/CountryBanner'
 import CountrySection from '@/components/countries/CountrySection'
+import CountrySectionWrapper from '@/components/countries/CountrySectionWrapper'
 import VisaSolutions from '@/components/countries/CountryVisaSolution'
 import BlogSection from '@/components/home/BlogSection'
 import Footer from '@/components/Layout/Footer'
@@ -16,7 +17,7 @@ const page = () => {
         subtitle="Find the perfect visa solution for your next adventure"
       />
       <Layout>
-        <CountrySection />
+        <CountrySectionWrapper />
 
       </Layout>
 

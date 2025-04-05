@@ -1,5 +1,6 @@
 import Layout from '@/components/common/Layout'
 import CountrySection from '@/components/countries/CountrySection'
+import CountrySectionWrapper from '@/components/countries/CountrySectionWrapper'
 import TouristVisaHero from '@/components/touristVisa/TouristVisaHero'
 import React from 'react'
 
@@ -9,7 +10,7 @@ const page = () => {
       <TouristVisaHero />
       
       <Layout>
-        <CountrySection />
+        <CountrySectionWrapper />
       </Layout>
     </div>
   )
