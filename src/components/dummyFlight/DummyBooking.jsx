@@ -159,7 +159,7 @@ export default function FlightBookingComponent() {
                                     <label className="block text-sm font-medium text-gray-700">Departure</label>
                                     <div className="p-4 border border-gray-300 rounded-xl bg-white flex items-center gap-3">
                                         <FiCalendar className="text-blue-500" />
-                                        <div>
+                                        <div className="flex items-baseline gap-1">
                                             <div className="font-medium">{formatDate(city.date).split(',')[0]}</div>
                                             <div className="text-sm text-gray-500">{formatDate(city.date).split(',')[1]}</div>
                                         </div>
