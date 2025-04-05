@@ -72,9 +72,9 @@ const useCountUp = (target, duration = 2000) => {
 export default function TravelPoint() {
   return (
     <section className="relative py-24">
-      <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-bl from-[#F6E5C1] via-[#F3F3EC] to-[#F3F3EC]"></div>
+      {/* <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-bl from-[#F6E5C1] via-[#F3F3EC] to-[#F3F3EC]"></div>
       <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-br from-[#F6E5C1] via-transparent to-transparent"></div>
-      <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-r from-transparent via-[#F3F3EC] to-transparent"></div>
+      <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-r from-transparent via-[#F3F3EC] to-transparent"></div> */}
       
       <Layout className="flex flex-col md:flex-row gap-10">
         {/* Left Image - Sticky Container */}
