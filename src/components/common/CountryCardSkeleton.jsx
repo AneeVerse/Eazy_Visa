@@ -1,7 +1,7 @@
 // src/components/VisaCardSkeleton.tsx
 export default function CountryCardSkeleton({isWidthFull = false}) {
   return (
-    <div className={`bg-white  ${isWidthFull ? " w-full " : " min-w-64 w-64 " }  rounded-xl border border-gray-200 overflow-hidden`}>
+    <div className={`bg-white  ${isWidthFull ? " w-full " : " min-w-64 w-64 " } relative  rounded-xl border border-gray-200 overflow-hidden`}>
       {/* Trending badge skeleton - only appears sometimes */}
       <div className="absolute z-10 -top-3 right-3 bg-gray-100 h-7 w-24 rounded-lg animate-pulse"></div>
       
