@@ -2,7 +2,7 @@
 
 const CountryDetailsSkeleton = () => {
   return (
-    <div className="animate-pulse">
+    <div className="animate-pulse mt-[90px]">
       {/* Banner Skeleton */}
       <div className="h-64 md:h-80 w-full bg-gray-200 rounded-t-xl"></div>
 
