@@ -5,7 +5,7 @@ import React from 'react'
 
 const layout = ({ children }) => {
     return (
-        <div className='mt-[100px]'>
+        <div className='mt-[100px] relative overflow-x-hidden'>
             
       <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
 
