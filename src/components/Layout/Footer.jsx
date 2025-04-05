@@ -1,6 +1,11 @@
+"use client"
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import Layout from "../common/Layout";
-import Image from "next/image";
+import { useState } from 'react';
+import Image from 'next/image';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Link from "next/link";
 
 const footerLinks = [
@@ -20,8 +25,68 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const [formData, setFormData] = useState({
+      name: 'unknown',
+      email: ''
+    });
+    const [isLoading, setIsLoading] = useState(false);
+  
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      
+      // Validate email
+      if (!formData.email) {
+        toast.error('Email is required!');
+        return;
+      }
+  
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        toast.error('Please enter a valid email address');
+        return;
+      }
+  
+      setIsLoading(true);
+  
+      try {
+        const response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+  
+        const data = await response.json();
+  
+        if (!response.ok) {
+          throw new Error(data.message || 'Subscription failed');
+        }
+  
+        toast.success('Thank you for subscribing!');
+        setFormData({ name: '', email: '' });
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+  
   return (
     <footer className="text-white py-10">
+       <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        className="mt-[70px]"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Layout>
         <div className="bg-primary-500 py-8 sm:py-10 rounded-xl px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
           {/* Main Footer Content */}
@@ -57,11 +122,18 @@ export default function Footer() {
               <div className="flex flex-col sm:flex-row items-center gap-2">
                 <input
                   type="email"
+
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  
                   placeholder="Enter your email"
                   className="w-full sm:w-64 p-2 border border-white rounded-lg text-white bg-transparent focus:outline-none placeholder:text-gray-200"
                 />
-                <button className="w-full sm:w-auto bg-white text-blue-500 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-                  Subscribe
+                <button 
+                onClick={handleSubmit}
+                 disabled={isLoading}
+                 className="w-full sm:w-auto bg-white text-blue-500 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                 {isLoading ? 'Subscribing...' : 'Subscribe'}
                 </button>
               </div>
 

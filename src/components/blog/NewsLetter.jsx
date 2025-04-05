@@ -4,35 +4,52 @@ import { useState } from "react";
 import { FiMail, FiCheck } from "react-icons/fi";
 import { motion } from "framer-motion";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Newsletter = () => {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-
+    
+    // Email validation
     if (!email) {
       setError("Email is required");
       return;
     }
 
     if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setError("Please enter a valid email");
+      toast.error("Please enter a valid email address");
       return;
     }
 
     setIsLoading(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // API call to your subscription endpoint
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, name: "unknown" }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Subscription failed");
+      }
+
+      const data = await response.json();
+      
       setIsSubscribed(true);
       setEmail("");
-    } catch (err) {
-      setError("Subscription failed. Please try again.");
+      toast.success("Thank you for subscribing!");
+    } catch (error) {
+      setError(error.message || "Failed to subscribe. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -69,6 +86,10 @@ const Newsletter = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="mt-6">
+
+            {error && (
+                    <p className="mb-1 text-sm text-red-600">{error}</p>
+                  )}
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1">
                   <input
@@ -79,9 +100,6 @@ const Newsletter = () => {
                     className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                     disabled={isLoading}
                   />
-                  {error && (
-                    <p className="mt-1 text-sm text-red-600">{error}</p>
-                  )}
                 </div>
                 <button
                   type="submit"
@@ -102,6 +120,7 @@ const Newsletter = () => {
                   )}
                 </button>
               </div>
+
             </form>
 
             <p className="text-xs text-gray-500 mt-4 text-center">
