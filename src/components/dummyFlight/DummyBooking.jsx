@@ -71,7 +71,7 @@ export default function FlightBookingComponent() {
 
     return (
         <Layout>
-        <div className=" bg-white rounded-2xl shadow-md border border-gray-100">
+        <div className=" bg-white mt-[40px] rounded-2xl shadow-md border border-gray-100">
             {/* Header with Flight and Hotel Navigation */}
             <div className="flex border-b border-gray-200 bg-gray-50">
                 <button
