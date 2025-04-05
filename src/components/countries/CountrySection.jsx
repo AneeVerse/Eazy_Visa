@@ -12,6 +12,7 @@ import { IoMdClose } from "react-icons/io";
 import CountryCard from "../cards/CountryCard";
 import { mergeCountryData } from "@/utils/mergeCountryData";
 import CountryCardSkeleton from "../common/CountryCardSkeleton";
+import { useSearchParams } from "next/navigation";
 const CustomSelect = ({ 
   options, 
   value, 
@@ -157,7 +158,9 @@ const CountryFilter = ({
 };
 
 export default function CountrySection() {
-  const [search, setSearch] = useState("");
+  const  searchName = useSearchParams();
+  const searchParams = searchName.get("search");
+  const [search, setSearch] = useState(searchParams || "");
   const [currentPage, setCurrentPage] = useState(1);
   const [continent, setContinent] = useState("All Continents");
   const [loading, setLoading] = useState(true);

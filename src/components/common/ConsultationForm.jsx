@@ -1,8 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { BiSupport } from "react-icons/bi";
+import { BiSupport, BiUser, BiEnvelope, BiPhone, BiCheckShield } from "react-icons/bi";
+import { FiArrowRight } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
+import { RiVisaLine } from "react-icons/ri";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ConsultationForm = () => {
   const [formData, setFormData] = useState({ 
@@ -11,11 +15,6 @@ const ConsultationForm = () => {
     phone: "" 
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [popup, setPopup] = useState({ 
-    show: false, 
-    message: "", 
-    success: false 
-  });
   const [isAccepted, setIsAccepted] = useState(false);
   const [errors, setErrors] = useState({ 
     name: "", 
@@ -65,160 +64,216 @@ const ConsultationForm = () => {
 
     setIsLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setPopup({ 
-        show: true, 
-        message: "Form submitted successfully!", 
-        success: true 
+      // Get visa type from URL path (e.g., /tourist-visa -> "tourist")
+      const pathParts = window.location.pathname.split('/');
+      const visaType = pathParts.length > 1 ? pathParts[pathParts.length - 1].replace('-', ' ') : 'general';
+      
+      const response = await fetch('/api/submit-visa-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          visaType: visaType.charAt(0).toUpperCase() + visaType.slice(1) // Capitalize first letter
+        }),
       });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to submit form');
+      }
+
+      toast.success(`Your ${data.visaType} Visa consultation request submitted successfully!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      
       setFormData({ name: "", email: "", phone: "" });
       setIsAccepted(false);
+
     } catch (error) {
-      setPopup({ 
-        show: true, 
-        message: "Submission failed. Please try again.", 
-        success: false 
+      toast.error(error.message || "Submission failed. Please try again.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
       });
     } finally {
       setIsLoading(false);
-      setTimeout(() => setPopup({ show: false }), 5000);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-      {/* Form Header */}
-      <div className="bg-blue-600 p-4 text-white">
-        <h3 className="text-xl font-semibold">Need Visa Help?</h3>
-        <p className="text-sm opacity-90">Get free consultation from our experts</p>
-      </div>
-
-      {/* Form Content */}
-      <div className="p-6">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name Field */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Full Name*
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-lg ${
-                errors.name ? "border-red-500" : "border-gray-300"
-              } focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
-              placeholder="Your Name"
-            />
-            {errors.name && (
-              <p className="text-red-500 text-xs mt-1">{errors.name}</p>
-            )}
+    <>
+      <ToastContainer 
+        position="top-right"
+        autoClose={5000}
+        className={"mt-[70px]"}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      
+      <div className="max-w-md mx-auto bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all">
+        {/* Form Header with Gradient */}
+        <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-6 text-white relative overflow-hidden">
+          <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full"></div>
+          <div className="absolute -right-5 -bottom-5 w-20 h-20 bg-white/5 rounded-full"></div>
+          
+          <div className="relative z-10 flex items-center space-x-4">
+            <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
+              <RiVisaLine className="text-3xl" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold">Visa Consultation</h3>
+              <p className="text-sm opacity-90 mt-1">Get expert guidance for your visa application</p>
+            </div>
           </div>
+        </div>
 
-          {/* Email Field */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Email*
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-lg ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              } focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
-              placeholder="your@email.com"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-            )}
-          </div>
+        {/* Form Content */}
+        <div className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Name Field */}
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
+                <BiUser className="mr-2 text-blue-500" />
+                Full Name*
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${
+                    errors.name ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  placeholder="John Doe"
+                />
+                <BiUser className="absolute left-3 top-4 text-gray-400" />
+              </div>
+              {errors.name && (
+                <p className="text-red-500 text-xs mt-1 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                  {errors.name}
+                </p>
+              )}
+            </div>
 
-          {/* Phone Field */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Phone*
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-lg ${
-                errors.phone ? "border-red-500" : "border-gray-300"
-              } focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
-              placeholder="+91 9876543210"
-            />
-            {errors.phone && (
-              <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
-            )}
-          </div>
+            {/* Email Field */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                <BiEnvelope className="mr-2 text-blue-500" />
+                Email Address*
+              </label>
+              <div className="relative">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${
+                    errors.email ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  placeholder="your@email.com"
+                />
+                <BiEnvelope className="absolute left-3 top-4 text-gray-400" />
+              </div>
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                  {errors.email}
+                </p>
+              )}
+            </div>
 
-          {/* Terms Checkbox */}
-          <div className="flex items-start pt-2">
-            <input
-              type="checkbox"
-              id="terms"
-              checked={isAccepted}
-              onChange={handleCheckboxChange}
-              className="mt-1 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-            />
-            <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
-              I agree to the{" "}
-              <a href="/terms" className="text-blue-600 hover:underline">
-                terms and conditions
-              </a>
-            </label>
-          </div>
+            {/* Phone Field */}
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
+                <BiPhone className="mr-2 self-center text-blue-500" />
+                Phone Number*
+              </label>
+              <div className="relative">
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${
+                    errors.phone ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  placeholder="9876543210"
+                />
+                <BiPhone className="absolute left-3 top-4 text-gray-400" />
+              </div>
+              {errors.phone && (
+                <p className="text-red-500 text-xs mt-1 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                  {errors.phone}
+                </p>
+              )}
+            </div>
 
-          {/* Submit Button */}
-          <motion.button
-            type="submit"
-            disabled={isLoading || !isAccepted}
-            whileTap={{ scale: 0.98 }}
-            className={`w-full mt-4 py-3 px-4 rounded-lg font-medium ${
-              isLoading || !isAccepted
-                ? "bg-gray-300 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700 text-white shadow-md"
-            } transition-colors`}
-          >
-            {isLoading ? "Processing..." : "Get Free Consultation"}
-          </motion.button>
-        </form>
+            {/* Terms Checkbox */}
+            <div className="flex items-start pt-2">
+              <div className="flex items-center h-5">
+                <input
+                  type="checkbox"
+                  id="terms"
+                  checked={isAccepted}
+                  onChange={handleCheckboxChange}
+                  className="h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                />
+              </div>
+              <label htmlFor="terms" className="ml-3 block text-sm text-gray-700">
+                <div className="flex items-center">
+                  <BiCheckShield className="text-blue-500 mr-1 self-center" />
+                  I agree to the{" "}
+                  <a href="/terms" className="text-blue-600 hover:underline ml-1">
+                    terms and conditions
+                  </a>
+                </div>
+              </label>
+            </div>
 
-        {/* Support Info */}
-        <div className="mt-6 pt-4 border-t border-gray-200 text-center">
-          <p className="text-sm text-gray-600 flex items-center justify-center">
-            <BiSupport className="mr-2 text-blue-500" />
-            Call us:{" "}
-            <a
-              href="tel:+918850146905"
-              className="text-blue-600 hover:underline ml-1"
+            {/* Submit Button */}
+            <motion.button
+              type="submit"
+              disabled={isLoading || !isAccepted}
+              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.02 }}
+              className={`w-full mt-6 py-3 px-6 rounded-lg font-medium flex items-center justify-center space-x-2 ${
+                isLoading || !isAccepted
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
+              } transition-all duration-300`}
             >
-              +91 88501 46905
-            </a>
-          </p>
+              <span>{isLoading ? "Processing..." : "Get Free Consultation"}</span>
+              {!isLoading && <FiArrowRight className="text-lg" />}
+            </motion.button>
+          </form>
         </div>
       </div>
-
-      {/* Success/Failure Popup */}
-      <AnimatePresence>
-        {popup.show && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className={`fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 ${
-              popup.success ? "bg-green-500" : "bg-red-500"
-            } text-white`}
-          >
-            {popup.message}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    </>
   );
 };
 
