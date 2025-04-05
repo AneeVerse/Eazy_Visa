@@ -180,10 +180,10 @@ export default function Footer() {
               >
                 <span>Aneeverse</span>
                 <Image
-                  src={"/logo/aneeverse-logo.png"}
+                  src={"/logo/aneeverse-logo.webp"}
                   alt="Aneeverse Logo"
-                  width={20}
-                  height={20}
+                  width={30}
+                  height={30}
                   className="inline-block"
                 />
               </Link>

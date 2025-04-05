@@ -59,7 +59,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen relative py-20">
+    <div className="min-h-screen overflow-x-hidden relative py-20">
          <ToastContainer
         position="top-right"
 
