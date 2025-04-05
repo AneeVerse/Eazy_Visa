@@ -18,6 +18,7 @@ import { countryData } from "@/data/countryData";
 import FeedbackReviewComponent from "@/components/home/FeedbackReviewComponent";
 import MediaTestimonials from "@/components/home/MediaTestimonials";
 import FormComponent from "@/components/common/FormComponent";
+import CountryDetailsSkeleton from "@/components/countries/CountryDetailsSkeleton";
 
 const CountryDetails = () => {
   const params = useParams();
@@ -67,9 +68,10 @@ const CountryDetails = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-pulse text-gray-500">Loading country details...</div>
-      </div>
+      <Layout>
+
+     <CountryDetailsSkeleton />
+      </Layout>
     );
   }
 
