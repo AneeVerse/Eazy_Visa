@@ -90,6 +90,7 @@ const CountryDetails = () => {
 
   return (
     <div className=" relative min-h-screen pb-12">
+      
       {/* Header Section */}
       <Layout className="">
 
@@ -101,7 +102,7 @@ const CountryDetails = () => {
           {/* Left Content */}
           <div className="lg:w-2/3 space-y-12">
             {/* Visa Information Section */}
-            <section className="bg-white">
+            <section className="">
               <h2 className="text-3xl font-bold  pb-2">
                 {country.name}  Visa Information
               </h2>
@@ -252,7 +253,7 @@ const CountryDetails = () => {
 
           {/* Right Sidebar - Contact Form */}
           <div className="lg:w-1/3 h-fit sticky top-24">
-            <div className="sticky top-24 bg-white ">
+            <div className="sticky top-24  ">
               <FormComponent />
             </div>
           </div>

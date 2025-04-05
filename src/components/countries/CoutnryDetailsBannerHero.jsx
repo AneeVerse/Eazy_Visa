@@ -63,6 +63,10 @@ export default function CoutnryDetailsBannerHero({ title, image }) {
 
     return (
         <div className="relative w-full mt-[130px] flex flex-col lg:flex-row items-center gap-12 pb-16">
+
+      <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
+
+<div className="absolute blur-[200px] -z-10 rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
             {/* Left Content */}
             <div className="lg:w-2/3 relative">
                 <div className="relative">

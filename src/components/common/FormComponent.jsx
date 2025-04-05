@@ -134,7 +134,7 @@ const FormComponent = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div className="max-w-md mx-auto bg-white/80 p-6 rounded-lg shadow-md">
       <div className="text-center mb-6">
         <h3 className="text-2xl font-bold text-gray-800 mb-2">Need Visa Help?</h3>
         <p className="text-gray-600">Get free consultation from our experts</p>
