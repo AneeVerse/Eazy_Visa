@@ -73,7 +73,7 @@ export default function FlightBookingComponent() {
         <Layout>
         <div className=" bg-white mt-[40px] rounded-2xl shadow-md border border-gray-100">
             {/* Header with Flight and Hotel Navigation */}
-            <div className="flex border-b border-gray-200 bg-gray-50">
+            <div className="flex border-b border-gray-200 rounded-t-2xl bg-gray-50">
                 <button
                     className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-primary-500 rounded-tl-2xl shadow-md`}
 
@@ -157,9 +157,9 @@ export default function FlightBookingComponent() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <label className="block text-sm font-medium text-gray-700">Departure</label>
-                                    <div className="p-4 border border-gray-300 rounded-xl bg-white flex items-center min-w-fit gap-3">
+                                    <div className="p-4 border border-gray-300 rounded-xl bg-white inline-flex items-center min-w-fit gap-3">
                                         <FiCalendar className="text-blue-500 text-xl min-w-fit" />
-                                        <div className="flex items-baseline min-w-fit flex-nowrap gap-1">
+                                        <div className="flex items-baseline min-w-[80px] flex-nowrap gap-1">
                                             <div className="font-medium">{formatDate(city.date).split(',')[0]}</div>
                                             <div className="text-sm  text-gray-500">{formatDate(city.date).split(',')[1]}</div>
                                         </div>

@@ -37,7 +37,7 @@ export default function HotelBookingComponent() {
         <Layout>
             <div className="mt-[40px]  bg-white rounded-2xl shadow-md border border-gray-100">
                 {/* Header with Flight and Hotel Navigation */}
-                <div className="flex border-b border-gray-200 bg-gray-50">
+                <div className="flex border-b rounded-t-2xl border-gray-200 bg-gray-50">
                     <Link
                         href="/services/dummy-flights"
                         className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 font-medium text-lg transition-colors text-gray-600 hover:text-blue-600`}
@@ -46,7 +46,7 @@ export default function HotelBookingComponent() {
                         <span>Flights</span>
                     </Link>
                     <button
-                        className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-primary-500 shadow-md`}
+                        className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors rounded-tr-2xl text-white bg-primary-500 shadow-md`}
                     >
                         <FaHotel className="text-xl" />
                         <span>Hotels</span>
