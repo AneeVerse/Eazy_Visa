@@ -1,534 +1,425 @@
-export const countryData = {
-  europe: [
+export const countryData = 
+   [
+
     {
-      id: 1,
-      name: "Germany",
-      
+      id: 3,
+      name: "Italy",
+      searchName: "Italy",
+      price: "7500",
       continent: "Europe",
-  
+      isTop: true,
+      isTrending: true,
+      visasOnTime: "200K+",
+      flag: "/images/flags/it.webp",
+      landmark: "/images/landmarks/Colosseum in Italy Visa.webp",
+      landmarkName: "Colosseum",
+      altName: "Colosseum in Italy Visa",
+      description: "Italy enchants visitors with its ancient ruins, Renaissance art, and culinary delights.",
+
+      visaType: "Tourist Visa",
+      lengthOfStay: "Up to 90 days",
+      validity: "6 months",
+
+      pdfDownload: "/pdf/visa-guides/italy-visa-guide.pdf",
+
       documentsRequired: [
         {
-          category: "Must-have Documents for Germany Visa",
+          category: "Required Documents for Italy Visa",
           documents: [
-            "Valid passport with at least 3 months validity after return",
-            "Completed visa application form",
-            "Recent passport-size photographs",
-            "Proof of financial means (bank statements for the last 6 months)",
-            "Travel insurance covering up to EUR 30,000",
-            "Proof of accommodation (hotel booking or invitation letter)",
-            "Travel itinerary and confirmed return ticket"
-          ]
-        },
-        {
-          category: "Additional Documents for Business Visa",
-          documents: [
-            "Invitation letter from a German company",
-            "Proof of business relations (if applicable)",
-            "Company registration certificate"
+            "Passport with 2 blank pages",
+            "Completed application form",
+            "Travel itinerary",
+            "Proof of accommodation",
+            "Recent bank statements"
           ]
         }
       ],
-      
+
       rejectionReasons: [
         {
-          title: "Expired Passport",
-          description: "Applying with a passport that has expired or expires within 6 months.",
-          icon: "passport",
+          title: "Previous Visa Overstay",
+          description: "History of overstaying in Schengen area.",
+          icon: "overstay",
         },
         {
-          title: "Insufficient Funds",
-          description: "Failing to demonstrate enough financial resources to support your stay.",
-          icon: "money",
-        },
-        {
-          title: "Incomplete Documentation",
-          description: "Missing required documents or providing incomplete information.",
-          icon: "document",
+          title: "Employment Suspicion",
+          description: "Suspicion of intending to work illegally.",
+          icon: "employment",
         }
       ],
-      
+
       faqs: [
         {
-          question: "Do I need a Schengen visa to visit Germany?",
-          answer: "Yes, Germany is a Schengen country, and a Schengen visa is required."
+          question: "Is COVID-19 vaccination required?",
+          answer: "Check latest health requirements before traveling."
         },
         {
-          question: "What is the processing time for a Germany visa?",
-          answer: "The processing time is around 15 working days."
-        },
-        {
-          question: "Can I work on a Germany tourist visa?",
-          answer: "No, working is not allowed on a tourist visa."
+          question: "Can I extend my Italian visa?",
+          answer: "Extensions are possible only in exceptional circumstances."
         }
       ],
-      
-      sampleVisaCopy: "/pdf/visa-samples/germany-visa-sample.pdf"
+
+      sampleVisaCopy: "/pdf/visa-samples/italy-visa-sample.pdf"
     },
     {
-      id: 2,
-      name: "France",
+      id: 4,
+      name: "Spain",
+      searchName: "Spain",
+      price: "7500",
+      continent: "Europe",
+      isTop: true,
+      isTrending: true,
+      visasOnTime: "180K+",
+      flag: "/images/flags/es.webp",
+      landmark: "/images/landmarks/Sagrada Familia tourist places in Spain Visa.webp",
+      landmarkName: "Sagrada Familia",
+      altName: "Sagrada Familia tourist places in Spain Visa",
+      description: "Spain dazzles with its vibrant culture, stunning architecture, and beautiful Mediterranean coastline.",
+
+
+      visaType: "Sticker Visa",
+      lengthOfStay: "Up to 90 days",
+      validity: "6 months",
+
+      pdfDownload: "/pdf/visa-guides/spain-visa-guide.pdf",
+
+      documentsRequired: [
+        {
+          category: "Mandatory Documents",
+          documents: [
+            "Passport with 6+ months validity",
+            "Completed application form",
+            "Travel insurance (€30,000 coverage)",
+            "Flight itinerary",
+            "Hotel reservations"
+          ]
+        }
+      ],
+
+      rejectionReasons: [
+        {
+          title: "Insufficient Travel Insurance",
+          description: "Insurance doesn't meet Schengen requirements",
+          icon: "insurance"
+        },
+        {
+          title: "Weak Ties to Home Country",
+          description: "Insufficient proof of return intention",
+          icon: "home"
+        }
+      ],
+
+      faqs: [
+        {
+          question: "Can I visit Gibraltar with this visa?",
+          answer: "No, Gibraltar requires separate documentation"
+        },
+        {
+          question: "Is biometric data required?",
+          answer: "Yes, for first-time Schengen applicants"
+        }
+      ],
+
+      sampleVisaCopy: "/pdf/visa-samples/spain-visa-sample.pdf"
+    },
+    {
+      id: 5,
+      name: "Switzerland",
+      searchName: "Switzerland",
+      price: "8200",
+      continent: "Europe",
+      isTop: true,
+      isTrending: false,
+      visasOnTime: "150K+",
+      flag: "/images/flags/ch.webp",
+      landmark: "/images/landmarks/Matterhorn tourist places in Switzerland Visa.webp",
+      landmarkName: "Matterhorn",
+      altName: "Matterhorn tourist places in Switzerland Visa",
+      description: "Switzerland offers breathtaking Alpine scenery, precision watches, and world-famous chocolates.",
+
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
      
-      continent: "Europe",
-      
+      pdfDownload: "/pdf/visa-guides/switzerland-visa-guide.pdf",
+
       documentsRequired: [
         {
-          category: "Essential Documents for France Visa",
+          category: "Financial Requirements",
           documents: [
-            "Valid passport with at least 3 months validity",
-            "Completed visa application form",
-            "Recent passport-size photographs",
-            "Proof of financial means (bank statements)",
-            "Travel insurance covering EUR 30,000",
-            "Confirmed accommodation details"
+            "Bank statements (last 3 months)",
+            "Salary slips",
+            "Sponsorship letter if applicable"
           ]
         }
       ],
-      
+
       rejectionReasons: [
         {
-          title: "Invalid Travel Insurance",
-          description: "Insurance not covering required amount or validity period.",
-          icon: "insurance",
-        },
-        {
-          title: "Unclear Travel Purpose",
-          description: "Failure to provide clear itinerary or purpose of visit.",
-          icon: "purpose",
+          title: "High Risk of Overstay",
+          description: "Previous immigration violations",
+          icon: "overstay"
         }
       ],
-      
+
       faqs: [
         {
-          question: "How long does it take to process a France visa?",
-          answer: "Processing typically takes 10-15 working days."
-        },
-        {
-          question: "Can I visit other Schengen countries with this visa?",
-          answer: "Yes, the Schengen visa allows travel within all member states."
+          question: "Do I need separate visas for Liechtenstein?",
+          answer: "No, it's covered by Swiss visa"
         }
       ],
-      
-      sampleVisaCopy: "/pdf/visa-samples/france-visa-sample.pdf"
+
+      sampleVisaCopy: "/pdf/visa-samples/switzerland-visa-sample.pdf"
     },
-    // {
-    //   id: 3,
-    //   name: "Italy",
-    //   searchName: "Italy",
-    //   price: "7,500",
-    //   continent: "Europe",
-    //   isTrending: true,
-    //   visasOnTime: "200K+",
-    //   flag: "/images/flags/it.webp",
-    //   landmark: "/images/landmarks/Colosseum in Italy Visa.webp",
-    //   landmarkName: "Colosseum",
-    //   altName: "Colosseum in Italy Visa",
-    //   description: "Italy enchants visitors with its ancient ruins, Renaissance art, and culinary delights.",
-      
-    //   basicInfo: {
-    //     visaType: "Tourist Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/italy-visa-guide.pdf",
-      
-    //   documentsRequired: [
-    //     {
-    //       category: "Required Documents for Italy Visa",
-    //       documents: [
-    //         "Passport with 2 blank pages",
-    //         "Completed application form",
-    //         "Travel itinerary",
-    //         "Proof of accommodation",
-    //         "Recent bank statements"
-    //       ]
-    //     }
-    //   ],
-      
-    //   rejectionReasons: [
-    //     {
-    //       title: "Previous Visa Overstay",
-    //       description: "History of overstaying in Schengen area.",
-    //       icon: "overstay",
-    //     },
-    //     {
-    //       title: "Employment Suspicion",
-    //       description: "Suspicion of intending to work illegally.",
-    //       icon: "employment",
-    //     }
-    //   ],
-      
-    //   faqs: [
-    //     {
-    //       question: "Is COVID-19 vaccination required?",
-    //       answer: "Check latest health requirements before traveling."
-    //     },
-    //     {
-    //       question: "Can I extend my Italian visa?",
-    //       answer: "Extensions are possible only in exceptional circumstances."
-    //     }
-    //   ],
-      
-    //   sampleVisaCopy: "/pdf/visa-samples/italy-visa-sample.pdf"
-    // },
-    // {
-    //   id: 4,
-    //   name: "Spain",
-    //   searchName: "Spain",
-    //   price: "7,500",
-    //   continent: "Europe",
-    //   isTrending: true,
-    //   visasOnTime: "180K+",
-    //   flag: "/images/flags/es.webp",
-    //   landmark: "/images/landmarks/Sagrada Familia tourist places in Spain Visa.webp",
-    //   landmarkName: "Sagrada Familia",
-    //   altName: "Sagrada Familia tourist places in Spain Visa",
-    //   description: "Spain dazzles with its vibrant culture, stunning architecture, and beautiful Mediterranean coastline.",
-      
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/spain-visa-guide.pdf",
-      
-    //   documentsRequired: [
-    //     {
-    //       category: "Mandatory Documents",
-    //       documents: [
-    //         "Passport with 6+ months validity",
-    //         "Completed application form",
-    //         "Travel insurance (€30,000 coverage)",
-    //         "Flight itinerary",
-    //         "Hotel reservations"
-    //       ]
-    //     }
-    //   ],
-      
-    //   rejectionReasons: [
-    //     {
-    //       title: "Insufficient Travel Insurance",
-    //       description: "Insurance doesn't meet Schengen requirements",
-    //       icon: "insurance"
-    //     },
-    //     {
-    //       title: "Weak Ties to Home Country",
-    //       description: "Insufficient proof of return intention",
-    //       icon: "home"
-    //     }
-    //   ],
-      
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Gibraltar with this visa?",
-    //       answer: "No, Gibraltar requires separate documentation"
-    //     },
-    //     {
-    //       question: "Is biometric data required?",
-    //       answer: "Yes, for first-time Schengen applicants"
-    //     }
-    //   ],
-      
-    //   sampleVisaCopy: "/pdf/visa-samples/spain-visa-sample.pdf"
-    // },
-    // {
-    //   id: 5,
-    //   name: "Switzerland",
-    //   searchName: "Switzerland",
-    //   price: "8,200",
-    //   continent: "Europe",
-    //   isTrending: false,
-    //   visasOnTime: "150K+",
-    //   flag: "/images/flags/ch.webp",
-    //   landmark: "/images/landmarks/Matterhorn tourist places in Switzerland Visa.webp",
-    //   landmarkName: "Matterhorn",
-    //   altName: "Matterhorn tourist places in Switzerland Visa",
-    //   description: "Switzerland offers breathtaking Alpine scenery, precision watches, and world-famous chocolates.",
-      
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/switzerland-visa-guide.pdf",
-      
-    //   documentsRequired: [
-    //     {
-    //       category: "Financial Requirements",
-    //       documents: [
-    //         "Bank statements (last 3 months)",
-    //         "Salary slips",
-    //         "Sponsorship letter if applicable"
-    //       ]
-    //     }
-    //   ],
-      
-    //   rejectionReasons: [
-    //     {
-    //       title: "High Risk of Overstay",
-    //       description: "Previous immigration violations",
-    //       icon: "overstay"
-    //     }
-    //   ],
-      
-    //   faqs: [
-    //     {
-    //       question: "Do I need separate visas for Liechtenstein?",
-    //       answer: "No, it's covered by Swiss visa"
-    //     }
-    //   ],
-      
-    //   sampleVisaCopy: "/pdf/visa-samples/switzerland-visa-sample.pdf"
-    // },
-    // {
-    //   id: 6,
-    //   name: "Netherlands",
-    //   searchName: "Netherlands",
-    //   price: "7,800",
-    //   continent: "Europe",
-    //   isTrending: true,
-    //   visasOnTime: "190K+",
-    //   flag: "/images/flags/nl.webp",
-    //   landmark: "/images/landmarks/Windmills tourist places in Netherlands Visa.webp",
-    //   landmarkName: "Windmills",
-    //   altName: "Windmills tourist places in Netherlands Visa",
-    //   description: "The Netherlands charms visitors with its iconic canals, tulip fields, and rich artistic heritage.",
-      
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/netherlands-visa-guide.pdf",
-      
-    //   documentsRequired: [
-    //     {
-    //       category: "Special Requirements",
-    //       documents: [
-    //         "Detailed day-by-day itinerary",
-    //         "Proof of Schengen travel insurance",
-    //         "Return flight confirmation"
-    //       ]
-    //     }
-    //   ],
-      
-    //   rejectionReasons: [
-    //     {
-    //       title: "Visa Shopping",
-    //       description: "Applying in Netherlands without being main destination",
-    //       icon: "shopping"
-    //     }
-    //   ],
-      
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Caribbean Netherlands islands?",
-    //       answer: "No, they have different visa requirements"
-    //     }
-    //   ],
-      
-    //   sampleVisaCopy: "/pdf/visa-samples/netherlands-visa-sample.pdf"
-    // },
-    // {
-    //   id: 7,
-    //   name: "Portugal",
-    //   searchName: "Portugal",
-    //   price: "6,900",
-    //   continent: "Europe",
-    //   isTrending: false,
-    //   visasOnTime: "160K+",
-    //   flag: "/images/flags/pt.webp",
-    //   landmark: "/images/landmarks/Belem Tower tourist places in Portugal Visa.webp",
-    //   landmarkName: "Belem Tower",
-    //   altName: "Belem Tower tourist places in Portugal Visa",
-    //   description: "Portugal enchants visitors with its golden beaches, historic landmarks, and world-famous port wine.",
-      
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/portugal-visa-guide.pdf",
-      
-    //   documentsRequired: [
-    //     {
-    //       category: "Essential Documents",
-    //       documents: [
-    //         "Valid passport (3+ months validity)",
-    //         "Two recent passport photos",
-    //         "Proof of accommodation",
-    //         "Travel medical insurance",
-    //         "Financial means proof (€40/day)"
-    //       ]
-    //     },
-    //     {
-    //       category: "For Minors",
-    //       documents: [
-    //         "Notarized parental authorization",
-    //         "Birth certificate copy"
-    //       ]
-    //     }
-    //   ],
-      
-    //   rejectionReasons: [
-    //     {
-    //       title: "Invalid Travel Dates",
-    //       description: "Application submitted too early or too late",
-    //       icon: "calendar"
-    //     },
-    //     {
-    //       title: "Document Authenticity",
-    //       description: "Suspected forged documents",
-    //       icon: "forgery"
-    //     }
-    //   ],
-      
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Madeira with this visa?",
-    //       answer: "Yes, it's part of Portuguese territory"
-    //     },
-    //     {
-    //       question: "Is interview mandatory?",
-    //       answer: "Only if requested by consulate"
-    //     }
-    //   ],
-      
-    //   sampleVisaCopy: "/pdf/visa-samples/portugal-visa-sample.pdf"
-    // },
-    // {
-    //   id: 8,
-    //   name: "Austria",
-    //   searchName: "Austria",
-    //   price: "8,000",
-    //   continent: "Europe",
-    //   isTrending: true,
-    //   visasOnTime: "170K+",
-    //   flag: "/images/flags/at.webp",
-    //   landmark: "/images/landmarks/Schonbrunn Palace tourist places in Austria Visa.webp",
-    //   landmarkName: "Schonbrunn Palace",
-    //   altName: "Schonbrunn Palace tourist places in Austria Visa",
-    //   description: "Austria offers imperial palaces, Alpine ski resorts, and the cultural riches of Vienna - the city of music.",
-      
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/austria-visa-guide.pdf",
-      
-    //   documentsRequired: [
-    //     {
-    //       category: "Standard Requirements",
-    //       documents: [
-    //         "Completed application form",
-    //         "Passport-size photo (35x45mm)",
-    //         "Travel health insurance (€30,000 coverage)",
-    //         "Proof of financial means (€100/day)"
-    //       ]
-    //     },
-    //     {
-    //       category: "Business Visa Additions",
-    //       documents: [
-    //         "Company invitation letter",
-    //         "Commercial register extract"
-    //       ]
-    //     }
-    //   ],
-      
-    //   rejectionReasons: [
-    //     {
-    //       title: "Inconsistent Information",
-    //       description: "Contradictions in application details",
-    //       icon: "inconsistency"
-    //     },
-    //     {
-    //       title: "Security Concerns",
-    //       description: "Appears in security databases",
-    //       icon: "security"
-    //     }
-    //   ],
-      
-    //   faqs: [
-    //     {
-    //       question: "Can I enter Liechtenstein with this visa?",
-    //       answer: "Yes, through Austrian border points"
-    //     },
-    //     {
-    //       question: "Winter sports equipment requirements?",
-    //       answer: "Must declare specialized equipment"
-    //     }
-    //   ],
-      
-    //   sampleVisaCopy: "/pdf/visa-samples/austria-visa-sample.pdf"
-    // },
-    // {
-    //   id: 9,
-    //   name: "Belgium",
-    //   searchName: "Belgium",
-    //   price: "7,200",
-    //   continent: "Europe",
-    //   isTrending: false,
-    //   visasOnTime: "145K+",
-    //   flag: "/images/flags/be.webp",
-    //   landmark: "/images/landmarks/Atomium in Belgium Visa.webp",
-    //   landmarkName: "Atomium",
-    //   altName: "Atomium in Belgium Visa",
-    //   description: "Belgium delights visitors with medieval towns, world-class chocolates, and being the heart of EU politics.",
-      
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //     entryType: "Single/Multiple"
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/belgium-visa-guide.pdf",
-      
-    //   documentsRequired: [
-    //     {
-    //       category: "Core Documents",
-    //       documents: [
-    //         "Passport (2 blank pages minimum)",
-    //         "2 identical color photos (35x45mm)",
-    //         "Travel medical insurance (minimum €30,000)",
-    //         "Proof of accommodation (hotel bookings or host invitation)"
-    //       ]
-    //     },
-    //     {
-    //       category: "Financial Proof",
-    //       documents: [
-    //         "Bank statements (last 3 months)",
-    //         "Sponsorship letter if applicable",
-    //         "Minimum €45 per day of stay"
-    //       ]
-    //     }
-    //   ],
-      
-    //   rejectionReasons: [
-    //     {
-    //       title: "Main Destination Not Belgium",
-    //       description: "Applying in Belgium but spending most time elsewhere in Schengen",
-    //       icon: "destination"
-    //     },
-    //     {
-    //       title: "Dubious Employer Reference",
-    //       description: "Unverifiable employment details",
-    //       icon: "employment"
-    //     }
-    //   ],
-      
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Luxembourg with this visa?",
-    //       answer: "Yes, as both are Schengen states"
-    //     },
-    //     {
-    //       question: "Is biometric data required?",
-    //       answer: "Yes, for all applicants aged 12+"
-    //     }
-    //   ],
-      
-    //   sampleVisaCopy: "/pdf/visa-samples/belgium-visa-sample.pdf"
-    // },
+    {
+      id: 6,
+      name: "Netherlands",
+      searchName: "Netherlands",
+      price: "7800",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "190K+",
+      flag: "/images/flags/nl.webp",
+      landmark: "/images/landmarks/Windmills tourist places in Netherlands Visa.webp",
+      landmarkName: "Windmills",
+      altName: "Windmills tourist places in Netherlands Visa",
+      description: "The Netherlands charms visitors with its iconic canals, tulip fields, and rich artistic heritage.",
+
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+    
+      pdfDownload: "/pdf/visa-guides/netherlands-visa-guide.pdf",
+
+      documentsRequired: [
+        {
+          category: "Special Requirements",
+          documents: [
+            "Detailed day-by-day itinerary",
+            "Proof of Schengen travel insurance",
+            "Return flight confirmation"
+          ]
+        }
+      ],
+
+      rejectionReasons: [
+        {
+          title: "Visa Shopping",
+          description: "Applying in Netherlands without being main destination",
+          icon: "shopping"
+        }
+      ],
+
+      faqs: [
+        {
+          question: "Can I visit Caribbean Netherlands islands?",
+          answer: "No, they have different visa requirements"
+        }
+      ],
+
+      sampleVisaCopy: "/pdf/visa-samples/netherlands-visa-sample.pdf"
+    },
+    {
+      id: 7,
+      name: "Portugal",
+      searchName: "Portugal",
+      price: "6900",
+      continent: "Europe",
+      isTop: true,
+      isTrending: false,
+      visasOnTime: "160K+",
+      flag: "/images/flags/pt.webp",
+      landmark: "/images/landmarks/Belem Tower tourist places in Portugal Visa.webp",
+      landmarkName: "Belem Tower",
+      altName: "Belem Tower tourist places in Portugal Visa",
+      description: "Portugal enchants visitors with its golden beaches, historic landmarks, and world-famous port wine.",
+
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+     
+      pdfDownload: "/pdf/visa-guides/portugal-visa-guide.pdf",
+
+      documentsRequired: [
+        {
+          category: "Essential Documents",
+          documents: [
+            "Valid passport (3+ months validity)",
+            "Two recent passport photos",
+            "Proof of accommodation",
+            "Travel medical insurance",
+            "Financial means proof (€40/day)"
+          ]
+        },
+        {
+          category: "For Minors",
+          documents: [
+            "Notarized parental authorization",
+            "Birth certificate copy"
+          ]
+        }
+      ],
+
+      rejectionReasons: [
+        {
+          title: "Invalid Travel Dates",
+          description: "Application submitted too early or too late",
+          icon: "calendar"
+        },
+        {
+          title: "Document Authenticity",
+          description: "Suspected forged documents",
+          icon: "forgery"
+        }
+      ],
+
+      faqs: [
+        {
+          question: "Can I visit Madeira with this visa?",
+          answer: "Yes, it's part of Portuguese territory"
+        },
+        {
+          question: "Is interview mandatory?",
+          answer: "Only if requested by consulate"
+        }
+      ],
+
+      sampleVisaCopy: "/pdf/visa-samples/portugal-visa-sample.pdf"
+    },
+    {
+      id: 8,
+      name: "Austria",
+      searchName: "Austria",
+      price: "8000",
+      continent: "Europe",
+      isTop: true,
+      isTrending: true,
+      visasOnTime: "170K+",
+      flag: "/images/flags/at.webp",
+      landmark: "/images/landmarks/Schonbrunn Palace tourist places in Austria Visa.webp",
+      landmarkName: "Schonbrunn Palace",
+      altName: "Schonbrunn Palace tourist places in Austria Visa",
+      description: "Austria offers imperial palaces, Alpine ski resorts, and the cultural riches of Vienna - the city of music.",
+
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+     
+      pdfDownload: "/pdf/visa-guides/austria-visa-guide.pdf",
+
+      documentsRequired: [
+        {
+          category: "Standard Requirements",
+          documents: [
+            "Completed application form",
+            "Passport-size photo (35x45mm)",
+            "Travel health insurance (€30,000 coverage)",
+            "Proof of financial means (€100/day)"
+          ]
+        },
+        {
+          category: "Business Visa Additions",
+          documents: [
+            "Company invitation letter",
+            "Commercial register extract"
+          ]
+        }
+      ],
+
+      rejectionReasons: [
+        {
+          title: "Inconsistent Information",
+          description: "Contradictions in application details",
+          icon: "inconsistency"
+        },
+        {
+          title: "Security Concerns",
+          description: "Appears in security databases",
+          icon: "security"
+        }
+      ],
+
+      faqs: [
+        {
+          question: "Can I enter Liechtenstein with this visa?",
+          answer: "Yes, through Austrian border points"
+        },
+        {
+          question: "Winter sports equipment requirements?",
+          answer: "Must declare specialized equipment"
+        }
+      ],
+
+      sampleVisaCopy: "/pdf/visa-samples/austria-visa-sample.pdf"
+    },
+    {
+      id: 9,
+      name: "Belgium",
+      searchName: "Belgium",
+      price: "7200",
+      isTop: true,
+      continent: "Europe",
+      isTrending: false,
+      visasOnTime: "145K+",
+      flag: "/images/flags/be.webp",
+      landmark: "/images/landmarks/Atomium in Belgium Visa.webp",
+      landmarkName: "Atomium",
+      altName: "Atomium in Belgium Visa",
+      description: "Belgium delights visitors with medieval towns, world-class chocolates, and being the heart of EU politics.",
+
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+        entryType: "Single/Multiple",
+   
+      pdfDownload: "/pdf/visa-guides/belgium-visa-guide.pdf",
+
+      documentsRequired: [
+        {
+          category: "Core Documents",
+          documents: [
+            "Passport (2 blank pages minimum)",
+            "2 identical color photos (35x45mm)",
+            "Travel medical insurance (minimum €30,000)",
+            "Proof of accommodation (hotel bookings or host invitation)"
+          ]
+        },
+        {
+          category: "Financial Proof",
+          documents: [
+            "Bank statements (last 3 months)",
+            "Sponsorship letter if applicable",
+            "Minimum €45 per day of stay"
+          ]
+        }
+      ],
+
+      rejectionReasons: [
+        {
+          title: "Main Destination Not Belgium",
+          description: "Applying in Belgium but spending most time elsewhere in Schengen",
+          icon: "destination"
+        },
+        {
+          title: "Dubious Employer Reference",
+          description: "Unverifiable employment details",
+          icon: "employment"
+        }
+      ],
+
+      faqs: [
+        {
+          question: "Can I visit Luxembourg with this visa?",
+          answer: "Yes, as both are Schengen states"
+        },
+        {
+          question: "Is biometric data required?",
+          answer: "Yes, for all applicants aged 12+"
+        }
+      ],
+
+      sampleVisaCopy: "/pdf/visa-samples/belgium-visa-sample.pdf"
+    },
     // {
     //   id: 10,
     //   name: "Greece",
@@ -542,7 +433,7 @@ export const countryData = {
     //   landmarkName: "Parthenon",
     //   altName: "Parthenon in Greece Visa",
     //   description: "Greece offers sun-drenched islands, ancient ruins, and the birthplace of Western civilization.",
-      
+
     //   basicInfo: {
     //     visaType: "Sticker Visa",
     //     lengthOfStay: "Up to 90 days",
@@ -550,7 +441,7 @@ export const countryData = {
     //     entryType: "Single/Multiple"
     //   },
     //   pdfDownload: "/pdf/visa-guides/greece-visa-guide.pdf",
-      
+
     //   documentsRequired: [
     //     {
     //       category: "Mandatory Documents",
@@ -570,7 +461,7 @@ export const countryData = {
     //       ]
     //     }
     //   ],
-      
+
     //   rejectionReasons: [
     //     {
     //       title: "Island Hopping Without Proof",
@@ -583,7 +474,7 @@ export const countryData = {
     //       icon: "seasonal"
     //     }
     //   ],
-      
+
     //   faqs: [
     //     {
     //       question: "Can I visit Turkish islands near Greece?",
@@ -594,7 +485,7 @@ export const countryData = {
     //       answer: "Check latest travel advisories before application"
     //     }
     //   ],
-      
+
     //   sampleVisaCopy: "/pdf/visa-samples/greece-visa-sample.pdf"
     // },
     // {
@@ -610,7 +501,7 @@ export const countryData = {
     //   landmarkName: "Geirangerfjord",
     //   altName: "Geirangerfjord tourist places in Norway Visa",
     //   description: "Norway mesmerizes with its dramatic fjords, northern lights, and vibrant Viking heritage.",
-      
+
     //   basicInfo: {
     //     visaType: "Sticker Visa",
     //     lengthOfStay: "Up to 90 days",
@@ -618,7 +509,7 @@ export const countryData = {
     //     entryType: "Single/Multiple"
     //   },
     //   pdfDownload: "/pdf/visa-guides/norway-visa-guide.pdf",
-      
+
     //   documentsRequired: [
     //     {
     //       category: "Standard Requirements",
@@ -638,7 +529,7 @@ export const countryData = {
     //       ]
     //     }
     //   ],
-      
+
     //   rejectionReasons: [
     //     {
     //       title: "Insufficient Arctic Preparation",
@@ -651,7 +542,7 @@ export const countryData = {
     //       icon: "itinerary"
     //     }
     //   ],
-      
+
     //   faqs: [
     //     {
     //       question: "Can I visit Svalbard with this visa?",
@@ -662,7 +553,7 @@ export const countryData = {
     //       answer: "Norway is largely cashless - cards preferred"
     //     }
     //   ],
-      
+
     //   sampleVisaCopy: "/pdf/visa-samples/norway-visa-sample.pdf"
     // },
     // {
@@ -678,7 +569,7 @@ export const countryData = {
     //   landmarkName: "Little Mermaid Statue",
     //   altName: "Little Mermaid Statue tourist places in Denmark visa",
     //   description: "Denmark charms with hygge culture, colorful harbors, and being the birthplace of LEGO.",
-      
+
     //   basicInfo: {
     //     visaType: "Sticker Visa",
     //     lengthOfStay: "Up to 90 days",
@@ -686,7 +577,7 @@ export const countryData = {
     //     entryType: "Single/Multiple"
     //   },
     //   pdfDownload: "/pdf/visa-guides/denmark-visa-guide.pdf",
-      
+
     //   documentsRequired: [
     //     {
     //       category: "Core Documents",
@@ -704,7 +595,7 @@ export const countryData = {
     //       ]
     //     }
     //   ],
-      
+
     //   rejectionReasons: [
     //     {
     //       title: "Bicycle Tour Insufficient Documentation",
@@ -717,7 +608,7 @@ export const countryData = {
     //       icon: "territory"
     //     }
     //   ],
-      
+
     //   faqs: [
     //     {
     //       question: "Can I visit Sweden with this visa?",
@@ -728,7 +619,7 @@ export const countryData = {
     //       answer: "Yes, shows prepaid attractions and transport"
     //     }
     //   ],
-      
+
     //   sampleVisaCopy: "/pdf/visa-samples/denmark-visa-sample.pdf"
     // },
     // {
@@ -744,7 +635,7 @@ export const countryData = {
     //   landmarkName: "Helsinki Cathedral",
     //   altName: "Helsinki Cathedral tourist places in Finland Visa",
     //   description: "Finland offers magical Northern Lights, midnight sun, sauna culture, and Santa Claus Village in Rovaniemi.",
-      
+
     //   basicInfo: {
     //     visaType: "Sticker Visa",
     //     lengthOfStay: "Up to 90 days",
@@ -753,7 +644,7 @@ export const countryData = {
     //     processingTime: "15 calendar days"
     //   },
     //   pdfDownload: "/pdf/visa-guides/finland-visa-guide.pdf",
-      
+
     //   documentsRequired: [
     //     {
     //       category: "Standard Requirements",
@@ -773,7 +664,7 @@ export const countryData = {
     //       ]
     //     }
     //   ],
-      
+
     //   rejectionReasons: [
     //     {
     //       title: "Insufficient Winter Preparation",
@@ -786,7 +677,7 @@ export const countryData = {
     //       icon: "santa"
     //     }
     //   ],
-      
+
     //   faqs: [
     //     {
     //       question: "Can I visit Estonia by ferry with this visa?",
@@ -797,7 +688,7 @@ export const countryData = {
     //       answer: "Recommended but not required for Northern travel"
     //     }
     //   ],
-      
+
     //   sampleVisaCopy: "/pdf/visa-samples/finland-visa-sample.pdf",
     //   specialNotes: "Lapland visits require extra documentation for winter activities between November-March"
     // },
@@ -814,7 +705,7 @@ export const countryData = {
     //   landmarkName: "Stockholm Palace",
     //   altName: "Stockholm Palace places in Sweden Visa",
     //   description: "Sweden delights with its archipelago landscapes, innovative design, and the original ABBA Museum.",
-      
+
     //   basicInfo: {
     //     visaType: "Sticker Visa",
     //     lengthOfStay: "Up to 90 days",
@@ -823,7 +714,7 @@ export const countryData = {
     //     processingTime: "10-15 working days"
     //   },
     //   pdfDownload: "/pdf/visa-guides/sweden-visa-guide.pdf",
-      
+
     //   documentsRequired: [
     //     {
     //       category: "Core Documents",
@@ -842,7 +733,7 @@ export const countryData = {
     //       ]
     //     }
     //   ],
-      
+
     //   rejectionReasons: [
     //     {
     //       title: "Archipelago Cruise Documentation",
@@ -855,7 +746,7 @@ export const countryData = {
     //       icon: "credit-card"
     //     }
     //   ],
-      
+
     //   faqs: [
     //     {
     //       question: "Can I visit Norway from Sweden?",
@@ -866,7 +757,7 @@ export const countryData = {
     //       description: "Kiruna visits follow same visa rules as mainland"
     //     }
     //   ],
-      
+
     //   sampleVisaCopy: "/pdf/visa-samples/sweden-visa-sample.pdf",
     //   specialNotes: "Stockholm archipelago visits require detailed ferry schedules in summer months"
     // },
@@ -883,7 +774,7 @@ export const countryData = {
     //   landmarkName: "Blue Lagoon",
     //   altName: "Blue Lagoon in Iceland Visa",
     //   description: "Iceland enchants with geothermal wonders, glaciers, volcanoes, and the magical Northern Lights.",
-      
+
     //   basicInfo: {
     //     visaType: "Sticker Visa",
     //     lengthOfStay: "Up to 90 days",
@@ -892,7 +783,7 @@ export const countryData = {
     //     processingTime: "10-15 working days"
     //   },
     //   pdfDownload: "/pdf/visa-guides/iceland-visa-guide.pdf",
-      
+
     //   documentsRequired: [
     //     {
     //       category: "Standard Requirements",
@@ -912,7 +803,7 @@ export const countryData = {
     //       ]
     //     }
     //   ],
-      
+
     //   rejectionReasons: [
     //     {
     //       title: "Inadequate Vehicle Rental",
@@ -925,7 +816,7 @@ export const countryData = {
     //       icon: "northern-lights"
     //     }
     //   ],
-      
+
     //   faqs: [
     //     {
     //       question: "Can I visit Greenland with this visa?",
@@ -936,7 +827,7 @@ export const countryData = {
     //       answer: "No, cards accepted everywhere including rural gas stations"
     //     }
     //   ],
-      
+
     //   sampleVisaCopy: "/pdf/visa-samples/iceland-visa-sample.pdf",
     //   specialNotes: "F-road mountain routes require certified 4x4 vehicles between June-September"
     // },
@@ -953,7 +844,7 @@ export const countryData = {
     //   landmarkName: "Cliffs of Moher",
     //   altName: "Cliffs of Moher in Ireland Visa",
     //   description: "Ireland captivates with rugged coastlines, ancient castles, vibrant pubs, and rich literary heritage.",
-      
+
     //   basicInfo: {
     //     visaType: "Short-Stay 'C' Visa",
     //     lengthOfStay: "Up to 90 days",
@@ -962,7 +853,7 @@ export const countryData = {
     //     processingTime: "4-8 weeks (peak season)"
     //   },
     //   pdfDownload: "/pdf/visa-guides/ireland-visa-guide.pdf",
-      
+
     //   documentsRequired: [
     //     {
     //       category: "Core Documents",
@@ -982,7 +873,7 @@ export const countryData = {
     //       ]
     //     }
     //   ],
-      
+
     //   rejectionReasons: [
     //     {
     //       title: "Pub Crawl Itinerary",
@@ -995,7 +886,7 @@ export const countryData = {
     //       icon: "border"
     //     }
     //   ],
-      
+
     //   faqs: [
     //     {
     //       question: "Can I visit Northern Ireland?",
@@ -1006,7 +897,7 @@ export const countryData = {
     //       answer: "No, English is sufficient for all official purposes"
     //     }
     //   ],
-      
+
     //   sampleVisaCopy: "/pdf/visa-samples/ireland-visa-sample.pdf",
     //   specialNotes: "Important: Ireland is not part of Schengen despite EU membership"
     // },
@@ -1023,7 +914,7 @@ export const countryData = {
     //   landmarkName: "Wawel Castle",
     //   altName: "Wawel Castle tourist places in Poland Visa",
     //   description: "Poland fascinates with medieval old towns, hearty cuisine, and resilient historical sites from WWII.",
-      
+
     //   basicInfo: {
     //     visaType: "Sticker Visa",
     //     lengthOfStay: "Up to 90 days",
@@ -1032,7 +923,7 @@ export const countryData = {
     //     processingTime: "10-15 working days"
     //   },
     //   pdfDownload: "/pdf/visa-guides/poland-visa-guide.pdf",
-      
+
     //   documentsRequired: [
     //     {
     //       category: "Standard Requirements",
@@ -1051,7 +942,7 @@ export const countryData = {
     //       ]
     //     }
     //   ],
-      
+
     //   rejectionReasons: [
     //     {
     //       title: "Schengen Itinerary Mismatch",
@@ -1064,7 +955,7 @@ export const countryData = {
     //       icon: "currency"
     //     }
     //   ],
-      
+
     //   faqs: [
     //     {
     //       question: "Can I visit Ukraine from Poland?",
@@ -1075,12 +966,12 @@ export const countryData = {
     //       answer: "No, but English/German helps in major cities"
     //     }
     //   ],
-      
+
     //   sampleVisaCopy: "/pdf/visa-samples/poland-visa-sample.pdf",
     //   specialNotes: "Historic site visits (like Auschwitz) require advance online registrations"
     // },
-   
-  ],
+
+  ];
   // Other continents can be added similarly...
   // asia: [
   //   {
@@ -1096,7 +987,7 @@ export const countryData = {
   //     landmarkName: "Mount Fuji",
   //     altName: "Mount Fuji in Japan Visa",
   //     description: "Japan blends ancient traditions with cutting-edge technology, offering cherry blossoms, sushi, and bullet trains.",
-      
+
   //     basicInfo: {
   //       visaType: "Tourist Visa",
   //       lengthOfStay: "Up to 90 days",
@@ -1104,7 +995,7 @@ export const countryData = {
   //       entry: "Single/Multiple"
   //     },
   //     pdfDownload: "/pdf/visa-guides/japan-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "Basic Requirements",
@@ -1125,7 +1016,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Insufficient Financial Proof",
@@ -1138,7 +1029,7 @@ export const countryData = {
   //         icon: "itinerary"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Can I visit Okinawa with this visa?",
@@ -1149,7 +1040,7 @@ export const countryData = {
   //         answer: "Check latest health advisories before travel"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/japan-visa-sample.pdf"
   //   },
   //   {
@@ -1165,7 +1056,7 @@ export const countryData = {
   //     landmarkName: "Grand Palace",
   //     altName: "Grand Palace tourist places in Thailand Visa",
   //     description: "Thailand attracts visitors with tropical beaches, ornate temples, vibrant street life, and delicious cuisine.",
-      
+
   //     basicInfo: {
   //       visaType: "Tourist Visa",
   //       lengthOfStay: "60 days",
@@ -1173,7 +1064,7 @@ export const countryData = {
   //       entry: "Single"
   //     },
   //     pdfDownload: "/pdf/visa-guides/thailand-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "Essential Documents",
@@ -1185,7 +1076,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Previous Overstay",
@@ -1198,7 +1089,7 @@ export const countryData = {
   //         icon: "work"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Can I extend my stay?",
@@ -1209,7 +1100,7 @@ export const countryData = {
   //         answer: "Yes for 15 days (2,000 THB, cash only)"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/thailand-visa-sample.pdf"
   //   },
   //   {
@@ -1225,7 +1116,7 @@ export const countryData = {
   //     landmarkName: "Marina Bay Sands",
   //     altName: "Marina Bay Sands tourist places in Singapore Visa",
   //     description: "Singapore dazzles with its futuristic skyline, multicultural cuisine, and immaculate green spaces.",
-      
+
   //     basicInfo: {
   //       visaType: "Tourist Visa",
   //       lengthOfStay: "30 days",
@@ -1233,7 +1124,7 @@ export const countryData = {
   //       entry: "Multiple"
   //     },
   //     pdfDownload: "/pdf/visa-guides/singapore-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "Standard Documents",
@@ -1252,7 +1143,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Criminal Record",
@@ -1265,7 +1156,7 @@ export const countryData = {
   //         icon: "deport"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Can I visit Malaysia with this visa?",
@@ -1276,7 +1167,7 @@ export const countryData = {
   //         answer: "Yes, through authorized agents only"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/singapore-visa-sample.pdf"
   //   },
   //   {
@@ -1292,7 +1183,7 @@ export const countryData = {
   //     landmarkName: "Gyeongbokgung Palace",
   //     altName: "Gyeongbokgung Palace in South Korea Visa",
   //     description: "South Korea combines futuristic cities, ancient palaces, K-pop culture, and world-renowned cuisine.",
-      
+
   //     basicInfo: {
   //       visaType: "C-3 Tourist Visa",
   //       lengthOfStay: "90 days",
@@ -1300,7 +1191,7 @@ export const countryData = {
   //       entry: "Single/Multiple"
   //     },
   //     pdfDownload: "/pdf/visa-guides/south-korea-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "Mandatory Documents",
@@ -1321,7 +1212,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Incomplete Itinerary",
@@ -1334,7 +1225,7 @@ export const countryData = {
   //         icon: "security"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Can I visit Jeju Island without visa?",
@@ -1345,7 +1236,7 @@ export const countryData = {
   //         answer: "No, K-ETA is only for visa-free entries"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/south-korea-visa-sample.pdf"
   //   },
   //   {
@@ -1361,7 +1252,7 @@ export const countryData = {
   //     landmarkName: "Petronas Towers",
   //     altName: "Petronas Towers tourist places in Malaysia Visa",
   //     description: "Malaysia offers diverse experiences from Kuala Lumpur's skyscrapers to Borneo's rainforests and pristine islands.",
-      
+
   //     basicInfo: {
   //       visaType: "eVISA",
   //       lengthOfStay: "30 days",
@@ -1369,7 +1260,7 @@ export const countryData = {
   //       entry: "Single"
   //     },
   //     pdfDownload: "/pdf/visa-guides/malaysia-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "eVISA Requirements",
@@ -1381,7 +1272,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Incorrect Photo Format",
@@ -1394,7 +1285,7 @@ export const countryData = {
   //         icon: "ban"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Can I enter East Malaysia with this visa?",
@@ -1405,7 +1296,7 @@ export const countryData = {
   //         answer: "Check latest MySejahtera requirements"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/malaysia-visa-sample.pdf"
   //   },
   //   {
@@ -1421,7 +1312,7 @@ export const countryData = {
   //     landmarkName: "Ha Long Bay",
   //     altName: "Ha Long Bay tourist places in Vietnam Visa",
   //     description: "Vietnam captivates with its emerald waters, ancient towns, French colonial architecture, and vibrant street food culture.",
-      
+
   //     basicInfo: {
   //       visaType: "eVISA/VOA",
   //       lengthOfStay: "30 days",
@@ -1429,7 +1320,7 @@ export const countryData = {
   //       entry: "Single"
   //     },
   //     pdfDownload: "/pdf/visa-guides/vietnam-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "For eVISA",
@@ -1449,7 +1340,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Name Mismatch",
@@ -1462,7 +1353,7 @@ export const countryData = {
   //         icon: "location"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Can I extend my eVISA in Vietnam?",
@@ -1473,7 +1364,7 @@ export const countryData = {
   //         answer: "Yes, for 30 days if arriving directly"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/vietnam-visa-sample.pdf"
   //   },
   //   {
@@ -1489,7 +1380,7 @@ export const countryData = {
   //     landmarkName: "Gateway of India",
   //     altName: "Gateway of India in Mumbai",
   //     description: "India mesmerizes with its ancient heritage, diverse cultures, vibrant festivals, and breathtaking landscapes from Himalayas to tropical beaches.",
-      
+
   //     basicInfo: {
   //       visaType: "e-Visa",
   //       lengthOfStay: "30/60/180 days",
@@ -1497,7 +1388,7 @@ export const countryData = {
   //       entry: "Multiple"
   //     },
   //     pdfDownload: "/pdf/visa-guides/india-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "e-Visa Requirements",
@@ -1516,7 +1407,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Pakistani Travel History",
@@ -1529,7 +1420,7 @@ export const countryData = {
   //         icon: "photo"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Can I visit restricted areas like Andamans?",
@@ -1540,7 +1431,7 @@ export const countryData = {
   //         answer: "No visa needed for these neighboring countries"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/india-visa-sample.pdf"
   //   },
   //   {
@@ -1556,7 +1447,7 @@ export const countryData = {
   //     landmarkName: "Sigiriya Rock",
   //     altName: "Ancient Sigiriya Rock Fortress",
   //     description: "Sri Lanka delights with its golden beaches, ancient ruins, tea plantations, and incredible wildlife including leopards and elephants.",
-      
+
   //     basicInfo: {
   //       visaType: "ETA",
   //       lengthOfStay: "30 days",
@@ -1564,7 +1455,7 @@ export const countryData = {
   //       entry: "Double"
   //     },
   //     pdfDownload: "/pdf/visa-guides/sri-lanka-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "ETA Requirements",
@@ -1575,7 +1466,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Previous Visa Violations",
@@ -1588,7 +1479,7 @@ export const countryData = {
   //         icon: "form"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Can I extend my stay beyond 30 days?",
@@ -1599,7 +1490,7 @@ export const countryData = {
   //         answer: "No, if staying airside less than 12 hours"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/sri-lanka-visa-sample.pdf"
   //   },
   // ],
@@ -1618,14 +1509,14 @@ export const countryData = {
   //     landmarkName: "Statue of Liberty",
   //     altName: "Statue of Liberty in the United States Visa",
   //     description: "The USA offers diverse experiences from the bright lights of New York to the natural wonders of the Grand Canyon and technological innovations of Silicon Valley.",
-      
+
   //     basicInfo: {
   //       visaType: "B1/B2 Visa",
   //       lengthOfStay: "Up to 6 months",
   //       validity: "10 years",
   //     },
   //     pdfDownload: "/pdf/visa-guides/usa-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "Mandatory Documents",
@@ -1646,7 +1537,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "214(b) Refusal",
@@ -1659,7 +1550,7 @@ export const countryData = {
   //         icon: "violation"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "How early should I apply for US visa?",
@@ -1670,7 +1561,7 @@ export const countryData = {
   //         answer: "Possible but must apply before current I-94 expires"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/us-visa-sample.pdf",
   //     visaTypes: [
   //       {
@@ -1706,14 +1597,14 @@ export const countryData = {
   //     landmarkName: "Niagara Falls",
   //     altName: "Niagara Falls in Canada Visa",
   //     description: "Canada boasts stunning natural landscapes from the Rocky Mountains to coastal beauty, along with vibrant multicultural cities like Toronto and Vancouver.",
-      
+
   //     basicInfo: {
   //       visaType: "Visitor Visa",
   //       lengthOfStay: "Up to 6 months",
   //       validity: "10 years or passport expiry",
   //     },
   //     pdfDownload: "/pdf/visa-guides/canada-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "General Requirements",
@@ -1734,7 +1625,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Insufficient Funds",
@@ -1747,7 +1638,7 @@ export const countryData = {
   //         icon: "criminal"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Is biometrics required?",
@@ -1758,7 +1649,7 @@ export const countryData = {
   //         answer: "No, requires separate work permit"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/canada-visa-sample.pdf",
   //     visaTypes: [
   //       {
@@ -1794,14 +1685,14 @@ export const countryData = {
   //     landmarkName: "Chichen Itza",
   //     altName: "Chichen Itza in Mexico Visa",
   //     description: "Mexico fascinates with ancient Mayan ruins, vibrant festivals, beautiful beaches, and rich culinary traditions recognized by UNESCO.",
-      
+
   //     basicInfo: {
   //       visaType: "Tourist Visa",
   //       lengthOfStay: "Up to 180 days",
   //       validity: "6 months",
   //     },
   //     pdfDownload: "/pdf/visa-guides/mexico-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "Basic Requirements",
@@ -1822,7 +1713,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Previous Immigration Issues",
@@ -1835,7 +1726,7 @@ export const countryData = {
   //         icon: "itinerary"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Do I need visa if I have US visa?",
@@ -1846,7 +1737,7 @@ export const countryData = {
   //         answer: "Possible at INM offices before visa expires"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/mexico-visa-sample.pdf",
   //     visaTypes: [
   //       {
@@ -1884,14 +1775,14 @@ export const countryData = {
   //     landmarkName: "Christ the Redeemer",
   //     altName: "Christ the Redeemer tourist places in Brazil Visa",
   //     description: "Brazil dazzles with its vibrant carnivals, Amazon rainforest, and iconic beaches of Rio de Janeiro.",
-      
+
   //     basicInfo: {
   //       visaType: "Tourist Visa (VIVIS)",
   //       lengthOfStay: "Up to 90 days",
   //       validity: "5 years (for US visa holders)",
   //     },
   //     pdfDownload: "/pdf/visa-guides/brazil-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "Core Requirements",
@@ -1911,7 +1802,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Criminal Record",
@@ -1924,7 +1815,7 @@ export const countryData = {
   //         icon: "incomplete"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Is visa required for Carnival visit?",
@@ -1935,7 +1826,7 @@ export const countryData = {
   //         answer: "Yes, but need separate permit for Argentine side"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/brazil-visa-sample.pdf"
   //   },
   //   {
@@ -1951,14 +1842,14 @@ export const countryData = {
   //     landmarkName: "Iguazu Falls",
   //     altName: "Iguazu Falls tourist places in Argentina Visa",
   //     description: "Argentina offers spectacular natural wonders, passionate tango, and world-renowned beef cuisine.",
-      
+
   //     basicInfo: {
   //       visaType: "ETA",
   //       lengthOfStay: "90 days",
   //       validity: "Multiple entries for 3 years",
   //     },
   //     pdfDownload: "/pdf/visa-guides/argentina-visa-guide.pdf",
-      
+
   //     documentsRequired: [
   //       {
   //         category: "ETA Requirements",
@@ -1977,7 +1868,7 @@ export const countryData = {
   //         ]
   //       }
   //     ],
-      
+
   //     rejectionReasons: [
   //       {
   //         title: "Previous Immigration Violations",
@@ -1990,7 +1881,7 @@ export const countryData = {
   //         icon: "health"
   //       }
   //     ],
-      
+
   //     faqs: [
   //       {
   //         question: "Is reciprocity fee still applicable?",
@@ -2001,9 +1892,9 @@ export const countryData = {
   //         answer: "Yes, but requires additional permits from tour operators"
   //       }
   //     ],
-      
+
   //     sampleVisaCopy: "/pdf/visa-samples/argentina-visa-sample.pdf"
   //   }
   // ]
-  
-};
+
+// };

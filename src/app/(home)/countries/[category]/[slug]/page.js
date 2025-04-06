@@ -41,17 +41,17 @@ const CountryDetails = () => {
         }
 
         // If no query data, fetch from API
-        const apiResponse = await fetch(`https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiuocZL1cdh3YcGZtMrTwV2qgH2lVwfnXvgoCN8GRiZi_vNzLgl72Aapcc1xp-vWyLUH0dW5aFQ9cyu1lCJlRaUkT9IBrwlN1yVMCmnywQkEjgw274NttmfXmJIKv_6IXJyI6NQPYLJ7ORTpd7D3t9-m1TrsZplXiYpXANnDqitJe43t3x-hP3Vrn0sNva5z0oh32avJb6Deyb8xl83Da9eMpfIsExJd8EpO00zbnmt1VxWt7pQiQypkuxJrRRi_qwjJWr0bbbKOCFRjmk--tz7keYrJA&lib=MNOr_3U-ifGUiHYeVYNtbhEhiku5JnKVW`,)
+        // const apiResponse = await fetch(`https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiuocZL1cdh3YcGZtMrTwV2qgH2lVwfnXvgoCN8GRiZi_vNzLgl72Aapcc1xp-vWyLUH0dW5aFQ9cyu1lCJlRaUkT9IBrwlN1yVMCmnywQkEjgw274NttmfXmJIKv_6IXJyI6NQPYLJ7ORTpd7D3t9-m1TrsZplXiYpXANnDqitJe43t3x-hP3Vrn0sNva5z0oh32avJb6Deyb8xl83Da9eMpfIsExJd8EpO00zbnmt1VxWt7pQiQypkuxJrRRi_qwjJWr0bbbKOCFRjmk--tz7keYrJA&lib=MNOr_3U-ifGUiHYeVYNtbhEhiku5JnKVW`,)
 
-          ;
-        if (!apiResponse.ok) {
-          throw new Error("Country not found");
-        }
+        //   ;
+        // if (!apiResponse.ok) {
+        //   throw new Error("Country not found");
+        // }
 
-        const apiCountries = await apiResponse.json();
-        console.log("API Countries:", apiCountries);
+        // const apiCountries = await apiResponse.json();
+        // console.log("API Countries:", apiCountries);
 
-        setCountry(apiCountries.find((c) => c.name.toLowerCase() === slug));
+        setCountry(countryData.find((c) => c.name.toLowerCase() === slug));
 
       } catch (error) {
         console.error("Error fetching country data:", error);
