@@ -182,7 +182,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8 relative">
+          <div className="hidden lg:flex items-center gap-8 relative">
             {navLinks.map((link) => (
               <div key={link.name} className="relative">
                 {link.hasMegaMenu ? (
@@ -214,7 +214,7 @@ export default function Navbar() {
           </div>
 
           {/* Search and CTA Button */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-6">
             <div className="relative">
               <form onSubmit={handleSearchSubmit}>
                 <div className="relative">
@@ -283,7 +283,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-700 text-2xl p-2 -mr-2"
+            className="lg:hidden text-gray-700 text-2xl p-2 -mr-2"
             onClick={() => setIsOpen(true)}
             aria-label="Open menu"
           >
@@ -294,7 +294,7 @@ export default function Navbar() {
         {/* Mega Menu - Desktop Only */}
         {isServicesOpen && (
           <div
-            className="hidden md:block absolute top-[52px] pt-[28px] left-0 w-full z-40 "
+            className="hidden lg:block absolute top-[52px] pt-[28px] left-0 w-full z-40 "
             onMouseEnter={() => setIsServicesOpen(true)}
             onMouseLeave={() => setIsServicesOpen(false)}
             ref={megaMenuRef}
