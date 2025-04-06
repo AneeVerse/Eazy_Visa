@@ -91,7 +91,7 @@ const CountryDetails = () => {
   }
 
   return (
-    <div className=" relative min-h-screen pb-12">
+    <div className=" relative overflow-x-hidden min-h-screen pb-12">
       
       {/* Header Section */}
       <Layout className="">
