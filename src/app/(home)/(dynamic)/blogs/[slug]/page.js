@@ -1,5 +1,5 @@
+"use client"
 // app/blog/[slug]/page.js
-import { blogData } from "@/data/blogData";
 import SubscribeForm from "@/components/blog/SubscribeForm";
 import RelatedBlogs from "@/components/blog/RelatedBlogs";
 import Newsletter from "@/components/blog/NewsLetter";
@@ -7,17 +7,46 @@ import Layout from "@/components/common/Layout";
 import FeedbackReviewComponent from "@/components/home/FeedbackReviewComponent";
 import MediaTestimonials from "@/components/home/MediaTestimonials";
 import { Heading } from "@/components/common/Typography";
+import { use, useEffect, useState } from "react";
+import remarkGfm from "remark-gfm";
 
-export async function generateStaticParams() {
-  return blogData.map((blog) => ({
-    slug: blog.url,
-  }));
-}
+import ReactMarkdown from 'react-markdown';
+
+// export async function generateStaticParams() {
+//   try {
+//     const response = await fetch('http://13.232.203.138:1337/api/blogs?populate=*');
+//     const data = await response.json();
+//     return data.data.map((blog) => ({
+//       slug: blog.url // Make sure this matches your API structure
+//     }));
+//   } catch (error) {
+//     console.error("Error generating static params:", error);
+//     return [];
+//   }
+// }
 
 const BlogDetailsPage = ({ params }) => {
-  const { slug } = params;
-  const blog = blogData.find((blog) => blog.url === slug);
-  console.log(blog);
+  const unWrappedSlug = use(params);
+  const slug = unWrappedSlug.slug;
+  const [blog, setBlog] = useState([]);
+  useEffect(() => {
+    // Simulate fetching data from an API
+    const fetchData = async () => {
+      // Replace this with your actual data fetching logic
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BLOG_URL}/api/blogs?populate=*`);
+      const data = await response.json();
+      console.log("API Data:", data.data.find((blog) => blog.url === slug));
+      setBlog(data.data.find((blog) => blog.url === slug));
+    };
+    fetchData();
+  }
+  , []);
+
+  if (blog.length === 0) {
+    return (
+        <p className="text-xl">Loading...</p>
+    );
+  }
 
   if (!blog) {
     return <div className="text-center py-20">Blog post not found</div>;
@@ -37,7 +66,7 @@ const BlogDetailsPage = ({ params }) => {
 
           {/* Featured Image */}
           <img
-            src={blog.imageUrl}
+            src={`${process.env.NEXT_PUBLIC_BLOG_URL}${blog.imageUrl.url}`}
             alt={blog.title}
             className="w-full h-auto max-h-96 object-cover rounded-xl mb-4"
           />
@@ -61,10 +90,11 @@ const BlogDetailsPage = ({ params }) => {
             </div>
           </div>
           {/* Blog Content */}
-          <article
-            className="prose blog-content max-w-none"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-          />
+          <div className="prose blog-content max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {blog.content || "No content available for this blog."}
+            </ReactMarkdown>
+          </div>
           <div className="mb-8">
             <Newsletter />
             </div>
@@ -81,7 +111,7 @@ const BlogDetailsPage = ({ params }) => {
               <SubscribeForm />
             </div>
            {/* Author Info Card */}
-<div className="bg-white px-4 py-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200">
+{/* <div className="bg-white px-4 py-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200">
   <div className="flex items-center space-x-4">
     <div className="relative">
       <img
@@ -120,7 +150,7 @@ const BlogDetailsPage = ({ params }) => {
       )}
     </div>
   )}
-</div>
+</div> */}
 
 
             {/* Related Blogs */}

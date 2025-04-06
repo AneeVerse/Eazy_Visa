@@ -1,25 +1,47 @@
 "use client";
 
 import Link from "next/link";
-import { blogData } from "@/data/blogData";
 import { useState, useEffect } from "react";
 import { FiClock, FiBookmark } from "react-icons/fi";
 
 const RelatedBlogsSidebar = ({ currentBlogSlug }) => {
   const [relatedBlogs, setRelatedBlogs] = useState([]);
+    useEffect(() => {
+      // Simulate fetching data from an API
+      const fetchData = async () => {
+        // Replace this with your actual data fetching logic
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BLOG_URL}/api/blogs?populate=*`);
+        const res = await response.json();
+        const data = res.data;
 
-  useEffect(() => {
-    const currentBlog = blogData.find(blog => blog.url === currentBlogSlug);
-    
-    if (currentBlog) {
-      const related = blogData
-        .filter(blog => blog.url !== currentBlogSlug)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 3);
-        
-      setRelatedBlogs(related);
+        const currentBlog = data.find((blog) => blog.url === currentBlogSlug);
+        if (currentBlog) {
+          const related = data
+            .filter(blog => blog.url !== currentBlogSlug)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 3);
+            
+            console.log("Related Blogs:", related);
+          setRelatedBlogs(related);
+        }
+
+      };
+      fetchData();
     }
-  }, [currentBlogSlug]);
+    , []);
+
+  // useEffect(() => {
+  //   const currentBlog = blogData.find(blog => blog.url === currentBlogSlug);
+    
+  //   if (currentBlog) {
+  //     const related = blogData
+  //       .filter(blog => blog.url !== currentBlogSlug)
+  //       .sort(() => 0.5 - Math.random())
+  //       .slice(0, 3);
+        
+  //     setRelatedBlogs(related);
+  //   }
+  // }, [currentBlogSlug]);
 
   if (relatedBlogs.length === 0) return null;
 
@@ -42,7 +64,7 @@ const RelatedBlogsSidebar = ({ currentBlogSlug }) => {
           >
             <div className="relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
               <img 
-                src={blog.imageUrl}
+                src={`${process.env.NEXT_PUBLIC_BLOG_URL}${blog.imageUrl.url}`}
                 alt={blog.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />

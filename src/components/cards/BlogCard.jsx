@@ -9,7 +9,7 @@ const BlogCard = ({ title, url, category, description, imageUrl }) => {
     >
         <div className="relative overflow-hidden">
       <Image
-        src={imageUrl}
+        src={`http://13.232.203.138:1337${imageUrl.url}`}
         alt={title}
         width={400}
         height={250}
