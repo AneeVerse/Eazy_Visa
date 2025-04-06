@@ -39,7 +39,7 @@ const blogs = [
 
 export default function BlogSection() {
   return (
-    <section className="pt-16">
+    <section className="pt-8 md:pt-16">
       <Layout className="">
         {/* Title Section */}
         <div className="flex justify-between items-center">
