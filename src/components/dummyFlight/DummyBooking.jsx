@@ -83,7 +83,7 @@ export default function FlightBookingComponent() {
                 </button>
                 <Link
                     href={"/services/dummy-hotel"}
-                    className={`flex-1 py-5 px-6  cursor-pointer flex items-center justify-center gap-3 font-medium text-lg transition-colors text-gray-600 hover:text-blue-600`}
+                    className={`flex-1 py-5 px-6  cursor-pointer flex items-center justify-center gap-3 font-medium text-lg transition-colors  text-gray-600 hover:text-blue-600`}
 
                 >
                     <FaHotel className="text-xl" />
@@ -157,11 +157,11 @@ export default function FlightBookingComponent() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <label className="block text-sm font-medium text-gray-700">Departure</label>
-                                    <div className="p-4 border border-gray-300 rounded-xl bg-white flex items-center gap-3">
-                                        <FiCalendar className="text-blue-500" />
-                                        <div className="flex items-baseline gap-1">
+                                    <div className="p-4 border border-gray-300 rounded-xl bg-white flex items-center min-w-fit gap-3">
+                                        <FiCalendar className="text-blue-500 text-xl min-w-fit" />
+                                        <div className="flex items-baseline min-w-fit flex-nowrap gap-1">
                                             <div className="font-medium">{formatDate(city.date).split(',')[0]}</div>
-                                            <div className="text-sm text-gray-500">{formatDate(city.date).split(',')[1]}</div>
+                                            <div className="text-sm  text-gray-500">{formatDate(city.date).split(',')[1]}</div>
                                         </div>
                                     </div>
                                 </div>

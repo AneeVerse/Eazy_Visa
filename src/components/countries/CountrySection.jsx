@@ -247,7 +247,7 @@ export default function CountrySection() {
   };
 
   return (
-    <div className="mt-20">
+    <div className="mt-6 md:mt-16">
 
         {/* Filters */}
         <CountryFilter
