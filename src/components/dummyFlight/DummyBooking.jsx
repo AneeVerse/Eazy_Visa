@@ -99,7 +99,7 @@ export default function FlightBookingComponent() {
                     {["one-way", "round-trip", "multi-city"].map((type) => (
                         <button
                             key={type}
-                            className={`flex-1 py-3 px-4 text-center font-medium capitalize rounded-md transition-colors ${tripType === type ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-blue-600"}`}
+                            className={`flex-1 py-3 px-1 text-md sm:text-lg sm:px-4 text-center font-medium capitalize rounded-md transition-colors ${tripType === type ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-blue-600"}`}
                             onClick={() => setTripType(type)}
                         >
                             {type.split('-').join(' ')}
@@ -154,11 +154,11 @@ export default function FlightBookingComponent() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 gap-4">
                                 <div className="space-y-2">
                                     <label className="block text-sm font-medium text-gray-700">Departure</label>
-                                    <div className="p-4 border border-gray-300 rounded-xl bg-white inline-flex items-center min-w-fit gap-3">
-                                        <FiCalendar className="text-blue-500 text-xl min-w-fit" />
+                                    <div className="p-4 border border-gray-300 rounded-xl bg-white flex items-center min-w-fit gap-3">
+                                        <FiCalendar className="text-blue-500  min-w-fit" />
                                         <div className="flex items-baseline min-w-[80px] flex-nowrap gap-1">
                                             <div className="font-medium">{formatDate(city.date).split(',')[0]}</div>
                                             <div className="text-sm  text-gray-500">{formatDate(city.date).split(',')[1]}</div>
@@ -169,8 +169,8 @@ export default function FlightBookingComponent() {
                                     <div className="space-y-2">
                                         <label className="block text-sm font-medium text-gray-700">Return</label>
                                         <div className="p-4 border border-gray-300 rounded-xl bg-white flex items-center gap-3">
-                                            <FiCalendar className="text-blue-500" />
-                                            <div>
+                                            <FiCalendar className="text-blue-500 min-w-fit" />
+                                            <div className="flex items-baseline min-w-[80px] flex-nowrap gap-1">
                                                 <div className="font-medium">{formatDate(city.returnDate).split(',')[0]}</div>
                                                 <div className="text-sm text-gray-500">{formatDate(city.returnDate).split(',')[1]}</div>
                                             </div>

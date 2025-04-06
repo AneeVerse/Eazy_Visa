@@ -50,6 +50,15 @@ body {
 }
 
 
+/* globals.css */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
 /* Hide scrollbar for Chrome, Safari, and Opera */
 .hide-scrollbar::-webkit-scrollbar {

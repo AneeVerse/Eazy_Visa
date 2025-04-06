@@ -1,4 +1,5 @@
 import Layout from '@/components/common/Layout'
+import StatsBar from '@/components/common/StatsBar'
 import CountrySection from '@/components/countries/CountrySection'
 import CountrySectionWrapper from '@/components/countries/CountrySectionWrapper'
 import TouristVisaHero from '@/components/touristVisa/TouristVisaHero'
@@ -8,6 +9,7 @@ const page = () => {
   return (
     <div>
       <TouristVisaHero />
+      <StatsBar/>
       
       <Layout>
         <CountrySectionWrapper />

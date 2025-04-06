@@ -63,7 +63,7 @@ export default function TouristVisaHero({ title, image }) {
     }, []);
 
     return (
-        <Layout className="relative mt-[80px] flex flex-col lg:flex-row justify-between items-center gap-12 pb-16">
+        <Layout className="relative mt-[80px] flex flex-col lg:flex-row justify-between items-center gap-12 pb-12">
             {/* left Content - Scrolling Images */}
             <div className="lg:w-1/2 relative w-full">
                 {/* Column Container */}
