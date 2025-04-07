@@ -62,7 +62,7 @@ export default function CoutnryDetailsBannerHero({ title, image }) {
     }, []);
 
     return (
-        <div className="relative w-full mt-[40px]  lg:mt-[80px] flex flex-col lg:flex-row items-center gap-12 pb-16">
+        <div className="relative overflow-x-hidden w-full mt-[40px]  lg:mt-[80px] flex flex-col lg:flex-row items-center gap-12 pb-16">
 
       <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
 
