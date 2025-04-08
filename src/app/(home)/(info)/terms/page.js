@@ -2,6 +2,12 @@
 import Layout from '@/components/common/Layout';
 import { FiAlertCircle, FiShield, FiCreditCard, FiLock } from 'react-icons/fi';
 
+
+
+export const metadata = {
+  title: "Terms & Conditions | Eazy Visa",
+  description: "Eazy Visa is a one-stop solution for all your visa needs.",
+}
 export default function Terms() {
   return (
     <div className="min-h-screen relative py-20">

@@ -2,6 +2,12 @@
 import Layout from '@/components/common/Layout';
 import { FiShield, FiUser, FiDatabase, FiMail, FiSettings } from 'react-icons/fi';
 
+
+export const metadata = {
+  title: "Privacy Policy | Eazy Visa",
+  description: "Eazy Visa is a one-stop solution for all your visa needs.",
+}
+
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen relative py-20">

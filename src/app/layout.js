@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
+import NextTopLoader from "nextjs-toploader";
 
 
 const poppins = Poppins({
@@ -46,6 +47,15 @@ export default function RootLayout({ children }) {
         {/* You can also add additional meta tags here if needed */}
       </head>
       <body className="font-sans">
+      <NextTopLoader
+         color="#0B82E6"
+         initialPosition={0.08}
+         height={3}
+         showSpinner={false}
+         easing="ease"
+         speed={500}
+         shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+         />
         <Navbar />
         <div className="mt-[80px]">
           {children}

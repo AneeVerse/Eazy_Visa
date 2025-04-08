@@ -7,6 +7,12 @@ import BlogSection from '@/components/home/BlogSection'
 import Footer from '@/components/Layout/Footer'
 import React from 'react'
 
+
+export const metadata = {
+  title: "Countries | Eazy Visa",
+  description: "Eazy Visa is a one-stop solution for all your visa needs.",
+}
+
 const page = () => {
   return (
     <div>

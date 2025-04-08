@@ -3,6 +3,12 @@ import { FaLightbulb, FaRocket, FaUsers, FaHandshake } from 'react-icons/fa';
 import TeamMember from "@/components/TeamMember" // You'll create this component
 import Layout from '@/components/common/Layout';
 
+
+export const metadata = {
+  title: "About Us | Eazy Visa",
+  description: "Eazy Visa is a one-stop solution for all your visa needs.",
+}
+
 export default function About() {
   return (
     <div className="min-h-screen relative  py-20 ">
