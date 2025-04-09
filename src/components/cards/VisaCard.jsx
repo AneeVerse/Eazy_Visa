@@ -35,11 +35,9 @@ export default function VisaCard({
         </div>
       )}
       <div className="relative rounded-xl">
-        <Image
+        <img
           src={image || "/images/default-landmark.jpg"}
           alt={name}
-          width={256}
-          height={160}
           className="w-full h-[250px] object-cover rounded-t-xl"
         />
         <span className="absolute top-8 left-0 bg-[#5554e7] text-white text-xs px-3 py-[6px] rounded-r-lg">

@@ -1,5 +1,74 @@
 export const countryData = 
    [
+       {
+      id: 111,
+      name: "Japan",
+      searchName: "Japan JP",
+      price: "9,500",
+      continent: "Asia",
+      isTrending: true,
+      isTop: true,
+      visasOnTime: "220K+",
+      flag: "/images/flags/jp.webp",
+      landmark: "/images/landmarks/Mount Fuji in Japan Visa.webp",
+      landmarkName: "Mount Fuji",
+      altName: "Mount Fuji in Japan Visa",
+      description: "Japan blends ancient traditions with cutting-edge technology, offering cherry blossoms, sushi, and bullet trains.",
+
+        visaType: "Tourist Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "3 months",
+        entry: "Single/Multiple",
+     
+      pdfDownload: "/pdf/visa-guides/japan-visa-guide.pdf",
+
+      documentsRequired: [
+        {
+          category: "Basic Requirements",
+          documents: [
+            "Passport (6+ months validity)",
+            "Completed application form",
+            "45x45mm color photo",
+            "Flight itinerary",
+            "Bank statements (6 months)"
+          ]
+        },
+        {
+          category: "Additional Documents",
+          documents: [
+            "Hotel reservations",
+            "Daily schedule plan",
+            "Letter of employment (if working)"
+          ]
+        }
+      ],
+
+      rejectionReasons: [
+        {
+          title: "Insufficient Financial Proof",
+          description: "Bank balance below ¥500,000 requirement",
+          icon: "money"
+        },
+        {
+          title: "Unclear Itinerary",
+          description: "Vague or unrealistic travel plans",
+          icon: "itinerary"
+        }
+      ],
+
+      faqs: [
+        {
+          question: "Can I visit Okinawa with this visa?",
+          answer: "Yes, it covers all Japanese prefectures"
+        },
+        {
+          question: "Is vaccination certificate required?",
+          answer: "Check latest health advisories before travel"
+        }
+      ],
+
+      sampleVisaCopy: "/pdf/visa-samples/japan-visa-sample.pdf"
+    },
     {
       id: 1,
       name: "France",
@@ -62,7 +131,7 @@ export const countryData =
       price: "7000",
       continent: "Europe",
       isTop: true,
-      isTrending: true,
+      isTrending: false,
       visasOnTime: "220K+",
       flag: "/images/flags/hu.webp",
       landmark: "/images/landmarks/Budapest Parliament Building tourist places in Hungary Visa.jpg",
@@ -120,7 +189,7 @@ export const countryData =
       price: "7500",
       continent: "Europe",
       isTop: true,
-      isTrending: true,
+      isTrending: false,
       visasOnTime: "200K+",
       flag: "/images/flags/it.webp",
       landmark: "/images/landmarks/Colosseum in Italy Visa.webp",
@@ -1443,75 +1512,7 @@ export const countryData =
   ];
   // Other continents can be added similarly...
   // asia: [
-  //   {
-  //     id: 1,
-  //     name: "Japan",
-  //     searchName: "Japan JP",
-  //     price: "9,500",
-  //     continent: "Asia",
-  //     isTrending: true,
-  //     visasOnTime: "220K+",
-  //     flag: "/images/flags/jp.webp",
-  //     landmark: "/images/landmarks/Mount Fuji in Japan Visa.webp",
-  //     landmarkName: "Mount Fuji",
-  //     altName: "Mount Fuji in Japan Visa",
-  //     description: "Japan blends ancient traditions with cutting-edge technology, offering cherry blossoms, sushi, and bullet trains.",
-
-  //     basicInfo: {
-  //       visaType: "Tourist Visa",
-  //       lengthOfStay: "Up to 90 days",
-  //       validity: "3 months",
-  //       entry: "Single/Multiple"
-  //     },
-  //     pdfDownload: "/pdf/visa-guides/japan-visa-guide.pdf",
-
-  //     documentsRequired: [
-  //       {
-  //         category: "Basic Requirements",
-  //         documents: [
-  //           "Passport (6+ months validity)",
-  //           "Completed application form",
-  //           "45x45mm color photo",
-  //           "Flight itinerary",
-  //           "Bank statements (6 months)"
-  //         ]
-  //       },
-  //       {
-  //         category: "Additional Documents",
-  //         documents: [
-  //           "Hotel reservations",
-  //           "Daily schedule plan",
-  //           "Letter of employment (if working)"
-  //         ]
-  //       }
-  //     ],
-
-  //     rejectionReasons: [
-  //       {
-  //         title: "Insufficient Financial Proof",
-  //         description: "Bank balance below ¥500,000 requirement",
-  //         icon: "money"
-  //       },
-  //       {
-  //         title: "Unclear Itinerary",
-  //         description: "Vague or unrealistic travel plans",
-  //         icon: "itinerary"
-  //       }
-  //     ],
-
-  //     faqs: [
-  //       {
-  //         question: "Can I visit Okinawa with this visa?",
-  //         answer: "Yes, it covers all Japanese prefectures"
-  //       },
-  //       {
-  //         question: "Is vaccination certificate required?",
-  //         answer: "Check latest health advisories before travel"
-  //       }
-  //     ],
-
-  //     sampleVisaCopy: "/pdf/visa-samples/japan-visa-sample.pdf"
-  //   },
+ 
   //   {
   //     id: 2,
   //     name: "Thailand",
