@@ -32,7 +32,7 @@ const PricingPage = () => {
         "Unlimited Corrections",
         "Name change not allowed"
       ],
-      popular: true
+      popular: false
     },
     {
       name: "Daywise Itinerary",
@@ -61,7 +61,7 @@ const PricingPage = () => {
         "Day wise Itinerary",
         "Name change not allowed"
       ],
-      popular: false
+      popular: true
     }
   ];
 
