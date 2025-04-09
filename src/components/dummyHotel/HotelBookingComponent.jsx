@@ -174,15 +174,7 @@ export default function HotelBookingComponent() {
       const result = await response.json();
       
       if (response.ok) {
-        toast.success('Hotel booking submitted successfully!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success('Hotel booking submitted successfully!');
         
         setFormData(initialFormData);
         setCurrentStep(1);
