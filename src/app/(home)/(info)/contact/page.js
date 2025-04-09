@@ -85,9 +85,9 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="flex flex-col-reverse lg:flex-row gap-10">
           {/* Contact Card */}
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-blue-100">
+          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 flex-1 shadow-2xl shadow-blue-100">
             <div className="space-y-8">
               {/* Contact Info */}
               <div className="space-y-6">
@@ -144,7 +144,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-blue-100">
+          <div className="bg-white/80 flex-1 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-blue-100">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Your Name*</label>

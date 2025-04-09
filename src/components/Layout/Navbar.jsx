@@ -171,7 +171,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             <div className="flex items-center gap-2">
               <img 
-                src="/logo/logo-blue.png" 
+                src="/logo/main-logo.png" 
                 alt="Eazy Visa Logo" 
                 className="h-8 w-auto"
                 width={32}
@@ -417,7 +417,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between p-4 border-b border-gray-100">
               <Link href="/" className="flex items-center" onClick={handleMobileLinkClick}>
                 <img 
-                  src="/logo/logo-blue.png" 
+                  src="/logo/main-logo.png" 
                   alt="Eazy Visa Logo" 
                   className="h-8 w-auto"
                 />
