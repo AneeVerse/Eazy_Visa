@@ -100,10 +100,37 @@ export default function HotelBookingComponent() {
   };
 
   // Form submission
-  const handleSubmit = (e) => {
+  // Update the handleSubmit function in your HotelBookingComponent
+const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // API call would go here
+
+    if(currentStep !== 3){
+        return;
+    }
+    
+    try {
+      const response = await fetch('/api/hotel-booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const result = await response.json();
+      
+      if (response.ok) {
+        // Handle success - show success message to user
+        alert('Your hotel booking request has been submitted successfully!');
+        // You might want to reset the form or redirect here
+      } else {
+        // Handle error
+        alert(`Error: ${result.error || 'Failed to submit booking'}`);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An error occurred while submitting your booking. Please try again.');
+    }
   };
 
   // Step navigation
@@ -126,21 +153,22 @@ export default function HotelBookingComponent() {
     <Layout>
       <div className="bg-white mt-8 rounded-2xl shadow-lg border border-gray-100 max-w-6xl mx-auto overflow-hidden">
         {/* Header with Flight and Hotel Navigation */}
-        <div className="flex border-b border-gray-200 bg-gradient-to-r from-blue-600 to-blue-800">
-          <Link
-            href="/services/dummy-flights"
-            className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white hover:bg-blue-700`}
-          >
-            <FaPlane className="text-xl" />
-            <span>Flights</span>
-          </Link>
-          <button
-            className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-blue-700`}
-          >
-            <FaHotel className="text-xl" />
-            <span>Hotels</span>
-          </button>
-        </div>
+        <div className="flex border-b rounded-t-2xl border-gray-200 bg-gray-50">
+                    <Link
+                        href="/services/dummy-flights"
+                        className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 text-gray-600 hover:text-blue-600 font-medium text-lg transition-colors `}
+                    >
+                        <FaPlane className="text-xl" />
+                        <span>Flights</span>
+                    </Link>
+                    <Link 
+                     href={"/services/dummy-hotel"}
+                        className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors rounded-tr-2xl  text-white bg-primary-500  shadow-md`}
+                    >
+                        <FaHotel className="text-xl" />
+                        <span>Hotels</span>
+                    </Link>
+                </div>
 
         {/* Progress Steps */}
         <div className="px-8 pt-6 bg-gray-50">

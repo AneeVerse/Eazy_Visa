@@ -187,10 +187,37 @@ const FlightBookingComponent = () => {
   };
 
   // Form submission
-  const handleSubmit = (e) => {
+// Update the handleSubmit function in your FlightBookingComponent
+const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // API call would go here
+
+    if(currentStep !== 3){
+        return;
+    }
+    
+    try {
+      const response = await fetch('/api/flight-booking', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const result = await response.json();
+      
+      if (response.ok) {
+        // Handle success - show success message to user
+        alert('Your flight booking request has been submitted successfully!');
+        // You might want to reset the form or redirect here
+      } else {
+        // Handle error
+        alert(`Error: ${result.error || 'Failed to submit booking'}`);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An error occurred while submitting your booking. Please try again.');
+    }
   };
 
   // Step navigation
