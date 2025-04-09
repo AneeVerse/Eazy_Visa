@@ -455,7 +455,7 @@ export default function Navbar() {
                   className="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600"
                   onClick={() => {
                     if (searchQuery.trim()) {
-                      window.location.href = `/countries?search=${encodeURIComponent(searchQuery)}`;
+                      window.location.href = `/countries?search=${encodeURIComponent(searchQuery)}#countrysearch`;
                       setIsOpen(false);
                     }
                   }}
