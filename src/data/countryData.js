@@ -1350,8 +1350,95 @@ export const countryData =
       ],
     
       sampleVisaCopy: "/pdf/visa-samples/germany-visa-sample.pdf"
-    }
+    },
     
+       {
+      id: 9,
+      name: "United States",
+      searchName: "United States USA",
+      price: "15,000",
+      continent: "North America",
+      isTrending: true,
+      visasOnTime: "500K+",
+      flag: "/images/flags/us.webp",
+      landmark: "/images/landmarks/Tourist Places in United States Visa.webp",
+      landmarkName: "Statue of Liberty",
+      altName: "Statue of Liberty in the United States Visa",
+      description: "The USA offers diverse experiences from the bright lights of New York to the natural wonders of the Grand Canyon and technological innovations of Silicon Valley.",
+
+        visaType: "B1/B2 Visa",
+        lengthOfStay: "Up to 6 months",
+        validity: "10 years",
+  
+      pdfDownload: "/pdf/visa-guides/usa-visa-guide.pdf",
+
+      documentsRequired: [
+        {
+          category: "Mandatory Documents",
+          documents: [
+            "Valid passport (6+ months validity)",
+            "DS-160 confirmation page",
+            "Visa fee payment receipt",
+            "Passport-style photo (5x5 cm)",
+            "Proof of strong ties to home country"
+          ]
+        },
+        {
+          category: "For Students (F1 Visa)",
+          documents: [
+            "I-20 form from US institution",
+            "SEVIS fee payment proof",
+            "Academic transcripts"
+          ]
+        }
+      ],
+
+      rejectionReasons: [
+        {
+          title: "214(b) Refusal",
+          description: "Failed to prove non-immigrant intent",
+          icon: "immigrant-intent"
+        },
+        {
+          title: "Previous Violations",
+          description: "History of visa overstay or violations",
+          icon: "violation"
+        }
+      ],
+
+      faqs: [
+        {
+          question: "How early should I apply for US visa?",
+          answer: "At least 3 months before planned travel date"
+        },
+        {
+          question: "Can I extend my stay on B1/B2 visa?",
+          answer: "Possible but must apply before current I-94 expires"
+        }
+      ],
+
+      sampleVisaCopy: "/pdf/visa-samples/us-visa-sample.pdf",
+      visaTypes: [
+        {
+          type: "US Tourist Visa (B2)",
+          processingTime: "15-30 days",
+          stayPeriod: "Up to 6 months",
+          validity: "10 years",
+          visaCategory: "Tourist",
+          entry: "Multiple",
+          fees: "USD 160/-"
+        },
+        {
+          type: "US Student Visa (F1)",
+          processingTime: "60 days",
+          stayPeriod: "Course duration",
+          validity: "5 years",
+          visaCategory: "Student",
+          entry: "Multiple",
+          fees: "USD 160/-"  
+        }
+      ]
+    },
     
   ];
   // Other continents can be added similarly...
@@ -1812,94 +1899,7 @@ export const countryData =
   // ],
 
   // northamerica: [
-  //   {
-  //     id: 9,
-  //     name: "United States",
-  //     searchName: "United States USA",
-  //     price: "15,000",
-  //     continent: "North America",
-  //     isTrending: true,
-  //     visasOnTime: "500K+",
-  //     flag: "/images/flags/us.webp",
-  //     landmark: "/images/landmarks/Tourist Places in United States Visa.webp",
-  //     landmarkName: "Statue of Liberty",
-  //     altName: "Statue of Liberty in the United States Visa",
-  //     description: "The USA offers diverse experiences from the bright lights of New York to the natural wonders of the Grand Canyon and technological innovations of Silicon Valley.",
-
-  //     basicInfo: {
-  //       visaType: "B1/B2 Visa",
-  //       lengthOfStay: "Up to 6 months",
-  //       validity: "10 years",
-  //     },
-  //     pdfDownload: "/pdf/visa-guides/usa-visa-guide.pdf",
-
-  //     documentsRequired: [
-  //       {
-  //         category: "Mandatory Documents",
-  //         documents: [
-  //           "Valid passport (6+ months validity)",
-  //           "DS-160 confirmation page",
-  //           "Visa fee payment receipt",
-  //           "Passport-style photo (5x5 cm)",
-  //           "Proof of strong ties to home country"
-  //         ]
-  //       },
-  //       {
-  //         category: "For Students (F1 Visa)",
-  //         documents: [
-  //           "I-20 form from US institution",
-  //           "SEVIS fee payment proof",
-  //           "Academic transcripts"
-  //         ]
-  //       }
-  //     ],
-
-  //     rejectionReasons: [
-  //       {
-  //         title: "214(b) Refusal",
-  //         description: "Failed to prove non-immigrant intent",
-  //         icon: "immigrant-intent"
-  //       },
-  //       {
-  //         title: "Previous Violations",
-  //         description: "History of visa overstay or violations",
-  //         icon: "violation"
-  //       }
-  //     ],
-
-  //     faqs: [
-  //       {
-  //         question: "How early should I apply for US visa?",
-  //         answer: "At least 3 months before planned travel date"
-  //       },
-  //       {
-  //         question: "Can I extend my stay on B1/B2 visa?",
-  //         answer: "Possible but must apply before current I-94 expires"
-  //       }
-  //     ],
-
-  //     sampleVisaCopy: "/pdf/visa-samples/us-visa-sample.pdf",
-  //     visaTypes: [
-  //       {
-  //         type: "US Tourist Visa (B2)",
-  //         processingTime: "15-30 days",
-  //         stayPeriod: "Up to 6 months",
-  //         validity: "10 years",
-  //         visaCategory: "Tourist",
-  //         entry: "Multiple",
-  //         fees: "USD 160/-"
-  //       },
-  //       {
-  //         type: "US Student Visa (F1)",
-  //         processingTime: "60 days",
-  //         stayPeriod: "Course duration",
-  //         validity: "5 years",
-  //         visaCategory: "Student",
-  //         entry: "Multiple",
-  //         fees: "USD 160/-"  
-  //       }
-  //     ]
-  //   },
+ 
   //   {
   //     id: 10,
   //     name: "Canada",

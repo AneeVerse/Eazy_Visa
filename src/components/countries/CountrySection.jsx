@@ -167,7 +167,6 @@ export default function CountrySection() {
   const [countries, setCountries] = useState([]);
   const [sortBy, setSortBy] = useState("Most Popular");
   const itemsPerPage = 12;
-
   
   useEffect(() => {
       const fetchCountries = async () => {
@@ -189,6 +188,19 @@ export default function CountrySection() {
       };
   
       fetchCountries();
+    }, []);
+
+    useEffect(() => {
+      const hash = window.location.hash;
+    
+      if (hash === "#countrysearch") {
+        setTimeout(() => {
+          const section = document.getElementById("countrysearch");
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 300); // Wait for DOM to load
+      }
     }, []);
 
     if (countries.length === 0) {
