@@ -172,10 +172,10 @@ const PricingPage = () => {
               Our visa specialists are available to help you select the perfect plan for your needs.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="tel:+1234567890" className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <a href="tel:+918850146905" className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                 <FaPhoneAlt className="mr-2" /> Call Support
               </a>
-              <a href="mailto:support@example.com" className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <a href="mailto:info@eazyvisas.com" className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                 <FaEnvelope className="mr-2" /> Email Us
               </a>
             </div>
