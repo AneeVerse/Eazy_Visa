@@ -168,6 +168,7 @@ export default function CountrySection() {
   const [sortBy, setSortBy] = useState("Most Popular");
   const itemsPerPage = 12;
 
+  
   useEffect(() => {
       const fetchCountries = async () => {
         try {
@@ -192,7 +193,7 @@ export default function CountrySection() {
 
     if (countries.length === 0) {
       return (
-        <div className="grid grid-cols-2 mt-12 md:grid-cols-3 lg:grid-cols-4 justify-around gap-3 md:gap-6">
+        <div id="countrysearch" className="grid grid-cols-2 pt-12 md:grid-cols-3 lg:grid-cols-4 justify-around gap-3 md:gap-6">
           {Array.from({ length: itemsPerPage }, (_, index) => (
             <CountryCardSkeleton isWidthFull={true} key={index} />
           ))}
@@ -247,7 +248,7 @@ export default function CountrySection() {
   };
 
   return (
-    <div className="mt-6 md:mt-16">
+    <div id="countrysearch" className="pt-6 md:pt-16">
 
         {/* Filters */}
         <CountryFilter

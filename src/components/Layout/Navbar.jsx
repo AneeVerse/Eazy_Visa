@@ -151,7 +151,7 @@ export default function Navbar() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/countries?search=${encodeURIComponent(searchQuery)}`;
+      window.location.href = `/countries?search=${encodeURIComponent(searchQuery)}#countrysearch`;
       setShowSearchResults(false);
     }
   };
@@ -446,7 +446,7 @@ export default function Navbar() {
                   }}
                   onKeyPress={(e) => {
                     if (e.key === 'Enter' && searchQuery.trim()) {
-                      window.location.href = `/countries?search=${encodeURIComponent(searchQuery)}`;
+                      window.location.href = `/countries?search=${encodeURIComponent(searchQuery)}#countrysearch`;
                       setIsOpen(false);
                     }
                   }}
