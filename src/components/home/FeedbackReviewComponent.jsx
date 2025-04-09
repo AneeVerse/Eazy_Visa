@@ -25,7 +25,7 @@ const FeedbackReviewComponent = () => {
     setShowPopup(false);
 
     if (rating >= 4) {
-      window.open("https://www.google.com/maps/place/JM+Visa+Services/@19.1107798,73.0050874,350m/data=!3m1!1e3!4m8!3m7!1s0x4f174af374b22233:0x39a66841cc7cfdd5!8m2!3d19.1107866!4d73.006725!9m1!1b1!16s%2Fg%2F11txqcs1k4?hl=en&entry=ttu&g_ep=EgoyMDI1MDEwMi4wIKXMDSoASAFQAw%3D%3D", "_blank");
+      window.open("https://www.google.com/search?sca_esv=487ffce0a83330f1&si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzdQgxN7Hmz5zh2q8kljfj4QImWSqTqF9KvYlWiUn-flpFD3EtWOkK5ManqlNIHFQgQd84q6jzi2XUa9Q86NskZ5Au6kEPL2IWCLRZOlFKkQshikijHlQ56zL73HVwknu_Y6-6nE5QDwBawn7NpNUNX7d1Z_gL9Z7z2Y37Uzx9EnlOScri9IB7AImRb-uJXVKD9mBWP8%3D&q=EazyVisas+l+Dummy+Flight+Tickets,+End+to+End+Visa+Services+for+over+60+countries+Reviews&sa=X&ved=2ahUKEwifmei7hsuMAxUcbfUHHeCtJIMQ0bkNegQILxAE&biw=1440&bih=819&dpr=2#lrd=0x3be7c3d08973e3f3:0x4d579303c049e89c,3", "_blank");
     } else {
       setShowThankYouPopup(true);
     }
@@ -62,7 +62,7 @@ const FeedbackReviewComponent = () => {
      
       <div className=" text-left">
         {/* ✅ Heading */}
-        <div className="mb-6 ">
+        <div className="mb-6 flex items-start justify-between">
           <div>
             <p className="inline-block mb-3 px-4 py-2 bg-blue-100/50 text-blue-500 font-medium rounded-full backdrop-blur-lg shadow-md">
               ✈️ Feedback
@@ -72,16 +72,16 @@ const FeedbackReviewComponent = () => {
               <span className="text-blue-500">Happy Clients</span> Say
             </h1>
           </div>
-          {/* <button
+          <button
             onClick={() => setShowPopup(true)}
-            className="px-6 text-sm py-[10px] bg-blue-700 text-white font-semibold rounded-md hover:bg-blue-900"
+            className="px-6 self-start text-sm py-[10px] bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600"
           >
             Leave Review
-          </button> */}
+          </button>
         </div>
 
         {/* ✅ Elfsight Reviews Widget */}
-        <div className="elfsight-app-26bc4903-85bd-4d74-9e7f-426cfd6ab3ce" data-elfsight-app-lazy></div>
+        <div className="elfsight-app-2aa34a7d-0c13-4fc6-95b4-6e8493a96777" data-elfsight-app-lazy></div>
       </div>
 
       {/* ✅ Star Rating Popup */}

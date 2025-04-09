@@ -60,9 +60,9 @@ const services = [
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Services", href: "/services", hasMegaMenu: true },
+  {name: "Dummy Booking", href: "/dummy-bookings"},
+  { name: "Visa Services", href: "/services", hasMegaMenu: true },
   { name: "Countries", href: "/countries" },
-  {name: "Dummy Bookings", href: "/dummy-bookings"},
   { name: "Blogs", href: "/blogs" },
 ];
 

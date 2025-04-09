@@ -10,17 +10,17 @@ const services = [
   {
     iconUrl: "/images/icon/bag.svg",
     title: 'End to End visa solutions',
-    description: 'From flights, stays, to sights, just count on our complete products.'
+    description: 'From application to approval, we handle it all!'
   },
   {
     iconUrl: "/images/icon/book.svg",
     title: 'Fast track',
-    description: 'From flights, stays, to sights, just count on our complete products.'
+    description: 'Get your visa faster with our priority processing.'
   },
   {
     iconUrl: "/images/icon/card.svg",
     title: 'Secure Payment',
-    description: 'From flights, stays, to sights, just count on our complete products.'
+    description: 'Safe and hassle-free transactions every time.'
   }
 ];
 

@@ -8,23 +8,23 @@ import { motion } from "framer-motion";
 
 const states = [
   {
-    number: 200,
-    title: "Holiday Package",
+    number: 500,
+    title: "visa approves",
     suffix: "+"
   },
   {
-    number: 450,
-    title: "RedDoorz",
-    suffix: ""
+    number: 1000,
+    title: "Happy Customers",
+    suffix: "+"
+  },
+  {
+    number: 5,
+    title: "Years Of experience",
+    suffix: "+"
   },
   {
     number: 10,
-    title: "Premium Airlines",
-    suffix: ""
-  },
-  {
-    number: 12000,
-    title: "Happy Customer",
+    title: "Premium Airlines ",
     suffix: "+"
   },
 ];
@@ -119,16 +119,15 @@ export default function TravelPoint() {
 
         {/* Right Content */}
         <div className="md:w-1/2  space-y-6 text-white">
-          <Subheading className="text-primary-500 mb-2 uppercase tracking-widest">
+          {/* <Subheading className="text-primary-500 mb-2 uppercase tracking-widest">
             Travel Point
-          </Subheading>
-          <Heading level={2} className="text-secondary-500 mb-10">
-            We help you find your dream destination
+          </Subheading> */}
+          <Heading level={2} className="text-secondary-500 mb-10 uppercase">
+          Stress Free Visa,<span className="text-blue-500"> Every Time.</span> 
           </Heading>
 
           <p className="text-[#7e7e7e]">
-            Hey! Travelo there to help you find your dream holiday. Easy, you
-            just find where you want to go and buy the ticket.
+          Plan and book your perfect trip with expert advice, travel tips, destination information, and inspiration from us!
           </p>
 
           {/* Stats Grid */}

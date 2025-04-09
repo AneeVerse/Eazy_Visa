@@ -1044,7 +1044,7 @@ const FlightBookingComponent = () => {
                                                 type="button"
                                                 variant="outline"
                                                 onClick={prevStep}
-                                                className="w-full md:w-auto px-8 py-3"
+                                                className="w-full md:w-auto px-3 sm:px-8 py-3"
                                             >
                                                 Back
                                             </Button>

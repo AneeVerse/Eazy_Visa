@@ -47,7 +47,7 @@ export default function Home() {
       <TravelPoint />
       <Layout>
         <FeedbackReviewComponent />
-        <MediaTestimonials />
+        {/* <MediaTestimonials /> */}
 
       </Layout>
       <div className="relative overflow-hidden">

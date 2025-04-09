@@ -19,6 +19,23 @@ const SCROLL_IMAGES = [
   '/images/home/hero3.png',
 ];
 
+const SCROLL_IMAGES2 = [
+
+  "/images/landmarks/Mount Fuji in Japan Visa.webp",
+
+  "/images/landmarks/Grand Palace tourist places in Thailand Visa.webp",
+
+  "/images/landmarks/Ha Long Bay tourist places in Vietnam Visa.webp",
+
+  "/images/landmarks/Sigiriya Rock tourist places in Sri Lanka Visa.webp",
+
+  "/images/landmarks/Grand Palace tourist places in Thailand Visa.webp",
+
+  "/images/landmarks/Ha Long Bay tourist places in Vietnam Visa.webp",
+
+
+]
+
 export default function HeroSection() {
   const scrollContainerUpRef = useRef(null);
   const scrollContainerDownRef = useRef(null);
@@ -146,7 +163,7 @@ export default function HeroSection() {
               ref={scrollContainerDownRef}
               className="absolute translate-y-[-160%] h-[200%] w-full"
             >
-              {[...SCROLL_IMAGES, ...SCROLL_IMAGES].map((src, index) => (
+              {[...SCROLL_IMAGES2, ...SCROLL_IMAGES2].map((src, index) => (
                 <motion.div
                   key={index}
                   className="relative group w-full mb-3 sm:mb-6 "

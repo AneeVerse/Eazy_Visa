@@ -1,5 +1,117 @@
 export const countryData = 
    [
+    {
+      id: 1,
+      name: "France",
+      searchName: "France",
+      price: "8000",
+      continent: "Europe",
+      isTop: true,
+      isTrending: true,
+      visasOnTime: "250K+",
+      flag: "/images/flags/fr.webp",
+      landmark: "/images/landmarks/Eiffel Tower in France Visa.webp",
+      landmarkName: "Eiffel Tower",
+      altName: "Eiffel Tower tourist places in France Visa",
+      description: "France is renowned for its art, fashion, gastronomy, and culture, with iconic landmarks like the Eiffel Tower.",
+      visaType: "Sticker Visa",
+      lengthOfStay: "Up to 90 days",
+      validity: "6 months",
+      pdfDownload: "/pdf/visa-guides/france-visa-guide.pdf",
+      documentsRequired: [
+        {
+          category: "Mandatory Documents",
+          documents: [
+            "Passport with 2 blank pages",
+            "Completed application form",
+            "Travel itinerary",
+            "Proof of accommodation",
+            "Recent bank statements"
+          ]
+        }
+      ],
+      rejectionReasons: [
+        {
+          title: "Incomplete Application",
+          description: "Missing required documents or information.",
+          icon: "incomplete",
+        },
+        {
+          title: "Suspicious Travel History",
+          description: "Frequent travel to high-risk countries.",
+          icon: "suspicious",
+        }
+      ],
+      faqs: [
+        {
+          question: "Is travel insurance mandatory?",
+          answer: "Yes, it is a requirement for Schengen visa."
+        },
+        {
+          question: "Can I extend my visa?",
+          answer: "Extensions are possible under specific circumstances."
+        }
+      ],
+      sampleVisaCopy: "/pdf/visa-samples/france-visa-sample.pdf"
+    },
+
+    // {
+    //   id: 2,
+    //   name: "Hungary",
+    //   searchName: "Hungary",
+    //   price: "7000",
+    //   continent: "Europe",
+    //   isTop: true,
+    //   isTrending: true,
+    //   visasOnTime: "220K+",
+    //   flag: "/images/flags/hu.webp",
+    //   landmark: "/images/landmarks/Budapest Parliament Building tourist places in Hungary Visa.webp",
+    //   landmarkName: "Budapest Parliament Building",
+
+    //   altName: "Budapest Parliament Building tourist places in Hungary Visa",
+    //   description: "Hungary is famous for its thermal baths, stunning architecture, and vibrant cultural scene.",
+    //   visaType: "Sticker Visa",
+    //   lengthOfStay: "Up to 90 days",
+    //   validity: "6 months",
+    //   pdfDownload: "/pdf/visa-guides/hungary-visa-guide.pdf",
+    //   documentsRequired: [
+    //     {
+    //       category: "Essential Documents",
+    //       documents: [
+    //         "Passport with 2 blank pages",
+    //         "Completed application form",
+    //         "Travel itinerary",
+    //         "Proof of accommodation",
+    //         "Recent bank statements"
+    //       ]
+    //     }
+    //   ],
+    //   rejectionReasons: [
+    //     {
+    //       title: "Insufficient Funds",
+    //       description: "Bank statements do not show sufficient funds.",
+    //       icon: "funds",
+    //     },
+    //     {
+    //       title: "Incomplete Travel Itinerary",
+    //       description: "Missing flight or accommodation details.",
+    //       icon: "itinerary",
+    //     }
+    //   ],
+    //   faqs: [
+    //     {
+    //       question: "Is travel insurance mandatory?",
+    //       answer: "Yes, it is a requirement for Schengen visa."
+    //     },
+    //     {
+    //       question: "Can I extend my visa?",
+    //       answer: "Extensions are possible under specific circumstances."
+    //     }
+    //   ],
+    //   sampleVisaCopy: "/pdf/visa-samples/hungary-visa-sample.pdf"
+    // },
+
+
 
     {
       id: 3,
@@ -420,74 +532,73 @@ export const countryData =
 
       sampleVisaCopy: "/pdf/visa-samples/belgium-visa-sample.pdf"
     },
-    // {
-    //   id: 10,
-    //   name: "Greece",
-    //   searchName: "Greece",
-    //   price: "6,500",
-    //   continent: "Europe",
-    //   isTrending: true,
-    //   visasOnTime: "210K+",
-    //   flag: "/images/flags/gr.webp",
-    //   landmark: "/images/landmarks/Parthenon in Greece Visa.webp",
-    //   landmarkName: "Parthenon",
-    //   altName: "Parthenon in Greece Visa",
-    //   description: "Greece offers sun-drenched islands, ancient ruins, and the birthplace of Western civilization.",
+    {
+      id: 10,
+      name: "Greece",
+      searchName: "Greece",
+      price: "6,500",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "210K+",
+      flag: "/images/flags/gr.webp",
+      landmark: "/images/landmarks/Parthenon in Greece Visa.webp",
+      landmarkName: "Parthenon",
+      altName: "Parthenon in Greece Visa",
+      description: "Greece offers sun-drenched islands, ancient ruins, and the birthplace of Western civilization.",
 
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //     entryType: "Single/Multiple"
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/greece-visa-guide.pdf",
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+        entryType: "Single/Multiple",
+     
+      pdfDownload: "/pdf/visa-guides/greece-visa-guide.pdf",
 
-    //   documentsRequired: [
-    //     {
-    //       category: "Mandatory Documents",
-    //       documents: [
-    //         "Completed application form (signed)",
-    //         "Passport valid 3+ months beyond return",
-    //         "Round-trip flight reservation",
-    //         "Hotel bookings for entire stay"
-    //       ]
-    //     },
-    //     {
-    //       category: "Financial Requirements",
-    //       documents: [
-    //         "Bank statements (last 6 months)",
-    //         "Credit card copies",
-    //         "Minimum €50 per day of stay"
-    //       ]
-    //     }
-    //   ],
+      documentsRequired: [
+        {
+          category: "Mandatory Documents",
+          documents: [
+            "Completed application form (signed)",
+            "Passport valid 3+ months beyond return",
+            "Round-trip flight reservation",
+            "Hotel bookings for entire stay"
+          ]
+        },
+        {
+          category: "Financial Requirements",
+          documents: [
+            "Bank statements (last 6 months)",
+            "Credit card copies",
+            "Minimum €50 per day of stay"
+          ]
+        }
+      ],
 
-    //   rejectionReasons: [
-    //     {
-    //       title: "Island Hopping Without Proof",
-    //       description: "No confirmed ferry/domestic flight bookings",
-    //       icon: "transport"
-    //     },
-    //     {
-    //       title: "Peak Season Overcrowding",
-    //       description: "Applications exceed consulate capacity (summer months)",
-    //       icon: "seasonal"
-    //     }
-    //   ],
+      rejectionReasons: [
+        {
+          title: "Island Hopping Without Proof",
+          description: "No confirmed ferry/domestic flight bookings",
+          icon: "transport"
+        },
+        {
+          title: "Peak Season Overcrowding",
+          description: "Applications exceed consulate capacity (summer months)",
+          icon: "seasonal"
+        }
+      ],
 
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Turkish islands near Greece?",
-    //       answer: "No, requires separate Turkish visa"
-    //     },
-    //     {
-    //       question: "Is COVID vaccination still required?",
-    //       answer: "Check latest travel advisories before application"
-    //     }
-    //   ],
+      faqs: [
+        {
+          question: "Can I visit Turkish islands near Greece?",
+          answer: "No, requires separate Turkish visa"
+        },
+        {
+          question: "Is COVID vaccination still required?",
+          answer: "Check latest travel advisories before application"
+        }
+      ],
 
-    //   sampleVisaCopy: "/pdf/visa-samples/greece-visa-sample.pdf"
-    // },
+      sampleVisaCopy: "/pdf/visa-samples/greece-visa-sample.pdf"
+    },
     // {
     //   id: 11,
     //   name: "Norway",

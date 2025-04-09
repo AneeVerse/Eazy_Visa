@@ -29,18 +29,20 @@ export default function About() {
           <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-indigo-100">
             <div className="grid md:grid-cols-2 gap-10 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Why We Exist
-                </h2>
+              <p className="text-gray-600 mb-6">
+                Eazy Visas is a one stop shop for all your Visa documentation woes. We understand arranging documents for your visa application can be stressful. While your financials may be in place and you may feel confident about your visa application, there is still a possibility for your application to get rejected. In such a situation the flight tickets and hotel bookings are gone for a waste. Barring a huge
+loss in penalty charged by the Airline or the Hotel or the Travel Agent.
+
+                </p>
                 <p className="text-gray-600 mb-6">
-                  At Eazy Visa, we believe technology should simplify life, not complicate it. Founded in 2020, we set out to create intuitive digital experiences that solve real problems.
+                However, what most people are unaware of is that the Embassy does not advise you to book a confirmed ticket or hotel booking. All they want is a flight itinerary and hotel booking along with a day wise itinerary to show that you have every intention of visiting their country and would be returning home.
                 </p>
                 <p className="text-gray-600">
-                  Today, we&apos;re a team of 50+ innovators, designers, and problem-solvers committed to building the future, one elegant solution at a time.
+                Our Flight itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
                 </p>
               </div>
-              <div className="bg-gradient-to-r from-indigo-100 to-blue-100 rounded-xl p-8 h-full flex items-center justify-center">
-                <FaLightbulb className="text-7xl text-indigo-600 opacity-80" />
+              <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-8 h-full flex items-center justify-center">
+             <img src='/logo/logo-white.png' />
               </div>
             </div>
           </div>
@@ -86,7 +88,7 @@ export default function About() {
         </section>
 
         {/* Team Section */}
-        <section className="mb-20">
+        {/* <section className="mb-20">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Meet The Team
           </h2>
@@ -110,10 +112,10 @@ export default function About() {
                imgSrc="/images/default-profile.jpg"
             />
           </div>
-        </section>
+        </section> */}
 
         {/* Stats Section */}
-        <section className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white">
+        <section className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-8 text-white">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="p-4">
               <div className="text-4xl font-bold mb-2">50+</div>
