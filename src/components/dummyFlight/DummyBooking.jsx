@@ -1,302 +1,732 @@
 "use client";
-import { useState } from "react";
-import { FiChevronDown, FiPlus, FiMinus, FiArrowRight, FiCalendar } from "react-icons/fi";
-import { FaPlane, FaHotel, FaUserFriends } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { FiChevronDown, FiPlus, FiArrowRight, FiX, FiUser, FiCalendar } from "react-icons/fi";
+import { FaPlane, FaHotel } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Layout from "../common/Layout";
-import { Heading } from "../common/Typography";
 import Button from "../common/Button";
 
-export default function FlightBookingComponent() {
-    const [tripType, setTripType] = useState("one-way");
-    const [travellers, setTravellers] = useState({
-        adults: 1,
-        children: 0
-    });
-    const [flightClass, setFlightClass] = useState("economy");
-    const [showTravellerDropdown, setShowTravellerDropdown] = useState(false);
-    const [cities, setCities] = useState([
-        {
-            from: "Delhi",
-            fromCode: "DEL",
-            to: "Bengaluru",
-            toCode: "BLR",
-            date: new Date(2025, 2, 23),
-            returnDate: new Date(2025, 2, 30)
+const FlightBookingComponent = () => {
+  // Form steps
+  const [currentStep, setCurrentStep] = useState(1);
+  
+  // Form data
+  const [formData, setFormData] = useState({
+    contact: {
+      email: "",
+      phone: "",
+      phoneCode: "+91",
+    },
+    flight: {
+      type: "one-way",
+      legs: [{ from: "", to: "", date: "" }],
+    },
+    travelers: {
+      count: 1,
+      list: [{ type: "adult", title: "Mr", firstName: "", lastName: "", age: "" }],
+    },
+    additional: {
+      visaInterviewDate: "",
+      deliveryDate: "",
+      specialInstructions: ""
+    }
+  });
+
+  // UI states
+  const [price, setPrice] = useState(0);
+  const [airports] = useState([
+    { code: "DEL", name: "Delhi" },
+    { code: "BOM", name: "Mumbai" },
+    { code: "BLR", name: "Bengaluru" },
+    { code: "MAA", name: "Chennai" },
+    { code: "HYD", name: "Hyderabad" },
+    { code: "CCU", name: "Kolkata" },
+    { code: "GOI", name: "Goa" },
+    { code: "PNQ", name: "Pune" }
+  ]);
+
+  const countryCodes = [
+    { code: "+91", name: "India" },
+    { code: "+1", name: "USA" },
+    { code: "+44", name: "UK" },
+    { code: "+971", name: "UAE" },
+    { code: "+65", name: "Singapore" },
+  ];
+
+  const travelerTypes = [
+    { value: "adult", label: "Adult (12+ years)", titles: ["Mr", "Mrs", "Ms", "Dr"] },
+    { value: "child", label: "Child (2-12 years)", titles: ["Master", "Miss"] },
+    { value: "infant", label: "Infant (0-2 years)", titles: ["Baby"] }
+  ];
+
+  // Price calculation
+  useEffect(() => {
+    const basePrice = 1000;
+    const discount = 1; // ₹1 discount per person
+    const calculatedPrice = formData.travelers.count > 0 ? 
+      (formData.travelers.count * basePrice) - discount : 0;
+    setPrice(calculatedPrice);
+  }, [formData.travelers.count]);
+
+  // Handle input changes
+  const handleInputChange = (path, value) => {
+    const [parent, child] = path.split('.');
+    setFormData(prev => ({
+      ...prev,
+      [parent]: {
+        ...prev[parent],
+        [child]: value
+      }
+    }));
+  };
+
+  // Handle flight leg changes
+  const handleFlightLegChange = (index, field, value) => {
+    setFormData(prev => {
+      const updatedLegs = [...prev.flight.legs];
+      updatedLegs[index] = {
+        ...updatedLegs[index],
+        [field]: value
+      };
+      return {
+        ...prev,
+        flight: {
+          ...prev.flight,
+          legs: updatedLegs
         }
-    ]);
+      };
+    });
+  };
 
-    // Date formatting helper
-    const formatDate = (date) => {
-        return date.toLocaleDateString('en-US', {
-            day: 'numeric',
-            month: 'short',
-            year: '2-digit',
-            weekday: 'short'
-        });
-    };
+  // Traveler functions
+  const updateTravelerCount = (count) => {
+    const newCount = Math.max(1, Math.min(10, count));
+    setFormData(prev => {
+      const currentList = [...prev.travelers.list];
+      
+      if (newCount > currentList.length) {
+        const newTravelers = Array(newCount - currentList.length)
+          .fill()
+          .map(() => ({ 
+            type: "adult", 
+            title: "Mr", 
+            firstName: "", 
+            lastName: "",
+            age: ""
+          }));
+        return {
+          ...prev,
+          travelers: {
+            count: newCount,
+            list: [...currentList, ...newTravelers]
+          }
+        };
+      } else if (newCount < currentList.length) {
+        return {
+          ...prev,
+          travelers: {
+            count: newCount,
+            list: currentList.slice(0, newCount)
+          }
+        };
+      }
+      
+      return {
+        ...prev,
+        travelers: {
+          ...prev.travelers,
+          count: newCount
+        }
+      };
+    });
+  };
 
-    const addCity = () => {
-        setCities([
-            ...cities,
-            {
-                from: "Bengaluru",
-                fromCode: "BLR",
-                to: "",
-                toCode: "",
-                date: new Date(2025, 2, 24),
-                returnDate: new Date(2025, 2, 31)
-            }
-        ]);
-    };
+  const handleTravelerChange = (index, field, value) => {
+    setFormData(prev => {
+      const updatedTravelers = [...prev.travelers.list];
+      updatedTravelers[index] = {
+        ...updatedTravelers[index],
+        [field]: value
+      };
+      return {
+        ...prev,
+        travelers: {
+          ...prev.travelers,
+          list: updatedTravelers
+        }
+      };
+    });
+  };
 
-    const removeCity = (index) => {
-        const newCities = [...cities];
-        newCities.splice(index, 1);
-        setCities(newCities);
-    };
+  // Flight leg functions
+  const addFlightLeg = () => {
+    setFormData(prev => ({
+      ...prev,
+      flight: {
+        ...prev.flight,
+        legs: [...prev.flight.legs, { from: "", to: "", date: "" }]
+      }
+    }));
+  };
 
-    const updateCity = (index, field, value) => {
-        const newCities = [...cities];
-        newCities[index][field] = value;
-        setCities(newCities);
-    };
+  const removeFlightLeg = (index) => {
+    if (formData.flight.legs.length > 1) {
+      setFormData(prev => {
+        const updatedLegs = [...prev.flight.legs];
+        updatedLegs.splice(index, 1);
+        return {
+          ...prev,
+          flight: {
+            ...prev.flight,
+            legs: updatedLegs
+          }
+        };
+      });
+    }
+  };
 
-    const updateTravellers = (type, value) => {
-        setTravellers(prev => ({
-            ...prev,
-            [type]: Math.max(0, value)
-        }));
-    };
+  // Form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    // API call would go here
+  };
 
-    return (
-        <Layout>
-        <div className=" bg-white mt-[40px] rounded-2xl shadow-md border border-gray-100">
-            {/* Header with Flight and Hotel Navigation */}
-            <div className="flex border-b border-gray-200 rounded-t-2xl bg-gray-50">
-                <button
-                    className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-primary-500 rounded-tl-2xl shadow-md`}
+  // Step navigation
+  const nextStep = () => {
+    if (currentStep < 3) setCurrentStep(currentStep + 1);
+  };
 
-                >
-                    <FaPlane className="text-xl" />
-                    <span>Flights</span>
-                </button>
-                <Link
-                    href={"/services/dummy-hotel"}
-                    className={`flex-1 py-5 px-6  cursor-pointer flex items-center justify-center gap-3 font-medium text-lg transition-colors  text-gray-600 hover:text-blue-600`}
+  const prevStep = () => {
+    if (currentStep > 1) setCurrentStep(currentStep - 1);
+  };
 
-                >
-                    <FaHotel className="text-xl" />
-                    <span>Hotels</span>
-                </Link>
-            </div>
+  // Animation variants
+  const stepVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -50 }
+  };
 
-            <div className="p-3 sm:p-4 md:p-8">
-                
-
-                {/* Flight Type Tabs */}
-                <div className="flex bg-gray-100 rounded-lg p-1 mb-8">
-                    {["one-way", "round-trip", "multi-city"].map((type) => (
-                        <button
-                            key={type}
-                            className={`flex-1 py-3 px-1 text-md sm:text-lg sm:px-4 text-center font-medium capitalize rounded-md transition-colors ${tripType === type ? "bg-white text-blue-600 shadow-sm" : "text-gray-600 hover:text-blue-600"}`}
-                            onClick={() => setTripType(type)}
-                        >
-                            {type.split('-').join(' ')}
-                        </button>
-                    ))}
+  return (
+    <Layout>
+      <div className="bg-white mt-8 rounded-2xl shadow-lg border border-gray-100 max-w-6xl mx-auto overflow-hidden">
+        {/* Header with Flight and Hotel Navigation */}
+        <div className="flex border-b rounded-t-2xl border-gray-200 bg-gray-50">
+                    <Link
+                        href="/services/dummy-flights"
+                        className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-primary-500 `}
+                    >
+                        <FaPlane className="text-xl" />
+                        <span>Flights</span>
+                    </Link>
+                    <Link 
+                     href={"/services/dummy-hotel"}
+                        className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600  shadow-md`}
+                    >
+                        <FaHotel className="text-xl" />
+                        <span>Hotels</span>
+                    </Link>
                 </div>
 
-                {/* Flight Search Form */}
-                <div className="space-y-6">
-                    {cities.map((city, index) => (
-                        <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-5 p-6 bg-gray-50 rounded-xl relative border border-gray-200">
-                            <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700">From</label>
-                                <div className="relative">
-                                    <select
-                                        className="w-full p-4 border border-gray-300 rounded-xl bg-white appearance-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                        value={`${city.fromCode},${city.from}`}
-                                        onChange={(e) => {
-                                            const [code, name] = e.target.value.split(',');
-                                            updateCity(index, 'fromCode', code);
-                                            updateCity(index, 'from', name);
-                                        }}
-                                    >
-                                        <option value="DEL,Delhi">Delhi (DEL)</option>
-                                        <option value="BLR,Bengaluru">Bengaluru (BLR)</option>
-                                        <option value="BOM,Mumbai">Mumbai (BOM)</option>
-                                        <option value="MAA,Chennai">Chennai (MAA)</option>
-                                    </select>
-                                    <FiChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700">To</label>
-                                <div className="relative">
-                                    <select
-                                        className="w-full p-4 border border-gray-300 rounded-xl bg-white appearance-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                        value={city.toCode ? `${city.toCode},${city.to}` : ""}
-                                        onChange={(e) => {
-                                            const [code, name] = e.target.value.split(',');
-                                            updateCity(index, 'toCode', code);
-                                            updateCity(index, 'to', name);
-                                        }}
-                                    >
-                                        <option value="">Select destination</option>
-                                        <option value="DEL,Delhi">Delhi (DEL)</option>
-                                        <option value="BLR,Bengaluru">Bengaluru (BLR)</option>
-                                        <option value="BOM,Mumbai">Mumbai (BOM)</option>
-                                        <option value="MAA,Chennai">Chennai (MAA)</option>
-                                    </select>
-                                    <FiChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 gap-4">
-                                <div className="space-y-2">
-                                    <label className="block text-sm font-medium text-gray-700">Departure</label>
-                                    <div className="p-4 border border-gray-300 rounded-xl bg-white flex items-center min-w-fit gap-3">
-                                        <FiCalendar className="text-blue-500  min-w-fit" />
-                                        <div className="flex items-baseline min-w-[80px] flex-nowrap gap-1">
-                                            <div className="font-medium">{formatDate(city.date).split(',')[0]}</div>
-                                            <div className="text-sm  text-gray-500">{formatDate(city.date).split(',')[1]}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {tripType === "round-trip" && index === 0 && (
-                                    <div className="space-y-2">
-                                        <label className="block text-sm font-medium text-gray-700">Return</label>
-                                        <div className="p-4 border border-gray-300 rounded-xl bg-white flex items-center gap-3">
-                                            <FiCalendar className="text-blue-500 min-w-fit" />
-                                            <div className="flex items-baseline min-w-[80px] flex-nowrap gap-1">
-                                                <div className="font-medium">{formatDate(city.returnDate).split(',')[0]}</div>
-                                                <div className="text-sm text-gray-500">{formatDate(city.returnDate).split(',')[1]}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            {index > 0 && (
-                                <button
-                                    className="absolute top-4 right-4 text-red-500 hover:text-red-700 p-1 rounded-full bg-red-50"
-                                    onClick={() => removeCity(index)}
-                                >
-                                    <FiMinus className="w-5 h-5" />
-                                </button>
-                            )}
-                        </div>
-                    ))}
-
-                    {tripType === "multi-city" && (
-                        <button
-                            className="flex items-center text-blue-600 hover:text-blue-800 font-medium mt-2"
-                            onClick={addCity}
-                        >
-                            <FiPlus className="mr-2" />
-                            <span>Add another flight</span>
-                        </button>
-                    )}
-
-                    {/* Travellers & Class */}
-                    <div className="relative">
-                        <button
-                            className="flex items-center justify-between w-full md:w-80 p-4 border border-gray-300 rounded-xl bg-white hover:border-blue-500 transition-colors"
-                            onClick={() => setShowTravellerDropdown(!showTravellerDropdown)}
-                        >
-                            <div className="flex items-center gap-3">
-                                <FaUserFriends className="text-blue-500 text-xl" />
-                                <div>
-                                    <div className="text-sm font-medium text-gray-700">Travellers & Class</div>
-                                    <div className="text-left text-gray-900">
-                                        {travellers.adults + travellers.children} {travellers.adults + travellers.children === 1 ? "Traveller" : "Travellers"}, {flightClass === "economy" ? "Economy" : flightClass === "premium" ? "Premium Economy" : "Business"}
-                                    </div>
-                                </div>
-                            </div>
-                            <FiChevronDown className={`text-gray-400 text-xl transition-transform ${showTravellerDropdown ? 'rotate-180' : ''}`} />
-                        </button>
-
-                        {showTravellerDropdown && (
-                            <div className="absolute z-10 mt-2 w-full md:w-80 bg-white border border-gray-200 rounded-xl shadow-xl p-6 space-y-6">
-                                <div>
-                                    <div className="flex justify-between items-center mb-4">
-                                        <div>
-                                            <div className="font-medium text-gray-900">Adults</div>
-                                            <div className="text-sm text-gray-500">12+ years</div>
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            <button
-                                                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 disabled:opacity-50"
-                                                onClick={() => updateTravellers('adults', travellers.adults - 1)}
-                                                disabled={travellers.adults <= 1}
-                                            >
-                                                <FiMinus className="w-4 h-4" />
-                                            </button>
-                                            <span className="w-8 text-center font-medium">{travellers.adults}</span>
-                                            <button
-                                                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600"
-                                                onClick={() => updateTravellers('adults', travellers.adults + 1)}
-                                            >
-                                                <FiPlus className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <div>
-                                            <div className="font-medium text-gray-900">Children</div>
-                                            <div className="text-sm text-gray-500">2-11 years</div>
-                                        </div>
-                                        <div className="flex items-center gap-3">
-                                            <button
-                                                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 disabled:opacity-50"
-                                                onClick={() => updateTravellers('children', travellers.children - 1)}
-                                                disabled={travellers.children <= 0}
-                                            >
-                                                <FiMinus className="w-4 h-4" />
-                                            </button>
-                                            <span className="w-8 text-center font-medium">{travellers.children}</span>
-                                            <button
-                                                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600"
-                                                onClick={() => updateTravellers('children', travellers.children + 1)}
-                                            >
-                                                <FiPlus className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="font-medium text-gray-900 mb-3">Travel Class</div>
-                                    <div className="grid grid-cols-3 gap-3">
-                                        {["economy", "premium", "business"].map((cls) => (
-                                            <button
-                                                key={cls}
-                                                className={`py-2 px-3 rounded-lg border ${flightClass === cls ? 'border-blue-500 bg-blue-50 text-blue-600' : 'border-gray-200 hover:border-gray-300'}`}
-                                                onClick={() => setFlightClass(cls)}
-                                            >
-                                                <span className="capitalize text-sm">
-                                                    {cls === "premium" ? "Premium" : cls}
-                                                </span>
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* CTA Button */}
-                    <div className="pt-6 flex justify-center">
-                        <Button variant="secondary" size="large" className="w-full md:w-auto" href="/flights/search">
-                            Search Flights
-                            <FiArrowRight className="ml-3 text-xl" />
-                        </Button>
-
-                    </div>
+        {/* Progress Steps */}
+        <div className="px-8 pt-6 bg-gray-50">
+          <div className="flex items-center justify-between relative">
+            {[1, 2, 3].map((step) => (
+              <div key={step} className="flex flex-col items-center z-10">
+                <div 
+                  className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${currentStep >= step ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-gray-600 border-2 border-gray-300'}`}
+                >
+                  {step}
                 </div>
+                <span className={`text-sm mt-2 font-medium ${currentStep >= step ? 'text-blue-600' : 'text-gray-500'}`}>
+                  {step === 1 ? 'Flight Details' : step === 2 ? 'Traveler Info' : 'Review'}
+                </span>
+              </div>
+            ))}
+            <div className="absolute top-6 left-12 right-12 h-1 bg-gray-200 z-0">
+              <div 
+                className="h-full bg-blue-600 transition-all duration-500" 
+                style={{ width: `${(currentStep - 1) * 50}%` }}
+              ></div>
             </div>
+          </div>
         </div>
-        </Layout>
-    );
-}
+
+        <div className="p-6 sm:p-8">
+          <form onSubmit={handleSubmit}>
+            <AnimatePresence mode="wait">
+              {/* Step 1: Flight Details */}
+              {currentStep === 1 && (
+                <motion.div
+                  key="step1"
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={stepVariants}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-8"
+                >
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Flight Details</h2>
+                    
+                    {/* Flight Type Tabs */}
+                    <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
+                      {["one-way", "round-trip", "multi-city"].map((type) => (
+                        <button
+                          key={type}
+                          type="button"
+                          className={`flex-1 py-3 px-4 text-center font-medium capitalize rounded-md transition-all ${formData.flight.type === type ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-blue-600'}`}
+                          onClick={() => handleInputChange('flight.type', type)}
+                        >
+                          {type.split('-').join(' ')}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Flight Legs */}
+                    <div className="space-y-6">
+                      {formData.flight.legs.map((leg, index) => (
+                        <motion.div 
+                          key={index}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="p-6 bg-white rounded-xl border border-gray-200 relative shadow-sm"
+                        >
+                          {formData.flight.legs.length > 1 && (
+                            <button
+                              type="button"
+                              className="absolute top-4 right-4 text-red-500 hover:text-red-700 p-1 rounded-full bg-red-50"
+                              onClick={() => removeFlightLeg(index)}
+                            >
+                              <FiX className="w-5 h-5" />
+                            </button>
+                          )}
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {/* From */}
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">Flying from</label>
+                              <div className="relative">
+                                <select
+                                  value={leg.from}
+                                  onChange={(e) => handleFlightLegChange(index, 'from', e.target.value)}
+                                  className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                                  required
+                                >
+                                  <option value="">Select departure</option>
+                                  {airports.map((airport) => (
+                                    <option key={airport.code} value={airport.code}>
+                                      {airport.name} ({airport.code})
+                                    </option>
+                                  ))}
+                                </select>
+                                <FiChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
+                              </div>
+                            </div>
+                            
+                            {/* To */}
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">Flying to</label>
+                              <div className="relative">
+                                <select
+                                  value={leg.to}
+                                  onChange={(e) => handleFlightLegChange(index, 'to', e.target.value)}
+                                  className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                                  required
+                                >
+                                  <option value="">Select destination</option>
+                                  {airports.map((airport) => (
+                                    <option key={airport.code} value={airport.code}>
+                                      {airport.name} ({airport.code})
+                                    </option>
+                                  ))}
+                                </select>
+                                <FiChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
+                              </div>
+                            </div>
+                            
+                            {/* Date */}
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">
+                                {index === 0 ? 'Departure Date' : 'Next Flight Date'}
+                              </label>
+                              <div className="relative">
+                                <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                                  <input
+                                    type="date"
+                                    value={leg.date}
+                                    onChange={(e) => handleFlightLegChange(index, 'date', e.target.value)}
+                                    className="w-full p-3.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    required
+                                  />
+                                  {/* <FiCalendar className="mx-3 text-gray-400" /> */}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+
+                      {(formData.flight.type === "multi-city" || 
+                       (formData.flight.type === "round-trip" && formData.flight.legs.length < 2)) && (
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          type="button"
+                          className="flex items-center text-blue-600 hover:text-blue-800 font-medium"
+                          onClick={addFlightLeg}
+                        >
+                          <FiPlus className="mr-2" />
+                          <span>Add another flight</span>
+                        </motion.button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Number of Travelers */}
+                  <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <h3 className="text-lg font-medium text-gray-800 mb-4">Number of Travelers</h3>
+                    <div className="flex flex-col md:flex-row items-center gap-6">
+                      <div className="flex-1 max-w-xs w-full">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Travelers
+                        </label>
+                        <div className="relative">
+                          <select
+                            value={formData.travelers.count}
+                            onChange={(e) => updateTravelerCount(parseInt(e.target.value))}
+                            className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                          >
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                              <option key={num} value={num}>
+                                {num} {num === 1 ? 'Traveler' : 'Travelers'}
+                              </option>
+                            ))}
+                          </select>
+                          <FiChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
+                        </div>
+                      </div>
+                      <div className="bg-blue-50 p-4 rounded-lg flex-1 max-w-xs w-full border border-blue-100">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <div className="text-sm font-medium text-gray-700">Total Price:</div>
+                            <div className="text-2xl font-bold text-blue-600">₹{price.toLocaleString()}.00</div>
+                          </div>
+                          <div className="text-xs text-gray-500 text-right">
+                            ₹1000 per traveler<br/>
+                            ₹1 discount applied
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end pt-4">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button 
+                        type="button" 
+                        onClick={nextStep}
+                        className="w-full md:w-auto px-8 py-3"
+                      >
+                        Continue to Traveler Details
+                        <FiArrowRight className="ml-3 text-xl" />
+                      </Button>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Step 2: Traveler Information */}
+              {currentStep === 2 && (
+                <motion.div
+                  key="step2"
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={stepVariants}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-8"
+                >
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Traveler Information</h2>
+                    <p className="text-gray-600 mb-6">Please enter details for all travelers</p>
+                    
+                    <div className="space-y-6">
+                      {formData.travelers.list.map((traveler, index) => (
+                        <motion.div 
+                          key={index}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.2, delay: index * 0.05 }}
+                          className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm"
+                        >
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="text-lg font-medium text-gray-800 flex items-center gap-2">
+                              <FiUser className="text-blue-500" />
+                              Traveler {index + 1}
+                            </h3>
+                            {index > 0 && (
+                              <button
+                                type="button"
+                                className="text-sm text-red-500 hover:text-red-700"
+                                onClick={() => updateTravelerCount(formData.travelers.count - 1)}
+                              >
+                                Remove traveler
+                              </button>
+                            )}
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            {/* Traveler Type */}
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">Traveler Type</label>
+                              <select
+                                value={traveler.type}
+                                onChange={(e) => handleTravelerChange(index, 'type', e.target.value)}
+                                className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              >
+                                {travelerTypes.map((type) => (
+                                  <option key={type.value} value={type.value}>{type.label}</option>
+                                ))}
+                              </select>
+                            </div>
+                            
+                            {/* Title */}
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                              <select
+                                value={traveler.title}
+                                onChange={(e) => handleTravelerChange(index, 'title', e.target.value)}
+                                className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              >
+                                {travelerTypes.find(t => t.value === traveler.type)?.titles.map(title => (
+                                  <option key={title} value={title}>{title}</option>
+                                ))}
+                              </select>
+                            </div>
+                            
+                            {/* First Name */}
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                              <input
+                                type="text"
+                                value={traveler.firstName}
+                                onChange={(e) => handleTravelerChange(index, 'firstName', e.target.value)}
+                                className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Given name"
+                                required
+                              />
+                            </div>
+                            
+                            {/* Last Name */}
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                              <input
+                                type="text"
+                                value={traveler.lastName}
+                                onChange={(e) => handleTravelerChange(index, 'lastName', e.target.value)}
+                                className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Surname"
+                                required
+                              />
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between pt-4">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button 
+                        type="button" 
+                        variant="outline"
+                        onClick={prevStep}
+                        className="w-full md:w-auto px-8 py-3"
+                      >
+                        Back
+                      </Button>
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button 
+                        type="button" 
+                        onClick={nextStep}
+                        className="w-full md:w-auto px-8 py-3"
+                      >
+                        Continue to Contact Info
+                        <FiArrowRight className="ml-3 text-xl" />
+                      </Button>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Step 3: Contact Information */}
+              {currentStep === 3 && (
+                <motion.div
+                  key="step3"
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={stepVariants}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-8"
+                >
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Email */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Email Address
+                          <span className="text-xs text-gray-500 block mt-1">Order confirmation will be sent here</span>
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.contact.email}
+                          onChange={(e) => handleInputChange('contact.email', e.target.value)}
+                          className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          placeholder="your.email@example.com"
+                          required
+                        />
+                      </div>
+                      
+                      {/* Phone */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Phone Number
+                          <span className="text-xs text-gray-500 block mt-1">For booking confirmation</span>
+                        </label>
+                        <div className="flex">
+                          <select
+                            name="phoneCode"
+                            value={formData.contact.phoneCode}
+                            onChange={(e) => handleInputChange('contact.phoneCode', e.target.value)}
+                            className="w-24 p-3.5 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                          >
+                            {countryCodes.map((country) => (
+                              <option key={country.code} value={country.code}>
+                                {country.code}
+                              </option>
+                            ))}
+                          </select>
+                          <FiChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
+                          <input
+                            type="tel"
+                            name="phone"
+                            value={formData.contact.phone}
+                            onChange={(e) => handleInputChange('contact.phone', e.target.value)}
+                            className="flex-1 p-3.5 border border-l-0 border-gray-300 rounded-r-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="9876543210"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Additional Information */}
+                    <div className="mt-8">
+                      <h3 className="text-lg font-medium text-gray-800 mb-4">Additional Information</h3>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Visa Interview Date */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Visa Interview Date</label>
+                          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                            <input
+                              type="date"
+                              name="visaInterviewDate"
+                              value={formData.additional.visaInterviewDate}
+                              onChange={(e) => handleInputChange('additional.visaInterviewDate', e.target.value)}
+                              className="w-full p-3.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                            {/* <FiCalendar className="mx-3 text-gray-400" /> */}
+                          </div>
+                        </div>
+                        
+                        {/* Delivery Date */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Delivery Date</label>
+                          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                            <input
+                              type="date"
+                              name="deliveryDate"
+                              value={formData.additional.deliveryDate}
+                              onChange={(e) => handleInputChange('additional.deliveryDate', e.target.value)}
+                              className="w-full p-3.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                            {/* <FiCalendar className="mx-3 text-gray-400" /> */}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Special Instructions */}
+                      <div className="mt-6">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Special Instructions
+                          <span className="text-xs text-gray-500 block mt-1">Any special requests or questions?</span>
+                        </label>
+                        <textarea
+                          name="specialInstructions"
+                          value={formData.additional.specialInstructions}
+                          onChange={(e) => handleInputChange('additional.specialInstructions', e.target.value)}
+                          className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          rows="3"
+                          placeholder="e.g., Wheelchair assistance, dietary requirements, etc."
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between pt-4">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button 
+                        type="button" 
+                        variant="outline"
+                        onClick={prevStep}
+                        className="w-full md:w-auto px-8 py-3"
+                      >
+                        Back
+                      </Button>
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button 
+                        type="submit" 
+                        className="w-full md:w-auto px-8 py-3"
+                      >
+                        Complete Booking
+                        <FiArrowRight className="ml-3 text-xl" />
+                      </Button>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </form>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default FlightBookingComponent;
