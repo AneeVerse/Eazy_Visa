@@ -180,7 +180,7 @@ export default function Footer() {
               >
                 <span>Aneeverse</span>
                 <Image
-                  src={"/logo/aneeverse-logo.webp"}
+                  src={"/logo/aneeverse-logo.svg"}
                   alt="Aneeverse Logo"
                   width={30}
                   height={30}

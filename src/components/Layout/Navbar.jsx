@@ -10,51 +10,49 @@ const services = [
     id: 1,
     title: "Tourist Visa",
     url: "/tourist-visa",
-    location: "Geiranger, Norway",
-    image: "/images/landmarks/Sultan Qaboos Mosque tourist places in Oman Visa.webp",
+    description: "Complete assistance for tourist visa applications to your dream destinations",
+    image:
+      "/images/home/tourist-visa.webp",
     rating: 4.9,
     size: "small",
-    description: "Complete assistance for tourist visa applications to your dream destinations"
   },
   {
     id: 2,
     title: "Business Visa",
     url: "/business-visa",
-    location: "Tromsø, Norway",
-    image: "/images/landmarks/Sydney Opera House in Australia Visa.webp",
+    description: "Streamlined business visa processing for corporate travelers",
+    image: "/images/home/business-visa.webp",
     rating: 4.3,
     size: "small",
-    description: "Streamlined business visa processing for corporate travelers"
   },
   {
     id: 3,
-    title: "End To End Visa Assistance",
+    title: "End to End visa assistance",
     url: "/end-to-end",
-    location: "Oslo, Norway",
-    image: "/images/landmarks/Atomium in Belgium Visa.webp",
+    description: "Comprehensive visa support from documentation to approval",
+    image: "/images/home/passport-image.webp",
     rating: 4.7,
     size: "small",
-    description: "Comprehensive visa support from documentation to approval"
   },
   {
     id: 4,
     title: "Dummy Flights",
     url: "/dummy-flights",
-    location: "Geiranger, Norway",
-    image: "/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp",
+    description: "Best deals on international flights with flexible options",
+    image:
+      "/images/home/dummy-flight.webp",
     rating: 4.9,
     size: "large",
-    description: "Best deals on international flights with flexible options"
   },
   {
     id: 5,
     title: "Dummy Hotel",
     url: "/dummy-hotel",
-    location: "Tromsø, Norway",
-    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+    description: "Curated hotel selections for your perfect stay abroad",
+    image:
+    "/images/home/dummy-hotel.webp",
     rating: 4.6,
     size: "large",
-    description: "Curated hotel selections for your perfect stay abroad"
   },
 ];
 

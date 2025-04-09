@@ -13,7 +13,7 @@ const services = [
     url: "/tourist-visa",
     description: "Complete assistance for tourist visa applications to your dream destinations",
     image:
-      "/images/landmarks/Sultan Qaboos Mosque tourist places in Oman Visa.webp",
+      "/images/home/tourist-visa.webp",
     rating: 4.9,
     size: "small",
   },
@@ -22,7 +22,7 @@ const services = [
     title: "Business Visa",
     url: "/business-visa",
     description: "Streamlined business visa processing for corporate travelers",
-    image: "/images/landmarks/Sydney Opera House in Australia Visa.webp",
+    image: "/images/home/business-visa.webp",
     rating: 4.3,
     size: "small",
   },
@@ -31,7 +31,7 @@ const services = [
     title: "End to End visa assistance",
     url: "/end-to-end",
     description: "Comprehensive visa support from documentation to approval",
-    image: "/images/landmarks/Atomium in Belgium Visa.webp",
+    image: "/images/home/passport-image.webp",
     rating: 4.7,
     size: "small",
   },
@@ -41,7 +41,7 @@ const services = [
     url: "/dummy-flights",
     description: "Best deals on international flights with flexible options",
     image:
-      "/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp",
+      "/images/home/dummy-flight.webp",
     rating: 4.9,
     size: "large",
   },
@@ -50,13 +50,14 @@ const services = [
     title: "Dummy Hotel",
     url: "/dummy-hotel",
     description: "Curated hotel selections for your perfect stay abroad",
-    image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+    image:
+    "/images/home/dummy-hotel.webp",
     rating: 4.6,
     size: "large",
   },
 ];
 
-export default function VisaSolutions() {
+export default function CountryVisaSolution() {
   return (
     <section className="py-16 ">
       <Layout>
@@ -80,6 +81,7 @@ export default function VisaSolutions() {
               height={300}
               className="w-full h-[400px] group-hover:scale-110 group-active:scale-110 transition-all duration-300 object-cover"
             />
+            <div className="absolute inset-0 bg-black/20 rounded-lg"/>
             <div className="absolute bottom-4 left-4 right-4 bg-white group-active:-translate-y-2 group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-medium text-gray-900">
@@ -96,7 +98,7 @@ export default function VisaSolutions() {
         ))}
       </div>
 
-  </Layout>
+      </Layout>
     </section>
   );
 }
