@@ -1,16 +1,17 @@
+"use client";
 import Layout from '@/components/common/Layout';
 import { Heading } from '@/components/common/Typography';
 import Footer from '@/components/Layout/Footer';
-import Link from 'next/link';
-import { FaPlane, FaHotel, FaMapMarkedAlt, FaStar, FaCheck, FaInfoCircle } from 'react-icons/fa';
+import { FaCheck, FaInfoCircle, FaCrown, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const PricingPage = () => {
   const plans = [
     {
       name: "Flight Itinerary",
-      url: "/services/dummy-flights",
+      description: "Essential flight booking details for visa applications",
       price: "999",
-      icon: <FaPlane className="text-blue-500 text-3xl" />,
+      billing: "per person",
+      note: "*Name change not allowed",
       features: [
         "24 Hours Delivery",
         "Unlimited Flights",
@@ -21,22 +22,24 @@ const PricingPage = () => {
     },
     {
       name: "Hotel Booking",
-      url: "/services/dummy-hotel",
+      description: "Verified hotel confirmation for your stay",
       price: "999",
-      icon: <FaHotel className="text-green-500 text-3xl" />,
+      billing: "per person",
+      note: "*Name change not allowed",
       features: [
         "24 Hours Delivery",
         "Verifiable Hotel Confirmation",
         "Unlimited Corrections",
         "Name change not allowed"
       ],
-      popular: false
+      popular: true
     },
     {
       name: "Daywise Itinerary",
-      url: "/services/dummy-hotel",
+      description: "Detailed daily schedule for your trip",
       price: "999",
-      icon: <FaMapMarkedAlt className="text-purple-500 text-3xl" />,
+      billing: "per person",
+      note: "*Name change not allowed",
       features: [
         "24 Hours Delivery",
         "Day wise Sightseeing",
@@ -47,10 +50,10 @@ const PricingPage = () => {
     },
     {
       name: "Most Preferred",
-      
-      url: "/services/dummy-hotel",
+      description: "Complete package for visa approval",
       price: "1499",
-      icon: <FaStar className="text-yellow-500 text-3xl" />,
+      billing: "per person",
+      note: "*Price applicable for 2+ passengers",
       features: [
         "24 Hours Delivery",
         "Flight Itinerary",
@@ -58,131 +61,141 @@ const PricingPage = () => {
         "Day wise Itinerary",
         "Name change not allowed"
       ],
-      popular: true,
-      note: "*Price applicable for 2+ passengers"
+      popular: false
     }
   ];
 
   return (
-    <>
-    <div className="min-h-screen overflow-x-hidden  py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50/90 via-indigo-50/90 to-purple-50/90 pt-16 relative overflow-hidden">
+      {/* Enhanced Glassmorphism background elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-gradient-to-r from-blue-200/40 to-blue-300/30 rounded-full filter blur-[120px] animate-float-slow"></div>
+        <div className="absolute top-2/3 right-1/4 w-[35rem] h-[35rem] bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full filter blur-[110px] animate-float-medium"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-[30rem] h-[30rem] bg-gradient-to-l from-indigo-200/30 to-blue-200/30 rounded-full filter blur-[100px] animate-float-fast"></div>
         
-      <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
-      <Layout >
-      {/* Header Section */}
-      <div 
-            className="text-center mb-16"
-          >
-            <Heading animate={true} level={1}  className=" font-bold text-gray-900">
-              Pricing
-            </Heading>
-            <p className="mt-5 max-w-3xl mx-auto text-xl text-gray-600">
-              Below prices are per person. <span className="font-medium">Special group discounts</span> available for 4+ travelers.
+        {/* Subtle grid overlay for depth */}
+        <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-[length:60px_60px] opacity-[0.02]"></div>
+      </div>
+
+      <Layout className="relative z-10">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <Heading animate={true} level={1} className="font-bold text-gray-900">
+             Pricing
+          </Heading>
+          <p className="mt-5 max-w-3xl mx-auto text-xl text-gray-600">
+            Below prices are per person. <span className="font-medium text-blue-600">Special group discounts</span> available for 4+ travelers.
+          </p>
+          
+          <div className="mt-8 max-w-2xl mx-auto bg-white/30 backdrop-blur-sm border border-white/30 rounded-xl p-4 flex items-start shadow-sm">
+            <FaInfoCircle className="flex-shrink-0 mt-1 text-blue-500 mr-3" />
+            <p className="text-sm text-blue-800/90">
+              <strong>Important:</strong> These itineraries are designed specifically for visa applications and do not constitute actual bookings or confirmations.
             </p>
-            
-            <div className="mt-8 max-w-2xl mx-auto bg-blue-50/50 border border-blue-100 rounded-lg p-4 flex items-start">
-              <FaInfoCircle className="flex-shrink-0 mt-1 text-blue-500 mr-3" />
-              <p className="text-sm text-blue-800">
-                <strong>Important:</strong> These itineraries are designed specifically for visa applications and do not constitute actual bookings or confirmations.
-              </p>
-            </div>
           </div>
+        </div>
 
-
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {/* Pricing Cards */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 px-4 sm:px-0">
           {plans.map((plan, index) => (
             <div 
-              key={index} 
-              className={`relative rounded-lg border border-gray-200 bg-white shadow-sm flex flex-col ${plan.popular ? 'ring-2 ring-blue-500' : ''}`}
+              key={index}
+              className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1
+                ${plan.popular ? 'ring-2 ring-blue-500/50 shadow-blue-100/50' : ''}`}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 whitespace-nowrap rounded-full">
-                    MOST POPULAR
-                  </span>
-                </div>
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
               )}
               
-              <div className="p-4 ">
-                <div className="flex items-center justify-center mb-4">
-                  {plan.icon}
+              <div className="p-6">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h2 className="text-xl font-bold text-gray-900 mb-1">{plan.name}</h2>
+                    <p className="text-gray-600 text-sm mb-5">{plan.description}</p>
+                  </div>
+                  {plan.popular && (
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      <FaCrown className="mr-1" /> Popular
+                    </span>
+                  )}
                 </div>
-                <h2 className="text-lg font-medium text-center text-gray-900 mb-2">{plan.name}</h2>
-                <p className="text-3xl font-bold text-center text-gray-900 mb-6">
-                  ₹{plan.price}
-                  <span className="text-base font-normal text-gray-500">/person</span>
-                </p>
                 
+                <div className="mb-6">
+                  <p className="text-3xl font-bold text-gray-900">
+                    ₹{plan.price}
+                  </p>
+                  <p className="text-gray-600 text-sm mt-1">{plan.billing}</p>
+                  {plan.note && <p className="text-xs text-gray-500/90 mt-1">{plan.note}</p>}
+                </div>
+                
+                <button className={`w-full py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 mb-6 shadow-sm
+                  ${plan.popular 
+                    ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-md' 
+                    : 'bg-white text-gray-800 border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
+                  }`}
+                >
+                  Get Started
+                </button>
+              </div>
+              
+              <div className="border-t border-gray-200/50 px-6 pt-5 pb-6 bg-white/30">
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What's included:</h3>
                 <ul className="space-y-3">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start">
-                      <FaCheck className="flex-shrink-0 h-5 w-5 text-green-500" />
-                      <span className="ml-3 text-gray-600">{feature}</span>
+                      <div className={`flex-shrink-0 h-5 w-5 mr-2 mt-0.5 flex items-center justify-center rounded-full 
+                       bg-blue-100 text-blue-600 `}>
+                        <FaCheck className="h-3 w-3" />
+                      </div>
+                      <span className="text-gray-700 text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-              
-              <div className="mt-auto p-6 bg-gray-50 rounded-b-lg">
-                {plan.note && (
-                  <p className="text-xs text-gray-500 mb-3 text-center">{plan.note}</p>
-                )}
-                <Link
-                 href={plan.url}
-                  className={`w-full cursor-pointer block text-center px-4 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white ${plan.popular ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-800 hover:bg-gray-900'}`}
-                >
-                  BUY NOW
-                </Link>
               </div>
             </div>
           ))}
         </div>
 
-        <div
-            className="mt-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl shadow-lg overflow-hidden"
-          >
-            <div className="px-6 py-8 sm:p-10 sm:pb-8">
-              <div className="flex flex-col md:flex-row items-center justify-between">
-                <div className="flex-1 mb-6 md:mb-0">
-                  <h3 className="text-2xl font-bold text-white mb-2">Group Travel Special</h3>
-                  <p className="text-blue-100 max-w-lg">
-                    Planning a trip with friends or family? We offer exclusive discounts for groups of 4+ travelers.
-                    Get personalized quotes and dedicated support for your group visa application.
-                  </p>
-                </div>
-                <Link href={"/contact"} className="px-8 py-3 bg-white text-blue-800 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-md whitespace-nowrap">
-                  Request Group Quote
-                </Link>
-              </div>
+        {/* Additional Info */}
+        {/* Professional Support CTA */}
+        <div className="mt-20 text-center">
+          <div className="inline-block bg-white/70 backdrop-blur-sm border border-white/30 rounded-2xl px-8 py-8 shadow-sm max-w-4xl">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">Need help choosing?</h3>
+            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              Our visa specialists are available to help you select the perfect plan for your needs.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a href="tel:+1234567890" className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <FaPhoneAlt className="mr-2" /> Call Support
+              </a>
+              <a href="mailto:support@example.com" className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                <FaEnvelope className="mr-2" /> Email Us
+              </a>
             </div>
           </div>
-
-          {/* Trust Indicators */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">24h</div>
-              <div className="text-gray-600 mt-1">Delivery</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">99%</div>
-              <div className="text-gray-600 mt-1">Visa Approval</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">10k+</div>
-              <div className="text-gray-600 mt-1">Customers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">24/7</div>
-              <div className="text-gray-600 mt-1">Support</div>
-            </div>
-          </div>
-
+        </div>
       </Layout>
+      <Footer className="relative z-10" />
+      
+      {/* Animation styles */}
+      <style jsx global>{`
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-20px) translateX(10px); }
+        }
+        @keyframes float-medium {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(10px) translateX(-15px); }
+        }
+        @keyframes float-fast {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-15px) translateX(5px); }
+        }
+        .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+        .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
+        .animate-float-fast { animation: float-fast 5s ease-in-out infinite; }
+      `}</style>
     </div>
-    
-    
-    <Footer />
-    </>
   );
 };
 

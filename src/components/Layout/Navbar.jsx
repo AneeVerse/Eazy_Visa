@@ -173,9 +173,9 @@ export default function Navbar() {
               <img 
                 src="/logo/main-logo.png" 
                 alt="Eazy Visa Logo" 
-                className="h-8 w-auto"
-                width={32}
-                height={32}
+                className="h-11 w-auto"
+                width={36}
+                height={36}
               />
             </div>
           </Link>
