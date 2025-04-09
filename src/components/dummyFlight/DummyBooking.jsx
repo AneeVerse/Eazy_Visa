@@ -4,6 +4,8 @@ import { FiChevronDown, FiPlus, FiArrowRight, FiX, FiUser, FiCalendar } from "re
 import { FaPlane, FaHotel } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from "../common/Layout";
 import Button from "../common/Button";
 
@@ -11,8 +13,8 @@ const FlightBookingComponent = () => {
   // Form steps
   const [currentStep, setCurrentStep] = useState(1);
   
-  // Form data
-  const [formData, setFormData] = useState({
+  // Initial form data
+  const initialFormData = {
     contact: {
       email: "",
       phone: "",
@@ -31,7 +33,10 @@ const FlightBookingComponent = () => {
       deliveryDate: "",
       specialInstructions: ""
     }
-  });
+  };
+
+  // Form data
+  const [formData, setFormData] = useState(initialFormData);
 
   // UI states
   const [price, setPrice] = useState(0);
@@ -186,13 +191,44 @@ const FlightBookingComponent = () => {
     }
   };
 
-  // Form submission
-// Update the handleSubmit function in your FlightBookingComponent
-const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Validate current step
+  const validateCurrentStep = () => {
+    if (currentStep === 1) {
+      // Validate flight details
+      for (const leg of formData.flight.legs) {
+        if (!leg.from || !leg.to || !leg.date) {
+          return false;
+        }
+      }
+      return true;
+    } else if (currentStep === 2) {
+      // Validate traveler info
+      for (const traveler of formData.travelers.list) {
+        if (!traveler.firstName || !traveler.lastName) {
+          return false;
+        }
+      }
+      return true;
+    } else if (currentStep === 3) {
+      // Validate contact info
+      if (!formData.contact.email || !formData.contact.phone) {
+        return false;
+      }
+      return true;
+    }
+    return true;
+  };
 
-    if(currentStep !== 3){
-        return;
+  // Form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateCurrentStep()) {
+      return;
+    }
+
+    if (currentStep !== 3) {
+      return;
     }
     
     try {
@@ -207,22 +243,34 @@ const handleSubmit = async (e) => {
       const result = await response.json();
       
       if (response.ok) {
-        // Handle success - show success message to user
-        alert('Your flight booking request has been submitted successfully!');
-        // You might want to reset the form or redirect here
+        // Show success toast
+        toast.success('Flight booking submitted successfully!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        
+        // Reset form
+        setFormData(initialFormData);
+        setCurrentStep(1);
       } else {
-        // Handle error
-        alert(`Error: ${result.error || 'Failed to submit booking'}`);
+        toast.error(result.error || 'Failed to submit booking');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('An error occurred while submitting your booking. Please try again.');
+      toast.error('An error occurred while submitting your booking');
     }
   };
 
   // Step navigation
   const nextStep = () => {
-    if (currentStep < 3) setCurrentStep(currentStep + 1);
+    if (validateCurrentStep() && currentStep < 3) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   const prevStep = () => {
@@ -238,24 +286,37 @@ const handleSubmit = async (e) => {
 
   return (
     <Layout>
+  <ToastContainer 
+        position="top-right"
+        autoClose={5000}
+        className="mt-[70px]"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      
       <div className="bg-white mt-8 rounded-2xl shadow-lg border border-gray-100 max-w-6xl mx-auto overflow-hidden">
         {/* Header with Flight and Hotel Navigation */}
         <div className="flex border-b rounded-t-2xl border-gray-200 bg-gray-50">
-                    <Link
-                        href="/services/dummy-flights"
-                        className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-primary-500 `}
-                    >
-                        <FaPlane className="text-xl" />
-                        <span>Flights</span>
-                    </Link>
-                    <Link 
-                     href={"/services/dummy-hotel"}
-                        className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600  shadow-md`}
-                    >
-                        <FaHotel className="text-xl" />
-                        <span>Hotels</span>
-                    </Link>
-                </div>
+          <Link
+            href="/services/dummy-flights"
+            className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-primary-500`}
+          >
+            <FaPlane className="text-xl" />
+            <span>Flights</span>
+          </Link>
+          <Link 
+            href={"/services/dummy-hotel"}
+            className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600 shadow-md`}
+          >
+            <FaHotel className="text-xl" />
+            <span>Hotels</span>
+          </Link>
+        </div>
 
         {/* Progress Steps */}
         <div className="px-8 pt-6 bg-gray-50">
@@ -469,8 +530,8 @@ const handleSubmit = async (e) => {
                 </motion.div>
               )}
 
-              {/* Step 2: Traveler Information */}
-              {currentStep === 2 && (
+                 {/* Step 2: Traveler Information */}
+                 {currentStep === 2 && (
                 <motion.div
                   key="step2"
                   initial="hidden"
@@ -600,8 +661,8 @@ const handleSubmit = async (e) => {
                 </motion.div>
               )}
 
-              {/* Step 3: Contact Information */}
-              {currentStep === 3 && (
+                {/* Step 3: Contact Information */}
+                {currentStep === 3 && (
                 <motion.div
                   key="step3"
                   initial="hidden"
