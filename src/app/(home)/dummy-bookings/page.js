@@ -139,7 +139,7 @@ const PricingPage = () => {
               </div>
               
               <div className="border-t border-gray-200/50 px-6 pt-5 pb-6 bg-white/30">
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What's included:</h3>
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What&apos;s included:</h3>
                 <ul className="space-y-3">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start">
