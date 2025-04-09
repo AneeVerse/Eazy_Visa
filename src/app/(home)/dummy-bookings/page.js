@@ -2,6 +2,7 @@
 import Layout from '@/components/common/Layout';
 import { Heading } from '@/components/common/Typography';
 import Footer from '@/components/Layout/Footer';
+import Link from 'next/link';
 import { FaCheck, FaInfoCircle, FaCrown, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const PricingPage = () => {
@@ -18,6 +19,8 @@ const PricingPage = () => {
         "Unlimited Corrections",
         "Name change not allowed"
       ],
+
+      url:"/services/dummy-flights",
       popular: false
     },
     {
@@ -32,6 +35,7 @@ const PricingPage = () => {
         "Unlimited Corrections",
         "Name change not allowed"
       ],
+      url:"/services/dummy-hotel",
       popular: false
     },
     {
@@ -46,6 +50,8 @@ const PricingPage = () => {
         "Details of the tour for the duration",
         "Name change not allowed"
       ],
+
+      url:"/services/dummy-hotel",
       popular: false
     },
     {
@@ -61,6 +67,7 @@ const PricingPage = () => {
         "Day wise Itinerary",
         "Name change not allowed"
       ],
+      url:"/services/dummy-flights",
       popular: true
     }
   ];
@@ -90,7 +97,7 @@ const PricingPage = () => {
           <div className="mt-8 max-w-2xl mx-auto bg-white/30 backdrop-blur-sm border border-white/30 rounded-xl p-4 flex items-start shadow-sm">
             <FaInfoCircle className="flex-shrink-0 mt-1 text-blue-500 mr-3" />
             <p className="text-sm text-blue-800/90">
-              <strong>Important:</strong> These itineraries are designed specifically for visa applications and do not constitute actual bookings or confirmations.
+              <strong>Please Notes:</strong> These itineraries are designed specifically for visa applications and do not constitute actual bookings or confirmations.
             </p>
           </div>
         </div>
@@ -128,14 +135,14 @@ const PricingPage = () => {
                   {plan.note && <p className="text-xs text-gray-500/90 mt-1">{plan.note}</p>}
                 </div>
                 
-                <button className={`w-full py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 mb-6 shadow-sm
+                <Link href={plan.url} className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 mb-6 shadow-sm
                   ${plan.popular 
                     ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-md' 
                     : 'bg-white text-gray-800 border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
                   }`}
                 >
                   Get Started
-                </button>
+                </Link>
               </div>
               
               <div className="border-t border-gray-200/50 px-6 pt-5 pb-6 bg-white/30">

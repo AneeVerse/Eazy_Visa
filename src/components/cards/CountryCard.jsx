@@ -19,7 +19,7 @@ export default function CountryCard({
      className="bg-white hover-myshadow rounded-xl cursor-pointer relative border border-gray-200">
       {isTrending && (
         <div className="absolute z-10 -top-3 right-3 bg-gray-50 border border-gray-200 flex items-center text-secondary-500 px-[10px] h-[30px] gap-[5px] rounded-lg">
-          <Image
+          <img
             src={"/images/icon/cherry-blossom.png"}
             width={13}
             height={13}
@@ -30,11 +30,9 @@ export default function CountryCard({
         </div>
       )}
       <div className="relative rounded-xl">
-        <Image
+        <img
           src={image}
           alt={name}
-          width={256}
-          height={160}
           className="w-full h-[200px] sm:h-[250px] lg:h-[270px] object-cover  rounded-t-xl"
         />
         <span className="absolute top-8 left-0 bg-[#5554e7] text-white text-[11px] sm:text-xs px-3 py-[6px] rounded-r-lg">
