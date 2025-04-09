@@ -49,13 +49,7 @@ export default function DestinationSlider() {
     }
   };
 
-  // if (loading) {
-  //   return (
-  //     <Layout className="flex w-full flex-row gap-4">
-  //   { )}
-  //     </Layout>
-  //   );
-  // }
+ 
 
   return (
     <section className="py-16">

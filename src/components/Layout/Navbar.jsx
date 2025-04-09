@@ -217,18 +217,19 @@ export default function Navbar() {
             <div className="relative">
               <form onSubmit={handleSearchSubmit}>
                 <div className="relative">
+                  <img src="/images/icon/png/flight.png" alt="Search Icon" className="absolute left-3 w-auto h-[18px] top-1/2 transform -translate-y-1/2 text-gray-400" />
                   <input
                     type="text"
                     ref={searchInputRef}
-                    className="w-28 lg:w-[112px] xl:w-48 px-4 py-2 pl-10 rounded-full border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
-                    placeholder="Search countries..."
+                    className="w-[116px] lg:w-[116px] xl:w-64 px-4 py-2 pl-8 pr-12 rounded-full border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    placeholder="Where to, Captain?"
                     value={searchQuery}
                     onChange={handleSearchChange}
                     onFocus={() => setShowSearchResults(true)}
                   />
                   <button
                     type="submit"
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-[5px] bg-blue-600 rounded-full flex items-center justify-center w-[34px] h-[34px] top-1/2 transform -translate-y-1/2 text-white hover:text-white-600"
                   >
                     <FiSearch className="w-4 h-4" />
                   </button>
