@@ -72,12 +72,12 @@ const FeedbackReviewComponent = () => {
               <span className="text-blue-500">Happy Clients</span> Say
             </h1>
           </div>
-          <button
+          {/* <button
             onClick={() => setShowPopup(true)}
             className="px-6 self-start text-sm py-[10px] bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600"
           >
             Leave Review
-          </button>
+          </button> */}
         </div>
 
         {/* ✅ Elfsight Reviews Widget */}

@@ -28,7 +28,7 @@ const services = [
   },
   {
     id: 3,
-    title: "End To End Tourist Visa Aeestence",
+    title: "End to End visa assistance",
     url: "/end-to-end",
     description: "Comprehensive visa support from documentation to approval",
     image: "/images/landmarks/Atomium in Belgium Visa.webp",
