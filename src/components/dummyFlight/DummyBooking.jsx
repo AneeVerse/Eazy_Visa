@@ -559,7 +559,7 @@ const FlightBookingComponent = () => {
                     </div>
                 </div>
 
-                <div className="p-6 sm:p-8 border-r border-l rounded-b-2xl border-gray-200 bg-white">
+                <div className="p-6 sm:p-8 border-r border-l border-b rounded-b-2xl border-gray-200 bg-white">
                     <form onSubmit={handleSubmit}>
                         <AnimatePresence mode="wait">
                             {/* Step 1: Flight Details */}
