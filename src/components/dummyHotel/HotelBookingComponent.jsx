@@ -12,6 +12,8 @@ import Button from "../common/Button";
 export default function HotelBookingComponent() {
   // Form steps
   const [currentStep, setCurrentStep] = useState(1);
+
+  const [isLoading, setIsLoading] = useState(false)
   
   // Initial form data
   const initialFormData = {
@@ -138,9 +140,10 @@ export default function HotelBookingComponent() {
       return;
     }
 
-    if (currentStep !== 3) {
+    if (currentStep < 3) {
       return;
     }
+    setIsLoading(true)
     
     try {
       const response = await fetch('/api/hotel-booking', {
@@ -174,6 +177,8 @@ export default function HotelBookingComponent() {
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error('An error occurred while submitting your booking');
+    }finally{
+        setIsLoading(false)
     }
   };
 
@@ -212,25 +217,35 @@ export default function HotelBookingComponent() {
       
       <div className="bg-white mt-8 rounded-2xl shadow-lg border border-gray-100 max-w-6xl mx-auto overflow-hidden">
         {/* Header with Flight and Hotel Navigation */}
+        {/* Header with Flight and Hotel Navigation */}
         <div className="flex border-b rounded-t-2xl border-gray-200 ">
           <Link
             href="/services/dummy-flights"
-            className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 text-gray-600 hover:text-blue-600 font-medium text-lg transition-colors`}
+            className={`flex-1 py-3 px-6 cursor-pointer flex flex-col items-center justify-center font-bold text-lg transition-colors text-white bg-white`}
           >
-            <FaPlane className="text-xl" />
-            <span>Flights</span>
+            <img
+              src="/images/icon/png/aeroplan-black.png"
+                alt="Flight Icon"
+                className="w-20 h-18 object-cover"
+            />
+            <span className="text-gray-600">Flights</span> 
           </Link>
           <Link 
             href={"/services/dummy-hotel"}
-            className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors rounded-tr-2xl text-white bg-primary-500 shadow-md`}
+            className={`flex-1 py-5 px-6 flex flex-col border-l border-gray-200 items-center justify-center  font-bold text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600 `}
           >
-            <FaHotel className="text-xl" />
-            <span>Hotels</span>
+            
+            <img
+              src="/images/icon/png/hotel-blue.png"
+                alt="Flight Icon"
+                className="w-20 h-18 object-cover"
+            />
+         <span className="text-primary-500">Hotels</span> 
           </Link>
         </div>
 
         {/* Progress Steps */}
-        <div className="px-8 pt-6 bg-gray-50">
+        <div className="px-8 pt-6 ">
           <div className="flex items-center justify-between relative">
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex flex-col items-center z-10">
@@ -679,9 +694,11 @@ export default function HotelBookingComponent() {
                       <Button 
                         type="submit" 
                         className="w-full md:w-auto px-8 py-3"
+                       disabled={isLoading ? true : false }
                       >
-                        Complete Booking
-                        <FiArrowRight className="ml-3 text-xl" />
+                       {!isLoading ?  "Complete Booking": "Submiting..."}
+
+              {!isLoading && <FiArrowRight className="ml-3 text-xl" />}
                       </Button>
                     </motion.div>
                   </div>
