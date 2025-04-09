@@ -94,11 +94,11 @@ const CountryDetails = () => {
     <div className=" relative min-h-screen pb-12">
       
       {/* Header Section */}
-      <Layout className="">
 
 
         <CountryDetailsBannerHero image={country.landmark} title={country.name} />
 
+      <Layout className="">
         {/* Main Content */}
         <div className="mt-12 flex flex-col lg:flex-row gap-8">
           {/* Left Content */}

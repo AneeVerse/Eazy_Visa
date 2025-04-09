@@ -55,61 +55,61 @@ export const countryData =
       sampleVisaCopy: "/pdf/visa-samples/france-visa-sample.pdf"
     },
 
-    // {
-    //   id: 2,
-    //   name: "Hungary",
-    //   searchName: "Hungary",
-    //   price: "7000",
-    //   continent: "Europe",
-    //   isTop: true,
-    //   isTrending: true,
-    //   visasOnTime: "220K+",
-    //   flag: "/images/flags/hu.webp",
-    //   landmark: "/images/landmarks/Budapest Parliament Building tourist places in Hungary Visa.webp",
-    //   landmarkName: "Budapest Parliament Building",
+    {
+      id: 2,
+      name: "Hungary",
+      searchName: "Hungary",
+      price: "7000",
+      continent: "Europe",
+      isTop: true,
+      isTrending: true,
+      visasOnTime: "220K+",
+      flag: "/images/flags/hu.webp",
+      landmark: "/images/landmarks/Budapest Parliament Building tourist places in Hungary Visa.webp",
+      landmarkName: "Budapest Parliament Building",
 
-    //   altName: "Budapest Parliament Building tourist places in Hungary Visa",
-    //   description: "Hungary is famous for its thermal baths, stunning architecture, and vibrant cultural scene.",
-    //   visaType: "Sticker Visa",
-    //   lengthOfStay: "Up to 90 days",
-    //   validity: "6 months",
-    //   pdfDownload: "/pdf/visa-guides/hungary-visa-guide.pdf",
-    //   documentsRequired: [
-    //     {
-    //       category: "Essential Documents",
-    //       documents: [
-    //         "Passport with 2 blank pages",
-    //         "Completed application form",
-    //         "Travel itinerary",
-    //         "Proof of accommodation",
-    //         "Recent bank statements"
-    //       ]
-    //     }
-    //   ],
-    //   rejectionReasons: [
-    //     {
-    //       title: "Insufficient Funds",
-    //       description: "Bank statements do not show sufficient funds.",
-    //       icon: "funds",
-    //     },
-    //     {
-    //       title: "Incomplete Travel Itinerary",
-    //       description: "Missing flight or accommodation details.",
-    //       icon: "itinerary",
-    //     }
-    //   ],
-    //   faqs: [
-    //     {
-    //       question: "Is travel insurance mandatory?",
-    //       answer: "Yes, it is a requirement for Schengen visa."
-    //     },
-    //     {
-    //       question: "Can I extend my visa?",
-    //       answer: "Extensions are possible under specific circumstances."
-    //     }
-    //   ],
-    //   sampleVisaCopy: "/pdf/visa-samples/hungary-visa-sample.pdf"
-    // },
+      altName: "Budapest Parliament Building tourist places in Hungary Visa",
+      description: "Hungary is famous for its thermal baths, stunning architecture, and vibrant cultural scene.",
+      visaType: "Sticker Visa",
+      lengthOfStay: "Up to 90 days",
+      validity: "6 months",
+      pdfDownload: "/pdf/visa-guides/hungary-visa-guide.pdf",
+      documentsRequired: [
+        {
+          category: "Essential Documents",
+          documents: [
+            "Passport with 2 blank pages",
+            "Completed application form",
+            "Travel itinerary",
+            "Proof of accommodation",
+            "Recent bank statements"
+          ]
+        }
+      ],
+      rejectionReasons: [
+        {
+          title: "Insufficient Funds",
+          description: "Bank statements do not show sufficient funds.",
+          icon: "funds",
+        },
+        {
+          title: "Incomplete Travel Itinerary",
+          description: "Missing flight or accommodation details.",
+          icon: "itinerary",
+        }
+      ],
+      faqs: [
+        {
+          question: "Is travel insurance mandatory?",
+          answer: "Yes, it is a requirement for Schengen visa."
+        },
+        {
+          question: "Can I extend my visa?",
+          answer: "Extensions are possible under specific circumstances."
+        }
+      ],
+      sampleVisaCopy: "/pdf/visa-samples/hungary-visa-sample.pdf"
+    },
 
 
 
@@ -599,349 +599,343 @@ export const countryData =
 
       sampleVisaCopy: "/pdf/visa-samples/greece-visa-sample.pdf"
     },
-    // {
-    //   id: 11,
-    //   name: "Norway",
-    //   searchName: "Norway",
-    //   price: "9,500",
-    //   continent: "Europe",
-    //   isTrending: true,
-    //   visasOnTime: "135K+",
-    //   flag: "/images/flags/no.webp",
-    //   landmark: "/images/landmarks/Geirangerfjord tourist places in Norway Visa.webp",
-    //   landmarkName: "Geirangerfjord",
-    //   altName: "Geirangerfjord tourist places in Norway Visa",
-    //   description: "Norway mesmerizes with its dramatic fjords, northern lights, and vibrant Viking heritage.",
+    {
+      id: 11,
+      name: "Norway",
+      searchName: "Norway",
+      price: "9,500",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "135K+",
+      flag: "/images/flags/no.webp",
+      landmark: "/images/landmarks/Geirangerfjord tourist places in Norway Visa.webp",
+      landmarkName: "Geirangerfjord",
+      altName: "Geirangerfjord tourist places in Norway Visa",
+      description: "Norway mesmerizes with its dramatic fjords, northern lights, and vibrant Viking heritage.",
 
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //     entryType: "Single/Multiple"
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/norway-visa-guide.pdf",
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+        entryType: "Single/Multiple",
+      pdfDownload: "/pdf/visa-guides/norway-visa-guide.pdf",
 
-    //   documentsRequired: [
-    //     {
-    //       category: "Standard Requirements",
-    //       documents: [
-    //         "Passport valid for 3+ months beyond stay",
-    //         "Two recent white-background photos (35x45mm)",
-    //         "Detailed travel itinerary",
-    //         "Proof of accommodation (hotel/private stay)"
-    //       ]
-    //     },
-    //     {
-    //       category: "Financial Proof",
-    //       documents: [
-    //         "Bank statements (last 3 months)",
-    //         "Credit card copies",
-    //         "Minimum NOK 500 per day (approx ₹4,000)"
-    //       ]
-    //     }
-    //   ],
+      documentsRequired: [
+        {
+          category: "Standard Requirements",
+          documents: [
+            "Passport valid for 3+ months beyond stay",
+            "Two recent white-background photos (35x45mm)",
+            "Detailed travel itinerary",
+            "Proof of accommodation (hotel/private stay)"
+          ]
+        },
+        {
+          category: "Financial Proof",
+          documents: [
+            "Bank statements (last 3 months)",
+            "Credit card copies",
+            "Minimum NOK 500 per day (approx ₹4,000)"
+          ]
+        }
+      ],
 
-    //   rejectionReasons: [
-    //     {
-    //       title: "Insufficient Arctic Preparation",
-    //       description: "Lacking proper winter gear documentation for northern travel",
-    //       icon: "winter"
-    //     },
-    //     {
-    //       title: "Schengen First-Entry Rule",
-    //       description: "Norway not being main destination for multi-country trips",
-    //       icon: "itinerary"
-    //     }
-    //   ],
+      rejectionReasons: [
+        {
+          title: "Insufficient Arctic Preparation",
+          description: "Lacking proper winter gear documentation for northern travel",
+          icon: "winter"
+        },
+        {
+          title: "Schengen First-Entry Rule",
+          description: "Norway not being main destination for multi-country trips",
+          icon: "itinerary"
+        }
+      ],
 
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Svalbard with this visa?",
-    //       answer: "No, Svalbard has separate entry requirements"
-    //     },
-    //     {
-    //       question: "Is cash required or cards accepted?",
-    //       answer: "Norway is largely cashless - cards preferred"
-    //     }
-    //   ],
+      faqs: [
+        {
+          question: "Can I visit Svalbard with this visa?",
+          answer: "No, Svalbard has separate entry requirements"
+        },
+        {
+          question: "Is cash required or cards accepted?",
+          answer: "Norway is largely cashless - cards preferred"
+        }
+      ],
 
-    //   sampleVisaCopy: "/pdf/visa-samples/norway-visa-sample.pdf"
-    // },
-    // {
-    //   id: 12,
-    //   name: "Denmark",
-    //   searchName: "Denmark",
-    //   price: "8,300",
-    //   continent: "Europe",
-    //   isTrending: false,
-    //   visasOnTime: "155K+",
-    //   flag: "/images/flags/dk.webp",
-    //   landmark: "/images/landmarks/Little Mermaid Statue tourist places in Denmark visa.webp",
-    //   landmarkName: "Little Mermaid Statue",
-    //   altName: "Little Mermaid Statue tourist places in Denmark visa",
-    //   description: "Denmark charms with hygge culture, colorful harbors, and being the birthplace of LEGO.",
+      sampleVisaCopy: "/pdf/visa-samples/norway-visa-sample.pdf"
+    },
+    {
+      id: 12,
+      name: "Denmark",
+      searchName: "Denmark",
+      price: "8,300",
+      continent: "Europe",
+      isTrending: false,
+      visasOnTime: "155K+",
+      flag: "/images/flags/dk.webp",
+      landmark: "/images/landmarks/Little Mermaid Statue tourist places in Denmark visa.webp",
+      landmarkName: "Little Mermaid Statue",
+      altName: "Little Mermaid Statue tourist places in Denmark visa",
+      description: "Denmark charms with hygge culture, colorful harbors, and being the birthplace of LEGO.",
 
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //     entryType: "Single/Multiple"
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/denmark-visa-guide.pdf",
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+        entryType: "Single/Multiple",
+      
+      pdfDownload: "/pdf/visa-guides/denmark-visa-guide.pdf",
 
-    //   documentsRequired: [
-    //     {
-    //       category: "Core Documents",
-    //       documents: [
-    //         "Completed application form (digital signature accepted)",
-    //         "Passport with 2+ blank pages",
-    //         "Travel insurance covering repatriation"
-    //       ]
-    //     },
-    //     {
-    //       category: "Special Cases",
-    //       documents: [
-    //         "For business trips: Invitation from Danish company",
-    //         "For students: Enrollment proof from Danish institution"
-    //       ]
-    //     }
-    //   ],
+      documentsRequired: [
+        {
+          category: "Core Documents",
+          documents: [
+            "Completed application form (digital signature accepted)",
+            "Passport with 2+ blank pages",
+            "Travel insurance covering repatriation"
+          ]
+        },
+        {
+          category: "Special Cases",
+          documents: [
+            "For business trips: Invitation from Danish company",
+            "For students: Enrollment proof from Danish institution"
+          ]
+        }
+      ],
 
-    //   rejectionReasons: [
-    //     {
-    //       title: "Bicycle Tour Insufficient Documentation",
-    //       description: "Lacking detailed cycling route plans",
-    //       icon: "bicycle"
-    //     },
-    //     {
-    //       title: "Greenland/Faroe Islands Confusion",
-    //       description: "Applying wrong visa type for autonomous territories",
-    //       icon: "territory"
-    //     }
-    //   ],
+      rejectionReasons: [
+        {
+          title: "Bicycle Tour Insufficient Documentation",
+          description: "Lacking detailed cycling route plans",
+          icon: "bicycle"
+        },
+        {
+          title: "Greenland/Faroe Islands Confusion",
+          description: "Applying wrong visa type for autonomous territories",
+          icon: "territory"
+        }
+      ],
 
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Sweden with this visa?",
-    //       answer: "Yes, via the Øresund Bridge to Malmö"
-    //     },
-    //     {
-    //       question: "Is Copenhagen Card useful for visa proof?",
-    //       answer: "Yes, shows prepaid attractions and transport"
-    //     }
-    //   ],
+      faqs: [
+        {
+          question: "Can I visit Sweden with this visa?",
+          answer: "Yes, via the Øresund Bridge to Malmö"
+        },
+        {
+          question: "Is Copenhagen Card useful for visa proof?",
+          answer: "Yes, shows prepaid attractions and transport"
+        }
+      ],
 
-    //   sampleVisaCopy: "/pdf/visa-samples/denmark-visa-sample.pdf"
-    // },
-    // {
-    //   id: 13,
-    //   name: "Finland",
-    //   searchName: "Finland",
-    //   price: "8,700",
-    //   continent: "Europe",
-    //   isTrending: true,
-    //   visasOnTime: "125K+",
-    //   flag: "/images/flags/fi.webp",
-    //   landmark: "/images/landmarks/Helsinki Cathedral tourist places in Finland Visa.webp",
-    //   landmarkName: "Helsinki Cathedral",
-    //   altName: "Helsinki Cathedral tourist places in Finland Visa",
-    //   description: "Finland offers magical Northern Lights, midnight sun, sauna culture, and Santa Claus Village in Rovaniemi.",
+      sampleVisaCopy: "/pdf/visa-samples/denmark-visa-sample.pdf"
+    },
+    {
+      id: 13,
+      name: "Finland",
+      searchName: "Finland",
+      price: "8,700",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "125K+",
+      flag: "/images/flags/fi.webp",
+      landmark: "/images/landmarks/Helsinki Cathedral tourist places in Finland Visa.webp",
+      landmarkName: "Helsinki Cathedral",
+      altName: "Helsinki Cathedral tourist places in Finland Visa",
+      description: "Finland offers magical Northern Lights, midnight sun, sauna culture, and Santa Claus Village in Rovaniemi.",
 
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //     entryType: "Single/Multiple",
-    //     processingTime: "15 calendar days"
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/finland-visa-guide.pdf",
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+        entryType: "Single/Multiple",
+        processingTime: "15 calendar days",
+  
+      pdfDownload: "/pdf/visa-guides/finland-visa-guide.pdf",
 
-    //   documentsRequired: [
-    //     {
-    //       category: "Standard Requirements",
-    //       documents: [
-    //         "Passport (issued within last 10 years)",
-    //         "Two biometric photos (47x36mm)",
-    //         "Travel medical insurance (minimum €30,000 coverage)",
-    //         "Proof of sufficient funds (€30/day)"
-    //       ]
-    //     },
-    //     {
-    //       category: "Winter-Specific Documents",
-    //       documents: [
-    //         "Detailed winter travel itinerary",
-    //         "Proof of adequate winter clothing/gear",
-    //         "Confirmed bookings for Arctic activities"
-    //       ]
-    //     }
-    //   ],
+      documentsRequired: [
+        {
+          category: "Standard Requirements",
+          documents: [
+            "Passport (issued within last 10 years)",
+            "Two biometric photos (47x36mm)",
+            "Travel medical insurance (minimum €30,000 coverage)",
+            "Proof of sufficient funds (€30/day)"
+          ]
+        },
+        {
+          category: "Winter-Specific Documents",
+          documents: [
+            "Detailed winter travel itinerary",
+            "Proof of adequate winter clothing/gear",
+            "Confirmed bookings for Arctic activities"
+          ]
+        }
+      ],
 
-    //   rejectionReasons: [
-    //     {
-    //       title: "Insufficient Winter Preparation",
-    //       description: "Lacking proof of proper Arctic travel preparations",
-    //       icon: "snowflake"
-    //     },
-    //     {
-    //       title: "Santa Claus Village Misuse",
-    //       description: "Using tourist attraction as accommodation proof without bookings",
-    //       icon: "santa"
-    //     }
-    //   ],
+      rejectionReasons: [
+        {
+          title: "Insufficient Winter Preparation",
+          description: "Lacking proof of proper Arctic travel preparations",
+          icon: "snowflake"
+        },
+        {
+          title: "Santa Claus Village Misuse",
+          description: "Using tourist attraction as accommodation proof without bookings",
+          icon: "santa"
+        }
+      ],
 
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Estonia by ferry with this visa?",
-    //       answer: "Yes, Tallinn ferries accept Sticker Visas"
-    //     },
-    //     {
-    //       question: "Is Aurora hunting itinerary mandatory?",
-    //       answer: "Recommended but not required for Northern travel"
-    //     }
-    //   ],
+      faqs: [
+        {
+          question: "Can I visit Estonia by ferry with this visa?",
+          answer: "Yes, Tallinn ferries accept Sticker Visas"
+        },
+        {
+          question: "Is Aurora hunting itinerary mandatory?",
+          answer: "Recommended but not required for Northern travel"
+        }
+      ],
 
-    //   sampleVisaCopy: "/pdf/visa-samples/finland-visa-sample.pdf",
-    //   specialNotes: "Lapland visits require extra documentation for winter activities between November-March"
-    // },
-    // {
-    //   id: 14,
-    //   name: "Sweden",
-    //   searchName: "Sweden",
-    //   price: "8,900",
-    //   continent: "Europe",
-    //   isTrending: false,
-    //   visasOnTime: "140K+",
-    //   flag: "/images/flags/se.webp",
-    //   landmark: "/images/landmarks/Stockholm Palace places in Sweden Visa.webp",
-    //   landmarkName: "Stockholm Palace",
-    //   altName: "Stockholm Palace places in Sweden Visa",
-    //   description: "Sweden delights with its archipelago landscapes, innovative design, and the original ABBA Museum.",
+      sampleVisaCopy: "/pdf/visa-samples/finland-visa-sample.pdf",
+      specialNotes: "Lapland visits require extra documentation for winter activities between November-March"
+    },
+    {
+      id: 14,
+      name: "Sweden",
+      searchName: "Sweden",
+      price: "8,900",
+      continent: "Europe",
+      isTrending: false,
+      visasOnTime: "140K+",
+      flag: "/images/flags/se.webp",
+      landmark: "/images/landmarks/Stockholm Palace places in Sweden Visa.webp",
+      landmarkName: "Stockholm Palace",
+      altName: "Stockholm Palace places in Sweden Visa",
+      description: "Sweden delights with its archipelago landscapes, innovative design, and the original ABBA Museum.",
 
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //     entryType: "Single/Multiple",
-    //     processingTime: "10-15 working days"
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/sweden-visa-guide.pdf",
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+        entryType: "Single/Multiple",
+        processingTime: "10-15 working days",
+    
+      pdfDownload: "/pdf/visa-guides/sweden-visa-guide.pdf",
 
-    //   documentsRequired: [
-    //     {
-    //       category: "Core Documents",
-    //       documents: [
-    //         "Completed application form (digital submission preferred)",
-    //         "Passport with 2 blank pages",
-    //         "Proof of accommodation (hotel/private stay invitation)"
-    //       ]
-    //     },
-    //     {
-    //       category: "Financial Requirements",
-    //       documents: [
-    //         "Bank statements (last 3 months)",
-    //         "Credit card limit confirmation",
-    //         "Minimum SEK 450 per day (approx ₹3,200)"
-    //       ]
-    //     }
-    //   ],
+      documentsRequired: [
+        {
+          category: "Core Documents",
+          documents: [
+            "Completed application form (digital submission preferred)",
+            "Passport with 2 blank pages",
+            "Proof of accommodation (hotel/private stay invitation)"
+          ]
+        },
+        {
+          category: "Financial Requirements",
+          documents: [
+            "Bank statements (last 3 months)",
+            "Credit card limit confirmation",
+            "Minimum SEK 450 per day (approx ₹3,200)"
+          ]
+        }
+      ],
 
-    //   rejectionReasons: [
-    //     {
-    //       title: "Archipelago Cruise Documentation",
-    //       description: "Missing ferry reservations for island hopping",
-    //       icon: "ferry"
-    //     },
-    //     {
-    //       title: "Cashless Society Misunderstanding",
-    //       description: "Claiming to carry only cash in digital-first economy",
-    //       icon: "credit-card"
-    //     }
-    //   ],
+      rejectionReasons: [
+        {
+          title: "Archipelago Cruise Documentation",
+          description: "Missing ferry reservations for island hopping",
+          icon: "ferry"
+        },
+        {
+          title: "Cashless Society Misunderstanding",
+          description: "Claiming to carry only cash in digital-first economy",
+          icon: "credit-card"
+        }
+      ],
 
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Norway from Sweden?",
-    //       answer: "Yes, border-free travel within Schengen area"
-    //     },
-    //     {
-    //       question: "Is the Arctic Circle entry different?",
-    //       description: "Kiruna visits follow same visa rules as mainland"
-    //     }
-    //   ],
+      faqs: [
+        {
+          question: "Can I visit Norway from Sweden?",
+          answer: "Yes, border-free travel within Schengen area"
+        },
+        {
+          question: "Is the Arctic Circle entry different?",
+          description: "Kiruna visits follow same visa rules as mainland"
+        }
+      ],
 
-    //   sampleVisaCopy: "/pdf/visa-samples/sweden-visa-sample.pdf",
-    //   specialNotes: "Stockholm archipelago visits require detailed ferry schedules in summer months"
-    // },
-    // {
-    //   id: 15,
-    //   name: "Iceland",
-    //   searchName: "Iceland",
-    //   price: "9,800",
-    //   continent: "Europe",
-    //   isTrending: true,
-    //   visasOnTime: "110K+",
-    //   flag: "/images/flags/is.webp",
-    //   landmark: "/images/landmarks/Blue Lagoon in Iceland Visa.webp",
-    //   landmarkName: "Blue Lagoon",
-    //   altName: "Blue Lagoon in Iceland Visa",
-    //   description: "Iceland enchants with geothermal wonders, glaciers, volcanoes, and the magical Northern Lights.",
+      sampleVisaCopy: "/pdf/visa-samples/sweden-visa-sample.pdf",
+      specialNotes: "Stockholm archipelago visits require detailed ferry schedules in summer months"
+    },
+    {
+      id: 15,
+      name: "Iceland",
+      searchName: "Iceland",
+      price: "9,800",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "110K+",
+      flag: "/images/flags/is.webp",
+      landmark: "/images/landmarks/Blue Lagoon in Iceland Visa.webp",
+      landmarkName: "Blue Lagoon",
+      altName: "Blue Lagoon in Iceland Visa",
+      description: "Iceland enchants with geothermal wonders, glaciers, volcanoes, and the magical Northern Lights.",
 
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //     entryType: "Single/Multiple",
-    //     processingTime: "10-15 working days"
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/iceland-visa-guide.pdf",
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+        entryType: "Single/Multiple",
+        processingTime: "10-15 working days",
+     
+      pdfDownload: "/pdf/visa-guides/iceland-visa-guide.pdf",
 
-    //   documentsRequired: [
-    //     {
-    //       category: "Standard Requirements",
-    //       documents: [
-    //         "Passport valid 3+ months beyond stay",
-    //         "Two recent photos (35x45mm white background)",
-    //         "Detailed travel itinerary with locations",
-    //         "Proof of accommodation for entire stay"
-    //       ]
-    //     },
-    //     {
-    //       category: "Special Conditions",
-    //       documents: [
-    //         "Winter travel: Proof of 4x4 vehicle rental",
-    //         "Adventure activities: Guide certifications",
-    //         "Minimum ISK 4,000 per day (approx ₹2,400)"
-    //       ]
-    //     }
-    //   ],
+      documentsRequired: [
+        {
+          category: "Standard Requirements",
+          documents: [
+            "Passport valid 3+ months beyond stay",
+            "Two recent photos (35x45mm white background)",
+            "Detailed travel itinerary with locations",
+            "Proof of accommodation for entire stay"
+          ]
+        },
+        {
+          category: "Special Conditions",
+          documents: [
+            "Winter travel: Proof of 4x4 vehicle rental",
+            "Adventure activities: Guide certifications",
+            "Minimum ISK 4,000 per day (approx ₹2,400)"
+          ]
+        }
+      ],
 
-    //   rejectionReasons: [
-    //     {
-    //       title: "Inadequate Vehicle Rental",
-    //       description: "Standard cars booked for F-road mountain routes",
-    //       icon: "jeep"
-    //     },
-    //     {
-    //       title: "Aurora Chase Misrepresentation",
-    //       description: "No confirmed Northern Lights tour bookings",
-    //       icon: "northern-lights"
-    //     }
-    //   ],
+      rejectionReasons: [
+        {
+          title: "Inadequate Vehicle Rental",
+          description: "Standard cars booked for F-road mountain routes",
+          icon: "jeep"
+        },
+        {
+          title: "Aurora Chase Misrepresentation",
+          description: "No confirmed Northern Lights tour bookings",
+          icon: "northern-lights"
+        }
+      ],
 
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Greenland with this visa?",
-    //       answer: "No, Greenland has separate visa requirements"
-    //     },
-    //     {
-    //       question: "Is cash necessary for remote areas?",
-    //       answer: "No, cards accepted everywhere including rural gas stations"
-    //     }
-    //   ],
+      faqs: [
+        {
+          question: "Can I visit Greenland with this visa?",
+          answer: "No, Greenland has separate visa requirements"
+        },
+        {
+          question: "Is cash necessary for remote areas?",
+          answer: "No, cards accepted everywhere including rural gas stations"
+        }
+      ],
 
-    //   sampleVisaCopy: "/pdf/visa-samples/iceland-visa-sample.pdf",
-    //   specialNotes: "F-road mountain routes require certified 4x4 vehicles between June-September"
-    // },
+      sampleVisaCopy: "/pdf/visa-samples/iceland-visa-sample.pdf",
+      specialNotes: "F-road mountain routes require certified 4x4 vehicles between June-September"
+    },
     // {
     //   id: 16,
     //   name: "Ireland",
@@ -1012,76 +1006,353 @@ export const countryData =
     //   sampleVisaCopy: "/pdf/visa-samples/ireland-visa-sample.pdf",
     //   specialNotes: "Important: Ireland is not part of Schengen despite EU membership"
     // },
-    // {
-    //   id: 17,
-    //   name: "Poland",
-    //   searchName: "Poland",
-    //   price: "6,200",
-    //   continent: "Europe",
-    //   isTrending: true,
-    //   visasOnTime: "185K+",
-    //   flag: "/images/flags/pl.webp",
-    //   landmark: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-    //   landmarkName: "Wawel Castle",
-    //   altName: "Wawel Castle tourist places in Poland Visa",
-    //   description: "Poland fascinates with medieval old towns, hearty cuisine, and resilient historical sites from WWII.",
+    {
+      id: 17,
+      name: "Poland",
+      searchName: "Poland",
+      price: "6,200",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "185K+",
+      flag: "/images/flags/pl.webp",
+      landmark: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+      landmarkName: "Wawel Castle",
+      altName: "Wawel Castle tourist places in Poland Visa",
+      description: "Poland fascinates with medieval old towns, hearty cuisine, and resilient historical sites from WWII.",
 
-    //   basicInfo: {
-    //     visaType: "Sticker Visa",
-    //     lengthOfStay: "Up to 90 days",
-    //     validity: "6 months",
-    //     entryType: "Single/Multiple",
-    //     processingTime: "10-15 working days"
-    //   },
-    //   pdfDownload: "/pdf/visa-guides/poland-visa-guide.pdf",
+        visaType: "Sticker Visa",
+        lengthOfStay: "Up to 90 days",
+        validity: "6 months",
+        entryType: "Single/Multiple",
+        processingTime: "10-15 working days",
+    
+      pdfDownload: "/pdf/visa-guides/poland-visa-guide.pdf",
 
-    //   documentsRequired: [
-    //     {
-    //       category: "Standard Requirements",
-    //       documents: [
-    //         "Passport with 3+ months validity",
-    //         "Two recent photos (35x45mm)",
-    //         "Travel insurance (minimum €30,000 coverage)",
-    //         "Confirmed return tickets"
-    //       ]
-    //     },
-    //     {
-    //       category: "Special Cases",
-    //       documents: [
-    //         "For Auschwitz visits: Museum booking confirmation",
-    //         "Winter travel: Proof of thermal clothing purchases"
-    //       ]
-    //     }
-    //   ],
+      documentsRequired: [
+        {
+          category: "Standard Requirements",
+          documents: [
+            "Passport with 3+ months validity",
+            "Two recent photos (35x45mm)",
+            "Travel insurance (minimum €30,000 coverage)",
+            "Confirmed return tickets"
+          ]
+        },
+        {
+          category: "Special Cases",
+          documents: [
+            "For Auschwitz visits: Museum booking confirmation",
+            "Winter travel: Proof of thermal clothing purchases"
+          ]
+        }
+      ],
 
-    //   rejectionReasons: [
-    //     {
-    //       title: "Schengen Itinerary Mismatch",
-    //       description: "Poland not being main destination for multi-country trips",
-    //       icon: "itinerary"
-    //     },
-    //     {
-    //       title: "Currency Confusion",
-    //       description: "Showing funds in złoty instead of required euro equivalent",
-    //       icon: "currency"
-    //     }
-    //   ],
+      rejectionReasons: [
+        {
+          title: "Schengen Itinerary Mismatch",
+          description: "Poland not being main destination for multi-country trips",
+          icon: "itinerary"
+        },
+        {
+          title: "Currency Confusion",
+          description: "Showing funds in złoty instead of required euro equivalent",
+          icon: "currency"
+        }
+      ],
 
-    //   faqs: [
-    //     {
-    //       question: "Can I visit Ukraine from Poland?",
-    //       answer: "No, requires separate Ukrainian visa despite border proximity"
-    //     },
-    //     {
-    //       question: "Is Polish language required?",
-    //       answer: "No, but English/German helps in major cities"
-    //     }
-    //   ],
+      faqs: [
+        {
+          question: "Can I visit Ukraine from Poland?",
+          answer: "No, requires separate Ukrainian visa despite border proximity"
+        },
+        {
+          question: "Is Polish language required?",
+          answer: "No, but English/German helps in major cities"
+        }
+      ],
 
-    //   sampleVisaCopy: "/pdf/visa-samples/poland-visa-sample.pdf",
-    //   specialNotes: "Historic site visits (like Auschwitz) require advance online registrations"
-    // },
+      sampleVisaCopy: "/pdf/visa-samples/poland-visa-sample.pdf",
+      specialNotes: "Historic site visits (like Auschwitz) require advance online registrations"
+    },
+    {
+      id: 3,
+      name: "Singapore",
+      searchName: "Singapore SG",
+      price: "6,800",
+      continent: "Asia",
+      isTrending: false,
+      visasOnTime: "280K+",
+      flag: "/images/flags/sg.webp",
+      landmark: "/images/landmarks/Marina Bay Sands tourist places in Singapore Visa.webp",
+      landmarkName: "Marina Bay Sands",
+      altName: "Marina Bay Sands tourist places in Singapore Visa",
+      description: "Singapore dazzles with its futuristic skyline, multicultural cuisine, and immaculate green spaces.",
 
+     
+        visaType: "Tourist Visa",
+        lengthOfStay: "30 days",
+        validity: "2 years",
+        entry: "Multiple",
+     
+      pdfDownload: "/pdf/visa-guides/singapore-visa-guide.pdf",
+
+      documentsRequired: [
+        {
+          category: "Standard Documents",
+          documents: [
+            "Passport (6+ months validity)",
+            "Form 14A completed",
+            "Recent color photo",
+            "Proof of funds (SGD 1,000+)"
+          ]
+        },
+        {
+          category: "For Business Visits",
+          documents: [
+            "Company letter",
+            "V39A form (if sponsored)"
+          ]
+        }
+      ],
+
+      rejectionReasons: [
+        {
+          title: "Criminal Record",
+          description: "Any drug-related offenses",
+          icon: "crime"
+        },
+        {
+          title: "Previous Deportation",
+          description: "Prior removal from Singapore",
+          icon: "deport"
+        }
+      ],
+
+      faqs: [
+        {
+          question: "Can I visit Malaysia with this visa?",
+          answer: "No, separate Malaysian visa required"
+        },
+        {
+          question: "Is eVisa available?",
+          answer: "Yes, through authorized agents only"
+        }
+      ],
+
+      sampleVisaCopy: "/pdf/visa-samples/singapore-visa-sample.pdf"
+    },
+    {
+      id: 114,
+      name: "Croatia",
+      searchName: "Croatia HR",
+      price: "7,200",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "190K+",
+      flag: "/images/flags/hr.webp",
+      landmark: "/images/landmarks/Dubrovnik Old Town Croatia Visa.webp",
+      landmarkName: "Dubrovnik Old Town",
+      altName: "Dubrovnik Old Town tourist places in Croatia Visa",
+      description: "Croatia entices travelers with its stunning Adriatic coastline, historic cities, and Mediterranean charm.",
+    
+      visaType: "Tourist Visa",
+      lengthOfStay: "90 days",
+      validity: "6 months",
+      entry: "Single / Multiple",
+    
+      pdfDownload: "/pdf/visa-guides/croatia-visa-guide.pdf",
+    
+      documentsRequired: [
+        {
+          category: "Standard Documents",
+          documents: [
+            "Passport (valid for at least 3 months after stay)",
+            "Completed visa application form",
+            "Recent passport-size photograph",
+            "Proof of accommodation and travel itinerary",
+            "Travel health insurance (min €30,000 coverage)",
+            "Proof of financial means (bank statement, etc.)"
+          ]
+        },
+        {
+          category: "For Business Visits",
+          documents: [
+            "Invitation letter from Croatian company",
+            "Cover letter from Indian employer",
+            "Company registration details"
+          ]
+        }
+      ],
+    
+      rejectionReasons: [
+        {
+          title: "Insufficient Funds",
+          description: "Bank statement doesn't reflect enough balance",
+          icon: "funds"
+        },
+        {
+          title: "Incomplete Documents",
+          description: "Missing application form or insurance",
+          icon: "documents"
+        }
+      ],
+    
+      faqs: [
+        {
+          question: "Is Croatia part of the Schengen Zone?",
+          answer: "Yes, as of January 2023, Croatia is part of Schengen."
+        },
+        {
+          question: "Can I apply for a Croatian visa online?",
+          answer: "No, you must apply through VFS or the Croatian consulate."
+        }
+      ],
+    
+      sampleVisaCopy: "/pdf/visa-samples/croatia-visa-sample.pdf"
+    },
+
+    {
+      id: 115,
+      name: "Malta",
+      searchName: "Malta MT",
+      price: "6,500",
+      continent: "Europe",
+      isTrending: false,
+      visasOnTime: "160K+",
+      flag: "/images/flags/mt.webp",
+      landmark: "/images/landmarks/Valletta Malta tourist attraction visa.webp",
+      landmarkName: "Valletta",
+      altName: "Valletta Malta tourist attraction visa",
+      description: "Malta blends rich history, Mediterranean charm, and stunning coastlines in a compact island paradise.",
+    
+      visaType: "Tourist Visa",
+      lengthOfStay: "90 days",
+      validity: "6 months",
+      entry: "Single / Multiple",
+    
+      pdfDownload: "/pdf/visa-guides/malta-visa-guide.pdf",
+    
+      documentsRequired: [
+        {
+          category: "Standard Documents",
+          documents: [
+            "Passport (valid at least 3 months beyond stay)",
+            "Completed Schengen visa application form",
+            "Recent passport-size photograph",
+            "Proof of travel itinerary and accommodation",
+            "Travel medical insurance (€30,000 coverage)",
+            "Proof of financial means (last 3 months bank statement)"
+          ]
+        },
+        {
+          category: "For Business Visits",
+          documents: [
+            "Invitation letter from Malta-based company",
+            "Cover letter from Indian employer",
+            "Business registration proof"
+          ]
+        }
+      ],
+    
+      rejectionReasons: [
+        {
+          title: "Travel History Issues",
+          description: "Lack of previous international travel",
+          icon: "history"
+        },
+        {
+          title: "Document Discrepancies",
+          description: "Mismatch in dates or incomplete forms",
+          icon: "error"
+        }
+      ],
+    
+      faqs: [
+        {
+          question: "Is Malta part of the Schengen Zone?",
+          answer: "Yes, Malta is a Schengen country."
+        },
+        {
+          question: "Can I travel to other countries with this visa?",
+          answer: "Yes, within the Schengen area."
+        }
+      ],
+    
+      sampleVisaCopy: "/pdf/visa-samples/malta-visa-sample.pdf"
+    },
+    
+    {
+      id: 116,
+      name: "Germany",
+      searchName: "Germany DE",
+      price: "7,200",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "450K+",
+      flag: "/images/flags/de.webp",
+      landmark: "/images/landmarks/Brandenburg Gate in Germany Visa.webp",
+      landmarkName: "Brandenburg Gate",
+      altName: "Brandenburg Gate Germany tourist place visa",
+      description: "Germany offers rich cultural heritage, historic cities, and scenic landscapes with a world-class transport system.",
+    
+      visaType: "Tourist Visa (Schengen)",
+      lengthOfStay: "90 days",
+      validity: "6 months",
+      entry: "Single / Multiple",
+    
+      pdfDownload: "/pdf/visa-guides/germany-visa-guide.pdf",
+    
+      documentsRequired: [
+        {
+          category: "Standard Documents",
+          documents: [
+            "Passport (valid for at least 3 months beyond departure)",
+            "Completed Schengen visa application form",
+            "2 recent passport-size photos",
+            "Cover letter explaining travel purpose",
+            "Confirmed flight and accommodation bookings",
+            "Travel medical insurance (minimum €30,000 coverage)",
+            "Proof of financial means (bank statements for last 3 months)"
+          ]
+        },
+        {
+          category: "For Business Visits",
+          documents: [
+            "Invitation letter from German company",
+            "Company registration and trade license",
+            "Cover letter from Indian employer"
+          ]
+        }
+      ],
+    
+      rejectionReasons: [
+        {
+          title: "Insufficient Financial Proof",
+          description: "Unable to show enough funds for the trip",
+          icon: "money"
+        },
+        {
+          title: "Unclear Travel Itinerary",
+          description: "Missing accommodation or transport details",
+          icon: "itinerary"
+        }
+      ],
+    
+      faqs: [
+        {
+          question: "Can I visit other Schengen countries with a Germany visa?",
+          answer: "Yes, you can visit all Schengen states."
+        },
+        {
+          question: "Is biometric data required?",
+          answer: "Yes, fingerprints and photo are mandatory."
+        }
+      ],
+    
+      sampleVisaCopy: "/pdf/visa-samples/germany-visa-sample.pdf"
+    }
+    
+    
   ];
   // Other continents can be added similarly...
   // asia: [
@@ -1214,73 +1485,7 @@ export const countryData =
 
   //     sampleVisaCopy: "/pdf/visa-samples/thailand-visa-sample.pdf"
   //   },
-  //   {
-  //     id: 3,
-  //     name: "Singapore",
-  //     searchName: "Singapore SG",
-  //     price: "6,800",
-  //     continent: "Asia",
-  //     isTrending: false,
-  //     visasOnTime: "280K+",
-  //     flag: "/images/flags/sg.webp",
-  //     landmark: "/images/landmarks/Marina Bay Sands tourist places in Singapore Visa.webp",
-  //     landmarkName: "Marina Bay Sands",
-  //     altName: "Marina Bay Sands tourist places in Singapore Visa",
-  //     description: "Singapore dazzles with its futuristic skyline, multicultural cuisine, and immaculate green spaces.",
-
-  //     basicInfo: {
-  //       visaType: "Tourist Visa",
-  //       lengthOfStay: "30 days",
-  //       validity: "2 years",
-  //       entry: "Multiple"
-  //     },
-  //     pdfDownload: "/pdf/visa-guides/singapore-visa-guide.pdf",
-
-  //     documentsRequired: [
-  //       {
-  //         category: "Standard Documents",
-  //         documents: [
-  //           "Passport (6+ months validity)",
-  //           "Form 14A completed",
-  //           "Recent color photo",
-  //           "Proof of funds (SGD 1,000+)"
-  //         ]
-  //       },
-  //       {
-  //         category: "For Business Visits",
-  //         documents: [
-  //           "Company letter",
-  //           "V39A form (if sponsored)"
-  //         ]
-  //       }
-  //     ],
-
-  //     rejectionReasons: [
-  //       {
-  //         title: "Criminal Record",
-  //         description: "Any drug-related offenses",
-  //         icon: "crime"
-  //       },
-  //       {
-  //         title: "Previous Deportation",
-  //         description: "Prior removal from Singapore",
-  //         icon: "deport"
-  //       }
-  //     ],
-
-  //     faqs: [
-  //       {
-  //         question: "Can I visit Malaysia with this visa?",
-  //         answer: "No, separate Malaysian visa required"
-  //       },
-  //       {
-  //         question: "Is eVisa available?",
-  //         answer: "Yes, through authorized agents only"
-  //       }
-  //     ],
-
-  //     sampleVisaCopy: "/pdf/visa-samples/singapore-visa-sample.pdf"
-  //   },
+    
   //   {
   //     id: 4,
   //     name: "South Korea",
