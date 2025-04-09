@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FiSearch, FiCalendar, FiChevronDown, FiPlus, FiMinus, FiArrowRight, FiX, FiUser } from "react-icons/fi";
 import { FaPlane, FaHotel } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,13 +8,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Layout from "../common/Layout";
 import Button from "../common/Button";
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { TextField } from '@mui/material';
 
 export default function HotelBookingComponent() {
   // Form steps
   const [currentStep, setCurrentStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const formRef = useRef(null);
 
-  const [isLoading, setIsLoading] = useState(false)
-  
   // Initial form data
   const initialFormData = {
     contact: {
@@ -24,8 +28,8 @@ export default function HotelBookingComponent() {
     },
     hotel: {
       location: "",
-      checkInDate: "",
-      checkOutDate: "",
+      checkInDate: null,
+      checkOutDate: null,
       rooms: 1,
       adults: 2,
       children: 0,
@@ -34,8 +38,8 @@ export default function HotelBookingComponent() {
       list: [{ title: "Mr", firstName: "", lastName: "" }],
     },
     additional: {
-      visaInterviewDate: "",
-      deliveryDate: "",
+      visaInterviewDate: null,
+      deliveryDate: null,
       specialInstructions: ""
     }
   };
@@ -143,7 +147,7 @@ export default function HotelBookingComponent() {
     if (currentStep < 3) {
       return;
     }
-    setIsLoading(true)
+    setIsLoading(true);
     
     try {
       const response = await fetch('/api/hotel-booking', {
@@ -151,13 +155,24 @@ export default function HotelBookingComponent() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          hotel: {
+            ...formData.hotel,
+            checkInDate: formData.hotel.checkInDate ? new Date(formData.hotel.checkInDate).toISOString() : null,
+            checkOutDate: formData.hotel.checkOutDate ? new Date(formData.hotel.checkOutDate).toISOString() : null
+          },
+          additional: {
+            ...formData.additional,
+            visaInterviewDate: formData.additional.visaInterviewDate ? new Date(formData.additional.visaInterviewDate).toISOString() : null,
+            deliveryDate: formData.additional.deliveryDate ? new Date(formData.additional.deliveryDate).toISOString() : null
+          }
+        }),
       });
   
       const result = await response.json();
       
       if (response.ok) {
-        // Show success toast
         toast.success('Hotel booking submitted successfully!', {
           position: "top-right",
           autoClose: 5000,
@@ -168,7 +183,6 @@ export default function HotelBookingComponent() {
           progress: undefined,
         });
         
-        // Reset form
         setFormData(initialFormData);
         setCurrentStep(1);
       } else {
@@ -177,8 +191,8 @@ export default function HotelBookingComponent() {
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error('An error occurred while submitting your booking');
-    }finally{
-        setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -186,6 +200,10 @@ export default function HotelBookingComponent() {
   const nextStep = () => {
     if (validateCurrentStep() && currentStep < 3) {
       setCurrentStep(currentStep + 1);
+      // Scroll to top of form
+      if (formRef.current) {
+        formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   };
 
@@ -215,36 +233,35 @@ export default function HotelBookingComponent() {
         pauseOnHover
       />
       
-      <div className="mt-8 relative   overflow-hidden">
-                {/* Header with Flight and Hotel Navigation */}
-                <div className="flex bg-white shadow-md relative z-30 -mb-13   border mx-5 sm:mx-10 md:mx-16 rounded-2xl border-gray-200 ">
+      <div className="mt-8 relative overflow-hidden" ref={formRef}>
+        {/* Header with Flight and Hotel Navigation */}
+        <div className="flex bg-white shadow-md relative z-30 -mb-13 border mx-5 sm:mx-10 md:mx-16 rounded-2xl border-gray-200">
           <Link
             href="/services/dummy-flights"
             className={`flex-1 py-3 px-6 cursor-pointer rounded-l-2xl flex flex-col items-center justify-center font-bold text-lg transition-colors text-white bg-white`}
           >
             <img
               src="/images/icon/png/aeroplan-black.png"
-                alt="Flight Icon"
-                className="w-16 h-14 object-cover"
+              alt="Flight Icon"
+              className="w-16 h-14 object-cover"
             />
             <span className="text-gray-600">Flights</span> 
           </Link>
           <Link 
             href={"/services/dummy-hotel"}
-            className={`flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center  font-bold text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600 `}
+            className={`flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600`}
           >
-            
             <img
               src="/images/icon/png/hotel-blue.png"
-                alt="Flight Icon"
-                className="w-16 h-14 object-cover"
+              alt="Flight Icon"
+              className="w-16 h-14 object-cover"
             />
-         <span className="text-primary-500">Hotels</span> 
+            <span className="text-primary-500">Hotels</span> 
           </Link>
         </div>
 
         {/* Progress Steps */}
-         <div className="px-8 rounded-t-2xl border-t border-r border-l border-gray-200 pt-20 bg-white ">
+        <div className="px-8 rounded-t-2xl border-t border-r border-l border-gray-200 pt-20 bg-white">
           <div className="flex items-center justify-between relative">
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex flex-col items-center z-10">
@@ -267,7 +284,7 @@ export default function HotelBookingComponent() {
           </div>
         </div>
 
-        <div className="p-6 sm:p-8 bg-white rounded-b-2xl border-r border-l border-b border-gray-200 ">
+        <div className="p-6 sm:p-8 bg-white rounded-b-2xl border-r border-l border-b border-gray-200">
           <form onSubmit={handleSubmit}>
             <AnimatePresence mode="wait">
               {/* Step 1: Hotel Details */}
@@ -301,41 +318,77 @@ export default function HotelBookingComponent() {
                           <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         </div>
                       </div>
-                        {/* Dates */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                      {/* Check-in */}
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Check-In Date</label>
-                        <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                          <input
-                            type="date"
-                            value={formData.hotel.checkInDate}
-                            onChange={(e) => handleInputChange('hotel.checkInDate', e.target.value)}
-                            className="w-full p-3.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            required
-                          />
-                        </div>
-                      </div>
                       
-                      {/* Check-out */}
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Check-Out Date</label>
-                        <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                          <input
-                            type="date"
-                            value={formData.hotel.checkOutDate}
-                            onChange={(e) => handleInputChange('hotel.checkOutDate', e.target.value)}
-                            className="w-full p-3.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            required
-                            min={formData.hotel.checkInDate}
-                          />
+                      {/* Dates */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                        {/* Check-in */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Check-In Date</label>
+                          <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DatePicker
+                              value={formData.hotel.checkInDate}
+                              onChange={(newValue) => handleInputChange('hotel.checkInDate', newValue)}
+                              minDate={new Date()}
+                              renderInput={(params) => (
+                                <TextField
+                                  {...params}
+                                  fullWidth
+                                  sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                      height: '56px',
+                                      '& fieldset': {
+                                        borderColor: 'rgb(209, 213, 219)',
+                                      },
+                                      '&:hover fieldset': {
+                                        borderColor: 'rgb(59, 130, 246)',
+                                      },
+                                      '&.Mui-focused fieldset': {
+                                        borderColor: 'rgb(59, 130, 246)',
+                                        borderWidth: '2px',
+                                      },
+                                    },
+                                  }}
+                                />
+                              )}
+                            />
+                          </LocalizationProvider>
+                        </div>
+                        
+                        {/* Check-out */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Check-Out Date</label>
+                          <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DatePicker
+                              value={formData.hotel.checkOutDate}
+                              onChange={(newValue) => handleInputChange('hotel.checkOutDate', newValue)}
+                              minDate={formData.hotel.checkInDate || new Date()}
+                              renderInput={(params) => (
+                                <TextField
+                                  {...params}
+                                  fullWidth
+                                  sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                      height: '56px',
+                                      '& fieldset': {
+                                        borderColor: 'rgb(209, 213, 219)',
+                                      },
+                                      '&:hover fieldset': {
+                                        borderColor: 'rgb(59, 130, 246)',
+                                      },
+                                      '&.Mui-focused fieldset': {
+                                        borderColor: 'rgb(59, 130, 246)',
+                                        borderWidth: '2px',
+                                      },
+                                    },
+                                  }}
+                                />
+                              )}
+                            />
+                          </LocalizationProvider>
                         </div>
                       </div>
                     </div>
 
-                    </div>
-
-                  
                     {/* Rooms & Guests */}
                     <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                       <h3 className="text-lg font-medium text-gray-800 mb-4">Rooms & Guests</h3>
@@ -548,7 +601,7 @@ export default function HotelBookingComponent() {
                         onClick={nextStep}
                         className="w-full md:w-auto px-8 py-3"
                       >
-                        Continue to Contact Info
+                        Contact Info
                         <FiArrowRight className="ml-3 text-xl" />
                       </Button>
                     </motion.div>
@@ -629,29 +682,65 @@ export default function HotelBookingComponent() {
                         {/* Visa Interview Date */}
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Visa Interview Date</label>
-                          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                            <input
-                              type="date"
-                              name="visaInterviewDate"
+                          <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DatePicker
                               value={formData.additional.visaInterviewDate}
-                              onChange={(e) => handleInputChange('additional.visaInterviewDate', e.target.value)}
-                              className="w-full p-3.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              onChange={(newValue) => handleInputChange('additional.visaInterviewDate', newValue)}
+                              renderInput={(params) => (
+                                <TextField
+                                  {...params}
+                                  fullWidth
+                                  sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                      height: '56px',
+                                      '& fieldset': {
+                                        borderColor: 'rgb(209, 213, 219)',
+                                      },
+                                      '&:hover fieldset': {
+                                        borderColor: 'rgb(59, 130, 246)',
+                                      },
+                                      '&.Mui-focused fieldset': {
+                                        borderColor: 'rgb(59, 130, 246)',
+                                        borderWidth: '2px',
+                                      },
+                                    },
+                                  }}
+                                />
+                              )}
                             />
-                          </div>
+                          </LocalizationProvider>
                         </div>
                         
                         {/* Delivery Date */}
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Delivery Date</label>
-                          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                            <input
-                              type="date"
-                              name="deliveryDate"
+                          <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DatePicker
                               value={formData.additional.deliveryDate}
-                              onChange={(e) => handleInputChange('additional.deliveryDate', e.target.value)}
-                              className="w-full p-3.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              onChange={(newValue) => handleInputChange('additional.deliveryDate', newValue)}
+                              renderInput={(params) => (
+                                <TextField
+                                  {...params}
+                                  fullWidth
+                                  sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                      height: '56px',
+                                      '& fieldset': {
+                                        borderColor: 'rgb(209, 213, 219)',
+                                      },
+                                      '&:hover fieldset': {
+                                        borderColor: 'rgb(59, 130, 246)',
+                                      },
+                                      '&.Mui-focused fieldset': {
+                                        borderColor: 'rgb(59, 130, 246)',
+                                        borderWidth: '2px',
+                                      },
+                                    },
+                                  }}
+                                />
+                              )}
                             />
-                          </div>
+                          </LocalizationProvider>
                         </div>
                       </div>
                       
@@ -694,11 +783,10 @@ export default function HotelBookingComponent() {
                       <Button 
                         type="submit" 
                         className="w-full md:w-auto px-8 py-3"
-                       disabled={isLoading ? true : false }
+                        disabled={isLoading}
                       >
-                       {!isLoading ?  "Complete Booking": "Submiting..."}
-
-              {!isLoading && <FiArrowRight className="ml-3 text-xl" />}
+                        {!isLoading ? "Complete Booking" : "Submitting..."}
+                        {!isLoading && <FiArrowRight className="ml-3 text-xl" />}
                       </Button>
                     </motion.div>
                   </div>
