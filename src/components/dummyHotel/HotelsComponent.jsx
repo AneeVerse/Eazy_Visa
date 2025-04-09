@@ -47,41 +47,41 @@ const hotelsData = [
       image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
       categories: "Hotels, Budget Hotels, 5 Star Hotels, Apart-Hotels, Homestays",
     },
-    {
-      city: "Singapore",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-      categories: "Hotels, 5 Star Hotels, Little India, Orchard Road, Hostels, Hotels in Sentosa",
-    },
-    {
-      city: "Bangkok",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-      categories: "Hotels, 3 Star Hotels, 5 Star Hotels, Hostels, Budget Hotels, Hotels in Sukhumvit",
-    },
-    {
-      city: "Pattaya",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-      categories: "Hotels, Budget Hotels, 5 Star Hotels, Resorts, Central Pattaya, Beachfront Properties",
-    },
-    {
-      city: "Phuket",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-      categories: "Hotels, Resorts, Budget Hotels, Beachfront Properties",
-    },
-    {
-      city: "Bali",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-      categories: "Hotels, Resorts, 5 Star Hotels, Budget Hotels, Villas In Bali, Beachfront Properties",
-    },
-    {
-      city: "Maldives",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-      categories: "Hotels, 3 Star Hotels, Resorts, 5 Star Hotels, 4 Star Hotels, Hotels in Male",
-    },
-    {
-      city: "Others",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-      categories: "Puri Hotels, OYO Delhi, Alleppey Houseboat, Mahabaleshwar Hotels",
-    },
+    // {
+    //   city: "Singapore",
+    //   image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+    //   categories: "Hotels, 5 Star Hotels, Little India, Orchard Road, Hostels, Hotels in Sentosa",
+    // },
+    // {
+    //   city: "Bangkok",
+    //   image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+    //   categories: "Hotels, 3 Star Hotels, 5 Star Hotels, Hostels, Budget Hotels, Hotels in Sukhumvit",
+    // },
+    // {
+    //   city: "Pattaya",
+    //   image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+    //   categories: "Hotels, Budget Hotels, 5 Star Hotels, Resorts, Central Pattaya, Beachfront Properties",
+    // },
+    // {
+    //   city: "Phuket",
+    //   image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+    //   categories: "Hotels, Resorts, Budget Hotels, Beachfront Properties",
+    // },
+    // {
+    //   city: "Bali",
+    //   image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+    //   categories: "Hotels, Resorts, 5 Star Hotels, Budget Hotels, Villas In Bali, Beachfront Properties",
+    // },
+    // {
+    //   city: "Maldives",
+    //   image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+    //   categories: "Hotels, 3 Star Hotels, Resorts, 5 Star Hotels, 4 Star Hotels, Hotels in Male",
+    // },
+    // {
+    //   city: "Others",
+    //   image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+    //   categories: "Puri Hotels, OYO Delhi, Alleppey Houseboat, Mahabaleshwar Hotels",
+    // },
   ];
   
 

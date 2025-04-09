@@ -4,6 +4,8 @@ import { FiSearch, FiCalendar, FiChevronDown, FiPlus, FiMinus, FiArrowRight, FiX
 import { FaPlane, FaHotel } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from "../common/Layout";
 import Button from "../common/Button";
 
@@ -11,8 +13,8 @@ export default function HotelBookingComponent() {
   // Form steps
   const [currentStep, setCurrentStep] = useState(1);
   
-  // Form data
-  const [formData, setFormData] = useState({
+  // Initial form data
+  const initialFormData = {
     contact: {
       email: "",
       phone: "",
@@ -34,7 +36,10 @@ export default function HotelBookingComponent() {
       deliveryDate: "",
       specialInstructions: ""
     }
-  });
+  };
+
+  // Form data
+  const [formData, setFormData] = useState(initialFormData);
 
   // UI states
   const [price, setPrice] = useState(0);
@@ -99,13 +104,42 @@ export default function HotelBookingComponent() {
     });
   };
 
-  // Form submission
-  // Update the handleSubmit function in your HotelBookingComponent
-const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Validate current step
+  const validateCurrentStep = () => {
+    if (currentStep === 1) {
+      // Validate hotel details
+      if (!formData.hotel.location || !formData.hotel.checkInDate || !formData.hotel.checkOutDate) {
+        return false;
+      }
+      return true;
+    } else if (currentStep === 2) {
+      // Validate traveler info
+      for (const traveler of formData.travelers.list) {
+        if (!traveler.firstName || !traveler.lastName) {
+          return false;
+        }
+      }
+      return true;
+    } else if (currentStep === 3) {
+      // Validate contact info
+      if (!formData.contact.email || !formData.contact.phone) {
+        return false;
+      }
+      return true;
+    }
+    return true;
+  };
 
-    if(currentStep !== 3){
-        return;
+  // Form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateCurrentStep()) {
+      return;
+    }
+
+    if (currentStep !== 3) {
+      return;
     }
     
     try {
@@ -120,22 +154,34 @@ const handleSubmit = async (e) => {
       const result = await response.json();
       
       if (response.ok) {
-        // Handle success - show success message to user
-        alert('Your hotel booking request has been submitted successfully!');
-        // You might want to reset the form or redirect here
+        // Show success toast
+        toast.success('Hotel booking submitted successfully!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        
+        // Reset form
+        setFormData(initialFormData);
+        setCurrentStep(1);
       } else {
-        // Handle error
-        alert(`Error: ${result.error || 'Failed to submit booking'}`);
+        toast.error(result.error || 'Failed to submit booking');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('An error occurred while submitting your booking. Please try again.');
+      toast.error('An error occurred while submitting your booking');
     }
   };
 
   // Step navigation
   const nextStep = () => {
-    if (currentStep < 3) setCurrentStep(currentStep + 1);
+    if (validateCurrentStep() && currentStep < 3) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   const prevStep = () => {
@@ -151,24 +197,37 @@ const handleSubmit = async (e) => {
 
   return (
     <Layout>
+      <ToastContainer 
+        position="top-right"
+        autoClose={5000}
+        className="mt-[70px]"
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      
       <div className="bg-white mt-8 rounded-2xl shadow-lg border border-gray-100 max-w-6xl mx-auto overflow-hidden">
         {/* Header with Flight and Hotel Navigation */}
         <div className="flex border-b rounded-t-2xl border-gray-200 bg-gray-50">
-                    <Link
-                        href="/services/dummy-flights"
-                        className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 text-gray-600 hover:text-blue-600 font-medium text-lg transition-colors `}
-                    >
-                        <FaPlane className="text-xl" />
-                        <span>Flights</span>
-                    </Link>
-                    <Link 
-                     href={"/services/dummy-hotel"}
-                        className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors rounded-tr-2xl  text-white bg-primary-500  shadow-md`}
-                    >
-                        <FaHotel className="text-xl" />
-                        <span>Hotels</span>
-                    </Link>
-                </div>
+          <Link
+            href="/services/dummy-flights"
+            className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 text-gray-600 hover:text-blue-600 font-medium text-lg transition-colors`}
+          >
+            <FaPlane className="text-xl" />
+            <span>Flights</span>
+          </Link>
+          <Link 
+            href={"/services/dummy-hotel"}
+            className={`flex-1 py-5 px-6 flex items-center justify-center gap-3 font-medium text-lg transition-colors rounded-tr-2xl text-white bg-primary-500 shadow-md`}
+          >
+            <FaHotel className="text-xl" />
+            <span>Hotels</span>
+          </Link>
+        </div>
 
         {/* Progress Steps */}
         <div className="px-8 pt-6 bg-gray-50">
