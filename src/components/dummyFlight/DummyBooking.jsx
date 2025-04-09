@@ -301,7 +301,7 @@ const FlightBookingComponent = () => {
       
       <div className="bg-white mt-8 rounded-2xl shadow-lg border border-gray-100 max-w-6xl mx-auto overflow-hidden">
         {/* Header with Flight and Hotel Navigation */}
-        <div className="flex border-b rounded-t-2xl border-gray-200 bg-gray-50">
+        <div className="flex border-b rounded-t-2xl border-gray-200 ">
           <Link
             href="/services/dummy-flights"
             className={`flex-1 py-5 px-6 cursor-pointer flex items-center justify-center gap-3 font-medium text-lg transition-colors text-white bg-primary-500`}
