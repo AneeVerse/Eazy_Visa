@@ -12,6 +12,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
+import { format } from 'date-fns';
 
 export default function HotelBookingComponent() {
   // Form steps
@@ -336,8 +337,10 @@ export default function HotelBookingComponent() {
                                   sx={{
                                     '& .MuiOutlinedInput-root': {
                                       height: '56px',
+                                      borderRadius: '0.5rem',
                                       '& fieldset': {
                                         borderColor: 'rgb(209, 213, 219)',
+                                        borderRadius: '0.5rem',
                                       },
                                       '&:hover fieldset': {
                                         borderColor: 'rgb(59, 130, 246)',
@@ -347,6 +350,11 @@ export default function HotelBookingComponent() {
                                         borderWidth: '2px',
                                       },
                                     },
+                                  }}
+                                  inputProps={{
+                                    ...params.inputProps,
+                                    value: formData.hotel.checkInDate ? format(new Date(formData.hotel.checkInDate), 'yyyy-MM-dd') : '',
+                                    placeholder: 'YYYY-MM-DD'
                                   }}
                                 />
                               )}
@@ -369,8 +377,10 @@ export default function HotelBookingComponent() {
                                   sx={{
                                     '& .MuiOutlinedInput-root': {
                                       height: '56px',
+                                      borderRadius: '0.5rem',
                                       '& fieldset': {
                                         borderColor: 'rgb(209, 213, 219)',
+                                        borderRadius: '0.5rem',
                                       },
                                       '&:hover fieldset': {
                                         borderColor: 'rgb(59, 130, 246)',
@@ -380,6 +390,11 @@ export default function HotelBookingComponent() {
                                         borderWidth: '2px',
                                       },
                                     },
+                                  }}
+                                  inputProps={{
+                                    ...params.inputProps,
+                                    value: formData.hotel.checkOutDate ? format(new Date(formData.hotel.checkOutDate), 'yyyy-MM-dd') : '',
+                                    placeholder: 'YYYY-MM-DD'
                                   }}
                                 />
                               )}
@@ -693,8 +708,10 @@ export default function HotelBookingComponent() {
                                   sx={{
                                     '& .MuiOutlinedInput-root': {
                                       height: '56px',
+                                      borderRadius: '0.5rem',
                                       '& fieldset': {
                                         borderColor: 'rgb(209, 213, 219)',
+                                        borderRadius: '0.5rem',
                                       },
                                       '&:hover fieldset': {
                                         borderColor: 'rgb(59, 130, 246)',
@@ -704,6 +721,11 @@ export default function HotelBookingComponent() {
                                         borderWidth: '2px',
                                       },
                                     },
+                                  }}
+                                  inputProps={{
+                                    ...params.inputProps,
+                                    value: formData.additional.visaInterviewDate ? format(new Date(formData.additional.visaInterviewDate), 'yyyy-MM-dd') : '',
+                                    placeholder: 'YYYY-MM-DD'
                                   }}
                                 />
                               )}
@@ -725,8 +747,10 @@ export default function HotelBookingComponent() {
                                   sx={{
                                     '& .MuiOutlinedInput-root': {
                                       height: '56px',
+                                      borderRadius: '0.5rem',
                                       '& fieldset': {
                                         borderColor: 'rgb(209, 213, 219)',
+                                        borderRadius: '0.5rem',
                                       },
                                       '&:hover fieldset': {
                                         borderColor: 'rgb(59, 130, 246)',
@@ -736,6 +760,11 @@ export default function HotelBookingComponent() {
                                         borderWidth: '2px',
                                       },
                                     },
+                                  }}
+                                  inputProps={{
+                                    ...params.inputProps,
+                                    value: formData.additional.deliveryDate ? format(new Date(formData.additional.deliveryDate), 'yyyy-MM-dd') : '',
+                                    placeholder: 'YYYY-MM-DD'
                                   }}
                                 />
                               )}

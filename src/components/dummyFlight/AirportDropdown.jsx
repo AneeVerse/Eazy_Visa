@@ -75,7 +75,7 @@ export default function AirportDropdown({
                     {selectedOption ? (
                         <div className="flex flex-col">
                             <span className="text-3xl font-bold">{selectedOption.code}</span>
-                            <span className="text-xs text-gray-500 mt-1">{selectedOption.city || selectedOption.name}</span>
+                            <span className="text-xs line-clamp-1 max-w-full text-gray-500 mt-1">{selectedOption.city || selectedOption.name}</span>
                         </div>
                     ) : (
                         <span className="text-gray-400">Select</span>
@@ -116,9 +116,9 @@ export default function AirportDropdown({
                         role="listbox"
                     >
                         {filteredOptions.length > 0 ? (
-                            filteredOptions.map((option) => (
+                            filteredOptions.map((option,ind) => (
                                 <li
-                                    key={option.code}
+                                    key={option.code +ind }
                                     className={`cursor-pointer select-none relative py-3 px-4 hover:bg-blue-50 ${value === option.code ? 'bg-blue-100' : ''}`}
                                     onClick={() => handleSelect(option.code)}
                                     role="option"

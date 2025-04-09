@@ -59,8 +59,8 @@ export const POST = async (req) => {
             
             <h2 style="color: #2563eb; margin-top: 20px;">Hotel Details</h2>
             <p><strong>Location:</strong> ${formData.hotel.location}</p>
-            <p><strong>Check-In:</strong> ${formData.hotel.checkInDate}</p>
-            <p><strong>Check-Out:</strong> ${formData.hotel.checkOutDate}</p>
+            <p><strong>Check-In:</strong> ${new Date(formData.hotel.checkInDate).toISOString().split("T")[0]}</p>
+            <p><strong>Check-Out:</strong> ${new Date(formData.hotel.checkOutDate).toISOString().split("T")[0]}</p>
             <p><strong>Nights:</strong> ${nights}</p>
             <p><strong>Rooms:</strong> ${formData.hotel.rooms}</p>
             <p><strong>Guests:</strong> ${formData.hotel.adults} Adults, ${formData.hotel.children} Children</p>
@@ -69,8 +69,8 @@ export const POST = async (req) => {
             ${travelersHTML}
             
             <h2 style="color: #2563eb; margin-top: 20px;">Additional Information</h2>
-            <p><strong>Visa Interview Date:</strong> ${formData.additional.visaInterviewDate || 'Not specified'}</p>
-            <p><strong>Delivery Date:</strong> ${formData.additional.deliveryDate || 'Not specified'}</p>
+            <p><strong>Visa Interview Date:</strong> ${new Date(formData.additional.visaInterviewDate).toISOString().split("T")[0] || 'Not specified'}</p>
+            <p><strong>Delivery Date:</strong> ${new Date(formData.additional.deliveryDate).toISOString().split("T")[0] || 'Not specified'}</p>
             <p><strong>Special Requests:</strong> ${formData.additional.specialInstructions || 'None'}</p>
           </div>
           
