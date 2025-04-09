@@ -215,37 +215,36 @@ export default function HotelBookingComponent() {
         pauseOnHover
       />
       
-      <div className="bg-white mt-8 rounded-2xl shadow-lg border border-gray-100 max-w-6xl mx-auto overflow-hidden">
-        {/* Header with Flight and Hotel Navigation */}
-        {/* Header with Flight and Hotel Navigation */}
-        <div className="flex border-b rounded-t-2xl border-gray-200 ">
+      <div className="mt-8 relative   overflow-hidden">
+                {/* Header with Flight and Hotel Navigation */}
+                <div className="flex bg-white shadow-md relative z-30 -mb-13   border mx-5 sm:mx-10 md:mx-16 rounded-2xl border-gray-200 ">
           <Link
             href="/services/dummy-flights"
-            className={`flex-1 py-3 px-6 cursor-pointer flex flex-col items-center justify-center font-bold text-lg transition-colors text-white bg-white`}
+            className={`flex-1 py-3 px-6 cursor-pointer rounded-l-2xl flex flex-col items-center justify-center font-bold text-lg transition-colors text-white bg-white`}
           >
             <img
               src="/images/icon/png/aeroplan-black.png"
                 alt="Flight Icon"
-                className="w-20 h-18 object-cover"
+                className="w-16 h-14 object-cover"
             />
             <span className="text-gray-600">Flights</span> 
           </Link>
           <Link 
             href={"/services/dummy-hotel"}
-            className={`flex-1 py-5 px-6 flex flex-col border-l border-gray-200 items-center justify-center  font-bold text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600 `}
+            className={`flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center  font-bold text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600 `}
           >
             
             <img
               src="/images/icon/png/hotel-blue.png"
                 alt="Flight Icon"
-                className="w-20 h-18 object-cover"
+                className="w-16 h-14 object-cover"
             />
          <span className="text-primary-500">Hotels</span> 
           </Link>
         </div>
 
         {/* Progress Steps */}
-        <div className="px-8 pt-6 ">
+         <div className="px-8 rounded-t-2xl border-t border-r border-l border-gray-200 pt-20 bg-white ">
           <div className="flex items-center justify-between relative">
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex flex-col items-center z-10">
@@ -268,7 +267,7 @@ export default function HotelBookingComponent() {
           </div>
         </div>
 
-        <div className="p-6 sm:p-8">
+        <div className="p-6 sm:p-8 bg-white rounded-b-2xl border-r border-l border-b border-gray-200 ">
           <form onSubmit={handleSubmit}>
             <AnimatePresence mode="wait">
               {/* Step 1: Hotel Details */}
@@ -286,7 +285,7 @@ export default function HotelBookingComponent() {
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Find Your Perfect Stay</h2>
                     
                     {/* Search Form */}
-                    <div className="mb-6">
+                    <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Location */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">City, Property Name or Location</label>
@@ -302,10 +301,8 @@ export default function HotelBookingComponent() {
                           <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         </div>
                       </div>
-                    </div>
-
-                    {/* Dates */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        {/* Dates */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                       {/* Check-in */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Check-In Date</label>
@@ -336,6 +333,9 @@ export default function HotelBookingComponent() {
                       </div>
                     </div>
 
+                    </div>
+
+                  
                     {/* Rooms & Guests */}
                     <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                       <h3 className="text-lg font-medium text-gray-800 mb-4">Rooms & Guests</h3>
