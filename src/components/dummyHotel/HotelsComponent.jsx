@@ -4,47 +4,51 @@ import Layout from "../common/Layout";
 const hotelsData = [
     {
       city: "Goa",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+     
+    image: "images/dummy-flight/goa.webp",
       categories: "Hotels, Budget Hotels, Resorts, Best Hotels, North Goa, Villas",
     },
     {
       city: "Ooty",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+     
+    image: "images/dummy-flight/ooty.webp",
       categories: "Hotels, Resorts, Cottages, Budget Hotels, Homestay",
     },
     {
       city: "Jaipur",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+      image: "images/dummy-flight/jaipur.avif",
       categories: "Hotels, Resorts, Budget Hotels, Best Hotels, Near Railway Station",
     },
     {
       city: "Delhi",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+      image: "images/dummy-flight/delhi.avif",
       categories: "Hotels, Budget Hotels, Resorts, Best Hotels, Near IGI Airport",
     },
     {
       city: "Mumbai",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+      image: "images/dummy-flight/mumbai.webp",
       categories: "Hotels, Budget Hotels, Resorts, Couple Hotels, Near Mumbai Airport",
     },
     {
       city: "Manali",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+   
+      image: "images/dummy-flight/manali.avif",
       categories: "Hotels, Resorts, Budget Hotels, Best Hotels, Near Mall Road",
     },
     {
       city: "Bangalore",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+      image: "images/dummy-flight/bangalore.webp",
       categories: "Hotels, Budget Hotels, Resorts, Near Airport, Guhantara Resort",
     },
     {
       city: "Shimla",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+     
+    image: "images/dummy-flight/shimla.webp",
       categories: "Hotels, Budget Hotels, Best Hotels, Resorts, Near Mall Road",
     },
     {
       city: "Dubai",
-      image: "images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
+      image: "images/dummy-flight/dubai.webp",
       categories: "Hotels, Budget Hotels, 5 Star Hotels, Apart-Hotels, Homestays",
     },
     // {
@@ -87,8 +91,8 @@ const hotelsData = [
 
 export default function HotelsComponent() {
   return (
-    <Layout className="my-16 bg-white ">
-      <div className="grid grid-cols-1 border-gray-200 border rounded-xl p-3  sm:p-6 shadow-md md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <Layout className="my-16  ">
+      <div className="grid grid-cols-1 border-gray-200 bg-white border rounded-xl p-3  sm:p-6 shadow-md md:grid-cols-2 lg:grid-cols-3 gap-6">
         {hotelsData.map((hotel, index) => (
           <div key={index} className="flex items-center space-x-4 bg-white">
             <div className="w-12 min-w-12 h-12 relative">
