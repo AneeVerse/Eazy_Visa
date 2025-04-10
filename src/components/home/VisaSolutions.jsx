@@ -15,6 +15,7 @@ const services = [
     image:
       "/images/home/tourist-visa.png",
     rating: 4.9,
+    icon: "/images/icon/tourist-icon.png",
     size: "small",
   },
   {
@@ -24,6 +25,7 @@ const services = [
     description: "Streamlined business visa processing for corporate travelers",
     image: "/images/home/business-visa.webp",
     rating: 4.3,
+    icon: "/images/icon/business-icon.png",
     size: "small",
   },
   {
@@ -33,6 +35,7 @@ const services = [
     description: "Comprehensive visa support from documentation to approval",
     image: "/images/home/passport-image.png",
     rating: 4.7,
+    icon: "/images/icon/endtoend-icon.png",
     size: "small",
   },
   {
@@ -43,6 +46,7 @@ const services = [
     image:
       "/images/home/dummy-flight.webp",
     rating: 4.9,
+    icon: "/images/icon/dummyflight-icon.png",
     size: "large",
   },
   {
@@ -53,6 +57,7 @@ const services = [
     image:
     "/images/home/dummy-hotel.webp",
     rating: 4.6,
+    icon: "/images/icon/dummyhotel-icon.png",
     size: "large",
   },
 ];
@@ -84,9 +89,16 @@ export default function VisaSolutions() {
             <div className="absolute inset-0 bg-black/20 rounded-lg"/>
             <div className="absolute bottom-4 left-4 right-4 bg-white group-active:-translate-y-2 group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
+                <div className="flex gap-2 items-center">
+                <img
+                src={place.icon}
+                alt={place.title}
+                className="w-6 h-6"
+                />
                 <h3 className="text-lg font-medium text-gray-900">
                   {place.title}
                 </h3>
+                </div>
                 <p className="text-sm line-clamp-2 text-gray-500">{place.description}</p>
                 {/* <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
                   <FaStar className="mr-1" />
@@ -116,9 +128,16 @@ export default function VisaSolutions() {
 <div className="absolute inset-0 bg-black/20 rounded-lg"/>
             <div className="absolute bottom-4 left-4 right-4 bg-white  group-active:-translate-y-2 group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
+              <div className="flex gap-2 items-center">
+                <img
+                src={place.icon}
+                alt={place.title}
+                className="w-6 h-6"
+                />
                 <h3 className="text-lg font-medium text-gray-900">
                   {place.title}
                 </h3>
+                </div>
                 <p className="text-sm line-clamp-2 text-gray-500">{place.description}</p> 
                 {/* <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
                   <FaStar className="mr-1" />

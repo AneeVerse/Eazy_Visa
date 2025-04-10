@@ -16,6 +16,8 @@ const services = [
     image:
       "/images/home/dummy-flight.webp",
     rating: 4.9,
+    icon: "/images/icon/dummyhotel-icon.png",
+
     size: "large",
   },
   {
@@ -26,6 +28,7 @@ const services = [
     image:
       "/images/home/tourist-visa.png",
     rating: 4.9,
+    icon: "/images/icon/tourist-icon.png",
     size: "small",
   },
   {
@@ -35,6 +38,7 @@ const services = [
     description: "Streamlined business visa processing for corporate travelers",
     image: "/images/home/business-visa.webp",
     rating: 4.3,
+    icon: "/images/icon/business-icon.png",
     size: "small",
   },
   {
@@ -44,6 +48,7 @@ const services = [
     description: "Comprehensive visa support from documentation to approval",
     image: "/images/home/passport-image.png",
     rating: 4.7,
+    icon: "/images/icon/endtoend-icon.png",
     size: "small",
   },
   {
@@ -54,6 +59,7 @@ const services = [
     image:
     "/images/home/dummy-hotel.webp",
     rating: 4.6,
+    icon: "/images/icon/dummyflight-icon.png",
     size: "large",
   },
 ];
@@ -61,44 +67,52 @@ const services = [
 export default function CountryVisaSolution() {
   return (
     <section className="py-16 ">
-      <Layout>
-      <div className="px-4 text-center">
-        <Heading level={2} className="text-secondary-500 mb-10">
-          End to End Visa Solutions, <br /> Personalized Service, Secure Payment
-        </Heading>
-      </div>
+    <Layout>
+    <div className="px-4 text-center">
+      <Heading level={2} className="text-secondary-500 mb-10">
+        End to End Visa Solutions, <br /> Personalized Service, Secure Payment
+      </Heading>
+    </div>
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {services.slice(0, 3).map((place) => (
-          <Link
-          href={`${place.url}`}
-            key={place.id}
-            className="relative group bg-white rounded-2xl overflow-hidden shadow-lg"
-          >
-            <Image
-              src={place.image}
+    <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {services.slice(0, 3).map((place) => (
+        <Link
+        href={`/services/${place.url}`}
+          key={place.id}
+          className="relative group bg-white rounded-2xl overflow-hidden shadow-lg"
+        >
+          <Image
+            src={place.image}
+            alt={place.title}
+            width={500}
+            height={300}
+            className="w-full h-[400px] group-hover:scale-110 group-active:scale-110 transition-all duration-300 object-cover"
+          />
+          <div className="absolute inset-0 bg-black/20 rounded-lg"/>
+          <div className="absolute bottom-4 left-4 right-4 bg-white group-active:-translate-y-2 group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
+            <div>
+              <div className="flex gap-2 items-center">
+              <img
+              src={place.icon}
               alt={place.title}
-              width={500}
-              height={300}
-              className="w-full h-[400px] group-hover:scale-110 group-active:scale-110 transition-all duration-300 object-cover"
-            />
-            <div className="absolute inset-0 bg-black/20 rounded-lg"/>
-            <div className="absolute bottom-4 left-4 right-4 bg-white group-active:-translate-y-2 group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-medium text-gray-900">
-                  {place.title}
-                </h3>
-                <p className="text-sm line-clamp-2 text-gray-500">{place.description}</p>
-                {/* <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
-                  <FaStar className="mr-1" />
-                  {place.rating}
-                </div> */}
+              className="w-6 h-6"
+              />
+              <h3 className="text-lg font-medium text-gray-900">
+                {place.title}
+              </h3>
               </div>
+              <p className="text-sm line-clamp-2 text-gray-500">{place.description}</p>
+              {/* <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
+                <FaStar className="mr-1" />
+                {place.rating}
+              </div> */}
             </div>
-          </Link>
-        ))}
-      </div>
-</Layout>
-    </section>
+          </div>
+        </Link>
+      ))}
+    </div>
+
+    </Layout>
+  </section>
   );
 }

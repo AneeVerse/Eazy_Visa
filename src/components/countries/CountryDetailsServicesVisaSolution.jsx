@@ -8,55 +8,61 @@ import Link from "next/link";
 
 const services = [
 
-  {
-    id: 4,
-    title: "Dummy Bookings",
-    url: "/dummy-bookings",
-    description: "Dummy bookings for visa applications and travel plans",
-    image:
-      "/images/home/dummy-flight.webp",
-    rating: 4.9,
-    size: "large",
-  },
-  {
-    id: 1,
-    title: "Tourist Visa",
-    url: "/services/tourist-visa",
-    description: "Complete assistance for tourist visa applications to your dream destinations",
-    image:
-      "/images/home/tourist-visa.png",
-    rating: 4.9,
-    size: "small",
-  },
-  {
-    id: 2,
-    title: "Business Visa",
-    url: "/services/business-visa",
-    description: "Streamlined business visa processing for corporate travelers",
-    image: "/images/home/business-visa.webp",
-    rating: 4.3,
-    size: "small",
-  },
-  {
-    id: 3,
-    title: "End to End visa assistance",
-    url: "/services/end-to-end",
-    description: "Comprehensive visa support from documentation to approval",
-    image: "/images/home/passport-image.png",
-    rating: 4.7,
-    size: "small",
-  },
-  {
-    id: 5,
-    title: "Dummy Hotel",
-    url: "/services/dummy-hotel",
-    description: "Curated hotel selections for your perfect stay abroad",
-    image:
-    "/images/home/dummy-hotel.webp",
-    rating: 4.6,
-    size: "large",
-  },
-];
+    {
+      id: 4,
+      title: "Dummy Bookings",
+      url: "/dummy-bookings",
+      description: "Dummy bookings for visa applications and travel plans",
+      image:
+        "/images/home/dummy-flight.webp",
+      rating: 4.9,
+      icon: "/images/icon/dummyhotel-icon.png",
+  
+      size: "large",
+    },
+    {
+      id: 1,
+      title: "Tourist Visa",
+      url: "/services/tourist-visa",
+      description: "Complete assistance for tourist visa applications to your dream destinations",
+      image:
+        "/images/home/tourist-visa.png",
+      rating: 4.9,
+      icon: "/images/icon/tourist-icon.png",
+      size: "small",
+    },
+    {
+      id: 2,
+      title: "Business Visa",
+      url: "/services/business-visa",
+      description: "Streamlined business visa processing for corporate travelers",
+      image: "/images/home/business-visa.webp",
+      rating: 4.3,
+      icon: "/images/icon/business-icon.png",
+      size: "small",
+    },
+    {
+      id: 3,
+      title: "End to End visa assistance",
+      url: "/services/end-to-end",
+      description: "Comprehensive visa support from documentation to approval",
+      image: "/images/home/passport-image.png",
+      rating: 4.7,
+      icon: "/images/icon/endtoend-icon.png",
+      size: "small",
+    },
+    {
+      id: 5,
+      title: "Dummy Hotel",
+      url: "/services/dummy-hotel",
+      description: "Curated hotel selections for your perfect stay abroad",
+      image:
+      "/images/home/dummy-hotel.webp",
+      rating: 4.6,
+      icon: "/images/icon/dummyflight-icon.png",
+      size: "large",
+    },
+  ];
 
 export default function CountryDetailsServicesVisaSolution() {
   return (
@@ -85,9 +91,16 @@ export default function CountryDetailsServicesVisaSolution() {
             <div className="absolute inset-0 bg-black/20 rounded-lg"/>
             <div className="absolute bottom-4 left-4 right-4 bg-white group-active:-translate-y-2 group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
+              <div className="flex gap-2 items-center">
+                <img
+                src={place.icon}
+                alt={place.title}
+                className="w-6 h-6"
+                />
                 <h3 className="text-lg font-medium text-gray-900">
                   {place.title}
                 </h3>
+                </div>
                 <p className="text-sm line-clamp-2 text-gray-500">{place.description}</p>
                 {/* <div className="inline-flex mt-3 items-center bg-[#F2DBB1] text-[#DD9115] px-3 py-1 rounded-full text-[12px]">
                   <FaStar className="mr-1" />
