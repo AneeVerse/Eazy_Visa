@@ -291,7 +291,7 @@ export default function CountrySection() {
         <div className="mt-10 text-center">
           <button
             onClick={loadMore}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-md rounded-lg  transition-colors duration-200 font-medium"
           >
             Load More Countries
           </button>
