@@ -58,7 +58,7 @@ const PricingPage = () => {
       name: "Most Preferred",
       description: "24 Hours Delivery",
       price: "1499",
-      billing: "per person",
+      billing: "*Price applicable for 2+ passengers",
       note: "*Price applicable for 2+ passengers",
       features: [
         "24 Hours Delivery",
@@ -103,37 +103,43 @@ const PricingPage = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 px-4 sm:px-0">
+        <div className="grid gap-12 lg:gap-8 md:grid-cols-2 lg:grid-cols-4 px-4 sm:px-0">
           {plans.map((plan, index) => (
             <div 
               key={index}
-              className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1
+              className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 shadow-lg  transition-all duration-300 hover:shadow-xl hover:-translate-y-1
                 ${plan.popular ? 'ring-2 ring-blue-500/50 shadow-blue-100/50' : ''}`}
             >
-              {plan.popular && (
+              {/* {plan.popular && (
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-              )}
+              )} */}
+
+              <div className="absolute top-[-50px] right-0 p-2">
+                <img src='/images/pricing/hourly-badge1.png' alt="hourly" className="w-20 h-20" />
+              </div>
               
               <div className="p-6">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-1">{plan.name}</h2>
-                    <p className="text-gray-600 text-sm font-medium mb-5">{plan.description}</p>
+                    <h2 className="text-xl mb-5 font-bold text-gray-900 ">{plan.name}</h2>
+                    {/* <p className="text-gray-600 text-sm font-medium mb-5">{plan.description}</p> */}
                   </div>
-                  {plan.popular && (
+                  {/* {plan.popular && (
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                       <FaCrown className="mr-1" /> Popular
                     </span>
-                  )}
+                  )} */}
                 </div>
                 
-                <div className="mb-6">
-                  <p className="text-3xl font-bold text-gray-900">
+                <div className="mb-3 flex items-baseline">
+                  <p className="text-3xl font-bold text-blue-600">
                     ₹{plan.price}
                   </p>
-                  <p className="text-gray-600 text-sm mt-1">{plan.billing}</p>
-                  {plan.note && <p className={`${plan.popular ? " font-semibold ": " "} text-xs text-gray-500/90 mt-1`}>{plan.note}</p>}
+                  <p className={`${plan.popular ? "hidden mt-[-6px] text-blue-500 ":"  "}text-black mb-5 font-semibold text-[13px]`}>/{plan.billing}</p>
+                  
+                  {/* {plan.note && <p className={`${plan.popular ? " font-semibold text-blue-600 ": " text-gray-500/90 "} text-xs  mt-1`}>{plan.note}</p>} */}
                 </div>
+                  <p className={`${plan.popular ? " mt-[-6px] text-blue-500 ":" hidden "}text-black mb-5 font-semibold text-[13px]`}>{plan.billing}</p>
                 
                 <Link href={plan.url} className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 mb-6 shadow-sm
                   ${plan.popular 

@@ -20,6 +20,7 @@ import MediaTestimonials from "@/components/home/MediaTestimonials";
 import FormComponent from "@/components/common/FormComponent";
 import CountryDetailsSkeleton from "@/components/countries/CountryDetailsSkeleton";
 import CountryVisaSolution from "@/components/countries/CountryVisaSolution";
+import CountryDetailsServicesVisaSolution from "@/components/countries/CountryDetailsServicesVisaSolution";
 
 const CountryDetails = () => {
   const params = useParams();
@@ -253,7 +254,7 @@ const CountryDetails = () => {
               </div>
             </section>
 
-            {/* <CountryVisaSolution/> */}
+            <CountryDetailsServicesVisaSolution/>
           </div>
 
           {/* Right Sidebar - Contact Form */}

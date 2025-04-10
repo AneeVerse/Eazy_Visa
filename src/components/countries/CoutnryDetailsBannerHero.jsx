@@ -62,7 +62,7 @@ export default function CoutnryDetailsBannerHero({ title, image }) {
     }, []);
 
     return (
-        <div className="">
+        <div className="relative overflow-x-hidden">
 
             <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
 
