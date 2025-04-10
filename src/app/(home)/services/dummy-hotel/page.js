@@ -12,7 +12,7 @@ const page = () => {
       <HotelsComponent />
       <Layout >
         <FeedbackReviewComponent />
-        <MediaTestimonials />
+        {/* <MediaTestimonials /> */}
       </Layout>
     </div>
   )

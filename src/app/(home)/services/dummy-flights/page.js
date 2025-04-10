@@ -13,7 +13,7 @@ const page = () => {
 
       <Layout >
         <FeedbackReviewComponent />
-        <MediaTestimonials />
+        {/* <MediaTestimonials /> */}
 
       </Layout >
     </div>
