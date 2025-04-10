@@ -13,7 +13,7 @@ const services = [
     url: "/tourist-visa",
     description: "Complete assistance for tourist visa applications to your dream destinations",
     image:
-      "/images/home/tourist-visa.webp",
+      "/images/home/tourist-visa.png",
     rating: 4.9,
     size: "small",
   },
@@ -31,7 +31,7 @@ const services = [
     title: "End to End visa assistance",
     url: "/end-to-end",
     description: "Comprehensive visa support from documentation to approval",
-    image: "/images/home/passport-image.webp",
+    image: "/images/home/passport-image.png",
     rating: 4.7,
     size: "small",
   },
@@ -41,7 +41,7 @@ const services = [
     url: "/dummy-flights",
     description: "Best deals on international flights with flexible options",
     image:
-      "/images/home/dummy-flight.webp",
+      "/images/home/dummy-flight.png",
     rating: 4.9,
     size: "large",
   },
@@ -51,7 +51,7 @@ const services = [
     url: "/dummy-hotel",
     description: "Curated hotel selections for your perfect stay abroad",
     image:
-    "/images/home/dummy-hotel.webp",
+    "/images/home/dummy-hotel.png",
     rating: 4.6,
     size: "large",
   },
