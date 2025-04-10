@@ -9,7 +9,7 @@ const PricingPage = () => {
   const plans = [
     {
       name: "Flight Itinerary",
-      description: "Essential flight booking details for visa applications",
+      description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
       note: "*Name change not allowed",
@@ -25,7 +25,7 @@ const PricingPage = () => {
     },
     {
       name: "Hotel Booking",
-      description: "Verified hotel confirmation for your stay",
+      description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
       note: "*Name change not allowed",
@@ -40,7 +40,7 @@ const PricingPage = () => {
     },
     {
       name: "Daywise Itinerary",
-      description: "Detailed daily schedule for your trip",
+      description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
       note: "*Name change not allowed",
@@ -56,7 +56,7 @@ const PricingPage = () => {
     },
     {
       name: "Most Preferred",
-      description: "Complete package for visa approval",
+      description: "24 Hours Delivery",
       price: "1499",
       billing: "per person",
       note: "*Price applicable for 2+ passengers",
@@ -118,7 +118,7 @@ const PricingPage = () => {
                 <div className="flex justify-between items-start">
                   <div>
                     <h2 className="text-xl font-bold text-gray-900 mb-1">{plan.name}</h2>
-                    <p className="text-gray-600 text-sm mb-5">{plan.description}</p>
+                    <p className="text-gray-600 text-sm font-medium mb-5">{plan.description}</p>
                   </div>
                   {plan.popular && (
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
@@ -132,7 +132,7 @@ const PricingPage = () => {
                     ₹{plan.price}
                   </p>
                   <p className="text-gray-600 text-sm mt-1">{plan.billing}</p>
-                  {plan.note && <p className="text-xs text-gray-500/90 mt-1">{plan.note}</p>}
+                  {plan.note && <p className={`${plan.popular ? " font-semibold ": " "} text-xs text-gray-500/90 mt-1`}>{plan.note}</p>}
                 </div>
                 
                 <Link href={plan.url} className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 mb-6 shadow-sm
@@ -175,9 +175,9 @@ const PricingPage = () => {
               <a href="tel:+918850146905" className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                 <FaPhoneAlt className="mr-2" /> Call Support
               </a>
-              <a href="mailto:info@eazyvisas.com" className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                <FaEnvelope className="mr-2" /> Email Us
-              </a>
+              <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                <FaEnvelope className="mr-2" /> Contact Us
+              </Link>
             </div>
           </div>
         </div>

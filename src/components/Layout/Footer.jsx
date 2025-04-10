@@ -11,7 +11,7 @@ import Link from "next/link";
 const footerLinks = [
   { name: "Home", href: "/" },
   { name: "Blog", href: "/blog" },
-  { name: "Countries", href: "/countries" },
+  { name: "Dummy Booking", href: "/dummy-bookings" },
   { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -166,9 +166,9 @@ export default function Footer() {
               <a href="/privacy" className="text-sm sm:text-base hover:underline">
                 Privacy
               </a>
-              <a href="/cookies" className="text-sm sm:text-base hover:underline">
+              {/* <a href="/cookies" className="text-sm sm:text-base hover:underline">
                 Cookies
-              </a>
+              </a> */}
             </div>
             {/* manage and powered by */}
             <div className="text-sm sm:text-base md:mt-0">

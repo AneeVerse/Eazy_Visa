@@ -13,7 +13,7 @@ export default function CountryCard({
   isTrending,
 }) {
   return (
-    <Link href={`/countries/${continent.toLowerCase()}/${name.toLowerCase()}`}
+    <Link href={`/countries/${continent.toLowerCase().replace(" ", "")}/${name.toLowerCase().replace(" ", "")}`}
     
 
      className="bg-white hover-myshadow rounded-xl cursor-pointer relative border border-gray-200">

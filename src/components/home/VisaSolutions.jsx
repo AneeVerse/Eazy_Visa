@@ -41,7 +41,7 @@ const services = [
     url: "/dummy-flights",
     description: "Best deals on international flights with flexible options",
     image:
-      "/images/home/dummy-flight.png",
+      "/images/home/dummy-flight.webp",
     rating: 4.9,
     size: "large",
   },
@@ -51,7 +51,7 @@ const services = [
     url: "/dummy-hotel",
     description: "Curated hotel selections for your perfect stay abroad",
     image:
-    "/images/home/dummy-hotel.png",
+    "/images/home/dummy-hotel.webp",
     rating: 4.6,
     size: "large",
   },

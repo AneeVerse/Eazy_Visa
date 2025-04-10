@@ -19,6 +19,7 @@ import FeedbackReviewComponent from "@/components/home/FeedbackReviewComponent";
 import MediaTestimonials from "@/components/home/MediaTestimonials";
 import FormComponent from "@/components/common/FormComponent";
 import CountryDetailsSkeleton from "@/components/countries/CountryDetailsSkeleton";
+import CountryVisaSolution from "@/components/countries/CountryVisaSolution";
 
 const CountryDetails = () => {
   const params = useParams();
@@ -51,7 +52,7 @@ const CountryDetails = () => {
         // const apiCountries = await apiResponse.json();
         // console.log("API Countries:", apiCountries);
 
-        setCountry(countryData.find((c) => c.name.toLowerCase() === slug));
+        setCountry(countryData.find((c) => c.name.toLowerCase().replace(" ","") === slug));
 
       } catch (error) {
         console.error("Error fetching country data:", error);
@@ -91,7 +92,7 @@ const CountryDetails = () => {
   }
 
   return (
-    <div className=" relative min-h-screen pb-12">
+    <div className=" relative min-h-screen">
       
       {/* Header Section */}
 
@@ -169,7 +170,7 @@ const CountryDetails = () => {
             <VisaRejectionReasons reasons={country.rejectionReasons} countryName={country.name} />
 
             <FeedbackReviewComponent />
-            <MediaTestimonials />
+            {/* <MediaTestimonials /> */}
 
             {/* Why Choose Eazy Visa */}
             <section className="bg-white py-6  ">
@@ -251,6 +252,8 @@ const CountryDetails = () => {
                 ))}
               </div>
             </section>
+
+            {/* <CountryVisaSolution/> */}
           </div>
 
           {/* Right Sidebar - Contact Form */}
