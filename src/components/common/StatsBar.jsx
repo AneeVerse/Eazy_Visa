@@ -12,7 +12,7 @@ const stats = [
   },
   {
     icon: <FaShieldAlt className="text-yellow-400 text-xl" />,
-    text: '1 Million+ visa processed',
+    text: '500+ visa processed',
   },
   {
     icon: <FaCheckCircle className="text-yellow-400 text-xl" />,
