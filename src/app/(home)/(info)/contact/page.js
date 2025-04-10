@@ -126,18 +126,18 @@ const Contact = () => {
               <div className="pt-8 border-t border-gray-200">
                 <h4 className="text-lg font-medium text-gray-900 mb-4">Follow Us</h4>
                 <div className="flex space-x-5">
-                  <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
+                  {/* <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaTwitter className="w-6 h-6" />
-                  </a>
+                  </a> */}
                   <a href="https://www.instagram.com/eazyvisas/" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaInstagram className="w-6 h-6" />
                   </a>
-                  <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
+                  {/* <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaLinkedinIn className="w-6 h-6" />
                   </a>
                   <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaGithub className="w-6 h-6" />
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
