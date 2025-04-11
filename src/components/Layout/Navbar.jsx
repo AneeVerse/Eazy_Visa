@@ -190,7 +190,7 @@ export default function Navbar() {
                     className="flex items-center gap-1 cursor-pointer group"
                     onMouseEnter={() => setIsServicesOpen(true)}
                   >
-                    <span className="text-gray-800 group-hover:text-blue-600 transition-colors duration-200 font-medium">
+                    <span className="text-gray-800 group-hover:text-blue-600 transition-colors duration-200 font-bold text-[14px]">
                       {link.name}
                     </span>
                     <FiChevronDown className={`text-gray-500 group-hover:text-blue-600 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
@@ -202,7 +202,7 @@ export default function Navbar() {
                     className="group relative"
                     onMouseEnter={() => setIsServicesOpen(false)}
                   >
-                    <span className="text-gray-800 group-hover:text-blue-600 transition-colors duration-200 font-medium">
+                    <span className="text-gray-800 group-hover:text-blue-600 transition-colors text-[14px] font-bold duration-200 ">
                       {link.name}
                     </span>
                     <div className="absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 w-0 group-hover:w-full"></div>
@@ -221,7 +221,7 @@ export default function Navbar() {
                   <input
                     type="text"
                     ref={searchInputRef}
-                    className="w-[116px] lg:w-[116px] xl:w-64 px-4 py-2 pl-8 pr-12 rounded-full border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    className="w-[116px] lg:w-[116px] xl:w-64 px-4 py-2 pl-8 pr-12 text-[15px] rounded-full border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                     placeholder="Where to, Captain?"
                     value={searchQuery}
                     onChange={handleSearchChange}
@@ -229,7 +229,7 @@ export default function Navbar() {
                   />
                   <button
                     type="submit"
-                    className="absolute right-[5px] bg-blue-600 rounded-full flex items-center justify-center w-[34px] h-[34px] top-1/2 transform -translate-y-1/2 text-white hover:text-white-600"
+                    className="absolute right-[4px] bg-blue-600 rounded-full flex items-center justify-center w-[34px] h-[34px] top-1/2 transform -translate-y-1/2 text-white hover:text-white-600"
                   >
                     <FiSearch className="w-4 h-4" />
                   </button>
@@ -438,7 +438,7 @@ export default function Navbar() {
               <div className="relative mb-6">
                 <input
                   type="text"
-                  className="block w-full pl-3 pr-3 py-2.5 border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="block w-full pl-3 pr-3 py-2.5 border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 text-[14px] focus:border-blue-500 outline-none transition"
                   placeholder="Search Countries..."
                   value={searchQuery}
                   onChange={(e) => {
@@ -501,7 +501,7 @@ export default function Navbar() {
                     {link.hasMegaMenu ? (
                       <>
                         <button
-                          className="flex items-center justify-between w-full py-3.5 text-left text-gray-800 hover:text-blue-600 font-medium"
+                          className="flex items-center justify-between w-full py-3.5 text-[14px] text-left text-gray-800 hover:text-blue-600 font-bold"
                           // onClick={() => setIsServicesOpen(!isServicesOpen)}
                         >
                           <span>{link.name}</span>
@@ -513,7 +513,7 @@ export default function Navbar() {
                               <Link
                                 key={service.id}
                                 href={`/services${service.url}`}
-                                className="block py-2.5 px-3 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                                className="block py-2.5 px-3 rounded-lg text-gray-600 font-bold text-[14px] hover:text-blue-600 hover:bg-blue-50 transition-colors"
                                 onClick={handleMobileLinkClick}
                               >
                                 {service.title}
@@ -525,7 +525,7 @@ export default function Navbar() {
                     ) : (
                       <Link
                         href={link.href}
-                        className="block py-3.5 text-gray-800 hover:text-blue-600 font-medium"
+                        className="block py-3.5 text-[14px] text-gray-800 hover:text-blue-600 font-bold"
                         onClick={handleMobileLinkClick}
                       >
                         {link.name}
