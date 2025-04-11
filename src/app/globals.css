@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+/* Add Comfortaa font reference */
+:root {
+  --font-comfortaa: 'Comfortaa', sans-serif;
+}
 
 body {
   overflow-x: hidden;
+  font-family: var(--font-comfortaa);
 }
 
 @layer components {
@@ -120,7 +125,7 @@ body {
 /* blog */
 /* Base Typography */
 .blog-content {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-comfortaa), -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.7;
   color: #333;
   font-size: 1.1rem;

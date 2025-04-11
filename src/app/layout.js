@@ -1,14 +1,14 @@
-import { Poppins } from "next/font/google";
+import { Comfortaa } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import NextTopLoader from "nextjs-toploader";
 
 
-const poppins = Poppins({
+const comfortaa = Comfortaa({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-comfortaa",
 });
 
 export const metadata = {
@@ -42,7 +42,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.variable}`}>
+    <html lang="en" className={`${comfortaa.variable}`}>
       <head>
         {/* You can also add additional meta tags here if needed */}
       </head>

@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-comfortaa)'],
+      },
       colors: {
         // Custom Primary Color
         primary: {
