@@ -5,8 +5,8 @@ import { FiAlertCircle, FiShield, FiCreditCard, FiLock } from 'react-icons/fi';
 
 
 export const metadata = {
-  title: "Terms & Conditions | Eazy Visa",
-  description: "Eazy Visa is a one-stop solution for all your visa needs.",
+  title: "Terms & Conditions | Eazy Visas",
+  description: "Eazy Visas is a one-stop solution for all your visa needs.",
 }
 export default function Terms() {
   return (
@@ -33,7 +33,7 @@ export default function Terms() {
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
                 <p className="text-gray-600">
-                  Welcome to Eazy Visa! These Terms and Conditions govern your use of our website and services. By accessing or using our platform, you agree to be bound by these terms.
+                  Welcome to Eazy Visas! These Terms and Conditions govern your use of our website and services. By accessing or using our platform, you agree to be bound by these terms.
                 </p>
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function Terms() {
                   <ul className="space-y-4 text-gray-600">
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">•</span>
-                      <span>All content on our website is owned by Eazy Visa or its licensors</span>
+                      <span>All content on our website is owned by Eazy Visas or its licensors</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">•</span>
@@ -125,7 +125,7 @@ export default function Terms() {
             <div className="p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Limitation of Liability</h2>
               <p className="text-gray-600 mb-4">
-                Eazy Visa shall not be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.
+                Eazy Visas shall not be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.
               </p>
               <p className="text-gray-600">
                 Our total liability for any claims under these terms shall not exceed the amount you paid us in the last 12 months.

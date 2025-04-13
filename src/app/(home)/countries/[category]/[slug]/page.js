@@ -173,10 +173,10 @@ const CountryDetails = () => {
             <FeedbackReviewComponent />
             {/* <MediaTestimonials /> */}
 
-            {/* Why Choose Eazy Visa */}
+            {/* Why Choose Eazy Visas */}
             <section className="bg-white py-6  ">
               <h2 className="text-3xl font-bold text-gray-800  pb-2">
-                Why Choose Eazy Visa?
+                Why Choose Eazy Visas?
               </h2>
 
               <div className="w-[50px] h-[2px] bg-purple-600 mb-6" />

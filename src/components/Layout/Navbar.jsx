@@ -38,7 +38,7 @@ const services = [
     id: 4,
     title: "Dummy Flights",
     url: "/dummy-flights",
-    description: "Best deals on international flights with flexible options",
+    description: "Verifiable flight tickets for visa applications",
     image:
       "/images/home/dummy-flight.webp",
     rating: 4.9,
@@ -48,7 +48,7 @@ const services = [
     id: 5,
     title: "Dummy Hotel",
     url: "/dummy-hotel",
-    description: "Curated hotel selections for your perfect stay abroad",
+    description: "Verifiable hotel booking for visa applications",
     image:
     "/images/home/dummy-hotel.webp",
     rating: 4.6,
@@ -172,7 +172,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2">
               <img 
                 src="/logo/main-logo.png" 
-                alt="Eazy Visa Logo" 
+                alt="Eazy Visas Logo" 
                 className="h-11 w-auto"
                 width={36}
                 height={36}
@@ -419,7 +419,7 @@ export default function Navbar() {
               <Link href="/" className="flex items-center" onClick={handleMobileLinkClick}>
                 <img 
                   src="/logo/main-logo.png" 
-                  alt="Eazy Visa Logo" 
+                  alt="Eazy Visas Logo" 
                   className="h-8 w-auto"
                 />
               </Link>

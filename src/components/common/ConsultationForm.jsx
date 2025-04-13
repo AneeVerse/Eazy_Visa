@@ -247,7 +247,7 @@ const ConsultationForm = () => {
               <label htmlFor="terms" className="ml-3 block text-sm text-gray-700">
                 <div className="flex items-center">
                   <BiCheckShield className="text-blue-500 mr-1 self-center" />
-                  I agree to the{" "}
+                  I agreed to the{" "}
                   <a href="/terms" className="text-blue-600 hover:underline ml-1">
                     terms and conditions
                   </a>

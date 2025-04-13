@@ -25,7 +25,7 @@ export const POST = async (req) => {
     });
 
     const mailOptions = {
-      from: `"Eazy Visa Form" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
+      from: `"Eazy Visas Form" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
       to: process.env.NEXT_PUBLIC_EMAIL_RECEIVER,
       subject: `New ${visaType} Visa Consultation Request`,
       html: `

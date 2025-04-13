@@ -5,8 +5,8 @@ import React from 'react'
 
 
 export const metadata = {
-  title: "Services | Eazy Visa",
-  description: "Eazy Visa is a one-stop solution for all your visa needs.",
+  title: "Services | Eazy Visas",
+  description: "Eazy Visas is a one-stop solution for all your visa needs.",
 }
 
 const layout = ({ children }) => {

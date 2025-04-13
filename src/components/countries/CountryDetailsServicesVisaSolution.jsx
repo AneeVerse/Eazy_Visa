@@ -68,11 +68,11 @@ export default function CountryDetailsServicesVisaSolution() {
   return (
     <section className="py-4 ">
       <div>
-      <div className="px-4 text-center">
+      {/* <div className="px-4 text-center">
         <Heading level={2} className="text-secondary-500 mb-10">
           End to End Visa Solutions, <br /> Personalized Service, Secure Payment
         </Heading>
-      </div>
+      </div> */}
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-3">
         {services.slice(0, 3).map((place) => (

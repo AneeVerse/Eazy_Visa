@@ -570,7 +570,7 @@ const FlightBookingComponent = () => {
 
                                         {/* Flight Type Radio Buttons */}
                                         <div className="flex gap-1 sm:gap-4 mb-0">
-                                            {["one-way", "multi-city"].map((type) => (
+                                            {["one-way","round-trip", "multi-city"].map((type) => (
                                                 <div key={type} className={`rounded-2xl py-[4px] px-[6px] flex items-center ${formData.flight.type === type ? "bg-blue-100" : ""}`}>
                                                     <input
                                                         type="radio"

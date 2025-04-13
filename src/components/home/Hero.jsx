@@ -100,8 +100,8 @@ export default function HeroSection() {
           </Heading>
 
           <Paragraph className="text-sm sm:text-lg text-gray-600 max-w-2xl">
-            Plan and book your perfect trip with expert advice, travel tips, destination information,
-            and inspiration from us!
+          "Visa hassles? Not with us! We handle the paperwork, you plan the adventure."
+
           </Paragraph>
 
           <div className="flex gap-4 justify-center lg:justify-start">

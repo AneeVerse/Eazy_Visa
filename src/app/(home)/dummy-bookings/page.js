@@ -3,7 +3,7 @@ import Layout from '@/components/common/Layout';
 import { Heading } from '@/components/common/Typography';
 import Footer from '@/components/Layout/Footer';
 import Link from 'next/link';
-import { FaCheck, FaInfoCircle, FaCrown, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaCheck, FaInfoCircle, FaCrown, FaPhoneAlt, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 
 const PricingPage = () => {
   const plans = [
@@ -16,7 +16,7 @@ const PricingPage = () => {
       features: [
         "24 Hours Delivery",
         "Unlimited Flights",
-        "Unlimited Corrections",
+        // "Unlimited Corrections",
         "Name change not allowed"
       ],
 
@@ -32,7 +32,7 @@ const PricingPage = () => {
       features: [
         "24 Hours Delivery",
         "Verifiable Hotel Confirmation",
-        "Unlimited Corrections",
+        // "Unlimited Corrections",
         "Name change not allowed"
       ],
       url:"/services/dummy-hotel",
@@ -48,7 +48,7 @@ const PricingPage = () => {
         "24 Hours Delivery",
         "Day wise Sightseeing",
         "Details of the tour for the duration",
-        "Name change not allowed"
+        // "Name change not allowed"
       ],
 
       url:"/services/dummy-hotel",
@@ -58,7 +58,7 @@ const PricingPage = () => {
       name: "Most Preferred",
       description: "24 Hours Delivery",
       price: "1499",
-      billing: "*Price applicable for 2+ passengers",
+      billing: "per person",
       note: "*Price applicable for 2+ passengers",
       features: [
         "24 Hours Delivery",
@@ -135,11 +135,11 @@ const PricingPage = () => {
                   <p className="text-3xl font-bold text-blue-600">
                     ₹{plan.price}
                   </p>
-                  <p className={`${plan.popular ? "hidden mt-[-6px] text-blue-500 ":"  "}text-black mb-5 font-semibold text-[13px]`}>/{plan.billing}</p>
+                  <p className={`text-black mb-5 font-semibold text-[13px]`}>/{plan.billing}</p>
                   
                   {/* {plan.note && <p className={`${plan.popular ? " font-semibold text-blue-600 ": " text-gray-500/90 "} text-xs  mt-1`}>{plan.note}</p>} */}
                 </div>
-                  <p className={`${plan.popular ? " mt-[-6px] text-blue-500 ":" hidden "}text-black mb-5 font-semibold text-[13px]`}>{plan.billing}</p>
+                  <p className={`${plan.popular ? " mt-[-6px] text-blue-500 ":" hidden "}text-black mb-5 font-semibold text-[12px]`}>{plan.note}</p>
                 
                 <Link href={plan.url} className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 mb-6 shadow-sm
                   ${plan.popular 
@@ -178,10 +178,16 @@ const PricingPage = () => {
               Our visa specialists are available to help you select the perfect plan for your needs.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="tel:+918850146905" className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                <FaPhoneAlt className="mr-2" /> Call Support
-              </a>
-              <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+            <Link
+  href="https://wa.me/918850146905"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center px-6 h-[52px] bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+>
+  <FaWhatsapp className="mr-2 text-xl self-center" />
+  <div className="self-center">Chat with us</div>
+</Link>
+              <Link href="/contact" className="inline-flex items-center justify-center px-6 h-[52px] bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                 <FaEnvelope className="mr-2" /> Contact Us
               </Link>
             </div>

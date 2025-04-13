@@ -12,8 +12,8 @@ const comfortaa = Comfortaa({
 });
 
 export const metadata = {
-  title: "Eazy Visa",
-  description: "Eazy Visa is a one-stop solution for all your visa needs.",
+  title: "Eazy Visas",
+  description: "Eazy Visas is a one-stop solution for all your visa needs.",
   icons: {
     icon: [
       {
