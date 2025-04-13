@@ -5,6 +5,7 @@ import { FaCheckCircle, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import Layout from '@/components/common/Layout';
 import Footer from '@/components/Layout/Footer';
+import Link from 'next/link';
 
 export default function ThankYouPage() {
   const router = useRouter();
@@ -51,9 +52,9 @@ export default function ThankYouPage() {
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Need Immediate Help?</h3>
                 <p className="text-gray-600 mb-2">
                   Call us at: <br />
-                  <a href="tel:+918850146905" className="font-semibold text-blue-600 hover:text-blue-800">
+                  <Link href="tel:+918850146905" className="font-semibold text-blue-600 hover:text-blue-800">
                   +91 88501 46905
-                  </a>
+                  </Link>
                 </p>
               </div>
 
@@ -62,20 +63,20 @@ export default function ThankYouPage() {
                 <FaEnvelope className="h-8 w-8 text-blue-600 mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Email Us</h3>
                 <p className="text-gray-600">
-                  <a href="mailto:info@eazyvisas.com" className="font-semibold text-blue-600 hover:text-blue-800">
+                  <Link href="mailto:info@eazyvisas.com" className="font-semibold text-blue-600 hover:text-blue-800">
                     info@eazyvisas.com
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>
 
             <div className="mt-10 text-center">
-              <a
+              <Link
                 href="/"
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
               >
                 Back to Home
-              </a>
+              </Link>
             </div>
           </div>
         </div>
