@@ -489,7 +489,7 @@ export default function HotelBookingComponent() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-sm text-gray-700">₹1500 per night</div>
+                          {/* <div className="text-sm text-gray-700">₹1500 per night</div> */}
                           <div className="text-xs text-gray-500">Excluding taxes & fees</div>
                         </div>
                       </div>
