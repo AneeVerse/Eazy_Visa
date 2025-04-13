@@ -74,7 +74,7 @@ const Contact = () => {
         pauseOnHover
       />
       
-      <div className="absolute blur-[200px] top-[0%] -left-[30px] w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
+      <div className="absolute blur-[200px] top-[0%] -left-[30px] w-[400px] -z-10 h-[400px] bg-[#0B82E6] opacity-50"></div>
       <Layout className="">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">

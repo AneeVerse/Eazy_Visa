@@ -4,7 +4,7 @@ export const countryData =
       id: 111,
       name: "Japan",
       searchName: "Japan JP",
-      price: "9500",
+      price: "500",
       continent: "Asia",
       isTrending: true,
       isTop: true,
@@ -1005,6 +1005,235 @@ export const countryData =
       sampleVisaCopy: "/pdf/visa-samples/iceland-visa-sample.pdf",
       specialNotes: "F-road mountain routes require certified 4x4 vehicles between June-September"
     },
+    {
+      id: 1116,
+      name: "United Kingdom",
+      searchName: "United Kingdom UK",
+      price: "13500",
+      continent: "Europe",
+      isTrending: true,
+      isTop: true,
+      visasOnTime: "150K+",
+      flag: "/images/flags/uk.webp",
+      landmark: "/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp",
+      landmarkName: "Big Ben",
+      altName: "Big Ben tourist places in United Kingdom UK Visa",
+      description: "The United Kingdom invites you with its rich history, iconic landmarks like Big Ben, and world-class education and tourism opportunities.",
+    
+      visaType: "E-Visa",
+      lengthOfStay: "Up to 6 months / Course Duration",
+      validity: "6 months to 10 years",
+      entryType: "Single / Multiple",
+      processingTime: "15 working days",
+    
+      pdfDownload: "/pdf/visa-sample/uk-visa-sample.pdf",
+    
+      documentsRequired: [
+        {
+          category: "Must-have Documents for UK Visitor Visa",
+          documents: [
+            "Valid passport with at least 6 months validity",
+            "Completed visa application form",
+            "Recent passport-size photograph",
+            "Proof of financial means (bank statements for the last 6 months)",
+            "Proof of accommodation (hotel booking or invitation letter)",
+            "Travel itinerary and confirmed return ticket"
+          ],
+          note: "Ensure that all documents are in English or translated into English by a certified translator."
+        },
+        {
+          category: "Additional Documents for UK Business Visa",
+          documents: [
+            "Invitation letter from a UK-based company",
+            "Proof of business activities (contracts, meeting agendas, etc.)",
+            "Sponsorship details, if applicable"
+          ]
+        }
+      ],
+    
+      rejectionReasons: [
+        {
+          title: "Insufficient Financial Proof",
+          description: "Bank statements not showing adequate funds",
+          icon: "bank"
+        },
+        {
+          title: "Incomplete Documentation",
+          description: "Missing required invitation or accommodation proof",
+          icon: "document"
+        }
+      ],
+    
+      faqs: [
+        {
+          question: "How long does it take to process a UK visa?",
+          answer: "It usually takes around 15 working days for processing."
+        },
+        {
+          question: "Can I work on a UK Standard Visitor Visa?",
+          answer: "No, working is not permitted on a Standard Visitor Visa."
+        },
+        {
+          question: "How long is the validity of a UK tourist visa?",
+          answer: "The visa can be valid for 6 months, 2 years, 5 years, or 10 years."
+        }
+      ],
+    
+      sampleVisaCopy: "/pdf/visa-sample/uk-visa-sample.pdf",
+      specialNotes: "Visitor visas do not allow employment or extended study beyond 30 days."
+    },
+    {
+      id: 1117,
+      name: "Turkey",
+      searchName: "Turkey",
+      price: "5055",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "95K+",
+      flag: "/images/flags/tr.webp",
+      landmark: "/images/landmarks/Hagia Sophia in Turkey.webp",
+      landmarkName: "Hagia Sophia",
+      altName: "Hagia Sophia in Turkey Visa",
+      description: "Turkey offers a blend of Eastern and Western culture, stunning landmarks like Hagia Sophia, vibrant bazaars, and historical treasures across two continents.",
+    
+      visaType: "Sticker Visa",
+      lengthOfStay: "Up to 90 days / Course Duration",
+      validity: "6 months to 1 year",
+      entryType: "Single / Multiple",
+      processingTime: "3-10 working days",
+    
+      pdfDownload: "/pdf/visa-sample/turkey-visa-sample.pdf",
+    
+      documentsRequired: [
+        {
+          category: "Documents Required for Turkey Visa",
+          documents: [
+            "Valid passport with at least 6 months validity",
+            "Completed visa application form",
+            "Two recent passport-size photographs",
+            "Return flight tickets",
+            "Proof of accommodation (hotel reservation or invitation letter)",
+            "Proof of financial means (bank statements or salary slips)"
+          ],
+          note: "Ensure all documents are clear and legible."
+        },
+        {
+          category: "Additional Documents for Business Visa",
+          documents: [
+            "Invitation letter from the Turkish company",
+            "Business registration documents",
+            "Proof of past business dealings (if applicable)"
+          ]
+        }
+      ],
+    
+      rejectionReasons: [
+        {
+          title: "Insufficient Financial Proof",
+          description: "Bank balance does not meet minimum travel requirements",
+          icon: "bank"
+        },
+        {
+          title: "Missing Accommodation Details",
+          description: "Hotel booking or invitation letter not provided",
+          icon: "hotel"
+        }
+      ],
+    
+      faqs: [
+        {
+          question: "How long is a Turkey tourist visa valid?",
+          answer: "It is valid for 6 months with a stay period of up to 90 days."
+        },
+        {
+          question: "Is an e-visa available for Turkey?",
+          answer: "Yes, you can apply for a Turkey e-visa for certain nationalities."
+        },
+        {
+          question: "How much does a Turkey tourist visa cost?",
+          answer: "The single-entry Turkey tourist visa fee is USD 40."
+        }
+      ],
+    
+      sampleVisaCopy: "/pdf/visa-sample/turkey-visa-sample.pdf",
+      specialNotes: "For long stays or study, sticker visa is mandatory. E-visas are issued for tourism and business purposes only."
+    },    
+    {
+      id: 1118,
+      name: "Georgia",
+      searchName: "Georgia",
+      price: "3500",
+      continent: "Europe",
+      isTrending: true,
+      visasOnTime: "85K+",
+      flag: "/images/flags/ge.webp",
+      landmark: "/images/landmarks/Narikala Fortress in Georgia.jpg",
+      landmarkName: "Narikala Fortress",
+      altName: "Narikala Fortress in Georgia Visa",
+      description: "Georgia is a stunning blend of mountains, monasteries, and modern charm, attracting travelers with its rich culture, natural beauty, and warm hospitality.",
+    
+      visaType: "E-Visa / Sticker Visa",
+      lengthOfStay: "Up to 90 days within 180-day period",
+      validity: "180 days",
+      entryType: "Single / Multiple",
+      processingTime: "5-10 working days",
+    
+      pdfDownload: "/pdf/visa-sample/georgia-visa-sample.pdf",
+    
+      documentsRequired: [
+        {
+          category: "Standard Documents for Georgia Visa",
+          documents: [
+            "Valid passport with at least 6 months validity",
+            "Completed online visa application form",
+            "Recent passport-size photograph",
+            "Confirmed return flight tickets",
+            "Proof of accommodation (hotel booking or invitation letter)",
+            "Proof of sufficient funds (bank statement or salary slips)"
+          ],
+          note: "All documents must be submitted in English or Georgian, or accompanied by a certified translation."
+        },
+        {
+          category: "Additional Documents for Business Visa",
+          documents: [
+            "Invitation letter from the Georgian company",
+            "Business registration proof",
+            "Meeting schedules or past business engagement documents"
+          ]
+        }
+      ],
+    
+      rejectionReasons: [
+        {
+          title: "Invalid or Incomplete Application",
+          description: "Errors or missing data in the application form",
+          icon: "form"
+        },
+        {
+          title: "Lack of Travel History",
+          description: "Applicants with no prior international travel may face delays or rejection",
+          icon: "passport"
+        }
+      ],
+    
+      faqs: [
+        {
+          question: "Is Georgia visa-free for Indian citizens?",
+          answer: "Indian citizens need to apply for an e-visa or sticker visa before traveling."
+        },
+        {
+          question: "How long can I stay in Georgia with an e-visa?",
+          answer: "Up to 90 days within a 180-day period."
+        },
+        {
+          question: "Can I extend my Georgia tourist visa?",
+          answer: "No, tourist visas for Georgia are generally not extendable."
+        }
+      ],
+    
+      sampleVisaCopy: "/pdf/visa-sample/georgia-visa-sample.pdf",
+      specialNotes: "Georgia is a visa-free destination for some countries. E-visas are suitable for short-term stays involving tourism or business."
+    },    
     // {
     //   id: 16,
     //   name: "Ireland",
@@ -1425,7 +1654,7 @@ export const countryData =
       id: 9,
       name: "United States",
       searchName: "United States USA",
-      price: "15000",
+      price: "16000",
       continent: "North America",
       isTrending: true,
       visasOnTime: "500K+",
@@ -1507,6 +1736,75 @@ export const countryData =
           fees: "USD 160/-"  
         }
       ]
+    },
+
+      {
+      id: 4,
+      name: "South Korea",
+      searchName: "South Korea KR",
+      price: "3200",
+      continent: "Asia",
+      isTrending: true,
+      visasOnTime: "190K+",
+      flag: "/images/flags/kr.webp",
+      landmark: "/images/landmarks/Gyeongbokgung Palace in South Korea Visa.webp",
+      landmarkName: "Gyeongbokgung Palace",
+      altName: "Gyeongbokgung Palace in South Korea Visa",
+      description: "South Korea combines futuristic cities, ancient palaces, K-pop culture, and world-renowned cuisine.",
+
+        visaType: "C-3 Tourist Visa",
+        lengthOfStay: "90 days",
+        validity: "3 months",
+        entry: "Single/Multiple",
+      
+      pdfDownload: "/pdf/visa-guides/south-korea-visa-guide.pdf",
+
+      documentsRequired: [
+        {
+          category: "Mandatory Documents",
+          documents: [
+            "Passport (6+ months validity)",
+            "Completed application form",
+            "35x45mm color photo (white background)",
+            "Detailed travel itinerary",
+            "Bank statements (min. ₩1,000,000 balance)"
+          ]
+        },
+        {
+          category: "For First-Time Visitors",
+          documents: [
+            "Proof of employment/studies",
+            "Return flight tickets",
+            "Hotel reservations"
+          ]
+        }
+      ],
+
+      rejectionReasons: [
+        {
+          title: "Incomplete Itinerary",
+          description: "Missing day-by-day travel plans",
+          icon: "itinerary"
+        },
+        {
+          title: "North Korea Travel History",
+          description: "Recent visits to DPRK without clearance",
+          icon: "security"
+        }
+      ],
+
+      faqs: [
+        {
+          question: "Can I visit Jeju Island without visa?",
+          answer: "Yes, visa-free for 30 days (direct flights only)"
+        },
+        {
+          question: "Is K-ETA required with visa?",
+          answer: "No, K-ETA is only for visa-free entries"
+        }
+      ],
+
+      sampleVisaCopy: "/pdf/visa-samples/south-korea-visa-sample.pdf"
     },
     
   ];

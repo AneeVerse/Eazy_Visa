@@ -32,7 +32,7 @@ export default function HotelBookingComponent() {
       checkInDate: null,
       checkOutDate: null,
       rooms: 1,
-      adults: 2,
+      adults: 1,
       children: 0,
     },
     travelers: {
@@ -63,12 +63,12 @@ export default function HotelBookingComponent() {
 
   // Price calculation
   useEffect(() => {
-    const basePrice = 1500;
-    const calculatedPrice = formData.hotel.rooms * basePrice * 
-      (formData.hotel.checkInDate && formData.hotel.checkOutDate ? 
-       Math.ceil((new Date(formData.hotel.checkOutDate) - new Date(formData.hotel.checkInDate)) / (1000 * 60 * 60 * 24)) : 1);
-    setPrice(calculatedPrice);
-  }, [formData.hotel.rooms, formData.hotel.checkInDate, formData.hotel.checkOutDate]);
+    const basePrice = 1000;
+    const calculatedPrice = formData.hotel.adults * basePrice ;
+      // (formData.hotel.checkInDate && formData.hotel.checkOutDate ? 
+      //  Math.ceil((new Date(formData.hotel.checkOutDate) - new Date(formData.hotel.checkInDate)) / (1000 * 60 * 60 * 24)) : 1);
+    setPrice(calculatedPrice-1);
+  }, [formData.hotel.rooms, formData.hotel.adults, formData.hotel.checkInDate, formData.hotel.checkOutDate]);
 
   // Handle input changes
   const handleInputChange = (path, value) => {
@@ -174,10 +174,14 @@ export default function HotelBookingComponent() {
       const result = await response.json();
       
       if (response.ok) {
-        toast.success('Hotel booking submitted successfully!');
-        
-        setFormData(initialFormData);
-        setCurrentStep(1);
+        // toast.success('Hotel booking submitted successfully!');
+         // Set flag in sessionStorage before redirecting
+         sessionStorage.setItem('formSubmitted', 'true');
+         
+         // Redirect to thank you page
+         window.location.href = '/thank-you';
+        // setFormData(initialFormData);
+        // setCurrentStep(1);
       } else {
         toast.error(result.error || 'Failed to submit booking');
       }

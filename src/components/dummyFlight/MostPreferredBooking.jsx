@@ -14,7 +14,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 
-const FlightBookingComponent = () => {
+const MostPreferredBooking = () => {
     // Form steps
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -48,10 +48,10 @@ const FlightBookingComponent = () => {
     const [formData, setFormData] = useState(initialFormData);
 
     // UI states
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(2000); // Default price for 1 person
     const [airports] = useState([
         { code: "DEL", name: "Delhi" },
-  { code: "BOM", name: "Mumbai" },
+        { code: "BOM", name: "Mumbai" },
   { code: "BLR", name: "Bengaluru" },
   { code: "MAA", name: "Chennai" },
   { code: "HYD", name: "Hyderabad" },
@@ -247,11 +247,12 @@ const FlightBookingComponent = () => {
 
     // Price calculation
     useEffect(() => {
-        const basePrice = 1000;
-        const discount = 1; // ₹1 discount per person
-        const calculatedPrice = formData.travelers.count > 0 ?
-            (formData.travelers.count * basePrice) - discount : 0;
-        setPrice(calculatedPrice);
+        if (formData.travelers.count === 1) {
+            setPrice(2000); // ₹2000 for 1 person
+        } else if (formData.travelers.count > 1) {
+            // ₹1499 per additional person, but subtract 1 from count for calculation
+            setPrice((formData.travelers.count * 1500) - 1);
+        }
     }, [formData.travelers.count]);
 
     // Handle input changes
@@ -441,7 +442,8 @@ const FlightBookingComponent = () => {
                         ...formData.additional,
                         visaInterviewDate: formData.additional.visaInterviewDate ? new Date(formData.additional.visaInterviewDate).toISOString() : null,
                         deliveryDate: formData.additional.deliveryDate ? new Date(formData.additional.deliveryDate).toISOString() : null
-                    }
+                    },
+                    price: price // Include the calculated price in the submission
                 }),
             });
 
@@ -449,14 +451,13 @@ const FlightBookingComponent = () => {
 
             if (response.ok) {
                 // toast.success('Flight booking submitted successfully!');
+                
+                // Set flag in sessionStorage before redirecting
                 sessionStorage.setItem('formSubmitted', 'true');
                 sessionStorage.setItem('bookingPrice', price.toString());
                 
                 // Redirect to thank you page
                 window.location.href = '/thank-you';
-
-                setFormData(initialFormData);
-                // setCurrentStep(1);
             } else {
                 toast.error(result.error || 'Failed to submit booking');
             }
@@ -1079,4 +1080,4 @@ const FlightBookingComponent = () => {
     );
 };
 
-export default FlightBookingComponent;
+export default MostPreferredBooking;

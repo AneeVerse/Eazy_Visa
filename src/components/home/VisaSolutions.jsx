@@ -42,7 +42,7 @@ const services = [
     id: 4,
     title: "Dummy Flights",
     url: "/dummy-flights",
-    description: "Best deals on international flights with flexible options",
+    description: "Verifiable flight tickets for visa applications",
     image:
       "/images/home/dummy-flight.webp",
     rating: 4.9,
@@ -53,7 +53,7 @@ const services = [
     id: 5,
     title: "Dummy Hotel",
     url: "/dummy-hotel",
-    description: "Curated hotel selections for your perfect stay abroad",
+    description: "Verifiable hotel booking for visa applications",
     image:
     "/images/home/dummy-hotel.webp",
     rating: 4.6,

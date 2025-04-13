@@ -51,7 +51,7 @@ const PricingPage = () => {
         // "Name change not allowed"
       ],
 
-      url:"/services/dummy-hotel",
+      url:"/services/dummy-flights",
       popular: false
     },
     {
@@ -67,7 +67,7 @@ const PricingPage = () => {
         "Day wise Itinerary",
         "Name change not allowed"
       ],
-      url:"/services/dummy-flights",
+      url:"/services/most-preferred",
       popular: true
     }
   ];
@@ -75,7 +75,7 @@ const PricingPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50/90 via-indigo-50/90 to-purple-50/90 pt-16 relative overflow-hidden">
       {/* Enhanced Glassmorphism background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
         <div className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-gradient-to-r from-blue-200/40 to-blue-300/30 rounded-full filter blur-[120px] animate-float-slow"></div>
         <div className="absolute top-2/3 right-1/4 w-[35rem] h-[35rem] bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full filter blur-[110px] animate-float-medium"></div>
         <div className="absolute bottom-1/4 left-1/3 w-[30rem] h-[30rem] bg-gradient-to-l from-indigo-200/30 to-blue-200/30 rounded-full filter blur-[100px] animate-float-fast"></div>

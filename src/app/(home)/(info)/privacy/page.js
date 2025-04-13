@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen relative py-20">
 
-       <div className="absolute blur-[200px] top-[0%] -left-[30px]  w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
+       <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10  w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
       <Layout className="">
         {/* Header */}
         <div className="text-center mb-16">

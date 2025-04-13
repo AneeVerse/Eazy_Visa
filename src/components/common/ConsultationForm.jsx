@@ -85,18 +85,12 @@ const ConsultationForm = () => {
         throw new Error(data.message || 'Failed to submit form');
       }
 
-      toast.success(`Your ${data.visaType} Visa consultation request submitted successfully!`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      // Set flag in sessionStorage before redirecting
+      sessionStorage.setItem('formSubmitted', 'true');
       
-      setFormData({ name: "", email: "", phone: "" });
-      setIsAccepted(false);
-
+      // Redirect to thank you page
+      window.location.href = '/thank-you';
+      
     } catch (error) {
       toast.error(error.message || "Submission failed. Please try again.", {
         position: "top-right",

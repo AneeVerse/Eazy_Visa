@@ -77,7 +77,7 @@ export default function CountryVisaSolution() {
     <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
       {services.slice(0, 3).map((place) => (
         <Link
-        href={`/services/${place.url}`}
+        href={`${place.url}`}
           key={place.id}
           className="relative group bg-white rounded-2xl overflow-hidden shadow-lg"
         >

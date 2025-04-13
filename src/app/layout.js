@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import NextTopLoader from "nextjs-toploader";
+import FloatingActionButton from "@/components/Layout/FloatingActionButton";
 
 
 const comfortaa = Comfortaa({
@@ -59,6 +60,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <div className="mt-[80px]">
           {children}
+          <FloatingActionButton />
         </div>
       </body>
     </html>
