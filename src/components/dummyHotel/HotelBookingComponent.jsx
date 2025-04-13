@@ -20,6 +20,41 @@ export default function HotelBookingComponent() {
   const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef(null);
 
+  // City search states
+  const [citySearch, setCitySearch] = useState("");
+  const [showCitySuggestions, setShowCitySuggestions] = useState(false);
+  const cityInputRef = useRef(null);
+
+  // Popular cities data
+  const popularCities = [
+    { id: 1, name: "New Delhi", country: "India" },
+    { id: 2, name: "Mumbai", country: "India" },
+    { id: 3, name: "Bangalore", country: "India" },
+    { id: 4, name: "Hyderabad", country: "India" },
+    { id: 5, name: "Chennai", country: "India" },
+    { id: 6, name: "Kolkata", country: "India" },
+    { id: 7, name: "Pune", country: "India" },
+    { id: 8, name: "Goa", country: "India" },
+    { id: 9, name: "Jaipur", country: "India" },
+    { id: 10, name: "Udaipur", country: "India" },
+    { id: 11, name: "Dubai", country: "UAE" },
+    { id: 12, name: "Singapore", country: "Singapore" },
+    { id: 13, name: "Bangkok", country: "Thailand" },
+    { id: 14, name: "Kuala Lumpur", country: "Malaysia" },
+    { id: 15, name: "London", country: "UK" },
+    { id: 16, name: "New York", country: "USA" },
+    { id: 17, name: "Toronto", country: "Canada" },
+    { id: 18, name: "Sydney", country: "Australia" },
+  ];
+
+  // Filter cities based on search
+  const filteredCities = citySearch 
+    ? popularCities.filter(city => 
+        city.name.toLowerCase().includes(citySearch.toLowerCase()) ||
+        city.country.toLowerCase().includes(citySearch.toLowerCase())
+      )
+    : popularCities;
+
   // Initial form data
   const initialFormData = {
     contact: {
@@ -64,9 +99,7 @@ export default function HotelBookingComponent() {
   // Price calculation
   useEffect(() => {
     const basePrice = 1000;
-    const calculatedPrice = formData.hotel.adults * basePrice ;
-      // (formData.hotel.checkInDate && formData.hotel.checkOutDate ? 
-      //  Math.ceil((new Date(formData.hotel.checkOutDate) - new Date(formData.hotel.checkInDate)) / (1000 * 60 * 60 * 24)) : 1);
+    const calculatedPrice = formData.hotel.adults * basePrice;
     setPrice(calculatedPrice-1);
   }, [formData.hotel.rooms, formData.hotel.adults, formData.hotel.checkInDate, formData.hotel.checkOutDate]);
 
@@ -81,6 +114,32 @@ export default function HotelBookingComponent() {
       }
     }));
   };
+
+  // Handle city selection
+  const handleCitySelect = (city) => {
+    handleInputChange('hotel.location', city.name);
+    setCitySearch(city.name);
+    setShowCitySuggestions(false);
+  };
+
+  // Handle city input focus
+  const handleCityFocus = () => {
+    setShowCitySuggestions(true);
+  };
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cityInputRef.current && !cityInputRef.current.contains(event.target)) {
+        setShowCitySuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   // Handle guest changes
   const updateGuests = (type, value) => {
@@ -114,13 +173,11 @@ export default function HotelBookingComponent() {
   // Validate current step
   const validateCurrentStep = () => {
     if (currentStep === 1) {
-      // Validate hotel details
       if (!formData.hotel.location || !formData.hotel.checkInDate || !formData.hotel.checkOutDate) {
         return false;
       }
       return true;
     } else if (currentStep === 2) {
-      // Validate traveler info
       for (const traveler of formData.travelers.list) {
         if (!traveler.firstName || !traveler.lastName) {
           return false;
@@ -128,7 +185,6 @@ export default function HotelBookingComponent() {
       }
       return true;
     } else if (currentStep === 3) {
-      // Validate contact info
       if (!formData.contact.email || !formData.contact.phone) {
         return false;
       }
@@ -174,14 +230,8 @@ export default function HotelBookingComponent() {
       const result = await response.json();
       
       if (response.ok) {
-        // toast.success('Hotel booking submitted successfully!');
-         // Set flag in sessionStorage before redirecting
-         sessionStorage.setItem('formSubmitted', 'true');
-         
-         // Redirect to thank you page
-         window.location.href = '/thank-you';
-        // setFormData(initialFormData);
-        // setCurrentStep(1);
+        sessionStorage.setItem('formSubmitted', 'true');
+        window.location.href = '/thank-you';
       } else {
         toast.error(result.error || 'Failed to submit booking');
       }
@@ -197,7 +247,6 @@ export default function HotelBookingComponent() {
   const nextStep = () => {
     if (validateCurrentStep() && currentStep < 3) {
       setCurrentStep(currentStep + 1);
-      // Scroll to top of form
       if (formRef.current) {
         formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -300,19 +349,43 @@ export default function HotelBookingComponent() {
                     
                     {/* Search Form */}
                     <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {/* Location */}
-                      <div>
+                      {/* Location with City Suggestions */}
+                      <div ref={cityInputRef}>
                         <label className="block text-sm font-medium text-gray-700 mb-2">City, Property Name or Location</label>
                         <div className="relative">
                           <input
                             type="text"
-                            value={formData.hotel.location}
-                            onChange={(e) => handleInputChange('hotel.location', e.target.value)}
+                            value={citySearch}
+                            onChange={(e) => {
+                              setCitySearch(e.target.value);
+                              handleInputChange('hotel.location', e.target.value);
+                            }}
+                            onFocus={handleCityFocus}
                             className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Where do you want to stay?"
                             required
                           />
                           <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                          
+                          {/* City Suggestions Dropdown */}
+                          {showCitySuggestions && (
+                            <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-lg border border-gray-200 max-h-60 overflow-auto">
+                              {filteredCities.length > 0 ? (
+                                filteredCities.map((city) => (
+                                  <div
+                                    key={city.id}
+                                    className="px-4 py-3 hover:bg-blue-50 cursor-pointer flex justify-between items-center"
+                                    onClick={() => handleCitySelect(city)}
+                                  >
+                                    <span className="font-medium">{city.name}</span>
+                                    <span className="text-sm text-gray-500">{city.country}</span>
+                                  </div>
+                                ))
+                              ) : (
+                                <div className="px-4 py-3 text-gray-500">No cities found</div>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
                       
@@ -489,7 +562,6 @@ export default function HotelBookingComponent() {
                           </div>
                         </div>
                         <div className="text-right">
-                          {/* <div className="text-sm text-gray-700">₹1500 per night</div> */}
                           <div className="text-xs text-gray-500">Excluding taxes & fees</div>
                         </div>
                       </div>
