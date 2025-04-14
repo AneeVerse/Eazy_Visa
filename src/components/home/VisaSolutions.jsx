@@ -64,7 +64,7 @@ const services = [
 
 export default function VisaSolutions() {
   return (
-    <section className="py-16 ">
+    <section className="pb-16 ">
       <Layout>
       {/* <div className="px-4 text-center">
         <Heading level={2} className="text-secondary-500 mb-10">
@@ -72,7 +72,7 @@ export default function VisaSolutions() {
         </Heading>
       </div> */}
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="mt-0 grid grid-cols-1 md:grid-cols-3 gap-6">
         {services.slice(0, 3).map((place) => (
           <Link
           href={`/services/${place.url}`}

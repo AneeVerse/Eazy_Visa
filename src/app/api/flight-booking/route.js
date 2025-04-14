@@ -62,6 +62,7 @@ export const POST = async (req) => {
             <h2 style="color: #2563eb; margin-top: 0;">Contact Information</h2>
             <p><strong>Email:</strong> ${formData.contact.email}</p>
             <p><strong>Phone:</strong> ${formData.contact.phoneCode} ${formData.contact.phone}</p>
+            <p><strong>Price:</strong> ${formData.price}</p>
             
             <h2 style="color: #2563eb; margin-top: 20px;">Flight Details</h2>
             <p><strong>Type:</strong> ${formData.flight.type}</p>

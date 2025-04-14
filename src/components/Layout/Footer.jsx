@@ -157,7 +157,7 @@ export default function Footer() {
           {/* Bottom Section - Copyright and Legal Links */}
           <div className="border-t border-white mt-6 pt-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm sm:text-base text-center sm:text-left">
-              &copy; 2025 Eazy Visas. All rights reserved.
+              &copy; 2025 Eazyvisas. All rights reserved.
             </p>
             <div className="flex gap-4">
               <a href="/terms" className="text-sm sm:text-base hover:underline">

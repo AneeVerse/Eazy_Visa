@@ -431,6 +431,7 @@ const MostPreferredBooking = () => {
                 },
                 body: JSON.stringify({
                     ...formData,
+                    price:price,
                     flight: {
                         ...formData.flight,
                         legs: formData.flight.legs.map(leg => ({

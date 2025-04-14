@@ -9,6 +9,7 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { IoAirplane } from 'react-icons/io5';
 import Layout from '../common/Layout';
 import ConsultationForm from '../common/ConsultationForm';
+import FormComponent from '../common/FormComponent';
 
 const SCROLL_IMAGES = [
     '/images/home/hero1.png',
@@ -120,7 +121,7 @@ export default function TouristVisaHero({ title, image }) {
 
             {/* right Content */}
             <div className="relative flex-1">
-               <ConsultationForm />
+               <FormComponent />
             </div>
 
         </Layout>

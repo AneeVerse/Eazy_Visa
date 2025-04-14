@@ -214,6 +214,7 @@ export default function HotelBookingComponent() {
         },
         body: JSON.stringify({
           ...formData,
+          price: price,
           hotel: {
             ...formData.hotel,
             checkInDate: formData.hotel.checkInDate ? new Date(formData.hotel.checkInDate).toISOString() : null,
