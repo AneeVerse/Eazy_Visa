@@ -126,7 +126,7 @@ loss in penalty charged by the Airline or the Hotel or the Travel Agent.
               <div className="text-indigo-100">Clients Worldwide</div>
             </div>
             <div className="p-4">
-              <div className="text-4xl font-bold mb-2">15M+</div>
+              <div className="text-4xl font-bold mb-2">550+</div>
               <div className="text-indigo-100">Users Impacted</div>
             </div>
             <div className="p-4">
