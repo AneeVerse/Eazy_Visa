@@ -34,8 +34,10 @@ const MostPreferredBooking = () => {
             legs: [{ from: "DEL", to: "BOM", date: null }],
         },
         travelers: {
-            count: 1,
-            list: [{ type: "adult", title: "Mr", firstName: "", lastName: "", age: "" }],
+            count: 2,
+            list: [{ type: "adult", title: "Mr", firstName: "", lastName: "", age: "" },
+                
+            ],
         },
         additional: {
             visaInterviewDate: null,
@@ -256,15 +258,64 @@ const MostPreferredBooking = () => {
     }, [formData.travelers.count]);
 
     // Handle input changes
+    // const handleInputChange = (path, value) => {
+    //     const [parent, child] = path.split('.');
+
+    //     if(value == "round-trip"){
+    //         addFlightLeg();
+    //     }
+
+    //     setFormData(prev => ({
+    //         ...prev,
+    //         [parent]: {
+    //             ...prev[parent],
+    //             [child]: value
+    //         }
+    //     }));
+    // };
     const handleInputChange = (path, value) => {
         const [parent, child] = path.split('.');
-        setFormData(prev => ({
-            ...prev,
-            [parent]: {
-                ...prev[parent],
-                [child]: value
-            }
-        }));
+    
+        if (parent === 'flight' && child === 'type') {
+            // Handle flight type change
+            setFormData(prev => {
+                let legs = [...prev.flight.legs];
+                
+                if (value === "one-way") {
+                    // For one-way, keep only the first leg
+                    legs = legs.slice(0, 1);
+                } else if (value === "round-trip" && legs.length < 2) {
+                    // For round-trip, add return leg if needed
+                    legs = [
+                        ...legs,
+                        { 
+                            from: legs[0].to, 
+                            to: legs[0].from, 
+                            date: null 
+                        }
+                    ];
+                }
+                // For multi-city, leave legs as they are
+                
+                return {
+                    ...prev,
+                    flight: {
+                        ...prev.flight,
+                        type: value,
+                        legs
+                    }
+                };
+            });
+        } else {
+            // Normal case for other fields
+            setFormData(prev => ({
+                ...prev,
+                [parent]: {
+                    ...prev[parent],
+                    [child]: value
+                }
+            }));
+        }
     };
 
     // Handle flight leg changes
@@ -284,6 +335,39 @@ const MostPreferredBooking = () => {
             };
         });
     };
+
+    // update current travellist accourding count using useEffect
+    useEffect(() => {
+        const currentList = [...formData.travelers.list];
+        const newCount = formData.travelers.count;
+        if (newCount > currentList.length) {
+            const newTravelers = Array(newCount - currentList.length)
+                .fill()
+                .map(() => ({
+                    type: "adult",
+                    title: "Mr",
+                    firstName: "",
+                    lastName: "",
+                    age: ""
+                }));
+            setFormData(prev => ({
+                ...prev,
+                travelers: {
+                    count: newCount,
+                    list: [...currentList, ...newTravelers]
+                }
+            }));
+        }
+        else if (newCount < currentList.length) {
+            setFormData(prev => ({
+                ...prev,
+                travelers: {
+                    count: newCount,
+                    list: currentList.slice(0, newCount)
+                }
+            }));
+        }
+    }, [formData.travelers.count]);
 
     // Traveler functions
     const updateTravelerCount = (count) => {
@@ -355,16 +439,31 @@ const MostPreferredBooking = () => {
         });
     };
 
-    // Flight leg functions
-    const addFlightLeg = () => {
+   // Flight leg functions
+//    const addFlightLeg = () => {
+//     setFormData(prev => ({
+//         ...prev,
+//         flight: {
+//             ...prev.flight,
+//             legs: [...prev.flight.legs, { from: prev.flight.legs[prev.flight.legs.length - 1].to , to: "", date: null }]
+//         }
+//     }));
+// };
+const addFlightLeg = () => {
+    if (formData.flight.type === "multi-city") {
         setFormData(prev => ({
             ...prev,
             flight: {
                 ...prev.flight,
-                legs: [...prev.flight.legs, { from: "", to: "", date: null }]
+                legs: [...prev.flight.legs, { 
+                    from: prev.flight.legs[prev.flight.legs.length - 1].to, 
+                    to: "", 
+                    date: null 
+                }]
             }
         }));
-    };
+    }
+};
 
     const removeFlightLeg = (index) => {
         if (formData.flight.legs.length > 1) {
@@ -672,19 +771,18 @@ const MostPreferredBooking = () => {
                                                 </motion.div>
                                             ))}
 
-                                            {(formData.flight.type === "multi-city" ||
-                                                (formData.flight.type === "round-trip" && formData.flight.legs.length < 2)) && (
-                                                    <motion.button
-                                                        whileHover={{ scale: 1.02 }}
-                                                        whileTap={{ scale: 0.98 }}
-                                                        type="button"
-                                                        className="flex items-center text-blue-600 hover:text-blue-800 font-medium"
-                                                        onClick={addFlightLeg}
-                                                    >
-                                                        <FiPlus className="mr-2" />
-                                                        <span>Add another flight</span>
-                                                    </motion.button>
-                                                )}
+{formData.flight.type === "multi-city" && (
+    <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        type="button"
+        className="flex items-center text-blue-600 hover:text-blue-800 font-medium"
+        onClick={addFlightLeg}
+    >
+        <FiPlus className="mr-2" />
+        <span>Add another flight</span>
+    </motion.button>
+)}
                                         </div>
                                     </div>
 

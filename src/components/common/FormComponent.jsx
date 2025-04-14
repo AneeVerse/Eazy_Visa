@@ -22,10 +22,10 @@ const FormComponent = () => {
   // Sample options for dropdowns
   const visaTypes = [
     "Tourist Visa",
-    "Student Visa",
+    // "Student Visa",
     "Business Visa",
-    "Family Visa",
-    "End to End Visa Assistance",
+    // "Family Visa",
+    // "End to End Visa Assistance",
     // "Permanent Residence"
   ];
 
@@ -231,7 +231,11 @@ const FormComponent = () => {
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Phone number regex for  only numbers
+    // Adjust the regex as per your requirements
     const phoneRegex = /^[0-9]{10,15}$/;
+    
+   
 
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
@@ -432,13 +436,13 @@ const FormComponent = () => {
 
             {/* Phone Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+              <label className=" text-sm font-medium text-gray-700 mb-1 flex items-center">
                 <BiPhone className="mr-2 text-blue-500 text-sm" />
                 Phone Number*
               </label>
               <div className="relative">
                 <input
-                  type="tel"
+                  type="number"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}

@@ -55,10 +55,10 @@ loss in penalty charged by the Airline or the Hotel or the Travel Agent.
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
   {[
-    {
-      icon: <FaRocket className="text-3xl text-indigo-600" />,
-      title: "Innovation",
-      desc: "We challenge the status quo to create breakthrough solutions"
+     {
+      icon: <FaUsers className="text-3xl text-indigo-600" />,
+      title: "People First",
+      desc: "Our users and team are at the heart of everything we do"
     },
     {
       icon: <FaUserTie className="text-3xl text-indigo-600" />,
@@ -66,14 +66,14 @@ loss in penalty charged by the Airline or the Hotel or the Travel Agent.
       desc: "Get guidance from experienced visa consultants for your application"
     },
     {
-      icon: <FaUsers className="text-3xl text-indigo-600" />,
-      title: "People First",
-      desc: "Our users and team are at the heart of everything we do"
-    },
-    {
       icon: <FaHandshake className="text-3xl text-indigo-600" />,
       title: "Integrity",
       desc: "We do what's right, even when no one is watching"
+    },
+    {
+      icon: <FaLightbulb className="text-3xl text-indigo-600" />,
+      title: "Simplicity",
+      desc: "We believe complexity should be invisible to the user"
     },
   ].map((value, index) => (
     <div key={index} className="bg-white/80 backdrop-blur-lg rounded-xl p-6 shadow-lg shadow-indigo-100 hover:shadow-xl transition-shadow">

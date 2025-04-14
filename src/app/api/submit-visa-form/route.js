@@ -42,6 +42,9 @@ export const POST = async (req) => {
               <p style="margin: 5px 0;"><strong>Visa Type:</strong> ${visaType}</p>
             </div>
           </div>
+            <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
+          <p style="margin: 0;">This Form was created at ${new Date().toLocaleString()}</p>
+        </div>
         </div>
       `,
     };

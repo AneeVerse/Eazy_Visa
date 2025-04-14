@@ -100,7 +100,7 @@ export default function HeroSection() {
           </Heading>
 
           <Paragraph className="text-sm sm:text-lg text-gray-600 max-w-2xl">
-          "Visa hassles? Not with us! We handle the paperwork, you plan the adventure."
+          Visa hassles? Not with us! We handle the paperwork, you plan the adventure.
 
           </Paragraph>
 

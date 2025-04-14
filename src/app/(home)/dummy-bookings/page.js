@@ -187,8 +187,8 @@ const PricingPage = () => {
   <FaWhatsapp className="mr-2 text-xl self-center" />
   <div className="self-center">Chat with us</div>
 </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center px-6 h-[52px] bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                <FaEnvelope className="mr-2" /> Contact Us
+              <Link href="tel:+918850146905" className="inline-flex items-center justify-center px-6 h-[52px] bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                <FaPhoneAlt className="mr-2" /> Call Support
               </Link>
             </div>
           </div>

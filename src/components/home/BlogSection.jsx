@@ -83,7 +83,7 @@ export default function BlogSection() {
 
         {/* Blog Cards - Scrollable */}
         <div className="mt-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] hide-scrollbar">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] xl:gap-[15px] hide-scrollbar">
             {blogData.slice(0,4).map((blog, index) => (
               <Link 
               href={`/blogs/${blog.url}`}
@@ -96,16 +96,16 @@ export default function BlogSection() {
                     alt={blog.title}
                     width={320}
                     height={180}
-                    className="w-full h-52 md:h-48 object-cover rounded-4xl"
+                    className="w-full h-52 md:h-48 object-cover rounded-xl"
                   />
                 </div>
-                <div className="p-4">
+                <div className="py-4">
                   <div className="flex gap-1 justify-between">
                     <h3 className="text-lg line-clamp-2 font-semibold">{blog.title}</h3>
-                    <div className="bg-[#ffd11b] self-start text-black px-2 py-1 rounded-full flex items-center gap-1 whitespace-nowrap font-semibold text-sm">
+                    {/* <div className="bg-[#ffd11b] self-start text-black px-2 py-1 rounded-full flex items-center gap-1 whitespace-nowrap font-semibold text-sm">
                       <FaStar className="text-black text-sm" />
                       4.8
-                    </div>
+                    </div> */}
                   </div>
                   {/* <p className="text-gray-500">{blog.description}</p> */}
                 </div>

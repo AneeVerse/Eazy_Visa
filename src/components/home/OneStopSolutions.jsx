@@ -26,7 +26,7 @@ const services = [
 
 export default function OneStopSolutions() {
   return (
-    <section className="py-16  text-center">
+    <section className="pt-16 pb-6  text-center">
       <Layout>
         <Heading level={2} className="text-secondary-500 mb-10">
         One Stop Solutions

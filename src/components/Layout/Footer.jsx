@@ -11,7 +11,7 @@ import Link from "next/link";
 const footerLinks = [
   { name: "Home", href: "/" },
   { name: "Blog", href: "/blog" },
-  { name: "Dummy Booking", href: "/dummy-bookings" },
+  { name: "Dummy Bookings", href: "/dummy-bookings" },
   { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -93,7 +93,7 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 justify-between">
             {/* Left Section - Brand Info and Links */}
             <div className="space-y-4">
-              <Link href={"/"}>
+              <Link href={"/"} className="mb-4 block">
                 <Image src="/logo/logo-white.png" alt="Logo" width={100} height={26} draggable={false} />
               </Link>
               <p className="text-sm sm:text-base">

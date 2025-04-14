@@ -29,7 +29,7 @@ export default function ThankYouPage() {
           <h1 className="mt-6 text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Thank You for Connecting With Us!
           </h1>
-          <p className="mt-4 text-xl text-gray-600">
+          <p className="mt-4 text-[25px] text-gray-600">
             One of our visa experts will contact you shortly.
           </p>
         </div>

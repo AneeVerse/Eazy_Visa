@@ -77,9 +77,9 @@ export const POST = async (req) => {
             <p><strong>Special Instructions:</strong> ${formData.additional.specialInstructions || 'None'}</p>
           </div>
           
-          <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
-            <p style="margin: 0;">This email was sent from the flight booking form.</p>
-          </div>
+           <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
+          <p style="margin: 0;">This booking was created at ${new Date().toLocaleString()}</p>
+        </div>
         </div>
       `,
     };
