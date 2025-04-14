@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <div className="mt-[80px]">
           {children}
-          <FloatingActionButton />
+          {/* <FloatingActionButton /> */}
         </div>
       </body>
     </html>
