@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const states = [
   {
     number: 500,
-    title: "visa approves",
+    title: "visa approved",
     suffix: "+"
   },
   {
