@@ -127,8 +127,7 @@ export default function TravelPoint() {
           </Heading>
 
           <p className="text-[#7e7e7e]">
-          Plan and book your perfect trip with expert advice, travel tips, destination information, and inspiration from us!
-          </p>
+          Getting your visa just got easier! Count on us for quick processing, expert help, and friendly support every step of the way. </p>
 
           {/* Stats Grid */}
           <div id="travel-point-stats" className="grid grid-cols-2 gap-4 sm:gap-6">
