@@ -96,10 +96,10 @@ export default function Footer() {
               <Link href={"/"} className="mb-4 block">
                 <Image src="/logo/logo-white.png" alt="Logo" width={100} height={26} draggable={false} />
               </Link>
-              <p className="text-sm sm:text-base">
+              {/* <p className="text-sm sm:text-base">
                 We help travelers explore Norway's wonders effortlessly with smart
                 planning and expert guides.
-              </p>
+              </p> */}
 
 
               {/* Footer Links */}

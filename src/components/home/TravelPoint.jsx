@@ -23,8 +23,8 @@ const states = [
     suffix: "+"
   },
   {
-    number: 10,
-    title: "Premium Airlines ",
+    number: 150,
+    title: "Countries Visa assistance",
     suffix: "+"
   },
 ];

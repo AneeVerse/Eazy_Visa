@@ -5,6 +5,7 @@ import { FaTwitter, FaInstagram, FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import Layout from '@/components/common/Layout';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FormComponent from '@/components/common/FormComponent';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -144,8 +145,8 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white/80 flex-1 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-blue-100">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          {/* <div className="bg-white/80 flex-1 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-blue-100"> */}
+            {/* <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Your Name*</label>
                 <div className="relative">
@@ -210,8 +211,9 @@ const Contact = () => {
                   </>
                 )}
               </button>
-            </form>
-          </div>
+            </form> */}
+            <FormComponent/>
+          {/* </div> */}
         </div>
 
         {/* Map Section */}

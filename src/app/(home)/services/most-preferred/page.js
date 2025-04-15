@@ -10,7 +10,7 @@ const page = () => {
   return (
     <div>
       <MostPreferredBooking />
-      <FlightsComponent />
+      {/* <FlightsComponent /> */}
 
       <Layout >
         <FeedbackReviewComponent />

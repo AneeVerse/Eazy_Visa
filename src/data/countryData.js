@@ -15,7 +15,7 @@ export const countryData =
       altName: "Mount Fuji in Japan Visa",
       description: "Japan blends ancient traditions with cutting-edge technology, offering cherry blossoms, sushi, and bullet trains.",
 
-        visaType: "Tourist Visa",
+        visaType: "Sticker Visa",
         lengthOfStay: "Up to 90 days",
         validity: "3 months",
         entry: "Single/Multiple",
@@ -1172,7 +1172,7 @@ export const countryData =
       altName: "Narikala Fortress in Georgia Visa",
       description: "Georgia is a stunning blend of mountains, monasteries, and modern charm, attracting travelers with its rich culture, natural beauty, and warm hospitality.",
     
-      visaType: "E-Visa / Sticker Visa",
+      visaType: "E-Visa",
       lengthOfStay: "Up to 90 days within 180-day period",
       validity: "180 days",
       entryType: "Single / Multiple",

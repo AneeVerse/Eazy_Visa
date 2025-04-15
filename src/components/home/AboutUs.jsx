@@ -36,8 +36,8 @@ export default function AboutUs() {
                 <FaMapMarkerAlt className="text-2xl text-secondary-500" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">Choose Your Destination</h3>
-                <p className="text-gray-600">Select from thousands of beautiful places</p>
+                <h3 className="text-xl font-semibold text-gray-800">Global Visa access</h3>
+                <p className="text-gray-600">Search and apply for visas to 100+ countries all in one place.</p>
               </div>
             </div>
 
@@ -46,8 +46,8 @@ export default function AboutUs() {
                 <FaSuitcase className="text-2xl text-secondary-500" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">Personalize Your Trip</h3>
-                <p className="text-gray-600">Get custom itineraries tailored to your preferences</p>
+                <h3 className="text-xl font-semibold text-gray-800">Fast and Simple Process</h3>
+                <p className="text-gray-600">Get personalized visa info in seconds with an easy, guided search.</p>
               </div>
             </div>
 
@@ -56,8 +56,8 @@ export default function AboutUs() {
                 <FaPlane className="text-2xl text-secondary-500" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">Travel Effortlessly</h3>
-                <p className="text-gray-600">Book and explore Norway without hassle</p>
+                <h3 className="text-xl font-semibold text-gray-800">Relaible & Updated Info</h3>
+                <p className="text-gray-600">Stay ahead with the latest visa requirements, trusted by  travelers worldwide.</p>
               </div>
             </div>
           </div>

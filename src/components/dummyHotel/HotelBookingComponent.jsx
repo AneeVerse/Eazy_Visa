@@ -148,14 +148,14 @@ export default function HotelBookingComponent() {
     { id: 118, name: "Helsinki", country: "Finland" },
     { id: 119, name: "Copenhagen", country: "Denmark" },
     { id: 120, name: "Dublin", country: "Ireland" }
-];
+  ];
 
   // Filter cities based on search
-  const filteredCities = citySearch 
-    ? popularCities.filter(city => 
-        city.name.toLowerCase().includes(citySearch.toLowerCase()) ||
-        city.country.toLowerCase().includes(citySearch.toLowerCase())
-      )
+  const filteredCities = citySearch
+    ? popularCities.filter(city =>
+      city.name.toLowerCase().includes(citySearch.toLowerCase()) ||
+      city.country.toLowerCase().includes(citySearch.toLowerCase())
+    )
     : popularCities;
 
   // Initial form data
@@ -199,14 +199,14 @@ export default function HotelBookingComponent() {
     { code: "+65", name: "Singapore" },
   ];
 
-  const titles = ["Mr", "Mrs", "Ms", "Miss", "Dr"];
+  const titles = ["Mr", "Mrs"];
 
   // Price calculation
   useEffect(() => {
     const basePrice = 1000;
-    const calculatedPrice = formData.guests.adults * basePrice ;
-    setPrice(calculatedPrice-1);
-  }, [formData.guests.rooms, formData.guests.adults, formData.hotels]);
+    const calculatedPrice = (formData.guests.children + formData.guests.adults )* basePrice;
+    setPrice(calculatedPrice - 1);
+  }, [formData.guests.rooms, formData.guests.children, formData.guests.adults, formData.hotels]);
 
   // Handle input changes
   const handleInputChange = (path, value) => {
@@ -294,15 +294,15 @@ export default function HotelBookingComponent() {
   const updateGuests = (type, value) => {
     setFormData(prev => {
       const newValue = Math.max(type === 'rooms' ? 1 : 0, value);
-      
+
       // Update travelers list when adults count changes
       if (type === 'adults' || type === 'children') {
-        const totalGuests = type === 'adults' 
-          ? newValue + prev.guests.children 
+        const totalGuests = type === 'adults'
+          ? newValue + prev.guests.children
           : prev.guests.adults + newValue;
-        
+
         let updatedTravelers = [...prev.travelers.list];
-        
+
         if (totalGuests > updatedTravelers.length) {
           // Add new travelers
           const toAdd = totalGuests - updatedTravelers.length;
@@ -313,7 +313,7 @@ export default function HotelBookingComponent() {
           // Remove travelers
           updatedTravelers = updatedTravelers.slice(0, totalGuests);
         }
-        
+
         return {
           ...prev,
           guests: {
@@ -326,7 +326,7 @@ export default function HotelBookingComponent() {
           }
         };
       }
-      
+
       return {
         ...prev,
         guests: {
@@ -383,7 +383,7 @@ export default function HotelBookingComponent() {
   // Form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateCurrentStep()) {
       return;
     }
@@ -393,7 +393,7 @@ export default function HotelBookingComponent() {
     }
     setIsLoading(true);
     console.log("Submitting form data:", formData);
-    
+
     try {
       const response = await fetch('/api/hotel-booking', {
         method: 'POST',
@@ -415,9 +415,9 @@ export default function HotelBookingComponent() {
           }
         }),
       });
-  
+
       const result = await response.json();
-      
+
       if (response.ok) {
         sessionStorage.setItem('formSubmitted', 'true');
         window.location.href = '/thank-you';
@@ -455,7 +455,7 @@ export default function HotelBookingComponent() {
 
   return (
     <Layout>
-      <ToastContainer 
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         className="mt-[70px]"
@@ -467,7 +467,7 @@ export default function HotelBookingComponent() {
         draggable
         pauseOnHover
       />
-      
+
       <div className="mt-8 relative overflow-hidden" ref={formRef}>
         {/* Header with Flight and Hotel Navigation */}
         <div className="flex bg-white shadow-md relative z-30 -mb-13 border mx-5 sm:mx-10 md:mx-16 rounded-2xl border-gray-200">
@@ -480,9 +480,9 @@ export default function HotelBookingComponent() {
               alt="Flight Icon"
               className="w-16 h-14 object-cover"
             />
-            <span className="text-gray-600">Flights</span> 
+            <span className="text-gray-600">Flights</span>
           </Link>
-          <Link 
+          <Link
             href={"/services/dummy-hotel"}
             className={`flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600`}
           >
@@ -491,7 +491,7 @@ export default function HotelBookingComponent() {
               alt="Flight Icon"
               className="w-16 h-14 object-cover"
             />
-            <span className="text-primary-500">Hotels</span> 
+            <span className="text-primary-500">Hotels</span>
           </Link>
         </div>
 
@@ -500,7 +500,7 @@ export default function HotelBookingComponent() {
           <div className="flex items-center justify-between relative">
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex flex-col items-center z-10">
-                <div 
+                <div
                   className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${currentStep >= step ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-gray-600 border-2 border-gray-300'}`}
                 >
                   {step}
@@ -511,8 +511,8 @@ export default function HotelBookingComponent() {
               </div>
             ))}
             <div className="absolute top-6 left-12 right-12 h-1 bg-gray-200 z-0">
-              <div 
-                className="h-full bg-blue-600 transition-all duration-500" 
+              <div
+                className="h-full bg-blue-600 transition-all duration-500"
                 style={{ width: `${(currentStep - 1) * 50}%` }}
               ></div>
             </div>
@@ -534,8 +534,8 @@ export default function HotelBookingComponent() {
                   className="space-y-8"
                 >
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Find Your Perfect Stay</h2>
-                    
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Hotels Details</h2>
+
                     {/* Hotel Sections */}
                     {formData.hotels.map((hotel, hotelIndex) => (
                       <div key={hotelIndex} className="mb-6 border border-gray-200 rounded-lg p-6 relative">
@@ -548,11 +548,11 @@ export default function HotelBookingComponent() {
                             <FiX className="w-4 h-4" />
                           </button>
                         )}
-                        
+
                         <h3 className="text-lg font-semibold text-gray-700 mb-4">
                           {formData.hotels.length > 1 ? `Hotel ${hotelIndex + 1}` : 'Hotel Details'}
                         </h3>
-                        
+
                         {/* Search Form */}
                         <div className=" grid grid-cols-1 md:grid-cols-2 gap-6">
                           {/* Location with City Suggestions */}
@@ -572,7 +572,7 @@ export default function HotelBookingComponent() {
                                 required
                               />
                               <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                              
+
                               {/* City Suggestions Dropdown - Only show for active hotel input */}
                               {showCitySuggestions && hotelIndex === activeHotelIndex && (
                                 <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-lg border border-gray-200 max-h-60 overflow-auto">
@@ -594,7 +594,7 @@ export default function HotelBookingComponent() {
                               )}
                             </div>
                           </div>
-                          
+
                           {/* Dates */}
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 ">
                             {/* Check-in */}
@@ -636,7 +636,7 @@ export default function HotelBookingComponent() {
                                 />
                               </LocalizationProvider>
                             </div>
-                            
+
                             {/* Check-out */}
                             <div>
                               <label className="block text-sm font-medium text-gray-700 mb-2">Check-Out Date</label>
@@ -680,7 +680,7 @@ export default function HotelBookingComponent() {
                         </div>
                       </div>
                     ))}
-                    
+
                     {/* Add More Hotel Button */}
                     <div className="flex justify-start mb-8">
                       <button
@@ -720,7 +720,7 @@ export default function HotelBookingComponent() {
                             </button>
                           </div>
                         </div>
-                        
+
                         {/* Adults */}
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Adults</label>
@@ -743,7 +743,7 @@ export default function HotelBookingComponent() {
                             </button>
                           </div>
                         </div>
-                        
+
                         {/* Children */}
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Children (0-12)</label>
@@ -776,7 +776,7 @@ export default function HotelBookingComponent() {
                           <div className="text-sm font-medium text-gray-700">Estimated Total</div>
                           <div className="text-2xl font-bold text-blue-600">₹{price.toLocaleString()}.00</div>
                           <div className="text-xs text-gray-500 mt-1">
-                            {formData.guests.rooms} {formData.guests.rooms === 1 ? 'Room' : 'Rooms'} × 
+                            {formData.guests.rooms} {formData.guests.rooms === 1 ? 'Room' : 'Rooms'} ×
                             {formData.hotels.length} {formData.hotels.length === 1 ? 'Hotel' : 'Hotels'}
                           </div>
                         </div>
@@ -792,8 +792,8 @@ export default function HotelBookingComponent() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Button 
-                        type="button" 
+                      <Button
+                        type="button"
                         onClick={nextStep}
                         className="w-full md:w-auto px-8 py-3"
                       >
@@ -819,10 +819,10 @@ export default function HotelBookingComponent() {
                   <div>
                     <h2 className="text-2xl font-bold text-gray-800 mb-2">Guest Information</h2>
                     <p className="text-gray-600 mb-6">Please enter details for all guests</p>
-                    
+
                     <div className="space-y-6">
                       {formData.travelers.list.map((traveler, index) => (
-                        <motion.div 
+                        <motion.div
                           key={index}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -833,7 +833,7 @@ export default function HotelBookingComponent() {
                             <FiUser className="text-blue-500" />
                             {index < formData.guests.adults ? `Adult ${index + 1}` : `Child ${index - formData.guests.adults + 1}`}
                           </h3>
-                          
+
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {/* Title */}
                             <div>
@@ -848,7 +848,7 @@ export default function HotelBookingComponent() {
                                 ))}
                               </select>
                             </div>
-                            
+
                             {/* First Name */}
                             <div>
                               <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
@@ -861,7 +861,7 @@ export default function HotelBookingComponent() {
                                 required
                               />
                             </div>
-                            
+
                             {/* Last Name */}
                             <div>
                               <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
@@ -885,8 +885,8 @@ export default function HotelBookingComponent() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Button 
-                        type="button" 
+                      <Button
+                        type="button"
                         variant="outline"
                         onClick={prevStep}
                         className="w-full md:w-auto px-8 py-3"
@@ -898,8 +898,8 @@ export default function HotelBookingComponent() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Button 
-                        type="button" 
+                      <Button
+                        type="button"
                         onClick={nextStep}
                         className="w-full md:w-auto px-8 py-3"
                       >
@@ -924,7 +924,7 @@ export default function HotelBookingComponent() {
                 >
                   <div>
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Email */}
                       <div>
@@ -942,7 +942,7 @@ export default function HotelBookingComponent() {
                           required
                         />
                       </div>
-                      
+
                       {/* Phone */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -975,11 +975,11 @@ export default function HotelBookingComponent() {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Additional Information */}
                     <div className="mt-8">
                       <h3 className="text-lg font-medium text-gray-800 mb-4">Additional Information</h3>
-                      
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Visa Interview Date */}
                         <div>
@@ -1019,7 +1019,7 @@ export default function HotelBookingComponent() {
                             />
                           </LocalizationProvider>
                         </div>
-                        
+
                         {/* Delivery Date */}
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Delivery Date</label>
@@ -1059,8 +1059,8 @@ export default function HotelBookingComponent() {
                           </LocalizationProvider>
                         </div>
                       </div>
-                      
-                      
+
+
                       {/* Special Instructions */}
                       <div className="mt-6">
                         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -1078,14 +1078,14 @@ export default function HotelBookingComponent() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex justify-between pt-4">
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Button 
-                        type="button" 
+                      <Button
+                        type="button"
                         variant="outline"
                         onClick={prevStep}
                         className="w-full md:w-auto px-8 py-3"
@@ -1097,8 +1097,8 @@ export default function HotelBookingComponent() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Button 
-                        type="submit" 
+                      <Button
+                        type="submit"
                         className="w-full md:w-auto px-3 sm:px-8 py-3"
                         disabled={isLoading}
                       >
