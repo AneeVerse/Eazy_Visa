@@ -231,8 +231,8 @@ const MostPreferredBooking = () => {
 
     const travelerTypes = [
         { value: "adult", label: "Adult (12+ years)", titles: ["Mr", "Mrs", "Ms", "Dr"] },
-        { value: "child", label: "Child (2-12 years)", titles: ["Mr", "Mrs"] },
-        { value: "infant", label: "Infant (0-2 years)", titles: ["Baby"] }
+        { value: "child", label: "Child (2-12 years)", titles: ["Master", "Miss"] },
+        { value: "infant", label: "Infant (0-2 years)", titles: ["Master", "Miss"] }
     ];
 
     // Close dropdown when clicking outside

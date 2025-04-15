@@ -5,7 +5,10 @@ import { FaMapMarkerAlt, FaSuitcase, FaPlane } from "react-icons/fa";
 import Layout from "../common/Layout";
 import Button from "../common/Button";
 import { IoIosArrowForward } from "react-icons/io";
+import { BiWorld } from "react-icons/bi";
 import { Heading } from "../common/Typography";
+import { HiOutlineDocumentSearch } from "react-icons/hi";
+import { MdFlashOn } from "react-icons/md";
 
 export default function AboutUs() {
   return (
@@ -33,7 +36,7 @@ export default function AboutUs() {
           <div className="space-y-6">
             <div className="flex items-center space-x-6">
               <div className="p-4 bg-white rounded-full shadow-md">
-                <FaMapMarkerAlt className="text-2xl text-secondary-500" />
+                <BiWorld className="text-2xl text-secondary-500" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-800">Global Visa access</h3>
@@ -43,7 +46,7 @@ export default function AboutUs() {
 
             <div className="flex items-center space-x-6">
               <div className="p-4 bg-white rounded-full shadow-md">
-                <FaSuitcase className="text-2xl text-secondary-500" />
+                <MdFlashOn className="text-2xl text-secondary-500" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-800">Fast and Simple Process</h3>
@@ -53,7 +56,7 @@ export default function AboutUs() {
 
             <div className="flex items-center space-x-6">
               <div className="p-4 bg-white rounded-full shadow-md">
-                <FaPlane className="text-2xl text-secondary-500" />
+                <HiOutlineDocumentSearch className="text-2xl text-secondary-500" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-800">Relaible & Updated Info</h3>

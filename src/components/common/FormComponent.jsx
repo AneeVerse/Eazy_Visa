@@ -465,7 +465,7 @@ const FormComponent = () => {
 
             {/* Visa Type Field - Compact Dropdown */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+              <label className=" text-sm font-medium text-gray-700 mb-1 flex items-center">
                 <BiTask className="mr-2 text-blue-500 text-sm" />
                 Visa Type*
               </label>

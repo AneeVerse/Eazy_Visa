@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 export const POST = async (req) => {
   try {
-    const { name, email, message } = await req.json();
+    const { name, email, message, visaType, country } = await req.json();
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -52,6 +52,8 @@ export const POST = async (req) => {
               <h2 style="color: #2563eb; margin-bottom: 5px; font-size: 18px;">Contact Details</h2>
               <p style="margin: 5px 0;"><strong>Name:</strong> ${name}</p>
               <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
+              <p style="margin: 5px 0;"><strong>Visa Type:</strong> ${visaType}</p>
+              <p style="margin: 5px 0;"><strong>Country:</strong> ${country}</p>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 5px;">

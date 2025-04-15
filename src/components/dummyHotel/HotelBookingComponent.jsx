@@ -199,12 +199,16 @@ export default function HotelBookingComponent() {
     { code: "+65", name: "Singapore" },
   ];
 
-  const titles = ["Mr", "Mrs"];
+  // Titles configuration for adults and children
+  const titlesConfig = {
+    adults: ["Mr", "Mrs", "Ms", "Dr"],
+    children: ["Master", "Miss"]
+  };
 
   // Price calculation
   useEffect(() => {
     const basePrice = 1000;
-    const calculatedPrice = (formData.guests.children + formData.guests.adults )* basePrice;
+    const calculatedPrice = (formData.guests.children + formData.guests.adults) * basePrice;
     setPrice(calculatedPrice - 1);
   }, [formData.guests.rooms, formData.guests.children, formData.guests.adults, formData.hotels]);
 
@@ -307,7 +311,12 @@ export default function HotelBookingComponent() {
           // Add new travelers
           const toAdd = totalGuests - updatedTravelers.length;
           for (let i = 0; i < toAdd; i++) {
-            updatedTravelers.push({ title: "Mr", firstName: "", lastName: "" });
+            const isChild = type === 'children' && i >= (updatedTravelers.length - prev.guests.adults);
+            updatedTravelers.push({ 
+              title: isChild ? "Master" : "Mr", 
+              firstName: "", 
+              lastName: "" 
+            });
           }
         } else if (totalGuests < updatedTravelers.length) {
           // Remove travelers
@@ -821,62 +830,67 @@ export default function HotelBookingComponent() {
                     <p className="text-gray-600 mb-6">Please enter details for all guests</p>
 
                     <div className="space-y-6">
-                      {formData.travelers.list.map((traveler, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.2, delay: index * 0.05 }}
-                          className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm"
-                        >
-                          <h3 className="text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
-                            <FiUser className="text-blue-500" />
-                            {index < formData.guests.adults ? `Adult ${index + 1}` : `Child ${index - formData.guests.adults + 1}`}
-                          </h3>
+                      {formData.travelers.list.map((traveler, index) => {
+                        const isChild = index >= formData.guests.adults;
+                        const availableTitles = isChild ? titlesConfig.children : titlesConfig.adults;
+                        
+                        return (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2, delay: index * 0.05 }}
+                            className="p-6 bg-white rounded-xl border border-gray-200 shadow-sm"
+                          >
+                            <h3 className="text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
+                              <FiUser className="text-blue-500" />
+                              {isChild ? `Child ${index - formData.guests.adults + 1}` : `Adult ${index + 1}`}
+                            </h3>
 
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {/* Title */}
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
-                              <select
-                                value={traveler.title || "Mr"}
-                                onChange={(e) => handleTravelerChange(index, 'title', e.target.value)}
-                                className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                              >
-                                {titles.map((title) => (
-                                  <option key={title} value={title}>{title}</option>
-                                ))}
-                              </select>
-                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                              {/* Title */}
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                                <select
+                                  value={traveler.title || (isChild ? "Master" : "Mr")}
+                                  onChange={(e) => handleTravelerChange(index, 'title', e.target.value)}
+                                  className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                >
+                                  {availableTitles.map((title) => (
+                                    <option key={title} value={title}>{title}</option>
+                                  ))}
+                                </select>
+                              </div>
 
-                            {/* First Name */}
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                              <input
-                                type="text"
-                                value={traveler.firstName || ""}
-                                onChange={(e) => handleTravelerChange(index, 'firstName', e.target.value)}
-                                className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Given name"
-                                required
-                              />
-                            </div>
+                              {/* First Name */}
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                <input
+                                  type="text"
+                                  value={traveler.firstName || ""}
+                                  onChange={(e) => handleTravelerChange(index, 'firstName', e.target.value)}
+                                  className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                  placeholder="Given name"
+                                  required
+                                />
+                              </div>
 
-                            {/* Last Name */}
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                              <input
-                                type="text"
-                                value={traveler.lastName || ""}
-                                onChange={(e) => handleTravelerChange(index, 'lastName', e.target.value)}
-                                className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Surname"
-                                required
-                              />
+                              {/* Last Name */}
+                              <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                <input
+                                  type="text"
+                                  value={traveler.lastName || ""}
+                                  onChange={(e) => handleTravelerChange(index, 'lastName', e.target.value)}
+                                  className="w-full p-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                  placeholder="Surname"
+                                  required
+                                />
+                              </div>
                             </div>
-                          </div>
-                        </motion.div>
-                      ))}
+                          </motion.div>
+                        );
+                      })}
                     </div>
                   </div>
 

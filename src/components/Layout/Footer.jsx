@@ -93,7 +93,7 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 justify-between">
             {/* Left Section - Brand Info and Links */}
             <div className="space-y-4">
-              <Link href={"/"} className="mb-4 block">
+              <Link href={"/"} className="mb-10 block">
                 <Image src="/logo/logo-white.png" alt="Logo" width={100} height={26} draggable={false} />
               </Link>
               {/* <p className="text-sm sm:text-base">
