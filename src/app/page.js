@@ -1,6 +1,7 @@
 "use client";
 import FlightPathAnimation from "@/components/common/FlightPathAnimation";
 import Layout from "@/components/common/Layout";
+import PopupForm from "@/components/common/PopupForm";
 import AboutUs from "@/components/home/AboutUs";
 import BlogSection from "@/components/home/BlogSection";
 import Destinations from "@/components/home/Destinations";
@@ -67,6 +68,7 @@ export default function Home() {
           <Footer />
         </div>
       </div>
+      <PopupForm />
     </div>
   );
 }

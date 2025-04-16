@@ -281,7 +281,7 @@ export default function CountrySection() {
             price={`₹${country.price}`}
             visasOnTime={country.visasOnTime}
             isTrending={country.isTrending || false}
-            visaType={country.basicInfo?.visaType || "Tourist Visa"}
+            visaType={country.visaType || "Tourist Visa"}
           />
         ))}
       </div>

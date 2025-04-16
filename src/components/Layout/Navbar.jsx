@@ -370,7 +370,7 @@ export default function Navbar() {
                           </Link>
                         </div>
                         
-                        <div className="bg-white p-4 rounded-lg border border-gray-200">
+                        {/* <div className="bg-white p-4 rounded-lg border border-gray-200">
                           <h4 className="font-medium text-gray-900 mb-2">Document Checklist</h4>
                           <p className="text-sm text-gray-500 mb-3">Download our comprehensive visa requirements</p>
                           <Link
@@ -381,7 +381,7 @@ export default function Navbar() {
                             Download PDF
                             <FiArrowRight className="ml-1.5 group-hover:translate-x-0.5 transition-transform" />
                           </Link>
-                        </div>
+                        </div> */}
                         
                         <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-5 rounded-lg text-white">
                           <h4 className="font-bold text-lg mb-2">24/7 Support</h4>

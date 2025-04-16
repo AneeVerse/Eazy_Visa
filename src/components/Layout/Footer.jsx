@@ -172,7 +172,7 @@ export default function Footer() {
             </div>
             {/* manage and powered by */}
             <div className="text-sm sm:text-base md:mt-0">
-              Design & Managed by{" "}
+              Designed & Managed by{" "}
               <Link
                 href={"https://aneeverse.com/"}
                 target="_blank"

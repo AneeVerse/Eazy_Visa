@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { BiMessageDetail, BiSupport, BiCheckShield } from "react-icons/bi";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { FaRegHandshake, FaRegClock, FaCalendarAlt } from "react-icons/fa";
+import { FaRegHandshake, FaRegClock, FaCalendarAlt, FaWhatsapp } from "react-icons/fa";
 import { AnimatePresence, m, motion } from "framer-motion";
+import { GiTakeMyMoney } from "react-icons/gi";
 import Image from "next/image";
 import VisaRejectionReasons from "@/components/countries/VisaRejectionReasons";
 import CountryDetailsBannerHero from "@/components/countries/CoutnryDetailsBannerHero";
@@ -21,6 +22,7 @@ import FormComponent from "@/components/common/FormComponent";
 import CountryDetailsSkeleton from "@/components/countries/CountryDetailsSkeleton";
 import CountryVisaSolution from "@/components/countries/CountryVisaSolution";
 import CountryDetailsServicesVisaSolution from "@/components/countries/CountryDetailsServicesVisaSolution";
+import PopupForm from "@/components/common/PopupForm";
 
 const CountryDetails = () => {
   const params = useParams();
@@ -111,7 +113,7 @@ const CountryDetails = () => {
                 {country.name}  Visa Information
               </h2>
               <div className="w-[50px] h-[2px] bg-purple-600 mb-6" />
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2  gap-6">
                 <div className="border flex items-center gap-2 border-gray-200 rounded-lg p-4">
                   <MdOutlinePhoneAndroid className="text-5xl bg-purple-100 p-[10px] rounded-lg text-purple-600" />
                   <div>
@@ -135,8 +137,27 @@ const CountryDetails = () => {
                     <p>{country.validity}</p>
                   </div>
                 </div>
+                {/* visa fees */}
+                <div className="border flex items-center gap-2 border-gray-200 rounded-lg p-4">
+                  <GiTakeMyMoney className="text-5xl bg-yellow-100 p-[10px] rounded-lg text-yellow-600" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-700 mb-0">Visa Fees</h3>
+                    <p className="text-blue-600">₹ {country.price.toLocaleString()}</p>
+                    </div>
+                    </div>
               </div>
             </section>
+            {/* add section chat with Us with  Whatsapp icon */}
+            <a
+                  href={`https://wa.me/+918850146905?text=Hi, I have a query regarding ${country.name} visa.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+
+                  className="bg-green-500 text-white gap-2 mx-auto items-center flex justify-center max-w-[200px] sm:hidden py-3 rounded-lg hover:bg-green-600 transition"
+                >
+                  <FaWhatsapp className="text-2xl self-center" />
+                  <div className="self-center">Chat with Us</div>
+                </a>
 
             {/* Documents Required */}
             <section className="bg-white p-6 rounded-xl shadow-sm">
@@ -268,6 +289,7 @@ const CountryDetails = () => {
 
 
       <Footer />
+      <PopupForm/>
     </div>
   );
 };
