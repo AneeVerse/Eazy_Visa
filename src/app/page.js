@@ -68,9 +68,9 @@ export default function Home() {
           <Footer />
         </div>
       </div>
-      <div className="block sm:hidden">
+      {/* <div className="block sm:hidden"> */}
       <PopupForm />
-      </div>
+      {/* </div> */}
     </div>
   );
 }
