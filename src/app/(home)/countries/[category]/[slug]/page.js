@@ -289,7 +289,9 @@ const CountryDetails = () => {
 
 
       <Footer />
+      <div className="block sm:hidden">
       <PopupForm/>
+      </div>
     </div>
   );
 };
