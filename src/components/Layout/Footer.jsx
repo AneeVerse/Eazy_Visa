@@ -19,7 +19,7 @@ const footerLinks = [
 const socialLinks = [
   { icon: FaFacebookF, href: "https://facebook.com" },
   { icon: FaTwitter, href: "https://twitter.com" },
-  { icon: FaInstagram, href: "https://instagram.com" },
+  { icon: FaInstagram, href: "https://www.instagram.com/eazyvisas/?__pwa=1" },
   { icon: FaLinkedinIn, href: "https://linkedin.com" },
   { icon: FaYoutube, href: "https://youtube.com" },
 ];

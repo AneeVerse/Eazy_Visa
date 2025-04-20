@@ -12,7 +12,8 @@ const Contact = () => {
     email: '',
     message: '',
     visaType: '',
-    country: ''
+    country: '',
+    phone: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -332,7 +333,7 @@ const Contact = () => {
                   {/* <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaTwitter className="w-6 h-6" />
                   </a> */}
-                  <a href="https://www.instagram.com/eazyvisas/" className="text-gray-500 hover:text-blue-600 transition-colors">
+                  <a href="https://www.instagram.com/eazyvisas/?__pwa=1" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaInstagram className="w-6 h-6" />
                   </a>
                   {/* <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
@@ -358,6 +359,20 @@ const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                     placeholder="John Doe"
+                    required
+                  />
+                </div>
+              </div>
+              {/* add phone number */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number*</label>
+                <div className="relative">
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="+91 88501 46905"
                     required
                   />
                 </div>
