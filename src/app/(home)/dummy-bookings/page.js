@@ -12,7 +12,7 @@ const PricingPage = () => {
       description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
-      note: "*Name change not allowed",
+      note: "",
       features: [
         "24 Hours Delivery",
         "Unlimited Flights",
@@ -28,7 +28,7 @@ const PricingPage = () => {
       description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
-      note: "*Name change not allowed",
+      note: "*Price applicable for 2+ passengers",
       features: [
         "24 Hours Delivery",
         "Verifiable Hotel Confirmation",
@@ -43,7 +43,7 @@ const PricingPage = () => {
       description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
-      note: "*Name change not allowed",
+      note: "",
       features: [
         "24 Hours Delivery",
         "Day wise Sightseeing",
@@ -139,7 +139,7 @@ const PricingPage = () => {
                   
                   {/* {plan.note && <p className={`${plan.popular ? " font-semibold text-blue-600 ": " text-gray-500/90 "} text-xs  mt-1`}>{plan.note}</p>} */}
                 </div>
-                  <p className={`${plan.popular ? " mt-[-6px] text-blue-500 ":" hidden "}text-black mb-5 font-semibold text-[12px]`}>{plan.note}</p>
+                  <p style={{"color": `${plan.popular ? "#0B82E6":""}`}} className={`${plan.note != "" ? " mt-[-6px]  ":" hidden "}text-black mb-5 font-semibold text-[12px]`}>{plan.note}</p>
                 
                 <Link href={plan.url} className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 mb-6 shadow-sm
                   ${plan.popular 

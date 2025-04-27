@@ -523,7 +523,7 @@ const addFlightLeg = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch('/api/flight-booking', {
+            const response = await fetch('/api/most-preferred-booking', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -206,11 +206,25 @@ export default function HotelBookingComponent() {
   };
 
   // Price calculation
+  // useEffect(() => {
+  //   const basePrice = 1000;
+  //   const calculatedPrice = (formData.guests.children + formData.guests.adults) * basePrice;
+  //   setPrice(calculatedPrice - 1);
+  // }, [formData.guests.rooms, formData.guests.children, formData.guests.adults, formData.hotels]);
+
+  // Price calculation
   useEffect(() => {
-    const basePrice = 1000;
-    const calculatedPrice = (formData.guests.children + formData.guests.adults) * basePrice;
-    setPrice(calculatedPrice - 1);
-  }, [formData.guests.rooms, formData.guests.children, formData.guests.adults, formData.hotels]);
+    const totalPersons = formData.guests.adults + formData.guests.children;
+    let calculatedPrice;
+    
+    if (totalPersons === 1) {
+      calculatedPrice = 2000; // INR 2000 for 1 person
+    } else {
+      calculatedPrice =( totalPersons * 1000) -1; // INR 999 per person for more than 1
+    }
+    
+    setPrice(calculatedPrice);
+  }, [formData.guests.adults, formData.guests.children]);
 
   // Handle input changes
   const handleInputChange = (path, value) => {
