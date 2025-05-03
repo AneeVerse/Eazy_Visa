@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${comfortaa.variable}`}>
       <head>
-        {/* You can also add additional meta tags here if needed */}
+        {}
       </head>
       <body className="font-sans">
       <NextTopLoader
@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <div className="mt-[80px]">
           {children}
-          {/* <FloatingActionButton /> */}
+          {}
         </div>
       </body>
     </html>
