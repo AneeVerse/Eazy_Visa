@@ -36,6 +36,10 @@ export const POST = async (req) => {
       },
     });
 
+    // Generate timestamp in 24-hour format
+    const now = new Date();
+    const timestamp = now.toLocaleString('en-GB', { hour12: false }); // 24-hour format
+
     // Email options
     const mailOptions = {
       from: `"EazyVisas Contact Form" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
@@ -52,6 +56,7 @@ export const POST = async (req) => {
               <h2 style="color: #2563eb; margin-bottom: 5px; font-size: 18px;">Contact Details</h2>
               <p style="margin: 5px 0;"><strong>Name:</strong> ${name}</p>
               <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
+              <p style="margin: 5px 0;"><strong>Submitted At:</strong> ${timestamp}</p>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 5px;">
@@ -70,6 +75,7 @@ export const POST = async (req) => {
         --------------------------
         Name: ${name}
         Email: ${email}
+        Submitted At: ${timestamp}
         Message: ${message}
       `,
     };
