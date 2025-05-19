@@ -85,7 +85,7 @@ const FeedbackReviewComponent = () => {
 
           {/* ✅ Elfsight Reviews Widget */}
           <div
-            className="elfsight-app-b35c2c79-8c8f-4b7c-ba53-0fe6314f4f65"
+            className="elfsight-app-81c7b46f-420f-4507-a171-1f6df82a82b9"
             data-elfsight-app-lazy
           ></div>
 
