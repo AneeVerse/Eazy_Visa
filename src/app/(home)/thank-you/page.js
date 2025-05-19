@@ -30,7 +30,7 @@ export default function ThankYouPage() {
             Thank You for Connecting With Us!
           </h1>
           <p className="mt-4 text-[25px] text-gray-600">
-            One of our visa experts will contact you shortly.
+            One of our visa experts will contact you within 30 minutes.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export default function ThankYouPage() {
                 <FaClock className="h-8 w-8 text-blue-600 mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">What to Expect</h3>
                 <p className="text-gray-600">
-                  Our expert will call you within 24 hours to discuss your visa requirements and next steps.
+                  Our expert will call you within 30 minutes to discuss your visa requirements and next steps.
                 </p>
               </div>
 
