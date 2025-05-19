@@ -49,13 +49,13 @@ export const POST = async (req) => {
 
     // Email options
     const mailOptions = {
-      from: `"Flight Booking Form" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
+      from: `"New package Request" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
       to: process.env.NEXT_PUBLIC_EMAIL_RECEIVER,
-      subject: `New Flight Booking Request - ${formData.flight.type}`,
+      subject: `New package Request`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
           <div style="background: #2563eb; color: white; padding: 20px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px;">New Flight Booking Request</h1>
+            <h1 style="margin: 0; font-size: 24px;">New package Request</h1>
           </div>
           
           <div style="padding: 20px; background: #ffffff;">

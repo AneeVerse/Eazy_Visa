@@ -4,15 +4,15 @@ import { FiShield, FiUser, FiDatabase, FiMail, FiSettings } from 'react-icons/fi
 
 
 export const metadata = {
-  title: "Privacy Policy | Eazy Visa",
-  description: "Eazy Visa is a one-stop solution for all your visa needs.",
+  title: "Privacy Policy | Eazy Visas",
+  description: "Eazy Visas is a one-stop solution for all your visa needs.",
 }
 
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen relative py-20">
 
-       <div className="absolute blur-[200px] top-[0%] -left-[30px]  w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
+       <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10  w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
       <Layout className="">
         {/* Header */}
         <div className="text-center mb-16">
@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
               <FiShield className="text-blue-600 w-6 h-6 mt-1 mr-4 flex-shrink-0" />
               <div>
                 <p className="text-gray-600 mb-4">
-                  At Eazy Visa, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services.
+                  At Eazy Visas, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services.
                 </p>
                 <p className="text-gray-600">
                   By accessing or using our service, you agree to the collection and use of information in accordance with this policy.

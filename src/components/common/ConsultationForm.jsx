@@ -85,18 +85,12 @@ const ConsultationForm = () => {
         throw new Error(data.message || 'Failed to submit form');
       }
 
-      toast.success(`Your ${data.visaType} Visa consultation request submitted successfully!`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      // Set flag in sessionStorage before redirecting
+      sessionStorage.setItem('formSubmitted', 'true');
       
-      setFormData({ name: "", email: "", phone: "" });
-      setIsAccepted(false);
-
+      // Redirect to thank you page
+      window.location.href = '/thank-you';
+      
     } catch (error) {
       toast.error(error.message || "Submission failed. Please try again.", {
         position: "top-right",
@@ -247,7 +241,7 @@ const ConsultationForm = () => {
               <label htmlFor="terms" className="ml-3 block text-sm text-gray-700">
                 <div className="flex items-center">
                   <BiCheckShield className="text-blue-500 mr-1 self-center" />
-                  I agree to the{" "}
+                  I agreed to the{" "}
                   <a href="/terms" className="text-blue-600 hover:underline ml-1">
                     terms and conditions
                   </a>

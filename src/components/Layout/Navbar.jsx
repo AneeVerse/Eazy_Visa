@@ -38,7 +38,7 @@ const services = [
     id: 4,
     title: "Dummy Flights",
     url: "/dummy-flights",
-    description: "Best deals on international flights with flexible options",
+    description: "Verifiable flight tickets for visa applications",
     image:
       "/images/home/dummy-flight.webp",
     rating: 4.9,
@@ -48,7 +48,7 @@ const services = [
     id: 5,
     title: "Dummy Hotel",
     url: "/dummy-hotel",
-    description: "Curated hotel selections for your perfect stay abroad",
+    description: "Verifiable hotel booking for visa applications",
     image:
     "/images/home/dummy-hotel.webp",
     rating: 4.6,
@@ -58,7 +58,7 @@ const services = [
 
 const navLinks = [
   { name: "Home", href: "/" },
-  {name: "Dummy Booking", href: "/dummy-bookings"},
+  {name: "Dummy Bookings", href: "/dummy-bookings"},
   { name: "Visa Services", href: "/services", hasMegaMenu: true },
   { name: "Countries", href: "/countries" },
   { name: "Blogs", href: "/blogs" },
@@ -172,7 +172,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2">
               <img 
                 src="/logo/main-logo.png" 
-                alt="Eazy Visa Logo" 
+                alt="Eazy Visas Logo" 
                 className="h-11 w-auto"
                 width={36}
                 height={36}
@@ -190,7 +190,7 @@ export default function Navbar() {
                     className="flex items-center gap-1 cursor-pointer group"
                     onMouseEnter={() => setIsServicesOpen(true)}
                   >
-                    <span className="text-gray-800 group-hover:text-blue-600 transition-colors duration-200 font-medium">
+                    <span className="text-gray-800 group-hover:text-blue-600 transition-colors duration-200 font-bold text-[14px]">
                       {link.name}
                     </span>
                     <FiChevronDown className={`text-gray-500 group-hover:text-blue-600 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
@@ -202,7 +202,7 @@ export default function Navbar() {
                     className="group relative"
                     onMouseEnter={() => setIsServicesOpen(false)}
                   >
-                    <span className="text-gray-800 group-hover:text-blue-600 transition-colors duration-200 font-medium">
+                    <span className="text-gray-800 group-hover:text-blue-600 transition-colors text-[14px] font-bold duration-200 ">
                       {link.name}
                     </span>
                     <div className="absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 w-0 group-hover:w-full"></div>
@@ -221,15 +221,15 @@ export default function Navbar() {
                   <input
                     type="text"
                     ref={searchInputRef}
-                    className="w-[116px] lg:w-[116px] xl:w-64 px-4 py-2 pl-8 pr-12 rounded-full border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
-                    placeholder="Where to, Captain?"
+                    className="w-[116px] lg:w-[116px] xl:w-64 px-4 py-2 pl-8 pr-12 text-[15px] rounded-full border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    placeholder="Travel Starts Here"
                     value={searchQuery}
                     onChange={handleSearchChange}
                     onFocus={() => setShowSearchResults(true)}
                   />
                   <button
                     type="submit"
-                    className="absolute right-[5px] bg-blue-600 rounded-full flex items-center justify-center w-[34px] h-[34px] top-1/2 transform -translate-y-1/2 text-white hover:text-white-600"
+                    className="absolute right-[4px] bg-blue-600 rounded-full flex items-center justify-center w-[34px] h-[34px] top-1/2 transform -translate-y-1/2 text-white hover:text-white-600"
                   >
                     <FiSearch className="w-4 h-4" />
                   </button>
@@ -370,7 +370,7 @@ export default function Navbar() {
                           </Link>
                         </div>
                         
-                        <div className="bg-white p-4 rounded-lg border border-gray-200">
+                        {/* <div className="bg-white p-4 rounded-lg border border-gray-200">
                           <h4 className="font-medium text-gray-900 mb-2">Document Checklist</h4>
                           <p className="text-sm text-gray-500 mb-3">Download our comprehensive visa requirements</p>
                           <Link
@@ -381,7 +381,7 @@ export default function Navbar() {
                             Download PDF
                             <FiArrowRight className="ml-1.5 group-hover:translate-x-0.5 transition-transform" />
                           </Link>
-                        </div>
+                        </div> */}
                         
                         <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-5 rounded-lg text-white">
                           <h4 className="font-bold text-lg mb-2">24/7 Support</h4>
@@ -419,7 +419,7 @@ export default function Navbar() {
               <Link href="/" className="flex items-center" onClick={handleMobileLinkClick}>
                 <img 
                   src="/logo/main-logo.png" 
-                  alt="Eazy Visa Logo" 
+                  alt="Eazy Visas Logo" 
                   className="h-8 w-auto"
                 />
               </Link>
@@ -438,8 +438,8 @@ export default function Navbar() {
               <div className="relative mb-6">
                 <input
                   type="text"
-                  className="block w-full pl-3 pr-3 py-2.5 border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
-                  placeholder="Search Countries..."
+                  className="block w-full pl-3 pr-3 py-2.5 border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 text-[14px] focus:border-blue-500 outline-none transition"
+                  placeholder="Travel Starts Here"
                   value={searchQuery}
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
@@ -501,7 +501,7 @@ export default function Navbar() {
                     {link.hasMegaMenu ? (
                       <>
                         <button
-                          className="flex items-center justify-between w-full py-3.5 text-left text-gray-800 hover:text-blue-600 font-medium"
+                          className="flex items-center justify-between w-full py-3.5 text-[14px] text-left text-gray-800 hover:text-blue-600 font-bold"
                           // onClick={() => setIsServicesOpen(!isServicesOpen)}
                         >
                           <span>{link.name}</span>
@@ -513,7 +513,7 @@ export default function Navbar() {
                               <Link
                                 key={service.id}
                                 href={`/services${service.url}`}
-                                className="block py-2.5 px-3 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                                className="block py-2.5 px-3 rounded-lg text-gray-600 font-bold text-[14px] hover:text-blue-600 hover:bg-blue-50 transition-colors"
                                 onClick={handleMobileLinkClick}
                               >
                                 {service.title}
@@ -525,7 +525,7 @@ export default function Navbar() {
                     ) : (
                       <Link
                         href={link.href}
-                        className="block py-3.5 text-gray-800 hover:text-blue-600 font-medium"
+                        className="block py-3.5 text-[14px] text-gray-800 hover:text-blue-600 font-bold"
                         onClick={handleMobileLinkClick}
                       >
                         {link.name}

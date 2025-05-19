@@ -1,6 +1,7 @@
 "use client";
 import Layout from "../common/Layout";
 import ConsultationForm from "../common/ConsultationForm";
+import FormComponent from "../common/FormComponent";
 
 export default function BusinessVisaHero() {
   return (
@@ -12,7 +13,7 @@ export default function BusinessVisaHero() {
           <img
             src={"/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp"}
             alt={"title"}
-            className="w-full h-[540px]  object-cover"
+            className="w-full h-[580px]  object-cover"
           />
           <div className="absolute   inset-0 bg-black/20"></div>
           {/* Text Overlay at Bottom */}
@@ -26,7 +27,7 @@ export default function BusinessVisaHero() {
 
       {/* right Content */}
       <div className="relative flex-1">
-        <ConsultationForm />
+        <FormComponent />
       </div>
     </Layout>
   );

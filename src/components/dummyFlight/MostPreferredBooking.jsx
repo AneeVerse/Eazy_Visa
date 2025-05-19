@@ -14,7 +14,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 
-const FlightBookingComponent = () => {
+const MostPreferredBooking = () => {
     // Form steps
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -34,8 +34,10 @@ const FlightBookingComponent = () => {
             legs: [{ from: "DEL", to: "BOM", date: null }],
         },
         travelers: {
-            count: 1,
-            list: [{ type: "adult", title: "Mr", firstName: "", lastName: "", age: "" }],
+            count: 2,
+            list: [{ type: "adult", title: "Mr", firstName: "", lastName: "", age: "" },
+                
+            ],
         },
         additional: {
             visaInterviewDate: null,
@@ -48,10 +50,10 @@ const FlightBookingComponent = () => {
     const [formData, setFormData] = useState(initialFormData);
 
     // UI states
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(2000); // Default price for 1 person
     const [airports] = useState([
         { code: "DEL", name: "Delhi" },
-  { code: "BOM", name: "Mumbai" },
+        { code: "BOM", name: "Mumbai" },
   { code: "BLR", name: "Bengaluru" },
   { code: "MAA", name: "Chennai" },
   { code: "HYD", name: "Hyderabad" },
@@ -247,11 +249,12 @@ const FlightBookingComponent = () => {
 
     // Price calculation
     useEffect(() => {
-        const basePrice = 1000;
-        const discount = 1; // ₹1 discount per person
-        const calculatedPrice = formData.travelers.count > 0 ?
-            (formData.travelers.count * basePrice) - discount : 0;
-        setPrice(calculatedPrice);
+        if (formData.travelers.count === 1) {
+            setPrice(2000); // ₹2000 for 1 person
+        } else if (formData.travelers.count > 1) {
+            // ₹1499 per additional person, but subtract 1 from count for calculation
+            setPrice((formData.travelers.count * 1500) - 1);
+        }
     }, [formData.travelers.count]);
 
     // Handle input changes
@@ -333,6 +336,39 @@ const FlightBookingComponent = () => {
         });
     };
 
+    // update current travellist accourding count using useEffect
+    useEffect(() => {
+        const currentList = [...formData.travelers.list];
+        const newCount = formData.travelers.count;
+        if (newCount > currentList.length) {
+            const newTravelers = Array(newCount - currentList.length)
+                .fill()
+                .map(() => ({
+                    type: "adult",
+                    title: "Mr",
+                    firstName: "",
+                    lastName: "",
+                    age: ""
+                }));
+            setFormData(prev => ({
+                ...prev,
+                travelers: {
+                    count: newCount,
+                    list: [...currentList, ...newTravelers]
+                }
+            }));
+        }
+        else if (newCount < currentList.length) {
+            setFormData(prev => ({
+                ...prev,
+                travelers: {
+                    count: newCount,
+                    list: currentList.slice(0, newCount)
+                }
+            }));
+        }
+    }, [formData.travelers.count]);
+
     // Traveler functions
     const updateTravelerCount = (count) => {
         const newCount = Math.max(1, Math.min(10000, count));
@@ -403,31 +439,31 @@ const FlightBookingComponent = () => {
         });
     };
 
-    // Flight leg functions
-    // const addFlightLeg = () => {
-    //     setFormData(prev => ({
-    //         ...prev,
-    //         flight: {
-    //             ...prev.flight,
-    //             legs: [...prev.flight.legs, { from: prev.flight.legs[prev.flight.legs.length - 1].to , to: "", date: null }]
-    //         }
-    //     }));
-    // };
-    const addFlightLeg = () => {
-        if (formData.flight.type === "multi-city") {
-            setFormData(prev => ({
-                ...prev,
-                flight: {
-                    ...prev.flight,
-                    legs: [...prev.flight.legs, { 
-                        from: prev.flight.legs[prev.flight.legs.length - 1].to, 
-                        to: "", 
-                        date: null 
-                    }]
-                }
-            }));
-        }
-    };
+   // Flight leg functions
+//    const addFlightLeg = () => {
+//     setFormData(prev => ({
+//         ...prev,
+//         flight: {
+//             ...prev.flight,
+//             legs: [...prev.flight.legs, { from: prev.flight.legs[prev.flight.legs.length - 1].to , to: "", date: null }]
+//         }
+//     }));
+// };
+const addFlightLeg = () => {
+    if (formData.flight.type === "multi-city") {
+        setFormData(prev => ({
+            ...prev,
+            flight: {
+                ...prev.flight,
+                legs: [...prev.flight.legs, { 
+                    from: prev.flight.legs[prev.flight.legs.length - 1].to, 
+                    to: "", 
+                    date: null 
+                }]
+            }
+        }));
+    }
+};
 
     const removeFlightLeg = (index) => {
         if (formData.flight.legs.length > 1) {
@@ -487,7 +523,7 @@ const FlightBookingComponent = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch('/api/flight-booking', {
+            const response = await fetch('/api/most-preferred-booking', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -506,7 +542,8 @@ const FlightBookingComponent = () => {
                         ...formData.additional,
                         visaInterviewDate: formData.additional.visaInterviewDate ? new Date(formData.additional.visaInterviewDate).toISOString() : null,
                         deliveryDate: formData.additional.deliveryDate ? new Date(formData.additional.deliveryDate).toISOString() : null
-                    }
+                    },
+                    price: price // Include the calculated price in the submission
                 }),
             });
 
@@ -514,14 +551,13 @@ const FlightBookingComponent = () => {
 
             if (response.ok) {
                 // toast.success('Flight booking submitted successfully!');
+                
+                // Set flag in sessionStorage before redirecting
                 sessionStorage.setItem('formSubmitted', 'true');
                 sessionStorage.setItem('bookingPrice', price.toString());
                 
                 // Redirect to thank you page
                 window.location.href = '/thank-you';
-
-                setFormData(initialFormData);
-                // setCurrentStep(1);
             } else {
                 toast.error(result.error || 'Failed to submit booking');
             }
@@ -1143,4 +1179,4 @@ const FlightBookingComponent = () => {
     );
 };
 
-export default FlightBookingComponent;
+export default MostPreferredBooking;

@@ -95,11 +95,11 @@ const BlogDetailsPage = ({ params }) => {
               {blog.content || "No content available for this blog."}
             </ReactMarkdown>
           </div>
-          <div className="mb-8">
+          {/* <div className="mb-8">
             <Newsletter />
-            </div>
+            </div> */}
             <FeedbackReviewComponent />
-            <MediaTestimonials />
+            {/* <MediaTestimonials /> */}
 
         </div>
 

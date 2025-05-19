@@ -11,7 +11,7 @@ import Link from "next/link";
 const footerLinks = [
   { name: "Home", href: "/" },
   { name: "Blog", href: "/blog" },
-  { name: "Dummy Booking", href: "/dummy-bookings" },
+  { name: "Dummy Bookings", href: "/dummy-bookings" },
   { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -19,7 +19,7 @@ const footerLinks = [
 const socialLinks = [
   { icon: FaFacebookF, href: "https://facebook.com" },
   { icon: FaTwitter, href: "https://twitter.com" },
-  { icon: FaInstagram, href: "https://instagram.com" },
+  { icon: FaInstagram, href: "https://www.instagram.com/eazyvisas/?__pwa=1" },
   { icon: FaLinkedinIn, href: "https://linkedin.com" },
   { icon: FaYoutube, href: "https://youtube.com" },
 ];
@@ -93,13 +93,13 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 justify-between">
             {/* Left Section - Brand Info and Links */}
             <div className="space-y-4">
-              <Link href={"/"}>
+              <Link href={"/"} className="mb-10 block">
                 <Image src="/logo/logo-white.png" alt="Logo" width={100} height={26} draggable={false} />
               </Link>
-              <p className="text-sm sm:text-base">
+              {/* <p className="text-sm sm:text-base">
                 We help travelers explore Norway's wonders effortlessly with smart
                 planning and expert guides.
-              </p>
+              </p> */}
 
 
               {/* Footer Links */}
@@ -157,7 +157,7 @@ export default function Footer() {
           {/* Bottom Section - Copyright and Legal Links */}
           <div className="border-t border-white mt-6 pt-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm sm:text-base text-center sm:text-left">
-              &copy; 2025 Eazy Visa. All rights reserved.
+              &copy; 2025 Eazyvisas. All rights reserved.
             </p>
             <div className="flex gap-4">
               <a href="/terms" className="text-sm sm:text-base hover:underline">
@@ -172,7 +172,7 @@ export default function Footer() {
             </div>
             {/* manage and powered by */}
             <div className="text-sm sm:text-base md:mt-0">
-              Design & Managed by{" "}
+              Designed & Managed by{" "}
               <Link
                 href={"https://aneeverse.com/"}
                 target="_blank"

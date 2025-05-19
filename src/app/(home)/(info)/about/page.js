@@ -1,18 +1,18 @@
 // pages/about.js
-import { FaLightbulb, FaRocket, FaUsers, FaHandshake } from 'react-icons/fa';
+import { FaLightbulb, FaRocket, FaUsers, FaHandshake, FaUserTie } from 'react-icons/fa';
 import TeamMember from "@/components/TeamMember" // You'll create this component
 import Layout from '@/components/common/Layout';
 
 
 export const metadata = {
-  title: "About Us | Eazy Visa",
-  description: "Eazy Visa is a one-stop solution for all your visa needs.",
+  title: "About Us | Eazy Visas",
+  description: "Eazy Visas is a one-stop solution for all your visa needs.",
 }
 
 export default function About() {
   return (
     <div className="min-h-screen relative  py-20 ">
-             <div className="absolute blur-[200px] top-[0%] -left-[30px]  w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
+             <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10  w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
       <Layout className="">
         {/* Hero Section */}
         <section className="text-center mb-20">
@@ -20,7 +20,7 @@ export default function About() {
             Our Story
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Pioneering digital solutions that transform businesses and empower users worldwide.
+          Pioneering in solving complex visa application processes and simplifying them for end customers 
           </p>
         </section>
 
@@ -54,37 +54,37 @@ loss in penalty charged by the Airline or the Hotel or the Travel Agent.
             Our Core Values
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: <FaRocket className="text-3xl text-indigo-600" />,
-                title: "Innovation",
-                desc: "We challenge the status quo to create breakthrough solutions"
-              },
-              {
-                icon: <FaUsers className="text-3xl text-indigo-600" />,
-                title: "People First",
-                desc: "Our users and team are at the heart of everything we do"
-              },
-              {
-                icon: <FaHandshake className="text-3xl text-indigo-600" />,
-                title: "Integrity",
-                desc: "We do what's right, even when no one is watching"
-              },
-              {
-                icon: <FaLightbulb className="text-3xl text-indigo-600" />,
-                title: "Simplicity",
-                desc: "We believe complexity should be invisible to the user"
-              }
-            ].map((value, index) => (
-              <div key={index} className="bg-white/80 backdrop-blur-lg rounded-xl p-6 shadow-lg shadow-indigo-100 hover:shadow-xl transition-shadow">
-                <div className="bg-indigo-100 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                  {value.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{value.title}</h3>
-                <p className="text-gray-600">{value.desc}</p>
-              </div>
-            ))}
-          </div>
+  {[
+     {
+      icon: <FaUsers className="text-3xl text-indigo-600" />,
+      title: "People First",
+      desc: "Our users and team are at the heart of everything we do"
+    },
+    {
+      icon: <FaUserTie className="text-3xl text-indigo-600" />,
+      title: "Expert Advice",
+      desc: "Get guidance from experienced visa consultants for your application"
+    },
+    {
+      icon: <FaHandshake className="text-3xl text-indigo-600" />,
+      title: "Integrity",
+      desc: "We do what's right, even when no one is watching"
+    },
+    {
+      icon: <FaLightbulb className="text-3xl text-indigo-600" />,
+      title: "Simplicity",
+      desc: "We believe complexity should be invisible to the user"
+    },
+  ].map((value, index) => (
+    <div key={index} className="bg-white/80 backdrop-blur-lg rounded-xl p-6 shadow-lg shadow-indigo-100 hover:shadow-xl transition-shadow">
+      <div className="bg-indigo-100 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+        {value.icon}
+      </div>
+      <h3 className="text-xl font-semibold text-gray-900 mb-2">{value.title}</h3>
+      <p className="text-gray-600">{value.desc}</p>
+    </div>
+  ))}
+</div>
         </section>
 
         {/* Team Section */}
@@ -126,7 +126,7 @@ loss in penalty charged by the Airline or the Hotel or the Travel Agent.
               <div className="text-indigo-100">Clients Worldwide</div>
             </div>
             <div className="p-4">
-              <div className="text-4xl font-bold mb-2">15M+</div>
+              <div className="text-4xl font-bold mb-2">550+</div>
               <div className="text-indigo-100">Users Impacted</div>
             </div>
             <div className="p-4">

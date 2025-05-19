@@ -10,10 +10,219 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    visaType: '',
+    country: '',
+    phone: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
+  const visaTypes = [
+    "Tourist Visa",
+    // "Student Visa",
+    "Business Visa",
+    // "Family Visa",
+    // "End to End Visa Assistance",
+    // "Permanent Residence"
+  ];
+
+  const countries = [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Andorra",
+    "Angola",
+    "Antigua and Barbuda",
+    "Argentina",
+    "Armenia",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Belarus",
+    "Belgium",
+    "Belize",
+    "Benin",
+    "Bhutan",
+    "Bolivia",
+    "Bosnia and Herzegovina",
+    "Botswana",
+    "Brazil",
+    "Brunei",
+    "Bulgaria",
+    "Burkina Faso",
+    "Burundi",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Cape Verde",
+    "Central African Republic",
+    "Chad",
+    "Chile",
+    "China",
+    "Colombia",
+    "Comoros",
+    "Congo (Brazzaville)",
+    "Congo (Kinshasa)",
+    "Costa Rica",
+    "Croatia",
+    "Cuba",
+    "Cyprus",
+    "Czech Republic",
+    "Denmark",
+    "Djibouti",
+    "Dominica",
+    "Dominican Republic",
+    "Ecuador",
+    "Egypt",
+    "El Salvador",
+    "Equatorial Guinea",
+    "Eritrea",
+    "Estonia",
+    "Eswatini",
+    "Ethiopia",
+    "Fiji",
+    "Finland",
+    "France",
+    "Gabon",
+    "Gambia",
+    "Georgia",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Grenada",
+    "Guatemala",
+    "Guinea",
+    "Guinea-Bissau",
+    "Guyana",
+    "Haiti",
+    "Honduras",
+    "Hungary",
+    "Iceland",
+    "Indonesia",
+    "India",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Ivory Coast",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Kiribati",
+    "Kuwait",
+    "Kyrgyzstan",
+    "Laos",
+    "Latvia",
+    "Lebanon",
+    "Lesotho",
+    "Liberia",
+    "Libya",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Maldives",
+    "Mali",
+    "Malta",
+    "Marshall Islands",
+    "Mauritania",
+    "Mauritius",
+    "Mexico",
+    "Micronesia",
+    "Moldova",
+    "Monaco",
+    "Mongolia",
+    "Montenegro",
+    "Morocco",
+    "Mozambique",
+    "Myanmar",
+    "Namibia",
+    "Nauru",
+    "Nepal",
+    "Netherlands",
+    "New Zealand",
+    "Nicaragua",
+    "Niger",
+    "Nigeria",
+    "North Korea",
+    "North Macedonia",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Palau",
+    "Panama",
+    "Papua New Guinea",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Romania",
+    "Russia",
+    "Rwanda",
+    "Saint Kitts and Nevis",
+    "Saint Lucia",
+    "Saint Vincent and the Grenadines",
+    "Samoa",
+    "San Marino",
+    "Sao Tome and Principe",
+    "Saudi Arabia",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leone",
+    "Singapore",
+    "Slovakia",
+    "Slovenia",
+    "Solomon Islands",
+    "Somalia",
+    "South Africa",
+    "South Korea",
+    "South Sudan",
+    "Spain",
+    "Sri Lanka",
+    "Sudan",
+    "Suriname",
+    "Sweden",
+    "Switzerland",
+    "Syria",
+    "Taiwan",
+    "Tajikistan",
+    "Tanzania",
+    "Thailand",
+    "Timor-Leste",
+    "Togo",
+    "Tonga",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Turkmenistan",
+    "Tuvalu",
+    "Uganda",
+    "Ukraine",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States",
+    "Uruguay",
+    "Uzbekistan",
+    "Vanuatu",
+    "Vatican City",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe"
+  ];
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -33,16 +242,11 @@ const Contact = () => {
         throw new Error(data.message || 'Failed to send message');
       }
 
-      toast.success('Message sent successfully! We will contact you soon.', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-
-      setFormData({ name: '', email: '', message: '' });
+     // Set flag in sessionStorage before redirecting
+     sessionStorage.setItem('formSubmitted', 'true');
+      
+     // Redirect to thank you page
+     window.location.href = '/thank-you';
 
     } catch (error) {
       toast.error(error.message || 'Failed to send message. Please try again.', {
@@ -74,7 +278,7 @@ const Contact = () => {
         pauseOnHover
       />
       
-      <div className="absolute blur-[200px] top-[0%] -left-[30px] w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
+      <div className="absolute blur-[200px] top-[0%] -left-[30px] w-[400px] -z-10 h-[400px] bg-[#0B82E6] opacity-50"></div>
       <Layout className="">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -129,7 +333,7 @@ const Contact = () => {
                   {/* <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaTwitter className="w-6 h-6" />
                   </a> */}
-                  <a href="https://www.instagram.com/eazyvisas/" className="text-gray-500 hover:text-blue-600 transition-colors">
+                  <a href="https://www.instagram.com/eazyvisas/?__pwa=1" className="text-gray-500 hover:text-blue-600 transition-colors">
                     <FaInstagram className="w-6 h-6" />
                   </a>
                   {/* <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
@@ -159,6 +363,20 @@ const Contact = () => {
                   />
                 </div>
               </div>
+              {/* add phone number */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number*</label>
+                <div className="relative">
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="+91 88501 46905"
+                    required
+                  />
+                </div>
+              </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Email Address*</label>
@@ -172,6 +390,37 @@ const Contact = () => {
                     required
                   />
                 </div>
+              </div>
+              {/* add visa type and country */}
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Visa Type*</label>
+                <select 
+                  value={formData.visaType}
+                  onChange={(e) => setFormData({ ...formData, visaType: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                  required
+                >
+                  <option value="" disabled>Select Visa Type</option>
+                  {visaTypes.map((visaType, index) => (
+                    <option key={index} value={visaType}>{visaType}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Country*</label>
+                <select
+                  value={formData.country}
+                  onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                  required
+                >
+                  <option value="" disabled>Select Country</option>
+                  {countries.map((country, index) => (
+                    <option key={index} value={country}>{country}</option>
+                  ))}
+                </select>
               </div>
 
               <div>

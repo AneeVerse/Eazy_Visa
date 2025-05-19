@@ -3,7 +3,7 @@ import Layout from '@/components/common/Layout';
 import { Heading } from '@/components/common/Typography';
 import Footer from '@/components/Layout/Footer';
 import Link from 'next/link';
-import { FaCheck, FaInfoCircle, FaCrown, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { FaCheck, FaInfoCircle, FaCrown, FaPhoneAlt, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 
 const PricingPage = () => {
   const plans = [
@@ -12,11 +12,11 @@ const PricingPage = () => {
       description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
-      note: "*Name change not allowed",
+      note: "",
       features: [
         "24 Hours Delivery",
         "Unlimited Flights",
-        "Unlimited Corrections",
+        // "Unlimited Corrections",
         "Name change not allowed"
       ],
 
@@ -28,11 +28,11 @@ const PricingPage = () => {
       description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
-      note: "*Name change not allowed",
+      note: "*Price applicable for 2+ passengers",
       features: [
         "24 Hours Delivery",
         "Verifiable Hotel Confirmation",
-        "Unlimited Corrections",
+        // "Unlimited Corrections",
         "Name change not allowed"
       ],
       url:"/services/dummy-hotel",
@@ -43,22 +43,22 @@ const PricingPage = () => {
       description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
-      note: "*Name change not allowed",
+      note: "",
       features: [
         "24 Hours Delivery",
         "Day wise Sightseeing",
         "Details of the tour for the duration",
-        "Name change not allowed"
+        // "Name change not allowed"
       ],
 
-      url:"/services/dummy-hotel",
+      url:"/services/dummy-flights",
       popular: false
     },
     {
       name: "Most Preferred",
       description: "24 Hours Delivery",
       price: "1499",
-      billing: "*Price applicable for 2+ passengers",
+      billing: "per person",
       note: "*Price applicable for 2+ passengers",
       features: [
         "24 Hours Delivery",
@@ -67,7 +67,7 @@ const PricingPage = () => {
         "Day wise Itinerary",
         "Name change not allowed"
       ],
-      url:"/services/dummy-flights",
+      url:"/services/most-preferred",
       popular: true
     }
   ];
@@ -75,7 +75,7 @@ const PricingPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50/90 via-indigo-50/90 to-purple-50/90 pt-16 relative overflow-hidden">
       {/* Enhanced Glassmorphism background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
         <div className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-gradient-to-r from-blue-200/40 to-blue-300/30 rounded-full filter blur-[120px] animate-float-slow"></div>
         <div className="absolute top-2/3 right-1/4 w-[35rem] h-[35rem] bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full filter blur-[110px] animate-float-medium"></div>
         <div className="absolute bottom-1/4 left-1/3 w-[30rem] h-[30rem] bg-gradient-to-l from-indigo-200/30 to-blue-200/30 rounded-full filter blur-[100px] animate-float-fast"></div>
@@ -135,11 +135,11 @@ const PricingPage = () => {
                   <p className="text-3xl font-bold text-blue-600">
                     ₹{plan.price}
                   </p>
-                  <p className={`${plan.popular ? "hidden mt-[-6px] text-blue-500 ":"  "}text-black mb-5 font-semibold text-[13px]`}>/{plan.billing}</p>
+                  <p className={`text-black mb-5 font-semibold text-[13px]`}>/{plan.billing}</p>
                   
                   {/* {plan.note && <p className={`${plan.popular ? " font-semibold text-blue-600 ": " text-gray-500/90 "} text-xs  mt-1`}>{plan.note}</p>} */}
                 </div>
-                  <p className={`${plan.popular ? " mt-[-6px] text-blue-500 ":" hidden "}text-black mb-5 font-semibold text-[13px]`}>{plan.billing}</p>
+                  <p style={{"color": `${plan.popular ? "#0B82E6":""}`}} className={`${plan.note != "" ? " mt-[-6px]  ":" hidden "}text-black mb-5 font-semibold text-[12px]`}>{plan.note}</p>
                 
                 <Link href={plan.url} className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 mb-6 shadow-sm
                   ${plan.popular 
@@ -178,11 +178,17 @@ const PricingPage = () => {
               Our visa specialists are available to help you select the perfect plan for your needs.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="tel:+918850146905" className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <Link
+  href="https://wa.me/918850146905"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center px-6 h-[52px] bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+>
+  <FaWhatsapp className="mr-2 text-xl self-center" />
+  <div className="self-center">Chat with us</div>
+</Link>
+              <Link href="tel:+918850146905" className="inline-flex items-center justify-center px-6 h-[52px] bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                 <FaPhoneAlt className="mr-2" /> Call Support
-              </a>
-              <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                <FaEnvelope className="mr-2" /> Contact Us
               </Link>
             </div>
           </div>

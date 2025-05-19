@@ -42,7 +42,7 @@ const services = [
     id: 4,
     title: "Dummy Flights",
     url: "/dummy-flights",
-    description: "Best deals on international flights with flexible options",
+    description: "Verifiable flight tickets for visa applications",
     image:
       "/images/home/dummy-flight.webp",
     rating: 4.9,
@@ -53,7 +53,7 @@ const services = [
     id: 5,
     title: "Dummy Hotel",
     url: "/dummy-hotel",
-    description: "Curated hotel selections for your perfect stay abroad",
+    description: "Verifiable hotel booking for visa applications",
     image:
     "/images/home/dummy-hotel.webp",
     rating: 4.6,
@@ -64,15 +64,15 @@ const services = [
 
 export default function VisaSolutions() {
   return (
-    <section className="py-16 ">
+    <section className="pb-16 ">
       <Layout>
-      <div className="px-4 text-center">
+      {/* <div className="px-4 text-center">
         <Heading level={2} className="text-secondary-500 mb-10">
           End to End Visa Solutions, <br /> Personalized Service, Secure Payment
         </Heading>
-      </div>
+      </div> */}
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="mt-0 grid grid-cols-1 md:grid-cols-3 gap-6">
         {services.slice(0, 3).map((place) => (
           <Link
           href={`/services/${place.url}`}
@@ -86,7 +86,7 @@ export default function VisaSolutions() {
               height={300}
               className="w-full h-[400px] group-hover:scale-110 group-active:scale-110 transition-all duration-300 object-cover"
             />
-            <div className="absolute inset-0 bg-black/20 rounded-lg"/>
+            {/* <div className="absolute inset-0 bg-black/20 rounded-lg"/> */}
             <div className="absolute bottom-4 left-4 right-4 bg-white group-active:-translate-y-2 group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
                 <div className="flex gap-2 items-center">
@@ -125,7 +125,7 @@ export default function VisaSolutions() {
               className="w-full h-[400px] group-hover:scale-110 group-active:scale-110 transition-all duration-300 object-cover"
             />
 
-<div className="absolute inset-0 bg-black/20 rounded-lg"/>
+{/* <div className="absolute inset-0 bg-black/20 rounded-lg"/> */}
             <div className="absolute bottom-4 left-4 right-4 bg-white  group-active:-translate-y-2 group-hover:-translate-y-2 transition-all duration-300 shadow-md rounded-lg p-4 flex items-center justify-between">
               <div>
               <div className="flex gap-2 items-center">
