@@ -2,10 +2,10 @@ import nodemailer from 'nodemailer';
 
 export const POST = async (req) => {
   try {
-    const { name, phone, email, message, visaType, country } = await req.json();
+    const { firstName, lastName, phone, email, message, visaType, country } = await req.json();
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!firstName || !lastName || !email || !message) {
       return new Response(
         JSON.stringify({ 
           success: false,
@@ -44,7 +44,7 @@ export const POST = async (req) => {
     const mailOptions = {
       from: `"EazyVisas Contact Form" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
       to: process.env.NEXT_PUBLIC_EMAIL_RECEIVER,
-      subject: `New Contact Form Submission from ${name}`,
+      subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
           <div style="background: #2563eb; color: white; padding: 20px; text-align: center;">
@@ -54,7 +54,8 @@ export const POST = async (req) => {
           <div style="padding: 20px; background: #ffffff;">
             <div style="margin-bottom: 15px;">
               <h2 style="color: #2563eb; margin-bottom: 5px; font-size: 18px;">Contact Details</h2>
-              <p style="margin: 5px 0;"><strong>Name:</strong> ${name}</p>
+              <p style="margin: 5px 0;"><strong>First Name:</strong> ${firstName}</p>
+              <p style="margin: 5px 0;"><strong>Last Name:</strong> ${lastName}</p>
               <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
             </div>
             
@@ -72,7 +73,8 @@ export const POST = async (req) => {
       text: `
         New Contact Form Submission
         --------------------------
-        Name: ${name}
+        First Name: ${firstName}
+        Last Name: ${lastName}
         Email: ${email}
         Submitted At: ${timestamp}
         Message: ${message}

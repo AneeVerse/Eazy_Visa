@@ -8,7 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const FormComponent = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     visaType: '',
@@ -237,10 +238,12 @@ const FormComponent = () => {
     
    
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
     }
-
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    }
     if (!formData.email) {
       newErrors.email = 'Email is required';
     } else if (!emailRegex.test(formData.email)) {
@@ -312,7 +315,7 @@ const FormComponent = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData }),
       });
 
       const data = await response.json();
@@ -376,33 +379,57 @@ const FormComponent = () => {
         {/* Form Content - Made more compact */}
         <div className="p-5">
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Name Field */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
-                <BiUser className="mr-2 text-blue-500 text-sm" />
-                Full Name*
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`w-full pl-9 pr-3 py-2 text-sm border rounded-lg ${
-                    errors.name ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
-                  placeholder="John Doe"
-                />
-                <BiUser className="absolute left-3 top-3 text-gray-400 text-sm" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                  <BiUser className="mr-2 text-blue-500 text-sm" />
+                  First Name*
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className={`w-full pl-9 pr-3 py-2 text-sm border rounded-lg ${errors.firstName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                    placeholder="John"
+                  />
+                  <BiUser className="absolute left-3 top-3 text-gray-400 text-sm" />
+                </div>
+                {errors.firstName && (
+                  <p className="text-red-500 text-xs mt-1 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                    {errors.firstName}
+                  </p>
+                )}
               </div>
-              {errors.name && (
-                <p className="text-red-500 text-xs mt-1 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
-                  {errors.name}
-                </p>
-              )}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                  <BiUser className="mr-2 text-blue-500 text-sm" />
+                  Last Name*
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className={`w-full pl-9 pr-3 py-2 text-sm border rounded-lg ${errors.lastName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                    placeholder="Doe"
+                  />
+                  <BiUser className="absolute left-3 top-3 text-gray-400 text-sm" />
+                </div>
+                {errors.lastName && (
+                  <p className="text-red-500 text-xs mt-1 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                    {errors.lastName}
+                  </p>
+                )}
+              </div>
             </div>
 
             {/* Email Field */}

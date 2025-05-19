@@ -8,25 +8,26 @@ import { BiUser, BiEnvelope, BiPhone } from 'react-icons/bi';
 
 const SubscribeForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: ''
   });
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const validateForm = () => {
     const errors = {};
     
-    if (!formData.name.trim()) {
-      errors.name = 'Name is required';
+    if (!formData.firstName.trim()) {
+      errors.firstName = 'First Name is required';
+    }
+
+    if (!formData.lastName.trim()) {
+      errors.lastName = 'Last Name is required';
     }
 
     if (!formData.email) {
@@ -101,19 +102,30 @@ const SubscribeForm = () => {
           </p>
           
           <form onSubmit={handleSubmit} className="space-y-3">
-            {/* Name Field */}
+            {/* First Name Field */}
             <div>
-              {/* <label className="block text-sm font-medium mb-1 flex items-center">
-                <BiUser className="mr-2 text-blue-300" />
-                Full Name *
-              </label> */}
               <div className="relative">
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
-                  placeholder="Name"
+                  placeholder="First Name"
+                  className="w-full px-4 pl-10 py-3 rounded-lg bg-[#006494]/80 text-white border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <BiUser className="absolute left-3 top-3 mt-1 text-gray-300" />
+              </div>
+            </div>
+
+            {/* Last Name Field */}
+            <div>
+              <div className="relative">
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Last Name"
                   className="w-full px-4 pl-10 py-3 rounded-lg bg-[#006494]/80 text-white border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <BiUser className="absolute left-3 top-3 mt-1 text-gray-300" />
@@ -122,10 +134,6 @@ const SubscribeForm = () => {
 
             {/* Email Field */}
             <div>
-              {/* <label className="block text-sm font-medium mb-1 flex items-center">
-                <BiEnvelope className="mr-2 text-blue-300" />
-                Email Address *
-              </label> */}
               <div className="relative">
                 <input
                   type="email"
@@ -141,10 +149,6 @@ const SubscribeForm = () => {
 
             {/* Phone Field */}
             <div>
-              {/* <label className="block text-sm font-medium mb-1 flex items-center">
-                <BiPhone className="mr-2 text-blue-300" />
-                Phone Number *
-              </label> */}
               <div className="relative">
                 <input
                   type="tel"

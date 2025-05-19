@@ -10,14 +10,16 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ConsultationForm = () => {
   const [formData, setFormData] = useState({ 
-    name: "", 
+    firstName: "", 
+    lastName: "", 
     email: "", 
     phone: "" 
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [errors, setErrors] = useState({ 
-    name: "", 
+    firstName: "", 
+    lastName: "", 
     email: "", 
     phone: "" 
   });
@@ -32,11 +34,15 @@ const ConsultationForm = () => {
   };
 
   const validateForm = () => {
-    const newErrors = { name: "", email: "", phone: "" };
+    const newErrors = { firstName: "", lastName: "", email: "", phone: "" };
     let isValid = true;
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required";
+      isValid = false;
+    }
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required";
       isValid = false;
     }
     if (!formData.email.trim()) {
@@ -140,31 +146,56 @@ const ConsultationForm = () => {
         {/* Form Content */}
         <div className="p-6">
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Name Field */}
+            {/* First Name Field */}
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
                 <BiUser className="mr-2 text-blue-500" />
-                Full Name*
+                First Name*
               </label>
               <div className="relative">
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
-                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${
-                    errors.name ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
-                  placeholder="John Doe"
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${errors.firstName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  placeholder="John"
                 />
                 <BiUser className="absolute left-3 top-4 text-gray-400" />
               </div>
-              {errors.name && (
+              {errors.firstName && (
                 <p className="text-red-500 text-xs mt-1 flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                   </svg>
-                  {errors.name}
+                  {errors.firstName}
+                </p>
+              )}
+            </div>
+
+            {/* Last Name Field */}
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
+                <BiUser className="mr-2 text-blue-500" />
+                Last Name*
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${errors.lastName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  placeholder="Doe"
+                />
+                <BiUser className="absolute left-3 top-4 text-gray-400" />
+              </div>
+              {errors.lastName && (
+                <p className="text-red-500 text-xs mt-1 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                  {errors.lastName}
                 </p>
               )}
             </div>

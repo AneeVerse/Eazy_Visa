@@ -8,12 +8,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
+    phone: '',
     message: '',
     visaType: '',
-    country: '',
-    phone: '',
+    country: ''
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -233,7 +234,7 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData }),
       });
 
       const data = await response.json();
@@ -350,20 +351,30 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-white/80 flex-1 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-blue-100">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Your Name*</label>
-                <div className="relative">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">First Name*</label>
                   <input
                     type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    value={formData.firstName}
+                    onChange={e => setFormData({ ...formData, firstName: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
-                    placeholder="John Doe"
+                    placeholder="John"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Last Name*</label>
+                  <input
+                    type="text"
+                    value={formData.lastName}
+                    onChange={e => setFormData({ ...formData, lastName: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                    placeholder="Doe"
                     required
                   />
                 </div>
               </div>
-              {/* add phone number */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number*</label>
                 <div className="relative">
