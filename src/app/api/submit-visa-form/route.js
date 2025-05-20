@@ -6,11 +6,11 @@ export const POST = async (req) => {
     console.log('Received form submission:', { firstName, lastName, email, phone, visaType, country });
     const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
 
-    if (!firstName || !lastName || !email || !phone || !visaType) {
+    if (!firstName || !lastName || !email || !phone || !visaType || !country) {
       return new Response(
         JSON.stringify({ 
           error: 'All fields are required!',
-          receivedData: { firstName, lastName, email, phone, visaType }
+          receivedData: { firstName, lastName, email, phone, visaType, country }
         }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
