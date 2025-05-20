@@ -2,7 +2,8 @@ import nodemailer from 'nodemailer';
 
 export const POST = async (req) => {
   try {
-    const { firstName, lastName, email, phone, visaType } = await req.json();
+    const { firstName, lastName, email, phone, visaType, country } = await req.json();
+    console.log('Received form submission:', { firstName, lastName, email, phone, visaType, country });
     const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
 
     if (!firstName || !lastName || !email || !phone || !visaType) {
