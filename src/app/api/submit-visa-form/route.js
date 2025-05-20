@@ -2,13 +2,14 @@ import nodemailer from 'nodemailer';
 
 export const POST = async (req) => {
   try {
-    const { name, email, phone, visaType } = await req.json();
+    const { firstName, lastName, email, phone, visaType } = await req.json();
+    const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
 
-    if (!name || !email || !phone || !visaType) {
+    if (!firstName || !lastName || !email || !phone || !visaType) {
       return new Response(
         JSON.stringify({ 
           error: 'All fields are required!',
-          receivedData: { name, email, phone, visaType }
+          receivedData: { firstName, lastName, email, phone, visaType }
         }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
