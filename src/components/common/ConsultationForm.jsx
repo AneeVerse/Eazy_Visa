@@ -13,7 +13,8 @@ const ConsultationForm = () => {
     firstName: "", 
     lastName: "", 
     email: "", 
-    phone: "" 
+    phone: "",
+    visaType: ""
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
@@ -21,7 +22,8 @@ const ConsultationForm = () => {
     firstName: "", 
     lastName: "", 
     email: "", 
-    phone: "" 
+    phone: "",
+    visaType: ""
   });
 
   const handleChange = (e) => {
@@ -34,7 +36,7 @@ const ConsultationForm = () => {
   };
 
   const validateForm = () => {
-    const newErrors = { firstName: "", lastName: "", email: "", phone: "" };
+    const newErrors = { firstName: "", lastName: "", email: "", phone: "", visaType: "" };
     let isValid = true;
 
     if (!formData.firstName.trim()) {
@@ -59,6 +61,10 @@ const ConsultationForm = () => {
       newErrors.phone = "Invalid phone number (10 digits)";
       isValid = false;
     }
+    if (!formData.visaType) {
+      newErrors.visaType = "Visa Type is required";
+      isValid = false;
+    }
 
     setErrors(newErrors);
     return isValid;
@@ -70,10 +76,6 @@ const ConsultationForm = () => {
 
     setIsLoading(true);
     try {
-      // Get visa type from URL path (e.g., /tourist-visa -> "tourist")
-      const pathParts = window.location.pathname.split('/');
-      const visaType = pathParts.length > 1 ? pathParts[pathParts.length - 1].replace('-', ' ') : 'general';
-      
       const response = await fetch('/api/submit-visa-form', {
         method: 'POST',
         headers: {
@@ -84,7 +86,7 @@ const ConsultationForm = () => {
           lastName: formData.lastName,
           email: formData.email,
           phone: formData.phone,
-          visaType: visaType.charAt(0).toUpperCase() + visaType.slice(1)
+          visaType: formData.visaType
         }),
       });
 
@@ -257,6 +259,37 @@ const ConsultationForm = () => {
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                   </svg>
                   {errors.phone}
+                </p>
+              )}
+            </div>
+
+            {/* Visa Type Dropdown */}
+            <div>
+              <label className="text-sm font-medium text-gray-700 mb-2 flex items-center">
+                <BiSupport className="mr-2 text-blue-500" />
+                Visa Type*
+              </label>
+              <div className="relative">
+                <select
+                  name="visaType"
+                  value={formData.visaType}
+                  onChange={handleChange}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${errors.visaType ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                >
+                  <option value="">Select Visa Type</option>
+                  <option value="Tourist Visa">Tourist Visa</option>
+                  <option value="Business Visa">Business Visa</option>
+                  <option value="Student Visa">Student Visa</option>
+                  {/* Add more options as needed */}
+                </select>
+                {/* You can add an icon here if you want, e.g. <BiChevronDown /> */}
+              </div>
+              {errors.visaType && (
+                <p className="text-red-500 text-xs mt-1 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                  {errors.visaType}
                 </p>
               )}
             </div>
