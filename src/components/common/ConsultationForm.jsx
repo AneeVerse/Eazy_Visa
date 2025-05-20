@@ -80,8 +80,11 @@ const ConsultationForm = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
-          visaType: visaType.charAt(0).toUpperCase() + visaType.slice(1) // Capitalize first letter
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          visaType: visaType.charAt(0).toUpperCase() + visaType.slice(1)
         }),
       });
 
