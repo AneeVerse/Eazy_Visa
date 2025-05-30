@@ -1,5 +1,5 @@
 // pages/privacy.js
-import Layout from '@/components/common/Layout';
+import Layout from '../../../../components/common/Layout';
 import { FiShield, FiUser, FiDatabase, FiMail, FiSettings } from 'react-icons/fi';
 
 

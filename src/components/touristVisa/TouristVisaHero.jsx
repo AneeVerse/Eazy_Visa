@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Heading, Paragraph } from '@/components/common/Typography';
+import { Heading, Paragraph } from '../common/Typography';
 import { FaCompass } from "react-icons/fa";
 import Image from 'next/image';
 import { FaMapMarkerAlt } from 'react-icons/fa';
@@ -10,6 +10,7 @@ import { IoAirplane } from 'react-icons/io5';
 import Layout from '../common/Layout';
 import ConsultationForm from '../common/ConsultationForm';
 import FormComponent from '../common/FormComponent';
+import Link from "next/link";
 
 const SCROLL_IMAGES = [
     '/images/home/hero1.png',

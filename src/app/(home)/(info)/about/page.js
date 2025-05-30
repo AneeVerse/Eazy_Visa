@@ -1,7 +1,8 @@
 // pages/about.js
 import { FaLightbulb, FaRocket, FaUsers, FaHandshake, FaUserTie } from 'react-icons/fa';
-import TeamMember from "@/components/TeamMember" // You'll create this component
-import Layout from '@/components/common/Layout';
+import Image from "next/image";
+import TeamMember from "../../../../components/TeamMember"
+import Layout from '../../../../components/common/Layout';
 
 
 export const metadata = {

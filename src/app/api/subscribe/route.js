@@ -1,7 +1,7 @@
 // app/api/subscribe/route.js
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
-import dbConnect from '@/lib/dbConnect';
+import dbConnect from '../../../lib/dbConnect';
 
 // Define Subscriber schema
 const subscriberSchema = new mongoose.Schema({

@@ -1,4 +1,4 @@
-import Footer from '@/components/Layout/Footer'
+import Footer from '../../../components/Layout/Footer'
 import React from 'react'
 import Script from 'next/script'
 

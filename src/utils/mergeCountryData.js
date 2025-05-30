@@ -1,4 +1,4 @@
-import { countryData } from '@/data/countryData';
+import { countryData } from '../data/countryData';
 
 export const mergeCountryData = (apiCountries) => {
   // Create a lookup map from local data

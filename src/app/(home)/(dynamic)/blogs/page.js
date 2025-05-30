@@ -1,35 +1,19 @@
-"use client";
-import BlogCard from "@/components/cards/BlogCard";
-import SubscribeForm from "@/components/blog/SubscribeForm";
-// import { blogData } from "@/data/blogData";
-import { useEffect, useState } from "react";
+import BlogCard from "../../../../components/cards/BlogCard";
+import SubscribeForm from "../../../../components/blog/SubscribeForm";
+import { getAllBlogs } from "../../../../lib/sanity";
 
+export const revalidate = 60; // Revalidate every 60 seconds
 
-const BlogPage = () => {
-const [blogData, setBlogData] = useState([]);
-useEffect(() => {
-  // Simulate fetching data from an API
-  const fetchData = async () => {
-    // Replace this with your actual data fetching logic
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BLOG_URL}/api/blogs?populate=*`);
-    const data = await response.json();
-    console.log("API Data:", data.data);
-    setBlogData(data.data);
-  };
-  fetchData();
-}
-, []);
+async function BlogPage() {
+  const blogData = await getAllBlogs();
 
-if (blogData.length === 0) {
-  return (
-    <div className="flex justify-center items-center h-screen">
-      <p className="text-xl">Loading...</p>
-    </div>
-  );
-}
-  // Simulate fetching data from an API
-  // Replace this with your actual data fetching logic
-  // const fetchData = async () => {
+  if (!blogData || blogData.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-xl">No blog posts found</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -37,22 +21,33 @@ if (blogData.length === 0) {
         {/* Blog Posts Column - Takes 3/4 width on large screens */}
         <div className="lg:col-span-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogData.map((post, index) => (
-              <BlogCard key={index} {...post} />
+            {blogData.map((post) => (
+              <BlogCard
+                key={post._id}
+                title={post.title}
+                url={post.slug.current}
+                category={post.categories?.[0]?.title}
+                description={post.excerpt}
+                imageUrl={post.mainImage}
+                date={new Date(post.publishedAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              />
             ))}
           </div>
         </div>
 
         {/* Subscribe Form Column - Takes 1/4 width on large screens */}
         <div className="lg:col-span-1">
-          <div className="sticky top-24 h-fit"> {/* Adjust top value to match your navbar height */}
+          <div className="sticky top-24 h-fit">
             <SubscribeForm />
-            
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default BlogPage;

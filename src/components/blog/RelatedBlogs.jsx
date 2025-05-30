@@ -1,49 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { FiClock, FiBookmark } from "react-icons/fi";
+import { PortableText } from "@portabletext/react";
+import { urlFor } from "../../lib/sanity";
 
-const RelatedBlogsSidebar = ({ currentBlogSlug }) => {
-  const [relatedBlogs, setRelatedBlogs] = useState([]);
-    useEffect(() => {
-      // Simulate fetching data from an API
-      const fetchData = async () => {
-        // Replace this with your actual data fetching logic
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BLOG_URL}/api/blogs?populate=*`);
-        const res = await response.json();
-        const data = res.data;
-
-        const currentBlog = data.find((blog) => blog.url === currentBlogSlug);
-        if (currentBlog) {
-          const related = data
-            .filter(blog => blog.url !== currentBlogSlug)
-            .sort(() => 0.5 - Math.random())
-            .slice(0, 3);
-            
-            console.log("Related Blogs:", related);
-          setRelatedBlogs(related);
-        }
-
-      };
-      fetchData();
-    }
-    , []);
-
-  // useEffect(() => {
-  //   const currentBlog = blogData.find(blog => blog.url === currentBlogSlug);
-    
-  //   if (currentBlog) {
-  //     const related = blogData
-  //       .filter(blog => blog.url !== currentBlogSlug)
-  //       .sort(() => 0.5 - Math.random())
-  //       .slice(0, 3);
-        
-  //     setRelatedBlogs(related);
-  //   }
-  // }, [currentBlogSlug]);
-
-  if (relatedBlogs.length === 0) return null;
+const RelatedBlogs = ({ posts }) => {
+  if (!posts || posts.length === 0) return null;
 
   return (
     <div className="bg-white p-6 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.05)] border border-gray-100">
@@ -52,20 +16,20 @@ const RelatedBlogsSidebar = ({ currentBlogSlug }) => {
           Recommended Reads
           <span className="block w-8 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mt-1 rounded-full"></span>
         </h3>
-        <FiBookmark className="text-gray-400 w-5 h-5  transition-colors" />
+        <FiBookmark className="text-gray-400 w-5 h-5 transition-colors" />
       </div>
       
       <div className="space-y-5">
-        {relatedBlogs.map((blog) => (
+        {posts.map((post) => (
           <Link 
-            key={blog.url} 
-            href={`/blogs/${blog.url}`}
+            key={post._id} 
+            href={`/blogs/${post.slug.current}`}
             className="group flex gap-4 items-start p-2 -mx-2 rounded-lg hover:bg-gray-50/80 transition-colors duration-200"
           >
             <div className="relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
               <img 
-                src={`${process.env.NEXT_PUBLIC_BLOG_URL}${blog.imageUrl.url}`}
-                alt={blog.title}
+                src={urlFor(post.mainImage).url()}
+                alt={post.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -73,16 +37,22 @@ const RelatedBlogsSidebar = ({ currentBlogSlug }) => {
             
             <div className="flex-1 min-w-0 pt-1">
               <h4 className="text-[15px] font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug">
-                {blog.title}
+                {post.title}
               </h4>
               <div className="flex items-center mt-2 space-x-3">
                 <span className="inline-flex items-center text-xs text-gray-500">
                   <FiClock className="mr-1 w-3 h-3 opacity-80" />
-                  {blog.date}
+                  {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </span>
-                {/* <span className="inline-block px-2 py-1 text-[11px] font-medium bg-blue-50/70 text-blue-600 rounded-full backdrop-blur-sm">
-                  {blog.category}
-                </span> */}
+                {post.categories?.[0] && (
+                  <span className="inline-block px-2 py-1 text-[11px] font-medium bg-blue-50/70 text-blue-600 rounded-full backdrop-blur-sm">
+                    {post.categories[0].title}
+                  </span>
+                )}
               </div>
             </div>
           </Link>
@@ -104,4 +74,4 @@ const RelatedBlogsSidebar = ({ currentBlogSlug }) => {
   );
 };
 
-export default RelatedBlogsSidebar;
+export default RelatedBlogs;

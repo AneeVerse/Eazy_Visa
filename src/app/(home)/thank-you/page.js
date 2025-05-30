@@ -3,9 +3,10 @@
 import { useEffect } from 'react';
 import { FaCheckCircle, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
-import Layout from '@/components/common/Layout';
-import Footer from '@/components/Layout/Footer';
+import Layout from '../../../components/common/Layout';
+import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
+import Image from "next/image";
 
 export default function ThankYouPage() {
   const router = useRouter();

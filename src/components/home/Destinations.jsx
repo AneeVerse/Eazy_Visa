@@ -5,12 +5,12 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import Layout from "../common/Layout";
 import VisaCard from "../cards/VisaCard";
-import { mergeCountryData } from "@/utils/mergeCountryData";
+import { mergeCountryData } from "../../utils/mergeCountryData";
 import Button from "../common/Button";
 import { FiArrowRight } from "react-icons/fi";
 import { Heading, Subheading } from "../common/Typography";
 import CountryCardSkeleton from "../common/CountryCardSkeleton";
-import { countryData } from "@/data/countryData";
+import { countryData } from "../../data/countryData";
 
 export default function DestinationSlider() {
   const scrollRef = useRef(null);

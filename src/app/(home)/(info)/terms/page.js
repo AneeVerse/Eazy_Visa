@@ -1,5 +1,5 @@
 // pages/terms.js
-import Layout from '@/components/common/Layout';
+import Layout from '../../../../components/common/Layout';
 import { FiAlertCircle, FiShield, FiCreditCard, FiLock } from 'react-icons/fi';
 
 

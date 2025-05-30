@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { countryData } from "@/data/countryData";
+import { countryData } from "../../data/countryData";
 import { FiChevronDown, FiCheck, FiSearch } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import CountryCard from "../cards/CountryCard";
 import CountryCardSkeleton from "../common/CountryCardSkeleton";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 const CustomSelect = ({ 
   options, 

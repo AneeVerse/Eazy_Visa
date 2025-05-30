@@ -1,14 +1,14 @@
-import { Comfortaa } from "next/font/google";
+import { Inter, Comfortaa } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Layout/Navbar";
-import Footer from "@/components/Layout/Footer";
+import Navbar from "../components/Layout/Navbar";
+import Footer from "../components/Layout/Footer";
 import NextTopLoader from "nextjs-toploader";
-import FloatingActionButton from "@/components/Layout/FloatingActionButton";
+import FloatingActionButton from "../components/Layout/FloatingActionButton";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-comfortaa",
+  variable: "--font-comfortaa"
 });
 
 export const metadata = {

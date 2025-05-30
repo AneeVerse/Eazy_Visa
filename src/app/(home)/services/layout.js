@@ -1,6 +1,6 @@
-import VisaSolutions from '@/components/countries/CountryVisaSolution'
-import BlogSection from '@/components/home/BlogSection'
-import Footer from '@/components/Layout/Footer'
+import VisaSolutions from '../../../components/countries/CountryVisaSolution'
+import BlogSection from '../../../components/home/BlogSection'
+import Footer from '../../../components/Layout/Footer'
 import React from 'react'
 
 

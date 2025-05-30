@@ -2,9 +2,12 @@
 import { useState } from 'react';
 import { FiMapPin, FiMail, FiPhone, FiSend } from 'react-icons/fi';
 import { FaTwitter, FaInstagram, FaLinkedinIn, FaGithub } from 'react-icons/fa';
-import Layout from '@/components/common/Layout';
+import Layout from '../../../../components/common/Layout';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Image from "next/image";
+import Link from "next/link";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const Contact = () => {
   const [formData, setFormData] = useState({

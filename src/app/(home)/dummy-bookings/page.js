@@ -1,7 +1,7 @@
 "use client";
-import Layout from '@/components/common/Layout';
-import { Heading } from '@/components/common/Typography';
-import Footer from '@/components/Layout/Footer';
+import Layout from '../../../components/common/Layout';
+import { Heading } from '../../../components/common/Typography';
+import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
 import { FaCheck, FaInfoCircle, FaCrown, FaPhoneAlt, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 

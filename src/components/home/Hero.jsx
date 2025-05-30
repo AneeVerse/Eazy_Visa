@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Heading, Paragraph } from '@/components/common/Typography';
+import { Heading, Paragraph } from '../common/Typography';
 import { FaCompass } from "react-icons/fa";
 import Image from 'next/image';
 import { FaMapMarkerAlt } from 'react-icons/fa';
