@@ -174,7 +174,7 @@ export default function Footer() {
             <div className="text-sm sm:text-base md:mt-0">
               Designed & Managed by{" "}
               <Link
-                href={"https://aneeverse.com/"}
+                href={"https://www.aneeverse.com/"}
                 target="_blank"
                 className="hover:underline inline-flex  flex-row items-center gap-2 min-h-fit"
               >
