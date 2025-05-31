@@ -53,6 +53,23 @@ export const POST = async (req) => {
 
     await transporter.sendMail(mailOptions);
 
+    // Send to Google Sheets
+    await fetch('https://script.google.com/macros/s/AKfycbw_LHEPesM36i2wuu1BxmVU_rR8riwqVExqUojnbq3QD8FJxWxS8oGL3GEvB-x5TCATvw/exec', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formName: 'Visa Consultation',
+        name: name || '',
+        email: email || '',
+        phone: phone || '',
+        message: '',
+        rating: '',
+        country: country || '',
+        visaType: visaType || '',
+        extraInfo: ''
+      }),
+    });
+
     return new Response(
       JSON.stringify({ 
         success: true, 
