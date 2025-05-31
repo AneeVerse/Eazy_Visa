@@ -7,6 +7,8 @@ import Button from "../common/Button";
 import { IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import BlogCard from "../cards/BlogCard";
+import { getAllBlogs } from "../../lib/sanity";
 
 // const blogs = [
 //   {
@@ -40,27 +42,30 @@ import Link from "next/link";
 // ];
 
 export default function BlogSection() {
-  // Function to handle smooth scroll
   const [blogData, setBlogData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
+    async function fetchBlogs() {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BLOG_URL}/api/blogs?populate=*`); // Replace with your API endpoint
-        const data = await response.json();
-        console.log("Fetched blog data:", data.data);
-        setBlogData(data.data);
+        const blogs = await getAllBlogs();
+        setBlogData(blogs);
       } catch (error) {
-        console.error("Error fetching blog data:", error);
+        console.error("Error fetching blogs from Sanity:", error);
+      } finally {
+        setLoading(false);
       }
-    };
+    }
     fetchBlogs();
   }, []);
 
-  if (blogData.length === 0) {
-    return <p>Loading...</p>; // Handle loading state
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
+  if (!blogData || blogData.length === 0) {
+    return <p>No blogs found.</p>;
+  }
 
   return (
     <section className="pt-8 md:pt-16">
@@ -84,32 +89,20 @@ export default function BlogSection() {
         {/* Blog Cards - Scrollable */}
         <div className="mt-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] xl:gap-[15px] hide-scrollbar">
-            {blogData.slice(0,4).map((blog, index) => (
-              <Link 
-              href={`/blogs/${blog.url}`}
-                key={index}
-                className="w-full  my-2"
-              >
-                <div className="relative">
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_BLOG_URL}${blog.imageUrl.url}`}
-                    alt={blog.title}
-                    width={320}
-                    height={180}
-                    className="w-full h-52 md:h-48 object-cover rounded-xl"
-                  />
-                </div>
-                <div className="py-4">
-                  <div className="flex gap-1 justify-between">
-                    <h3 className="text-lg line-clamp-2 font-semibold">{blog.title}</h3>
-                    {/* <div className="bg-[#ffd11b] self-start text-black px-2 py-1 rounded-full flex items-center gap-1 whitespace-nowrap font-semibold text-sm">
-                      <FaStar className="text-black text-sm" />
-                      4.8
-                    </div> */}
-                  </div>
-                  {/* <p className="text-gray-500">{blog.description}</p> */}
-                </div>
-              </Link>
+            {blogData.slice(0, 4).map((post) => (
+              <BlogCard
+                key={post._id}
+                title={post.title}
+                url={post.slug.current}
+                category={post.categories?.[0]?.title || ''}
+                description={post.excerpt}
+                imageUrl={post.mainImage}
+                date={new Date(post.publishedAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              />
             ))}
           </div>
         </div>
