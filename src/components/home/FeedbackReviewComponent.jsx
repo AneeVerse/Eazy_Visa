@@ -70,7 +70,7 @@ const FeedbackReviewComponent = () => {
               <p className="inline-block mb-3 px-4 py-2 bg-blue-100/50 text-blue-500 font-medium rounded-full backdrop-blur-lg shadow-md">
                 ✈️ Feedback
               </p>
-              <h1 className="mt-4 text-3xl font-extrabold text-gray-800">
+              <h1 className="mt-4 text-3xl font-extrabold text-gray-800 mb-10">
                 See What Our <br className="sm:hidden" />
                 <span className="text-blue-500">Happy Clients</span> Say
               </h1>
