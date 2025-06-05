@@ -27,34 +27,52 @@ export const POST = async (req) => {
     const mailOptions = {
       from: `"Eazy Visas Form" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
       to: process.env.NEXT_PUBLIC_EMAIL_RECEIVER,
-      subject: `New ${visaType} Visa Consultation Request`,
+      subject: `New Visa Consultation Request - ${visaType} - ${country}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
           <div style="background: #2563eb; color: white; padding: 20px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px;">New Visa Consultation</h1>
-            <p style="margin: 5px 0 0; font-size: 16px;">${visaType}</p>
+            <h1 style="margin: 0; font-size: 24px;">New Visa Consultation Request</h1>
           </div>
           
           <div style="padding: 20px; background: #ffffff;">
-            <div style="margin-bottom: 15px;">
-              <h3 style="color: #2563eb; margin-bottom: 5px; font-size: 16px;">Applicant Details</h3>
-              <p style="margin: 5px 0;"><strong>Name:</strong> ${name}</p>
-              <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
-              <p style="margin: 5px 0;"><strong>Phone:</strong> ${phone}</p>
-              <p style="margin: 5px 0;"><strong>Visa Type:</strong> ${visaType}</p>
-            </div>
+            <h2 style="color: #2563eb; margin-top: 0;">Visa Details</h2>
+            <p><strong>Type:</strong> ${visaType}</p>
+            <p><strong>Country:</strong> ${country}</p>
+            
+            <h2 style="color: #2563eb; margin-top: 20px;">Applicant Information</h2>
+            <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
           </div>
-            <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
-          <p style="margin: 0;">This Form was created at ${new Date().toLocaleString()}</p>
+          
+          <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
+            <p style="margin: 0;">This request was submitted at ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
+          </div>
         </div>
-        </div>
+      `,
+      text: `
+        New Visa Consultation Request
+        ============================
+        Visa Type: ${visaType}
+        Country: ${country}
+        
+        Applicant Details:
+        -----------------
+        Name: ${name}
+        Email: ${email}
+        Phone: ${phone}
+        
+        This Form was created at ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
+        
+        Submitted through Eazy Visas website form
       `,
     };
 
-    await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully. Message ID:', info.messageId);
 
     // Send to Google Sheets
-    await fetch('https://script.google.com/macros/s/AKfycbw_LHEPesM36i2wuu1BxmVU_rR8riwqVExqUojnbq3QD8FJxWxS8oGL3GEvB-x5TCATvw/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbymh3pK7scJVrPCxmX2tloCmvrc2ARxlGYVCHB2tuQ37saHOCPqxfDZN4NMd7_spyvz9Q/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -62,7 +80,7 @@ export const POST = async (req) => {
         name: name || '',
         email: email || '',
         phone: phone || '',
-        message: '',
+        message: '', // No message field in this form
         rating: '',
         country: country || '',
         visaType: visaType || '',

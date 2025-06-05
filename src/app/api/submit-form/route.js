@@ -28,35 +28,27 @@ export const POST = async (req) => {
     const mailOptions = {
       from: `"Eazy Visas Form" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
       to: process.env.NEXT_PUBLIC_EMAIL_RECEIVER,
-      subject: `New ${visaType} Consultation for ${country}`,
+      subject: `New Visa Consultation Request - ${visaType} - ${country}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
           <div style="background: #2563eb; color: white; padding: 20px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px;">New Visa Consultation</h1>
-            <p style="margin: 5px 0 0; font-size: 16px;">${visaType} - ${country}</p>
+            <h1 style="margin: 0; font-size: 24px;">New Visa Consultation Request</h1>
           </div>
           
           <div style="padding: 20px; background: #ffffff;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-              <div>
-                <h3 style="color: #2563eb; margin-bottom: 5px; font-size: 16px;">Applicant Details</h3>
-                <p style="margin: 5px 0;"><strong>Name:</strong> ${name}</p>
-                <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
-                <p style="margin: 5px 0;"><strong>Phone:</strong> ${phone}</p>
-              </div>
-              <div>
-                <h3 style="color: #2563eb; margin-bottom: 5px; font-size: 16px;">Visa Details</h3>
-                <p style="margin: 5px 0;"><strong>Visa Type:</strong> ${visaType}</p>
-                <p style="margin: 5px 0;"><strong>Country:</strong> ${country}</p>
-              </div>
-            </div>
+            <h2 style="color: #2563eb; margin-top: 0;">Visa Details</h2>
+            <p><strong>Type:</strong> ${visaType}</p>
+            <p><strong>Country:</strong> ${country}</p>
             
-       
+            <h2 style="color: #2563eb; margin-top: 20px;">Applicant Information</h2>
+            <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
           </div>
-            <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
-          <p style="margin: 0;">This Form was created at ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
-        </div>
           
+          <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
+            <p style="margin: 0;">This request was submitted at ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
+          </div>
         </div>
       `,
       text: `
@@ -81,7 +73,7 @@ export const POST = async (req) => {
     console.log('Email sent successfully. Message ID:', info.messageId);
 
     // Send to Google Sheets
-    await fetch('https://script.google.com/macros/s/AKfycbw_LHEPesM36i2wuu1BxmVU_rR8riwqVExqUojnbq3QD8FJxWxS8oGL3GEvB-x5TCATvw/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbymh3pK7scJVrPCxmX2tloCmvrc2ARxlGYVCHB2tuQ37saHOCPqxfDZN4NMd7_spyvz9Q/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

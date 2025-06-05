@@ -114,6 +114,51 @@ export const POST = async (req) => {
     // Send email
     await transporter.sendMail(mailOptions);
 
+    // Get the first traveler's name for the Google Sheet
+    const firstTraveler = formData.travelers.list[0];
+    const travelerName = `${firstTraveler.title} ${firstTraveler.firstName} ${firstTraveler.lastName}`;
+    
+    // Create a simplified hotel info (keep it short for Google Sheets)
+    const hotelLocations = formData.hotels.map(hotel => hotel.location).join(', ');
+    
+    const checkInDates = formData.hotels.map(hotel => 
+      new Date(hotel.checkInDate).toISOString().split("T")[0]
+    ).join(', ');
+    
+    const checkOutDates = formData.hotels.map(hotel => 
+      new Date(hotel.checkOutDate).toISOString().split("T")[0]
+    ).join(', ');
+
+    // Prepare data for Google Sheets
+    const sheetData = {
+      formName: 'Hotel Booking',
+      name: travelerName,
+      email: formData.contact.email,
+      phone: formData.contact.phoneCode + formData.contact.phone,
+      message: `Hotels: ${hotelLocations}, Check-in: ${checkInDates}, Check-out: ${checkOutDates}`,
+      rating: '',
+      country: formData.hotels[0].location,
+      visaType: '',
+      extraInfo: `Guests: ${formData.guests.adults} Adults, ${formData.guests.children} Children, Rooms: ${formData.guests.rooms}, Price: ₹${formData.price.toLocaleString()}`
+    };
+    
+    console.log('Sending to Google Sheets:', sheetData);
+
+    // Send to Google Sheets
+    try {
+      const googleResponse = await fetch('https://script.google.com/macros/s/AKfycbymh3pK7scJVrPCxmX2tloCmvrc2ARxlGYVCHB2tuQ37saHOCPqxfDZN4NMd7_spyvz9Q/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sheetData),
+      });
+      
+      const googleData = await googleResponse.text();
+      console.log('Google Sheets response:', googleResponse.status, googleData);
+      
+    } catch (sheetError) {
+      console.error('Error sending to Google Sheets:', sheetError);
+    }
+
     return new Response(
       JSON.stringify({ 
         success: true, 
