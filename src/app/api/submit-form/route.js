@@ -2,16 +2,16 @@ import nodemailer from 'nodemailer';
 
 export const POST = async (req) => {
   try {
-    const { firstName, lastName, email, phone, country, visaType } = await req.json();
+    const { firstName, lastName, email, phone, country, visaType, formSource } = await req.json();
     const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
 
-    console.log('Received form submission:', { firstName, lastName, email, phone, country, visaType });
+    console.log('Received form submission:', { firstName, lastName, email, phone, country, visaType, formSource });
 
     if (!firstName || !lastName || !email || !phone || !country || !visaType) {
       return new Response(
         JSON.stringify({ 
           error: 'All fields are required!',
-          receivedData: { firstName, lastName, email, phone, country, visaType }
+          receivedData: { firstName, lastName, email, phone, country, visaType, formSource }
         }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
@@ -39,6 +39,7 @@ export const POST = async (req) => {
             <h2 style="color: #2563eb; margin-top: 0;">Visa Details</h2>
             <p><strong>Type:</strong> ${visaType}</p>
             <p><strong>Country:</strong> ${country}</p>
+            <p><strong>Form Source:</strong> ${formSource || 'Homepage'}</p>
             
             <h2 style="color: #2563eb; margin-top: 20px;">Applicant Information</h2>
             <p><strong>Name:</strong> ${firstName} ${lastName}</p>
@@ -56,6 +57,7 @@ export const POST = async (req) => {
         ============================
         Visa Type: ${visaType}
         Country: ${country}
+        Form Source: ${formSource || 'Homepage'}
         
         Applicant Details:
         -----------------
@@ -72,12 +74,15 @@ export const POST = async (req) => {
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent successfully. Message ID:', info.messageId);
 
+    // Determine form name based on the source
+    const formName = formSource === 'country' ? 'Countries Visa Consultation' : 'Visa Consultation';
+
     // Send to Google Sheets
     await fetch('https://script.google.com/macros/s/AKfycbymh3pK7scJVrPCxmX2tloCmvrc2ARxlGYVCHB2tuQ37saHOCPqxfDZN4NMd7_spyvz9Q/exec', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        formName: 'Visa Consultation',
+        formName: formName,
         name: name || '',
         email: email || '',
         phone: phone || '',
@@ -85,7 +90,7 @@ export const POST = async (req) => {
         rating: '',
         country: country || '',
         visaType: visaType || '',
-        extraInfo: ''
+        extraInfo: formSource || 'Homepage'
       }),
     });
 
@@ -100,7 +105,8 @@ export const POST = async (req) => {
           email,
           phone,
           country,
-          visaType
+          visaType,
+          formSource
         }
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }

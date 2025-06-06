@@ -1,21 +1,38 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BiSupport, BiUser, BiEnvelope, BiPhone, BiCheckShield, BiWorld, BiTask } from 'react-icons/bi';
 import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useParams } from 'next/navigation';
 
 const FormComponent = () => {
+  const params = useParams();
+  const slug = params?.slug || '';
+  
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
+    country: '',
     visaType: '',
-    country: ''
+    formSource: 'country'
   });
 
+  // Effect to set country name from URL slug if available
+  useEffect(() => {
+    if (slug) {
+      // Convert slug to proper name format (e.g., "japan" to "Japan")
+      const countryName = slug.charAt(0).toUpperCase() + slug.slice(1).toLowerCase();
+      setFormData(prev => ({
+        ...prev,
+        country: countryName
+      }));
+    }
+  }, [slug]);
+  
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isAccepted, setIsAccepted] = useState(true);
