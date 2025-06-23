@@ -14,7 +14,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 
-const FlightBookingComponent = () => {
+const FlightBookingComponent = ({ onTabClick }) => {
     // Form steps
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -277,21 +277,6 @@ const FlightBookingComponent = () => {
     }, [formData.travelers.count]);
 
     // Handle input changes
-    // const handleInputChange = (path, value) => {
-    //     const [parent, child] = path.split('.');
-
-    //     if(value == "round-trip"){
-    //         addFlightLeg();
-    //     }
-
-    //     setFormData(prev => ({
-    //         ...prev,
-    //         [parent]: {
-    //             ...prev[parent],
-    //             [child]: value
-    //         }
-    //     }));
-    // };
     const handleInputChange = (path, value) => {
         const [parent, child] = path.split('.');
     
@@ -426,15 +411,6 @@ const FlightBookingComponent = () => {
     };
 
     // Flight leg functions
-    // const addFlightLeg = () => {
-    //     setFormData(prev => ({
-    //         ...prev,
-    //         flight: {
-    //             ...prev.flight,
-    //             legs: [...prev.flight.legs, { from: prev.flight.legs[prev.flight.legs.length - 1].to , to: "", date: null }]
-    //         }
-    //     }));
-    // };
     const addFlightLeg = () => {
         if (formData.flight.type === "multi-city") {
             setFormData(prev => ({
@@ -595,28 +571,40 @@ const FlightBookingComponent = () => {
             <div className="mt-8 relative " ref={formRef}>
                 {/* Header with Flight and Hotel Navigation */}
                 <div className="flex bg-white shadow-md relative z-30 -mb-13 border mx-5 sm:mx-10 md:mx-16 rounded-2xl border-gray-200">
-                    <Link
-                        href="/services/dummy-flights"
-                        className={`flex-1 py-3 px-6 cursor-pointer flex flex-col rounded-l-2xl items-center justify-center font-bold text-lg transition-colors text-white bg-white`}
-                    >
-                        <img
-                            src="/images/icon/png/aeroplan-blue.png"
-                            alt="Flight Icon"
-                            className="w-16 h-14 object-cover"
-                        />
-                        <span className="text-primary-500">Flights</span>
-                    </Link>
-                    <Link
-                        href={"/services/dummy-hotel"}
-                        className={`flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-r-2xl text-gray-600 hover:text-blue-600`}
-                    >
-                        <img
-                            src="/images/icon/png/hotel-black.png"
-                            alt="Flight Icon"
-                            className="w-16 h-14 object-cover"
-                        />
-                        <span className="text-gray-600">Hotels</span>
-                    </Link>
+                    {onTabClick ? (
+                        <button
+                            onClick={() => onTabClick('flight')}
+                            className="flex-1 py-3 px-6 cursor-pointer flex flex-col rounded-l-2xl items-center justify-center font-bold text-lg transition-colors text-white bg-white"
+                        >
+                            <img src="/images/icon/png/aeroplan-blue.png" alt="Flight Icon" className="w-16 h-14 object-cover" />
+                            <span className="text-primary-500">Flights</span>
+                        </button>
+                    ) : (
+                        <Link
+                            href="/services/dummy-flights"
+                            className="flex-1 py-3 px-6 cursor-pointer flex flex-col rounded-l-2xl items-center justify-center font-bold text-lg transition-colors text-white bg-white"
+                        >
+                            <img src="/images/icon/png/aeroplan-blue.png" alt="Flight Icon" className="w-16 h-14 object-cover" />
+                            <span className="text-primary-500">Flights</span>
+                        </Link>
+                    )}
+                    {onTabClick ? (
+                        <button
+                            onClick={() => onTabClick('hotel')}
+                            className="flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-r-2xl text-gray-600 hover:text-blue-600"
+                        >
+                            <img src="/images/icon/png/hotel-black.png" alt="Hotel Icon" className="w-16 h-14 object-cover" />
+                            <span className="text-gray-600">Hotels</span>
+                        </button>
+                    ) : (
+                        <Link
+                            href="/services/dummy-hotel"
+                            className="flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-r-2xl text-gray-600 hover:text-blue-600"
+                        >
+                            <img src="/images/icon/png/hotel-black.png" alt="Hotel Icon" className="w-16 h-14 object-cover" />
+                            <span className="text-gray-600">Hotels</span>
+                        </Link>
+                    )}
                 </div>
 
                 {/* Progress Steps */}

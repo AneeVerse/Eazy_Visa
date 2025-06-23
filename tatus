@@ -1,0 +1,5 @@
+[33m27e97af[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Enhance blog contact form submission handling by supporting multiple name formats, adding a timestamp to emails, and improving error logging. Update email templates for clarity and ensure data is sent to Google Sheets with relevant details.
+[33m77f4ba7[m Enhance form submission emails and Google Sheets integration for contact, flight, hotel, and visa consultations. Update email templates for clarity and consistency, and improve logging for better debugging. Ensure all submissions include relevant traveler and booking details.
+[33m24aca2e[m Add new review images and update FeedbackReviewComponent to display user testimonials in a carousel format with enhanced styling and functionality.
+[33m07305a2[m Add Google Sheets integration to form submissions for contact, visa consultation, and submit visa forms
+[33m941910a[m Update FeedbackReviewComponent to add bottom margin to the heading for improved layout consistency.

@@ -3,7 +3,9 @@ import Layout from '../../../components/common/Layout';
 import { Heading } from '../../../components/common/Typography';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
-import { FaCheck, FaInfoCircle, FaCrown, FaPhoneAlt, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import { FaInfoCircle } from 'react-icons/fa';
+import PricingComponent from '../../../components/common/PricingComponent';
+import SupportSection from '../../../components/common/SupportSection';
 
 const PricingPage = () => {
   const plans = [
@@ -103,96 +105,15 @@ const PricingPage = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid gap-12 lg:gap-8 md:grid-cols-2 lg:grid-cols-4 px-4 sm:px-0">
-          {plans.map((plan, index) => (
-            <div 
-              key={index}
-              className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 shadow-lg  transition-all duration-300 hover:shadow-xl hover:-translate-y-1
-                ${plan.popular ? 'ring-2 ring-blue-500/50 shadow-blue-100/50' : ''}`}
-            >
-              {/* {plan.popular && (
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-              )} */}
-
-              <div className="absolute top-[-50px] right-0 p-2">
-                <img src='/images/pricing/hourly-badge1.png' alt="hourly" className="w-20 h-20" />
-              </div>
-              
-              <div className="p-6">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h2 className="text-xl mb-5 font-bold text-gray-900 ">{plan.name}</h2>
-                    {/* <p className="text-gray-600 text-sm font-medium mb-5">{plan.description}</p> */}
-                  </div>
-                  {/* {plan.popular && (
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                      <FaCrown className="mr-1" /> Popular
-                    </span>
-                  )} */}
-                </div>
-                
-                <div className="mb-3 flex items-baseline">
-                  <p className="text-3xl font-bold text-blue-600">
-                    ₹{plan.price}
-                  </p>
-                  <p className={`text-black mb-5 font-semibold text-[13px]`}>/{plan.billing}</p>
-                  
-                  {/* {plan.note && <p className={`${plan.popular ? " font-semibold text-blue-600 ": " text-gray-500/90 "} text-xs  mt-1`}>{plan.note}</p>} */}
-                </div>
-                  <p style={{"color": `${plan.popular ? "#0B82E6":""}`}} className={`${plan.note != "" ? " mt-[-6px]  ":" hidden "}text-black mb-5 font-semibold text-[12px]`}>{plan.note}</p>
-                
-                <Link href={plan.url} className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 mb-6 shadow-sm
-                  ${plan.popular 
-                    ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-md' 
-                    : 'bg-white text-gray-800 border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
-                  }`}
-                >
-                  Get Started
-                </Link>
-              </div>
-              
-              <div className="border-t border-gray-200/50 px-6 pt-5 pb-6 bg-white/30">
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What&apos;s included:</h3>
-                <ul className="space-y-3">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <div className={`flex-shrink-0 h-5 w-5 mr-2 mt-0.5 flex items-center justify-center rounded-full 
-                       bg-blue-100 text-blue-600 `}>
-                        <FaCheck className="h-3 w-3" />
-                      </div>
-                      <span className="text-gray-700 text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
+        <PricingComponent 
+          plans={plans}
+          showBadge={true}
+          buttonText="Get Started"
+        />
 
         {/* Additional Info */}
         {/* Professional Support CTA */}
-        <div className="mt-20 text-center">
-          <div className="inline-block bg-white/70 backdrop-blur-sm border border-white/30 rounded-2xl px-8 py-8 shadow-sm max-w-4xl">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">Need help choosing?</h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Our visa specialists are available to help you select the perfect plan for your needs.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-  href="https://wa.me/918850146905"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center justify-center px-6 h-[52px] bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
->
-  <FaWhatsapp className="mr-2 text-xl self-center" />
-  <div className="self-center">Chat with us</div>
-</Link>
-              <Link href="tel:+918850146905" className="inline-flex items-center justify-center px-6 h-[52px] bg-white text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                <FaPhoneAlt className="mr-2" /> Call Support
-              </Link>
-            </div>
-          </div>
-        </div>
+        <SupportSection />
       </Layout>
       <Footer className="relative z-10" />
       
