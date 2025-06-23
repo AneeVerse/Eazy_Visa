@@ -13,6 +13,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
+import ConversionTracking from '../common/ConversionTracking';
 
 const FlightBookingComponent = ({ onTabClick }) => {
     // Form steps
@@ -515,8 +516,8 @@ const FlightBookingComponent = ({ onTabClick }) => {
                 sessionStorage.setItem('formSubmitted', 'true');
                 sessionStorage.setItem('bookingPrice', price.toString());
                 
-                // Redirect to thank you page
-                window.location.href = '/thank-you';
+                // Redirect to thank you page with conversion tracking
+                window.location.href = '/thank-you-conversion';
 
                 setFormData(initialFormData);
                 // setCurrentStep(1);
@@ -555,6 +556,9 @@ const FlightBookingComponent = ({ onTabClick }) => {
 
     return (
         <Layout>
+            {/* Google Ads Conversion Tracking - Fire when user reaches review step */}
+            {currentStep === 3 && <ConversionTracking />}
+            
             <ToastContainer
                 position="top-right"
                 autoClose={5000}

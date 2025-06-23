@@ -5,8 +5,8 @@ import React from 'react'
 
 
 export const metadata = {
-  title: "Services | Eazy Visas",
-  description: "Eazy Visas is a one-stop solution for all your visa needs.",
+  title: "Tourist / Business Visa application advice from documentation to approval with Eazy Visa - Services",
+  description: "Get expert tourist and business visa application advice from documentation to approval with Eazy Visa. Complete visa services including dummy bookings, documentation, and consultation.",
 }
 
 const layout = ({ children }) => {

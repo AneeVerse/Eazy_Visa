@@ -1,4 +1,4 @@
-export default {
+const author = {
   name: 'author',
   title: 'Author',
   type: 'document',
@@ -57,4 +57,6 @@ export default {
       media: 'image'
     }
   }
-}; 
+};
+
+export default author; 

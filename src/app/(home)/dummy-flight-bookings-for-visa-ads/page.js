@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Layout from '../../../components/common/Layout';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FlightBookingComponent from '../../../components/dummyFlight/DummyBooking';
@@ -101,10 +102,11 @@ const DummyFlightBookingsAdsPage = () => {
         
         {/* Hero Section with Custom Image */}
         <div className="relative w-full h-64 mb-12 mx-4 sm:mx-8">
-          <img
+          <Image
             src="/images/Flight & Hotel for Visa Applications.png"
             alt="Book Flight & Hotel for Visa Applications"
-            className="w-full h-full object-cover object-center -ml-10 rounded-xl"
+            fill
+            className="object-cover object-center -ml-10 rounded-xl"
           />
         </div>
 

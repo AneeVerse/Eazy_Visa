@@ -13,6 +13,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 import { format } from 'date-fns';
+import ConversionTracking from '../common/ConversionTracking';
 
 export default function HotelBookingComponent({ onTabClick }) {
   // Form steps
@@ -443,7 +444,7 @@ export default function HotelBookingComponent({ onTabClick }) {
 
       if (response.ok) {
         sessionStorage.setItem('formSubmitted', 'true');
-        window.location.href = '/thank-you';
+        window.location.href = '/thank-you-conversion';
       } else {
         toast.error(result.error || 'Failed to submit booking');
       }
@@ -478,6 +479,9 @@ export default function HotelBookingComponent({ onTabClick }) {
 
   return (
     <Layout>
+      {/* Google Ads Conversion Tracking - Fire when user reaches review step */}
+      {currentStep === 3 && <ConversionTracking />}
+      
       <ToastContainer
         position="top-right"
         autoClose={5000}

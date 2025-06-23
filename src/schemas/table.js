@@ -1,4 +1,4 @@
-export default {
+const table = {
   name: 'table',
   title: 'Table',
   type: 'object',
@@ -20,4 +20,6 @@ export default {
       description: 'Table rows'
     }
   ]
-}; 
+};
+
+export default table; 

@@ -43,7 +43,7 @@ loss in penalty charged by the Airline or the Hotel or the Travel Agent.
                 </p>
               </div>
               <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-8 h-full flex items-center justify-center">
-             <img src='/logo/logo-white.png' />
+             <Image src='/logo/logo-white.png' alt="Eazy Visas Logo" width={200} height={80} />
               </div>
             </div>
           </div>

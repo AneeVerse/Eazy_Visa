@@ -4,6 +4,8 @@ import Navbar from "../components/Layout/Navbar";
 import Footer from "../components/Layout/Footer";
 import NextTopLoader from "nextjs-toploader";
 import FloatingActionButton from "../components/Layout/FloatingActionButton";
+import MetaPixel from "../components/common/MetaPixel";
+import Script from "next/script";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -12,8 +14,8 @@ const comfortaa = Comfortaa({
 });
 
 export const metadata = {
-  title: "Eazy Visas",
-  description: "Eazy Visas is a one-stop solution for all your visa needs.",
+  title: "Apply for Visa with low fare dummy flight & hotel bookings - Home page",
+  description: "Apply for visa with low fare dummy flight tickets and hotel bookings. Get legitimate and verifiable travel documents for visa applications. Expert visa consultation services.",
   icons: {
     icon: [
       {
@@ -41,22 +43,34 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${comfortaa.variable}`}>
-      <head>
-        {/* Google Tag Manager (GTM) Script */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id=GTM-W9FX59F'+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-W9FX59F');
-            `,
-          }}
+          <html lang="en" className={`${comfortaa.variable}`}>
+        <head>
+        </head>
+        <body className="font-comfortaa">
+        {/* Google Tag Manager Script */}
+        <Script id="gtm-script" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id=GTM-W9FX59F'+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-W9FX59F');
+          `}
+        </Script>
+        
+        {/* Google Analytics Scripts */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-C2WPXNZGXG"
+          strategy="afterInteractive"
         />
-      </head>
-      <body className="font-comfortaa">
+        <Script id="ga-script" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-C2WPXNZGXG');
+          `}
+        </Script>
         {/* Google Tag Manager (GTM) NoScript */}
         <noscript>
           <iframe
@@ -66,6 +80,9 @@ export default function RootLayout({ children }) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+
+        {/* Meta Pixel */}
+        <MetaPixel />
 
         {/* Page Content */}
         <NextTopLoader

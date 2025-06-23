@@ -1,14 +1,14 @@
-export default {
+const tableRow = {
   name: 'tableRow',
-  title: 'Table Row',
   type: 'object',
+  title: 'Table Row',
   fields: [
     {
       name: 'cells',
-      title: 'Cells',
       type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Cells content for the row'
+      of: [{ type: 'string' }]
     }
   ]
-}; 
+};
+
+export default tableRow; 

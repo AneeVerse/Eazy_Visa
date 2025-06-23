@@ -1,4 +1,4 @@
-export default {
+const post = {
   name: 'post',
   title: 'Blog Post',
   type: 'document',
@@ -81,4 +81,6 @@ export default {
       return { ...selection, subtitle: author && `by ${author}` };
     }
   }
-}; 
+};
+
+export default post; 
