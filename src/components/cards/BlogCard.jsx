@@ -19,7 +19,7 @@ const BlogCard = ({ title, url, category, description, imageUrl, date }) => {
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
           <p className="text-sm font-semibold text-gray-600">
-            {category.toUpperCase()}
+            {category?.toUpperCase() || 'VISA-GUIDE'}
           </p>
           <p className="text-xs text-gray-500">{date}</p>
         </div>
