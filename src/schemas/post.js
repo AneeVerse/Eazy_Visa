@@ -20,6 +20,12 @@ const post = {
       validation: Rule => Rule.required()
     },
     {
+      name: 'metaDescription',
+      title: 'Meta Description',
+      type: 'text',
+      description: 'SEO meta description for this blog post. Used for Open Graph and search engines.'
+    },
+    {
       name: 'author',
       title: 'Author',
       type: 'reference',
@@ -68,6 +74,31 @@ const post = {
         { type: 'table' }
       ],
       validation: Rule => Rule.required()
+    },
+    {
+      name: 'faq',
+      title: 'FAQ',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'question',
+              title: 'Question',
+              type: 'string',
+              validation: Rule => Rule.required()
+            },
+            {
+              name: 'answer',
+              title: 'Answer',
+              type: 'text',
+              validation: Rule => Rule.required()
+            }
+          ]
+        }
+      ],
+      description: 'Frequently Asked Questions for this blog post.'
     }
   ],
   preview: {

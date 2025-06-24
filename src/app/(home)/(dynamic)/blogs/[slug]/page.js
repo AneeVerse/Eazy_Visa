@@ -1,4 +1,5 @@
 // app/blog/[slug]/page.js
+
 import Image from "next/image";
 import SubscribeForm from "../../../../../components/blog/SubscribeForm";
 import RelatedBlogs from "../../../../../components/blog/RelatedBlogs";
@@ -10,6 +11,7 @@ import { getBlogBySlug, getRelatedBlogs, urlFor } from "../../../../../lib/sanit
 import { PortableText } from '@portabletext/react';
 import TableBlock from '../../../../../components/blog/TableBlock';
 import { sanityClient } from "../../../../../lib/sanity";
+import FAQAccordion from '../../../../../components/blog/FAQAccordion';
 
 export const revalidate = 60;
 
@@ -25,6 +27,7 @@ export async function generateMetadata({ params }) {
   // Fetch post data from Sanity
   const query = `*[_type == "post" && slug.current == $slug][0]{
     title,
+    metaDescription,
     "slug": slug.current,
     "thumbnail": coalesce(mainImage.externalImage, mainImage.sanityImage.asset->url, mainImage.asset->url),
     "shortDescription": coalesce(shortDescription, excerpt, ""),
@@ -74,11 +77,11 @@ export async function generateMetadata({ params }) {
 
   // Basic metadata
   const metaTitle = post.seo?.metaTitle || post.title;
-  const metaDescription = truncate(post.shortDescription || post.seo?.metaDescription || "Read this article on Aneeverse.", 155);
+  const metaDescription = truncate(post.metaDescription || post.seo?.metaDescription || post.shortDescription || "Read this article on Aneeverse.", 155);
   
   // Open Graph
   const ogTitle = metaTitle;
-  const ogDescription = truncate(post.shortDescription || post.seo?.ogDescription || metaDescription, 155);
+  const ogDescription = truncate(post.metaDescription || post.seo?.ogDescription || post.shortDescription || metaDescription, 155);
   const ogUrl = post.seo?.ogUrl || `https://aneeverse.com/blog/${post.slug}`;
   const ogType = post.seo?.ogType || 'article';
   const ogLocale = post.seo?.ogLocale || 'en_US';
@@ -202,6 +205,9 @@ async function BlogDetailsPage({ params }) {
           <div className="prose blog-content max-w-none">
             <PortableText value={post.body} components={components} />
           </div>
+
+          {/* FAQ Section */}
+          {post.faq && post.faq.length > 0 && <FAQAccordion faq={post.faq} />}
           
           <FeedbackReviewComponent />
         </div>

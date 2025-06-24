@@ -55,7 +55,8 @@ export async function getBlogBySlug(slug) {
         image,
         bio
       },
-      body
+      body,
+      faq
     }`,
     { slug }
   );
