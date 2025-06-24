@@ -57,6 +57,6 @@ const author = {
       media: 'image'
     }
   }
-};
+}; 
 
 export default author; 

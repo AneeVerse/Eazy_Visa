@@ -81,6 +81,6 @@ const post = {
       return { ...selection, subtitle: author && `by ${author}` };
     }
   }
-};
+}; 
 
 export default post; 

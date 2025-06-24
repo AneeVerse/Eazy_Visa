@@ -13,7 +13,7 @@ import PricingComponent from '../../../components/common/PricingComponent';
 import SupportSection from '../../../components/common/SupportSection';
 
 const DummyFlightBookingsAdsPage = () => {
-  const [showFlightBooking, setShowFlightBooking] = useState(false);
+  const [showFlightBooking, setShowFlightBooking] = useState(true);
   const [showHotelBooking, setShowHotelBooking] = useState(false);
 
   const plans = [
@@ -190,14 +190,6 @@ const DummyFlightBookingsAdsPage = () => {
               <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-8">
                 <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">Complete Your Flight Booking</h3>
                 <p className="text-lg text-gray-600 text-center mb-8">Fill in your flight details to get your dummy booking for visa application</p>
-                <div className="text-center mb-6">
-                  <button 
-                    onClick={() => {setShowFlightBooking(false); setShowHotelBooking(false);}}
-                    className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors"
-                  >
-                    Close Booking Form
-                  </button>
-                </div>
               </div>
               <FlightBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
             </div>
@@ -207,15 +199,7 @@ const DummyFlightBookingsAdsPage = () => {
             <div className="mb-8">
               <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-8">
                 <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">Complete Your Hotel Booking</h3>
-                <p className="text-lg text-gray-600 text-center mb-8">Fill in your hotel details to get your dummy reservation for visa application</p>
-                <div className="text-center mb-6">
-                  <button 
-                    onClick={() => {setShowFlightBooking(false); setShowHotelBooking(false);}}
-                    className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors"
-                  >
-                    Close Booking Form
-                  </button>
-                </div>
+                <p className="text-lg text-gray-600 text-center mb-8">Fill in your hotel details to get your dummy booking for visa application</p>
               </div>
               <HotelBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
             </div>
@@ -223,35 +207,13 @@ const DummyFlightBookingsAdsPage = () => {
         </div>
 
         {/* Second CTA Section */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center bg-white/80 backdrop-blur-sm p-12 rounded-2xl shadow-lg"
-          >
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Ready to Get Your Visa Documents?
-            </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Start your visa application process today with our reliable and verifiable dummy bookings. 
-              Trusted by thousands of successful visa applicants worldwide.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button 
-                onClick={() => handleBookingClick({type: 'flight'})}
-                className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-              >
-                <FaPlane className="mr-2" /> Book Flight Itinerary
-              </button>
-              <button 
-                onClick={() => handleBookingClick({type: 'hotel'})}
-                className="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
-              >
-                <FaHotel className="mr-2" /> Book Hotel Reservation
-              </button>
-            </div>
-          </motion.div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-16 text-center">
+          <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            Ready to Get Your Visa Documents?
+          </h3>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Start your visa application process today with our reliable and verifiable dummy bookings. Trusted by thousands of successful visa applicants worldwide.
+          </p>
         </div>
 
         {/* Testimonials Section */}

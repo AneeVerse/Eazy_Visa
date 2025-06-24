@@ -584,13 +584,13 @@ const FlightBookingComponent = ({ onTabClick }) => {
                             <span className="text-primary-500">Flights</span>
                         </button>
                     ) : (
-                        <Link
-                            href="/services/dummy-flights"
+                    <Link
+                        href="/services/dummy-flights"
                             className="flex-1 py-3 px-6 cursor-pointer flex flex-col rounded-l-2xl items-center justify-center font-bold text-lg transition-colors text-white bg-white"
-                        >
+                    >
                             <img src="/images/icon/png/aeroplan-blue.png" alt="Flight Icon" className="w-16 h-14 object-cover" />
-                            <span className="text-primary-500">Flights</span>
-                        </Link>
+                        <span className="text-primary-500">Flights</span>
+                    </Link>
                     )}
                     {onTabClick ? (
                         <button
@@ -601,13 +601,13 @@ const FlightBookingComponent = ({ onTabClick }) => {
                             <span className="text-gray-600">Hotels</span>
                         </button>
                     ) : (
-                        <Link
+                    <Link
                             href="/services/dummy-hotel"
                             className="flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-r-2xl text-gray-600 hover:text-blue-600"
-                        >
+                    >
                             <img src="/images/icon/png/hotel-black.png" alt="Hotel Icon" className="w-16 h-14 object-cover" />
-                            <span className="text-gray-600">Hotels</span>
-                        </Link>
+                        <span className="text-gray-600">Hotels</span>
+                    </Link>
                     )}
                 </div>
 

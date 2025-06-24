@@ -31,6 +31,6 @@ const category = {
       title: 'title'
     }
   }
-};
+}; 
 
 export default category; 
