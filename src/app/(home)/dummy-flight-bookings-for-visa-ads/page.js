@@ -101,12 +101,12 @@ const DummyFlightBookingsAdsPage = () => {
       <Layout className="relative z-10">
         
         {/* Hero Section with Custom Image */}
-        <div className="relative w-full h-78 mb-12 mx-4 sm:mx-8 -mt-14">
+        <div className="relative w-full h-56 sm:h-64 md:h-80 lg:h-96 mb-12">
           <Image
             src="/images/Flight & Hotel for Visa Applications.png"
             alt="Book Flight & Hotel for Visa Applications"
             fill
-            className="object-cover object-center -ml-10 rounded-xl"
+            className="object-cover object-center rounded-xl"
           />
         </div>
 
@@ -145,9 +145,9 @@ const DummyFlightBookingsAdsPage = () => {
           className="mb-16"
           id="pricing-section"
         >
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center mb-12">Reasons to use our service?</h3>
+          <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">Reasons to use our service?</h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-26">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
               <FaCheck className="text-green-500 text-3xl mb-4 mx-auto" />
               <h4 className="font-semibold text-gray-900 mb-2 text-center">Legitimate & Verifiable</h4>
