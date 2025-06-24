@@ -101,7 +101,7 @@ const DummyFlightBookingsAdsPage = () => {
       <Layout className="relative z-10">
         
         {/* Hero Section with Custom Image */}
-        <div className="relative w-full h-64 mb-12 mx-4 sm:mx-8">
+        <div className="relative w-full h-78 mb-12 mx-4 sm:mx-8 -mt-14">
           <Image
             src="/images/Flight & Hotel for Visa Applications.png"
             alt="Book Flight & Hotel for Visa Applications"
@@ -127,13 +127,6 @@ const DummyFlightBookingsAdsPage = () => {
               There are some countries that have flight & hotel reservations as a mandatory requirement while applying for Visa. 
               However denial of visa application can lead to <span className="font-semibold text-red-600">heavy cancellation costs</span> of flight tickets and hotel reservations.
             </p>
-            <p className="text-xl font-medium text-blue-600">
-              But with Eazy Visas, we make this easy and simple for you.
-            </p>
-            <p>
-              Book <span className="font-semibold">legitimate and verifiable</span> flight tickets and hotel reservations for your visa applications at a <span className="font-semibold text-green-600">fraction of actual cost</span>. 
-              You can make reservations for flight & hotel to any destinations or countries instantly. These reservations are acceptable for visa application to any country.
-            </p>
           </div>
 
           <Link
@@ -152,9 +145,9 @@ const DummyFlightBookingsAdsPage = () => {
           className="mb-16"
           id="pricing-section"
         >
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Reasons to use our service?</h3>
+          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center mb-12">Reasons to use our service?</h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-26">
             <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
               <FaCheck className="text-green-500 text-3xl mb-4 mx-auto" />
               <h4 className="font-semibold text-gray-900 mb-2 text-center">Legitimate & Verifiable</h4>
