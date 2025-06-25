@@ -6,7 +6,6 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
 <url>
   <loc>https://www.eazyvisas.com/</loc>
   <lastmod>2025-06-24T11:00:12+00:00</lastmod>
@@ -82,93 +81,5 @@
   <lastmod>2025-06-24T11:00:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
-
-
-</urlset>
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://www.eazyvisas.com/</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/dummy-bookings</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/countries</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/blogs</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/contact</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/services/tourist-visa</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/services/business-visa</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/services/end-to-end</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/services/dummy-flights</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/services/dummy-hotel</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/about</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/terms</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/privacy</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/services/most-preferred</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.eazyvisas.com/blogs/schengen-visa-application-process-a-step-by-step-guide-for-2024</loc>
-  <lastmod>2025-06-24T11:00:12+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
 
 </urlset>
