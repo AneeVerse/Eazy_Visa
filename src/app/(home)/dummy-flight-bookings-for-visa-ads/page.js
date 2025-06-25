@@ -102,81 +102,16 @@ const DummyFlightBookingsAdsPage = () => {
       {/* New Hero Section */}
       <HeroBookingSection />
       
-      <Layout className="relative z-10 bg-white py-16">
+      <Layout className="relative z-10 bg-white pt-32 pb-16 mb-16">
 
-        {/* Reasons Section */}
+        {/* Pricing Cards Section - Moved up to accommodate floating cards */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16"
+          className="mt-40 mb-20"
           id="pricing-section"
         >
-          <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">Reasons to use our service?</h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-26">
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:opacity-0">
-                  <FaCheck className="text-blue-600 text-2xl" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Legitimate & Verifiable</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
-                  <p className="text-sm leading-relaxed text-center">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:opacity-0">
-                  <FaPlane className="text-blue-600 text-2xl" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Instant PDF</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
-                  <p className="text-sm leading-relaxed text-center">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:opacity-0">
-                  <FaCheck className="text-blue-600 text-2xl" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Unlimited Revisions</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
-                  <p className="text-sm leading-relaxed text-center">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:opacity-0">
-                  <FaCheck className="text-blue-600 text-2xl" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">No Cancellation Fee</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
-                  <p className="text-sm leading-relaxed text-center">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Pricing Cards */}
           <PricingComponent 
             plans={plans}
             showBadge={true}
@@ -196,6 +131,29 @@ const DummyFlightBookingsAdsPage = () => {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Start your visa application process today with our reliable and verifiable dummy bookings. Trusted by thousands of successful visa applicants worldwide.
           </p>
+        </div>
+
+        {/* Booking Section */}
+        <div id="booking-section" className="mb-16">
+          {showFlightBooking && (
+            <div className="mb-8">
+              <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-8">
+                <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">Complete Your Flight Booking</h3>
+                <p className="text-lg text-gray-600 text-center mb-8">Fill in your flight details to get your dummy booking for visa application</p>
+              </div>
+              <FlightBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
+            </div>
+          )}
+
+          {showHotelBooking && (
+            <div className="mb-8">
+              <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-8">
+                <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">Complete Your Hotel Booking</h3>
+                <p className="text-lg text-gray-600 text-center mb-8">Fill in your hotel details to get your dummy booking for visa application</p>
+              </div>
+              <HotelBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
+            </div>
+          )}
         </div>
 
         {/* Testimonials Section */}

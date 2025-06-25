@@ -64,13 +64,14 @@ const navLinks = [
   { name: "Blogs", href: "/blogs" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ transparent = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [activeService, setActiveService] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const megaMenuRef = useRef(null);
   const servicesButtonRef = useRef(null);
   const searchInputRef = useRef(null);
@@ -117,6 +118,19 @@ export default function Navbar() {
       setActiveService(null);
     }, 200);
   };
+
+  // Handle scroll effect for transparent navbar
+  useEffect(() => {
+    if (transparent) {
+      const handleScroll = () => {
+        const scrollTop = window.scrollY;
+        setScrolled(scrollTop > 50);
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [transparent]);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -165,7 +179,7 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <nav className="bg-white fixed w-full top-0 z-50 border-b border-gray-100">
+      <nav className={`${transparent ? (scrolled ? 'bg-white border-gray-100' : 'bg-gradient-to-r from-purple-100 to-blue-100 border-transparent') : 'bg-white border-gray-100'} fixed w-full top-0 z-50 border-b transition-all duration-300`}>
         <Layout className="flex justify-between h-20 items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">

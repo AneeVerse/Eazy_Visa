@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaPlane, FaHotel, FaCheck, FaArrowRight } from 'react-icons/fa';
 import { MdFlight, MdHotel } from 'react-icons/md';
+import Image from 'next/image';
 import Button from '../common/Button';
 import AirportDropdown from './AirportDropdown';
 
@@ -125,7 +126,7 @@ const HeroBookingSection = () => {
    };
 
    const validateForm = () => {
-     if (activeTab === 'flight' || activeTab === 'both') {
+     if (activeTab === 'flight') {
        for (const leg of formData.flight.legs) {
          if (!leg.from || !leg.to || !leg.date) {
            alert('Please fill all flight details');
@@ -137,13 +138,6 @@ const HeroBookingSection = () => {
      if (activeTab === 'hotel') {
        if (!formData.hotel.destination || !formData.hotel.checkIn || !formData.hotel.checkOut) {
          alert('Please fill all hotel details');
-         return false;
-       }
-     }
-     
-     if (activeTab === 'both') {
-       if (!formData.flight.legs[0].from || !formData.flight.legs[0].to || !formData.flight.legs[0].date || !formData.hotel.destination) {
-         alert('Please fill all required details');
          return false;
        }
      }
@@ -191,29 +185,6 @@ const HeroBookingSection = () => {
              }
            }),
          });
-       } else if (activeTab === 'both') {
-         response = await fetch('/api/most-preferred-booking', {
-           method: 'POST',
-           headers: {
-             'Content-Type': 'application/json',
-           },
-           body: JSON.stringify({
-             ...formData,
-             price: price,
-             flight: {
-               ...formData.flight,
-               legs: formData.flight.legs.map(leg => ({
-                 ...leg,
-                 date: leg.date ? new Date(leg.date).toISOString() : null
-               }))
-             },
-             hotel: {
-               ...formData.hotel,
-               checkIn: formData.hotel.checkIn ? new Date(formData.hotel.checkIn).toISOString() : null,
-               checkOut: formData.hotel.checkOut ? new Date(formData.hotel.checkOut).toISOString() : null
-             }
-           }),
-         });
        }
 
        if (response && response.ok) {
@@ -230,7 +201,7 @@ const HeroBookingSection = () => {
    };
 
   return (
-    <div className="min-h-screen flex items-start bg-gradient-to-r from-blue-100 via-blue-200 to-white">
+    <div className="min-h-screen flex items-start bg-gradient-to-r from-purple-100 to-blue-100 relative">
       <div className="max-w-[1440px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto py-6">
         <div className="grid lg:grid-cols-5 gap-8 items-start">
           
@@ -255,11 +226,16 @@ const HeroBookingSection = () => {
 
             {/* CTA Button */}
             <div>
-              <Button
-                onClick={handleBookNow}
+                              <Button
+                  onClick={() => {
+                    const bookingSection = document.getElementById('booking-section');
+                    if (bookingSection) {
+                      bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
                 className="bg-blue-600 hover:bg-blue-700 text-white py-4 px-8 rounded-lg text-lg font-semibold shadow-lg transform transition hover:scale-105"
               >
-                Buy Dummy Ticket
+                Book Now
               </Button>
             </div>
           </motion.div>
@@ -269,47 +245,68 @@ const HeroBookingSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="bg-white rounded-2xl shadow-2xl p-3 md:p-4 lg:col-span-2 w-full self-start"
+            className="lg:col-span-2 w-full self-start relative "
           >
-            {/* Tabs */}
-            <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
-              <button
-                onClick={() => setActiveTab('flight')}
-                className={`flex-1 flex items-center justify-center py-3 px-4 rounded-md font-medium transition ${
-                  activeTab === 'flight'
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'text-gray-600 hover:text-blue-600'
-                }`}
-              >
-                <MdFlight className="mr-2" />
-                FLIGHT
-              </button>
-              <button
-                onClick={() => setActiveTab('hotel')}
-                className={`flex-1 flex items-center justify-center py-3 px-4 rounded-md font-medium transition ${
-                  activeTab === 'hotel'
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'text-gray-600 hover:text-blue-600'
-                }`}
-              >
-                <MdHotel className="mr-2" />
-                HOTEL
-              </button>
-              <button
-                onClick={() => setActiveTab('both')}
-                className={`flex-1 flex items-center justify-center py-3 px-4 rounded-md font-medium transition ${
-                  activeTab === 'both'
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'text-gray-600 hover:text-blue-600'
-                }`}
-              >
-                BOTH
-              </button>
-            </div>
+            {/* Simplified Form Container - Like detailed form but smaller */}
+            <div id="booking-form" className="bg-white rounded-2xl shadow-2xl p-3 max-w-md mx-auto">
+              
+              {/* Service Type Icons - Top section like detailed form */}
+              <div className="bg-gray-100 rounded-xl p-2 mb-4">
+                <div className="flex gap-2">
+                                      <button
+                      onClick={() => setActiveTab('flight')}
+                      className={`flex-1 flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-300 ${
+                        activeTab === 'flight'
+                          ? 'bg-blue-600 text-white shadow-md'
+                          : 'text-gray-600 hover:bg-white'
+                      }`}
+                    >
+                                          <div className="relative w-8 h-8 mb-1">
+                        <Image
+                          src={activeTab === 'flight' ? '/images/icon/png/aeroplan-blue.png' : '/images/icon/png/aeroplan-black.png'}
+                          alt="Flight"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <span className="text-sm font-semibold">Flights</span>
+                  </button>
+                                      <button
+                      onClick={() => setActiveTab('hotel')}
+                      className={`flex-1 flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-300 ${
+                        activeTab === 'hotel'
+                          ? 'bg-blue-600 text-white shadow-md'
+                          : 'text-gray-600 hover:bg-white'
+                      }`}
+                    >
+                                          <div className="relative w-8 h-8 mb-1">
+                        <Image
+                          src={activeTab === 'hotel' ? '/images/icon/png/hotel-blue.png' : '/images/icon/png/hotel-black.png'}
+                          alt="Hotel"
+                          width={32}
+                          height={32}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <span className="text-sm font-semibold">Hotels</span>
+                  </button>
+                </div>
+              </div>
+
+
+
+              {/* Section Title */}
+              <div className="mb-3">
+                <h3 className="text-base font-semibold text-gray-900">
+                  {activeTab === 'flight' ? 'Flight Details' : 'Hotels Details'}
+                </h3>
+              </div>
+            
 
             {/* Trip Type - Only show for flight */}
-            {(activeTab === 'flight' || activeTab === 'both') && (
-              <div className="flex space-x-6 mb-4">
+            {activeTab === 'flight' && (
+              <div className="flex space-x-4 mb-3">
                 <label className="flex items-center">
                   <input
                     type="radio"
@@ -319,7 +316,7 @@ const HeroBookingSection = () => {
                     onChange={(e) => handleTripTypeChange(e.target.value)}
                     className="mr-2 text-blue-600"
                   />
-                  <span className="text-gray-700 font-medium">ONE WAY</span>
+                  <span className="text-gray-700 text-sm font-medium">ONE WAY</span>
                 </label>
                 <label className="flex items-center">
                   <input
@@ -330,7 +327,7 @@ const HeroBookingSection = () => {
                     onChange={(e) => handleTripTypeChange(e.target.value)}
                     className="mr-2 text-blue-600"
                   />
-                  <span className="text-gray-700 font-medium">ROUND TRIP</span>
+                  <span className="text-gray-700 text-sm font-medium">ROUND TRIP</span>
                 </label>
                 <label className="flex items-center">
                   <input
@@ -341,102 +338,114 @@ const HeroBookingSection = () => {
                     onChange={(e) => handleTripTypeChange(e.target.value)}
                     className="mr-2 text-blue-600"
                   />
-                  <span className="text-gray-700 font-medium">MULTI TRIP</span>
+                  <span className="text-gray-700 text-sm font-medium">MULTI TRIP</span>
                 </label>
               </div>
             )}
 
             {/* Form Fields */}
             <div className="space-y-3">
-              {/* From and To Fields */}
-              {(activeTab === 'flight' || activeTab === 'both') && (
+              {/* Flight Fields */}
+              {activeTab === 'flight' && (
                 <>
-                  <div>
-                    <AirportDropdown
-                      value={formData.flight.legs[0].from}
-                      onChange={(value) => handleFlightLegChange(0, 'from', value)}
-                      label="FROM"
-                      options={airports}
-                    />
+                  {/* Route Section - Wide Layout */}
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <h4 className="text-sm font-medium text-gray-700 mb-3">Flight Route</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <AirportDropdown
+                          value={formData.flight.legs[0].from}
+                          onChange={(value) => handleFlightLegChange(0, 'from', value)}
+                          label="From"
+                          options={airports}
+                        />
+                      </div>
+                      <div>
+                        <AirportDropdown
+                          value={formData.flight.legs[0].to}
+                          onChange={(value) => handleFlightLegChange(0, 'to', value)}
+                          label="To"
+                          options={airports}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <AirportDropdown
-                      value={formData.flight.legs[0].to}
-                      onChange={(value) => handleFlightLegChange(0, 'to', value)}
-                      label="TO"
-                      options={airports}
-                    />
+                  
+                  {/* Date Section - Small Boxes */}
+                  <div className="grid grid-cols-1 gap-2">
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <label className="block text-xs font-medium text-gray-600 mb-1">Departure Date</label>
+                      <input
+                        type="date"
+                        value={formData.flight.legs[0].date || ''}
+                        onChange={(e) => handleFlightLegChange(0, 'date', e.target.value)}
+                        className="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
+                      />
+                    </div>
+                    {formData.flight.type === 'round-trip' && (
+                      <div className="bg-gray-50 rounded-lg p-3">
+                        <label className="block text-xs font-medium text-gray-600 mb-1">Return Date</label>
+                        <input
+                          type="date"
+                          value={formData.flight.legs[1]?.date || ''}
+                          onChange={(e) => {
+                            if (formData.flight.legs[1]) {
+                              handleFlightLegChange(1, 'date', e.target.value);
+                            }
+                          }}
+                          className="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
+                        />
+                      </div>
+                    )}
                   </div>
                 </>
               )}
 
-              {/* Hotel specific fields */}
+              {/* Hotel Fields */}
               {activeTab === 'hotel' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">DESTINATION</label>
-                  <input
-                    type="text"
-                    placeholder="Hotel Destination"
-                    value={formData.hotel.destination}
-                    onChange={(e) => handleInputChange('hotel.destination', e.target.value)}
-                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
-              )}
-
-              {/* Both tab hotel destination */}
-              {activeTab === 'both' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">HOTEL DESTINATION</label>
-                                     <input
-                     type="text"
-                     placeholder="Hotel City/Destination"
-                     value={formData.hotel.destination}
-                     onChange={(e) => handleInputChange('hotel.destination', e.target.value)}
-                     className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                   />
-                </div>
-              )}
-
-              {/* Date Fields */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {activeTab === 'hotel' ? 'CHECK-IN' : 'DEPARTURE'}
-                  </label>
-                                      <input
-                      type="date"
-                      value={activeTab === 'hotel' ? (formData.hotel.checkIn || '') : (formData.flight.legs[0].date || '')}
-                      onChange={(e) => {
-                        if (activeTab === 'hotel') {
-                          handleInputChange('hotel.checkIn', e.target.value);
-                        } else {
-                          handleFlightLegChange(0, 'date', e.target.value);
-                        }
-                      }}
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                </div>
-                {(formData.flight.type === 'round-trip' || activeTab === 'hotel' || activeTab === 'both') && (
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      {activeTab === 'hotel' ? 'CHECK-OUT' : 'RETURN'}
-                    </label>
-                                          <input
-                        type="date"
-                        value={activeTab === 'hotel' ? (formData.hotel.checkOut || '') : (formData.flight.legs[1]?.date || '')}
-                        onChange={(e) => {
-                          if (activeTab === 'hotel') {
-                            handleInputChange('hotel.checkOut', e.target.value);
-                          } else if (formData.flight.legs[1]) {
-                            handleFlightLegChange(1, 'date', e.target.value);
-                          }
-                        }}
-                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                <>
+                  {/* Location Section - Wide Layout */}
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">City, Property Name or Location</label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="Where do you want to stay?"
+                        value={formData.hotel.destination}
+                        onChange={(e) => handleInputChange('hotel.destination', e.target.value)}
+                        className="w-full px-3 py-2.5 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm bg-white"
                       />
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
-                )}
-              </div>
+                  
+                  {/* Date Section - Small Boxes Grid */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <label className="block text-xs font-medium text-gray-600 mb-1">Check-In Date</label>
+                      <input
+                        type="date"
+                        value={formData.hotel.checkIn || ''}
+                        onChange={(e) => handleInputChange('hotel.checkIn', e.target.value)}
+                        className="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
+                      />
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <label className="block text-xs font-medium text-gray-600 mb-1">Check-Out Date</label>
+                      <input
+                        type="date"
+                        value={formData.hotel.checkOut || ''}
+                        onChange={(e) => handleInputChange('hotel.checkOut', e.target.value)}
+                        className="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Price Display */}
@@ -451,14 +460,102 @@ const HeroBookingSection = () => {
               </div>
             )}
 
-            {/* Book Now Button */}
-            <Button
-              onClick={handleBookNow}
-              className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg text-lg font-semibold shadow-lg transform transition hover:scale-105"
-            >
-              BUY DUMMY TICKET - ₹{price}
-            </Button>
+              {/* Book Now Button */}
+              <Button
+                onClick={handleBookNow}
+                className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg text-lg font-semibold shadow-lg transform transition hover:scale-105"
+              >
+                BUY DUMMY TICKET - ₹{price}
+              </Button>
+            </div>
           </motion.div>
+        </div>
+      </div>
+
+      {/* Floating Feature Cards - Half overlapping hero and next section */}
+      <div className="absolute bottom-0 left-0 right-0 transform translate-y-3/4 z-20 mb-2">
+        <div className="max-w-[1200px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64 mb-6"
+            >
+              <div className="text-center h-full flex flex-col justify-center">
+                <div className="w-16 h-16 bg-green-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:opacity-0">
+                  <FaCheck className="text-green-600 text-2xl" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Legitimate & Verifiable</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
+                  <p className="text-sm leading-relaxed text-center text-white">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64 mb-6"
+            >
+              <div className="text-center h-full flex flex-col justify-center">
+                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:opacity-0">
+                  <FaPlane className="text-blue-600 text-2xl" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Instant PDF</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
+                  <p className="text-sm leading-relaxed text-center text-white">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64 mb-6"
+            >
+              <div className="text-center h-full flex flex-col justify-center">
+                <div className="w-16 h-16 bg-purple-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:opacity-0">
+                  <FaCheck className="text-purple-600 text-2xl" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Unlimited Revisions</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
+                  <p className="text-sm leading-relaxed text-center text-white">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64 mb-6"
+            >
+              <div className="text-center h-full flex flex-col justify-center">
+                <div className="w-16 h-16 bg-red-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:opacity-0">
+                  <FaCheck className="text-red-600 text-2xl" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">No Cancellation Fee</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
+                  <p className="text-sm leading-relaxed text-center text-white">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>
