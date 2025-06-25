@@ -1,9 +1,8 @@
 import { Inter, Comfortaa } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/Layout/Navbar";
-import Footer from "../components/Layout/Footer";
+
 import NextTopLoader from "nextjs-toploader";
-import FloatingActionButton from "../components/Layout/FloatingActionButton";
+import ConditionalLayout from "../components/Layout/ConditionalLayout";
 import MetaPixel from "../components/common/MetaPixel";
 import Script from "next/script";
 
@@ -94,11 +93,9 @@ export default function RootLayout({ children }) {
           speed={500}
           shadow="0 0 10px #2299DD,0 0 5px #2299DD"
         />
-        <Navbar />
-        <div className="mt-[80px]">
+        <ConditionalLayout>
           {children}
-          <FloatingActionButton />
-        </div>
+        </ConditionalLayout>
       </body>
     </html>
   );
