@@ -11,6 +11,7 @@ import HotelBookingComponent from '../../../components/dummyHotel/HotelBookingCo
 import FeedbackReviewComponent from '../../../components/home/FeedbackReviewComponent';
 import PricingComponent from '../../../components/common/PricingComponent';
 import SupportSection from '../../../components/common/SupportSection';
+import HeroBookingSection from '../../../components/dummyFlight/HeroBookingSection';
 
 const DummyFlightBookingsAdsPage = () => {
   const [showFlightBooking, setShowFlightBooking] = useState(true);
@@ -97,45 +98,11 @@ const DummyFlightBookingsAdsPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 bg-gradient-to-br from-blue-50/90 via-indigo-50/90 to-purple-50/90">
-      <Layout className="relative z-10">
-        
-        {/* Hero Section with Custom Image */}
-        <div className="relative w-full h-56 sm:h-64 md:h-80 lg:h-96 mb-12">
-          <Image
-            src="/images/Flight & Hotel for Visa Applications.png"
-            alt="Book Flight & Hotel for Visa Applications"
-            fill
-            className="object-cover object-center rounded-xl"
-          />
-        </div>
-
-        {/* Main Content Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Need a <span className="text-blue-600">Flight Ticket</span> or{' '}
-            <span className="text-green-600">Hotel Reservation</span> for Your Visa Application?
-          </h2>
-          
-          <div className="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed space-y-4 mb-8">
-            <p>
-              There are some countries that have flight & hotel reservations as a mandatory requirement while applying for Visa. 
-              However denial of visa application can lead to <span className="font-semibold text-red-600">heavy cancellation costs</span> of flight tickets and hotel reservations.
-            </p>
-          </div>
-
-          <Link
-            href="#pricing-section"
-            className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors shadow-lg"
-          >
-            Get Started
-          </Link>
-        </motion.div>
+    <div className="min-h-screen">
+      {/* New Hero Section */}
+      <HeroBookingSection />
+      
+      <Layout className="relative z-10 bg-white py-16">
 
         {/* Reasons Section */}
         <motion.div
@@ -147,29 +114,65 @@ const DummyFlightBookingsAdsPage = () => {
         >
           <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">Reasons to use our service?</h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
-              <FaCheck className="text-green-500 text-3xl mb-4 mx-auto" />
-              <h4 className="font-semibold text-gray-900 mb-2 text-center">Legitimate & Verifiable</h4>
-              <p className="text-gray-600 text-sm text-center">Book legitimate and verifiable flight tickets and hotel reservations</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-26">
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:opacity-0">
+                  <FaCheck className="text-blue-600 text-2xl" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Legitimate & Verifiable</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
+                  <p className="text-sm leading-relaxed text-center">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
-              <FaPlane className="text-blue-500 text-3xl mb-4 mx-auto" />
-              <h4 className="font-semibold text-gray-900 mb-2 text-center">Instant PDF</h4>
-              <p className="text-gray-600 text-sm text-center">Instantly download PDF confirmations for your bookings</p>
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:opacity-0">
+                  <FaPlane className="text-blue-600 text-2xl" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Instant PDF</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
+                  <p className="text-sm leading-relaxed text-center">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
-              <FaCheck className="text-purple-500 text-3xl mb-4 mx-auto" />
-              <h4 className="font-semibold text-gray-900 mb-2 text-center">Unlimited Revisions</h4>
-              <p className="text-gray-600 text-sm text-center">Unlimited date revisions, if you happen to change your travel schedule</p>
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:opacity-0">
+                  <FaCheck className="text-blue-600 text-2xl" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Unlimited Revisions</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
+                  <p className="text-sm leading-relaxed text-center">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we're here to help.</p>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
-              <FaCheck className="text-red-500 text-3xl mb-4 mx-auto" />
-              <h4 className="font-semibold text-gray-900 mb-2 text-center">No Cancellation Fee</h4>
-              <p className="text-gray-600 text-sm text-center">No hidden charges or cancellation fees involved</p>
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:opacity-0">
+                  <FaCheck className="text-blue-600 text-2xl" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">No Cancellation Fee</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
+                  <p className="text-sm leading-relaxed text-center">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -183,28 +186,7 @@ const DummyFlightBookingsAdsPage = () => {
           />
         </motion.div>
 
-        {/* Booking Section */}
-        <div id="booking-section" className="mb-16">
-          {showFlightBooking && (
-            <div className="mb-8">
-              <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">Complete Your Flight Booking</h3>
-                <p className="text-lg text-gray-600 text-center mb-8">Fill in your flight details to get your dummy booking for visa application</p>
-              </div>
-              <FlightBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
-            </div>
-          )}
 
-          {showHotelBooking && (
-            <div className="mb-8">
-              <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">Complete Your Hotel Booking</h3>
-                <p className="text-lg text-gray-600 text-center mb-8">Fill in your hotel details to get your dummy booking for visa application</p>
-              </div>
-              <HotelBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
-            </div>
-          )}
-        </div>
 
         {/* Second CTA Section */}
         <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-16 text-center">
@@ -220,8 +202,67 @@ const DummyFlightBookingsAdsPage = () => {
         <FeedbackReviewComponent />
 
         {/* Help Section */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-16">
-          <SupportSection className="text-center" />
+        <div className="max-w-[1440px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-16">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-2xl">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-48 -translate-y-48"></div>
+              <div className="absolute bottom-0 right-0 w-80 h-80 bg-white rounded-full translate-x-40 translate-y-40"></div>
+              <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-white rounded-full opacity-50"></div>
+            </div>
+            
+                         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between p-6 lg:p-8">
+               {/* Left Content */}
+               <div className="flex-1 text-white mb-6 lg:mb-0 lg:pr-8">
+                 <div className="flex items-center mb-4">
+                   <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center mr-4">
+                     <FaWhatsapp className="text-blue-600 text-xl" />
+                   </div>
+                   <div>
+                     <h3 className="text-2xl lg:text-3xl font-bold mb-2">Need Help Choosing?</h3>
+                     <p className="text-blue-100 text-base lg:text-lg">Our visa specialists are available to help you select the perfect plan for your needs.</p>
+                   </div>
+                 </div>
+                 
+                 <div className="mb-4">
+                   <p className="text-white font-medium text-lg mb-1">Get In Touch</p>
+                   <p className="text-blue-100 text-sm lg:text-base">Email: support@eazyvisas.com & Phone: +917700006525</p>
+                 </div>
+                 
+                 <div className="flex flex-col sm:flex-row gap-3">
+                   <a 
+                     href="https://wa.me/917700006525" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     className="inline-flex items-center justify-center px-5 py-2.5 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 shadow-lg text-sm lg:text-base"
+                   >
+                     <FaWhatsapp className="mr-2" />
+                     Chat with us
+                   </a>
+                   <a 
+                     href="tel:+917700006525"
+                     className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-all duration-300 border-2 border-white shadow-lg text-sm lg:text-base"
+                   >
+                     <FaPhoneAlt className="mr-2" />
+                     Call Support
+                   </a>
+                 </div>
+               </div>
+               
+               {/* Right Icon */}
+               <div className="flex-shrink-0">
+                 <div className="relative">
+                   <div className="w-20 h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-2xl">
+                     <FaPlane className="text-blue-600 text-3xl lg:text-4xl transform rotate-12" />
+                   </div>
+                   {/* Decorative elements */}
+                   <div className="absolute -top-2 -right-2 w-4 h-4 bg-white rounded-full opacity-80"></div>
+                   <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-white rounded-full opacity-60"></div>
+                   <div className="absolute top-1/2 -right-3 w-2 h-2 bg-white rounded-full opacity-40"></div>
+                 </div>
+               </div>
+             </div>
+          </div>
         </div>
 
       </Layout>
