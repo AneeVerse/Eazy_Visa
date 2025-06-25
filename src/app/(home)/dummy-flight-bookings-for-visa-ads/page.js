@@ -155,7 +155,7 @@ const DummyFlightBookingsAdsPage = () => {
                   <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
                 </div>
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
-                  <p className="text-sm leading-relaxed text-center">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we're here to help.</p>
+                  <p className="text-sm leading-relaxed text-center">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
                 </div>
               </div>
             </div>
