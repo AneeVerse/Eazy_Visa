@@ -4,7 +4,7 @@ import Layout from '../../../components/common/Layout';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFilePdf, FaEdit, FaBan } from 'react-icons/fa';
+import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFilePdf, FaEdit, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FlightBookingComponent from '../../../components/dummyFlight/DummyBooking';
 import HotelBookingComponent from '../../../components/dummyHotel/HotelBookingComponent';
@@ -100,29 +100,22 @@ const DummyFlightBookingsAdsPage = () => {
   return (
     <div className="min-h-screen">
       {/* New Hero Section */}
-      <HeroBookingSection />
+      <HeroBookingSection onBookingClick={handleBookingClick} />
       
       {/* Feature Cards Section */}
       <div className="relative z-30 bg-white py-12 lg:py-0">
                  <div className="max-w-none mx-auto px-4 lg:absolute lg:-bottom-20 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:translate-y-1/2 w-full">
-           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 max-w-screen-xl mx-auto">
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-5xl mx-auto">
                          <motion.div
                initial={{ opacity: 0, y: 30 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.2 }}
-               className="bg-white p-4 lg:p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 lg:h-64"
+               className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
              >
-              <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-green-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
-                  <FaShieldAlt className="text-green-600 text-lg" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Legitimate & Verifiable</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
-                  <p className="text-xs leading-relaxed text-center text-white">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
-                </div>
+              <div className="text-center">
+                <FaShieldAlt className="text-green-500 text-3xl mb-4 mx-auto" />
+                <h4 className="font-semibold text-gray-900 mb-3 text-center">Legitimate & Verifiable</h4>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
               </div>
             </motion.div>
             
@@ -130,19 +123,12 @@ const DummyFlightBookingsAdsPage = () => {
                initial={{ opacity: 0, y: 30 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.3 }}
-               className="bg-white p-4 lg:p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 lg:h-64"
+               className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
              >
-              <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
-                  <FaFilePdf className="text-blue-600 text-lg" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Instant PDF</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
-                  <p className="text-xs leading-relaxed text-center text-white">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
-                </div>
+              <div className="text-center">
+                <FaFilePdf className="text-blue-500 text-3xl mb-4 mx-auto" />
+                <h4 className="font-semibold text-gray-900 mb-3 text-center">Instant PDF</h4>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
               </div>
             </motion.div>
             
@@ -150,19 +136,12 @@ const DummyFlightBookingsAdsPage = () => {
                initial={{ opacity: 0, y: 30 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.4 }}
-               className="bg-white p-4 lg:p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 lg:h-64"
+               className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
              >
-              <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-purple-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
-                  <FaEdit className="text-purple-600 text-lg" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Unlimited Revisions</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
-                  <p className="text-xs leading-relaxed text-center text-white">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
-                </div>
+              <div className="text-center">
+                <FaEdit className="text-purple-500 text-3xl mb-4 mx-auto" />
+                <h4 className="font-semibold text-gray-900 mb-3 text-center">Unlimited Revisions</h4>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we're here to help.</p>
               </div>
             </motion.div>
             
@@ -170,19 +149,12 @@ const DummyFlightBookingsAdsPage = () => {
                initial={{ opacity: 0, y: 30 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 0.5 }}
-               className="bg-white p-4 lg:p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 lg:h-64"
+               className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
              >
-              <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-red-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
-                  <FaBan className="text-red-600 text-lg" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">No Cancellation Fee</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
-                  <p className="text-xs leading-relaxed text-center text-white">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
-                </div>
+              <div className="text-center">
+                <FaTimes className="text-red-500 text-3xl mb-4 mx-auto" />
+                <h4 className="font-semibold text-gray-900 mb-3 text-center">No Cancellation Fee</h4>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
               </div>
             </motion.div>
           </div>

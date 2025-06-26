@@ -14,7 +14,7 @@ import { format } from 'date-fns';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const HeroBookingSection = () => {
+const HeroBookingSection = ({ onBookingClick }) => {
   // Custom styles for react-datepicker
   useEffect(() => {
     const style = document.createElement('style');
@@ -317,7 +317,7 @@ const HeroBookingSection = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-40 order-2 lg:order-1"
+            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-10 order-2 lg:order-1"
           >
             <div className="space-y-4 text-center lg:text-left">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -326,7 +326,7 @@ const HeroBookingSection = () => {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.1 }}
                 >
-                  {["Get", " Your", " Dummy", " "].map((word, wordIndex) => (
+                  {["Need", " a", " flight", " ticket", " or", " hotel", " reservation", " for", " your", " visa", " application?"].map((word, wordIndex) => (
                     <span key={wordIndex}>
                       {word.split('').map((char, charIndex) => (
                         <motion.span
@@ -344,75 +344,53 @@ const HeroBookingSection = () => {
                     </span>
                   ))}
                 </motion.span>
-                <br />
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.1 }}
-                >
-                  {["Ticket", " At", " "].map((word, wordIndex) => (
-                    <span key={wordIndex + 4}>
-                      {word.split('').map((char, charIndex) => (
-                        <motion.span
-                          key={`${wordIndex + 4}-${charIndex}`}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                                                     transition={{
-                             duration: 0.08,
-                             delay: ((wordIndex + 4) * 4 + charIndex) * 0.06
-                           }}
-                        >
-                          {char}
-                        </motion.span>
-                      ))}
-                    </span>
-                  ))}
-                  <motion.span 
-                    className="text-blue-600"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{
-                      duration: 0.08,
-                      delay: 7 * 4 * 0.06
-                    }}
-                  >
-                    {"$5".split('').map((char, charIndex) => (
-                      <motion.span
-                        key={`price-${charIndex}`}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{
-                          duration: 0.08,
-                          delay: (7 * 4 + charIndex) * 0.06
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
-                  </motion.span>
-                </motion.span>
               </h1>
               
               <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                For visa application/immigration/proof of return/passport renewal/visa extension.
-                We Offer Genuine Dummy Ticket At A Reasonable Price 
+                There are some countries that have flight & hotel reservations as a mandatory requirement while applying for Visa. However denial of visa application can lead to heavy cancellation costs of flight tickets and hotel reservations. But with Eazy Visas, we make this easy and simple for you.
                 <br className="hidden sm:block" />
-                <span className="block sm:inline"> Within 60 Minutes</span>
+                <br className="hidden sm:block" />
+                Book legitimate and verifiable flight tickets and hotel reservations for your visa applications at a fraction of actual cost. You can make reservations for flight & hotel to any destinations or countries instantly. These reservations are acceptable for visa application to any country.
               </p>
             </div>
 
-            {/* CTA Button */}
-            <div className="flex justify-center lg:justify-start">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button
                 onClick={() => {
-                  const bookingSection = document.getElementById('booking-section');
-                  if (bookingSection) {
-                    bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  setActiveTab('flight');
+                  // If onBookingClick is provided (from parent page), use it
+                  if (onBookingClick) {
+                    onBookingClick({ type: 'flight' });
+                  } else {
+                    // Otherwise, scroll to the booking form within this component
+                    const targetElement = document.getElementById('booking-form');
+                    if (targetElement) {
+                      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                   }
                 }}
                 className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
-                Book Now
+                Book Flight
+              </Button>
+              <Button
+                onClick={() => {
+                  setActiveTab('hotel');
+                  // If onBookingClick is provided (from parent page), use it
+                  if (onBookingClick) {
+                    onBookingClick({ type: 'hotel' });
+                  } else {
+                    // Otherwise, scroll to the booking form within this component
+                    const targetElement = document.getElementById('booking-form');
+                    if (targetElement) {
+                      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }
+                }}
+                className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
+              >
+                Book Hotels
               </Button>
             </div>
           </motion.div>

@@ -4,7 +4,7 @@ import Layout from '../../../components/common/Layout';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel } from 'react-icons/fa';
+import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaFilePdf, FaEdit, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FlightBookingComponent from '../../../components/dummyFlight/DummyBooking';
 import HotelBookingComponent from '../../../components/dummyHotel/HotelBookingComponent';
@@ -147,29 +147,29 @@ const DummyFlightBookingsAdsPage = () => {
         >
           <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">Reasons to use our service?</h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-w-5xl mx-auto">
+            <div className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <FaCheck className="text-green-500 text-3xl mb-4 mx-auto" />
-              <h4 className="font-semibold text-gray-900 mb-2 text-center">Legitimate & Verifiable</h4>
-              <p className="text-gray-600 text-sm text-center">Book legitimate and verifiable flight tickets and hotel reservations</p>
+              <h4 className="font-semibold text-gray-900 mb-3 text-center">Legitimate & Verifiable</h4>
+              <p className="text-gray-600 text-sm text-center leading-relaxed">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
             </div>
             
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
-              <FaPlane className="text-blue-500 text-3xl mb-4 mx-auto" />
-              <h4 className="font-semibold text-gray-900 mb-2 text-center">Instant PDF</h4>
-              <p className="text-gray-600 text-sm text-center">Instantly download PDF confirmations for your bookings</p>
+            <div className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <FaFilePdf className="text-blue-500 text-3xl mb-4 mx-auto" />
+              <h4 className="font-semibold text-gray-900 mb-3 text-center">Instant PDF</h4>
+              <p className="text-gray-600 text-sm text-center leading-relaxed">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
             </div>
             
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
-              <FaCheck className="text-purple-500 text-3xl mb-4 mx-auto" />
-              <h4 className="font-semibold text-gray-900 mb-2 text-center">Unlimited Revisions</h4>
-              <p className="text-gray-600 text-sm text-center">Unlimited date revisions, if you happen to change your travel schedule</p>
+            <div className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <FaEdit className="text-purple-500 text-3xl mb-4 mx-auto" />
+              <h4 className="font-semibold text-gray-900 mb-3 text-center">Unlimited Revisions</h4>
+              <p className="text-gray-600 text-sm text-center leading-relaxed">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we're here to help.</p>
             </div>
             
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/50">
-              <FaCheck className="text-red-500 text-3xl mb-4 mx-auto" />
-              <h4 className="font-semibold text-gray-900 mb-2 text-center">No Cancellation Fee</h4>
-              <p className="text-gray-600 text-sm text-center">No hidden charges or cancellation fees involved</p>
+            <div className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <FaTimes className="text-red-500 text-3xl mb-4 mx-auto" />
+              <h4 className="font-semibold text-gray-900 mb-3 text-center">No Cancellation Fee</h4>
+              <p className="text-gray-600 text-sm text-center leading-relaxed">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
             </div>
           </div>
 
