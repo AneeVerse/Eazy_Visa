@@ -141,7 +141,7 @@ const DummyFlightBookingsAdsPage = () => {
               <div className="text-center">
                 <FaEdit className="text-purple-500 text-3xl mb-4 mx-auto" />
                 <h4 className="font-semibold text-gray-900 mb-3 text-center">Unlimited Revisions</h4>
-                <p className="text-gray-600 text-sm text-center leading-relaxed">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we're here to help.</p>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
               </div>
             </motion.div>
             
