@@ -14,7 +14,7 @@ const comfortaa = Comfortaa({
 
 export const metadata = {
   title: "Apply for Visa with low fare dummy flight & hotel bookings - Home page",
-  description: "Apply for visa with low fare dummy flight tickets and hotel bookings. Get legitimate and verifiable travel documents for visa applications. Expert visa consultation services.",
+  description: "Apply for Visa with low fare dummy flight & hotel bookingsMake dummy flight and hotel",
   icons: {
     icon: [
       {

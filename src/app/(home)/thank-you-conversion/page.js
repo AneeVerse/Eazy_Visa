@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation';
 import Layout from '../../../components/common/Layout';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
-import ConversionTracking from '../../../components/common/ConversionTracking';
+import Image from "next/image";
+import Script from 'next/script';
 
 export default function ThankYouConversionPage() {
   const router = useRouter();
@@ -23,18 +24,26 @@ export default function ThankYouConversionPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-12">
       {/* Google Ads Conversion Tracking */}
-      <ConversionTracking />
-      
+      <Script id="google-ads-conversion" strategy="afterInteractive">
+        {`
+          gtag('event', 'conversion', {
+              'send_to': 'AW-11158930668/lNOxCMTyiN8aEOyJ_8gp',
+              'value': 1500.0,
+              'currency': 'INR'
+          });
+        `}
+      </Script>
+
       <Layout className="">
         <div className="text-center mb-12">
           <div className="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-green-100">
             <FaCheckCircle className="h-16 w-16 text-green-600" />
           </div>
           <h1 className="mt-6 text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Thank You for Your Booking!
+            Thank You for Connecting With Us!
           </h1>
           <p className="mt-4 text-[25px] text-gray-600">
-            Your dummy booking request has been received. We&apos;ll process it within 24 hours.
+            One of our visa experts will contact you within 30 minutes.
           </p>
         </div>
 
@@ -44,16 +53,16 @@ export default function ThankYouConversionPage() {
               {/* What to Expect Card */}
               <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
                 <FaClock className="h-8 w-8 text-blue-600 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">What&apos;s Next</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">What to Expect</h3>
                 <p className="text-gray-600">
-                  We&apos;ll process your dummy booking and send you the confirmation document within 24 hours.
+                  Our expert will call you within 30 minutes to discuss your visa requirements and next steps.
                 </p>
               </div>
 
               {/* Contact Info Card */}
               <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
                 <FaPhone className="h-8 w-8 text-blue-600 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Need Help?</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">Need Immediate Help?</h3>
                 <p className="text-gray-600 mb-2">
                   Call us at: <br />
                   <Link href="tel:+918850146905" className="font-semibold text-blue-600 hover:text-blue-800">
