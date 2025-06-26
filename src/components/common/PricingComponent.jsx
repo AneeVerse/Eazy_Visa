@@ -8,7 +8,7 @@ const PricingComponent = ({
   onPlanClick, 
   buttonText = "Get Started",
   enableAnimation = false,
-  className = "grid gap-12 lg:gap-8 md:grid-cols-2 lg:grid-cols-4 px-4 sm:px-0"
+  className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 sm:px-0 justify-items-center"
 }) => {
   const CardComponent = enableAnimation ? motion.div : 'div';
   
@@ -22,7 +22,7 @@ const PricingComponent = ({
             animate: { opacity: 1, y: 0 },
             transition: { duration: 0.6, delay: index * 0.1 }
           })}
-          className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-full
+          className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-full w-full
             ${plan.popular ? 'ring-2 ring-blue-500/50 shadow-blue-100/50' : ''}`}
         >
           {plan.popular && (

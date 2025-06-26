@@ -6,6 +6,11 @@ import { MdFlight, MdHotel } from 'react-icons/md';
 import Image from 'next/image';
 import Button from '../common/Button';
 import AirportDropdown from './AirportDropdown';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { TextField } from '@mui/material';
+import { format } from 'date-fns';
 
 const HeroBookingSection = () => {
   const [activeTab, setActiveTab] = useState('flight');
@@ -212,12 +217,81 @@ const HeroBookingSection = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8 lg:col-span-3 mt-40"
           >
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Get Your Dummy <br />Ticket At <span className="text-blue-600">$5</span>
+            <div className="space-y-4">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.1 }}
+                >
+                  {["Get", " Your", " Dummy", " "].map((word, wordIndex) => (
+                    <span key={wordIndex}>
+                      {word.split('').map((char, charIndex) => (
+                        <motion.span
+                          key={`${wordIndex}-${charIndex}`}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{
+                            duration: 0.08,
+                            delay: (wordIndex * 4 + charIndex) * 0.06
+                          }}
+                        >
+                          {char}
+                        </motion.span>
+                      ))}
+                    </span>
+                  ))}
+                </motion.span>
+                <br />
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.1 }}
+                >
+                  {["Ticket", " At", " "].map((word, wordIndex) => (
+                    <span key={wordIndex + 4}>
+                      {word.split('').map((char, charIndex) => (
+                        <motion.span
+                          key={`${wordIndex + 4}-${charIndex}`}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                                                     transition={{
+                             duration: 0.08,
+                             delay: ((wordIndex + 4) * 4 + charIndex) * 0.06
+                           }}
+                        >
+                          {char}
+                        </motion.span>
+                      ))}
+                    </span>
+                  ))}
+                  <motion.span 
+                    className="text-blue-600"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      duration: 0.08,
+                      delay: 7 * 4 * 0.06
+                    }}
+                  >
+                    {"$5".split('').map((char, charIndex) => (
+                      <motion.span
+                        key={`price-${charIndex}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{
+                          duration: 0.08,
+                          delay: (7 * 4 + charIndex) * 0.06
+                        }}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </motion.span>
+                </motion.span>
               </h1>
               
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                 For visa application/immigration/proof of return/passport renewal/visa extension.
                 We Offer Genuine Dummy Ticket At A Reasonable Price <br />
                 Within 60 Minutes
@@ -226,14 +300,14 @@ const HeroBookingSection = () => {
 
             {/* CTA Button */}
             <div>
-                              <Button
-                  onClick={() => {
-                    const bookingSection = document.getElementById('booking-section');
-                    if (bookingSection) {
-                      bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }}
-                className="bg-blue-600 hover:bg-blue-700 text-white py-4 px-8 rounded-lg text-lg font-semibold shadow-lg transform transition hover:scale-105"
+              <Button
+                onClick={() => {
+                  const bookingSection = document.getElementById('booking-section');
+                  if (bookingSection) {
+                    bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold"
               >
                 Book Now
               </Button>
@@ -245,60 +319,58 @@ const HeroBookingSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-2 w-full self-start relative "
+            className="lg:col-span-2 w-full self-start relative"
           >
             {/* Simplified Form Container - Like detailed form but smaller */}
-            <div id="booking-form" className="bg-white rounded-2xl shadow-2xl p-3 max-w-md mx-auto">
+            <div id="booking-form" className="bg-white rounded-2xl shadow-2xl p-2 max-w-md mx-auto">
               
               {/* Service Type Icons - Top section like detailed form */}
-              <div className="bg-gray-100 rounded-xl p-2 mb-4">
-                <div className="flex gap-2">
-                                      <button
-                      onClick={() => setActiveTab('flight')}
-                      className={`flex-1 flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-300 ${
-                        activeTab === 'flight'
-                          ? 'bg-blue-600 text-white shadow-md'
-                          : 'text-gray-600 hover:bg-white'
-                      }`}
-                    >
-                                          <div className="relative w-8 h-8 mb-1">
-                        <Image
-                          src={activeTab === 'flight' ? '/images/icon/png/aeroplan-blue.png' : '/images/icon/png/aeroplan-black.png'}
-                          alt="Flight"
-                          width={32}
-                          height={32}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <span className="text-sm font-semibold">Flights</span>
+              <div className="bg-gray-100 rounded-xl p-1.5 mb-3">
+                <div className="flex gap-1.5">
+                  <button
+                    onClick={() => setActiveTab('flight')}
+                    className={`flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all duration-300 ${
+                      activeTab === 'flight'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'text-gray-600 hover:bg-white'
+                    }`}
+                  >
+                    <div className="relative w-12 h-12 mb-0.5">
+                      <Image
+                        src={activeTab === 'flight' ? '/images/icon/png/aeroplan-blue.png' : '/images/icon/png/aeroplan-black.png'}
+                        alt="Flight"
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-xs font-semibold">Flights</span>
                   </button>
-                                      <button
-                      onClick={() => setActiveTab('hotel')}
-                      className={`flex-1 flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-300 ${
-                        activeTab === 'hotel'
-                          ? 'bg-blue-600 text-white shadow-md'
-                          : 'text-gray-600 hover:bg-white'
-                      }`}
-                    >
-                                          <div className="relative w-8 h-8 mb-1">
-                        <Image
-                          src={activeTab === 'hotel' ? '/images/icon/png/hotel-blue.png' : '/images/icon/png/hotel-black.png'}
-                          alt="Hotel"
-                          width={32}
-                          height={32}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <span className="text-sm font-semibold">Hotels</span>
+                  <button
+                    onClick={() => setActiveTab('hotel')}
+                    className={`flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all duration-300 ${
+                      activeTab === 'hotel'
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'text-gray-600 hover:bg-white'
+                    }`}
+                  >
+                    <div className="relative w-12 h-12 mb-0.5">
+                      <Image
+                        src={activeTab === 'hotel' ? '/images/icon/png/hotel-blue.png' : '/images/icon/png/hotel-black.png'}
+                        alt="Hotel"
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-xs font-semibold">Hotels</span>
                   </button>
                 </div>
               </div>
 
-
-
               {/* Section Title */}
-              <div className="mb-3">
-                <h3 className="text-base font-semibold text-gray-900">
+              <div className="mb-2">
+                <h3 className="text-sm font-semibold text-gray-900">
                   {activeTab === 'flight' ? 'Flight Details' : 'Hotels Details'}
                 </h3>
               </div>
@@ -306,52 +378,54 @@ const HeroBookingSection = () => {
 
             {/* Trip Type - Only show for flight */}
             {activeTab === 'flight' && (
-              <div className="flex space-x-4 mb-3">
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="tripType"
-                    value="one-way"
-                    checked={formData.flight.type === 'one-way'}
-                    onChange={(e) => handleTripTypeChange(e.target.value)}
-                    className="mr-2 text-blue-600"
-                  />
-                  <span className="text-gray-700 text-sm font-medium">ONE WAY</span>
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="tripType"
-                    value="round-trip"
-                    checked={formData.flight.type === 'round-trip'}
-                    onChange={(e) => handleTripTypeChange(e.target.value)}
-                    className="mr-2 text-blue-600"
-                  />
-                  <span className="text-gray-700 text-sm font-medium">ROUND TRIP</span>
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="tripType"
-                    value="multi-city"
-                    checked={formData.flight.type === 'multi-city'}
-                    onChange={(e) => handleTripTypeChange(e.target.value)}
-                    className="mr-2 text-blue-600"
-                  />
-                  <span className="text-gray-700 text-sm font-medium">MULTI TRIP</span>
-                </label>
+              <div className="bg-blue-50 rounded-lg p-4 mb-2">
+                <div className="flex space-x-4">
+                  <label className="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="tripType"
+                      value="one-way"
+                      checked={formData.flight.type === 'one-way'}
+                      onChange={(e) => handleTripTypeChange(e.target.value)}
+                      className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-0 focus:outline-none"
+                    />
+                    <span className="ml-2 text-xs font-medium text-blue-600">ONE WAY</span>
+                  </label>
+                  <label className="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="tripType"
+                      value="round-trip"
+                      checked={formData.flight.type === 'round-trip'}
+                      onChange={(e) => handleTripTypeChange(e.target.value)}
+                      className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-0 focus:outline-none"
+                    />
+                    <span className="ml-2 text-xs font-medium text-blue-600">ROUND TRIP</span>
+                  </label>
+                  <label className="flex items-center cursor-pointer">
+                    <input
+                      type="radio"
+                      name="tripType"
+                      value="multi-city"
+                      checked={formData.flight.type === 'multi-city'}
+                      onChange={(e) => handleTripTypeChange(e.target.value)}
+                      className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-0 focus:outline-none"
+                    />
+                    <span className="ml-2 text-xs font-medium text-blue-600">MULTI TRIP</span>
+                  </label>
+                </div>
               </div>
             )}
 
             {/* Form Fields */}
-            <div className="space-y-3">
+            <div className="space-y-2">
               {/* Flight Fields */}
               {activeTab === 'flight' && (
                 <>
                   {/* Route Section - Wide Layout */}
-                  <div className="bg-gray-50 rounded-lg p-3">
-                    <h4 className="text-sm font-medium text-gray-700 mb-3">Flight Route</h4>
-                    <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-gray-50 rounded-lg p-2">
+                    <h4 className="text-xs font-medium text-gray-700 mb-2">Flight Route</h4>
+                    <div className="grid grid-cols-2 gap-1.5">
                       <div>
                         <AirportDropdown
                           value={formData.flight.legs[0].from}
@@ -372,29 +446,89 @@ const HeroBookingSection = () => {
                   </div>
                   
                   {/* Date Section - Small Boxes */}
-                  <div className="grid grid-cols-1 gap-2">
-                    <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 gap-1.5">
+                    <div className="bg-gray-50 rounded-lg p-2">
                       <label className="block text-xs font-medium text-gray-600 mb-1">Departure Date</label>
-                      <input
-                        type="date"
-                        value={formData.flight.legs[0].date || ''}
-                        onChange={(e) => handleFlightLegChange(0, 'date', e.target.value)}
-                        className="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
-                      />
+                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
+                         <DatePicker
+                           value={formData.flight.legs[0].date ? new Date(formData.flight.legs[0].date) : null}
+                           onChange={(newValue) => {
+                             if (newValue) {
+                               handleFlightLegChange(0, 'date', newValue.toISOString());
+                             }
+                           }}
+                           renderInput={(params) => (
+                             <TextField
+                               {...params}
+                               size="small"
+                               fullWidth
+                               sx={{
+                                 '& .MuiOutlinedInput-root': {
+                                   height: '32px',
+                                   borderRadius: '0.375rem',
+                                   fontSize: '0.75rem',
+                                   '& fieldset': {
+                                     borderColor: 'rgb(209, 213, 219)',
+                                   },
+                                   '&:hover fieldset': {
+                                     borderColor: 'rgb(59, 130, 246)',
+                                   },
+                                   '&.Mui-focused fieldset': {
+                                     borderColor: 'rgb(59, 130, 246)',
+                                     borderWidth: '1px',
+                                   },
+                                 },
+                                 '& .MuiInputBase-input': {
+                                   padding: '4px 8px',
+                                   fontSize: '0.75rem',
+                                 },
+                               }}
+                             />
+                           )}
+                         />
+                       </LocalizationProvider>
                     </div>
                     {formData.flight.type === 'round-trip' && (
-                      <div className="bg-gray-50 rounded-lg p-3">
+                      <div className="bg-gray-50 rounded-lg p-2">
                         <label className="block text-xs font-medium text-gray-600 mb-1">Return Date</label>
-                        <input
-                          type="date"
-                          value={formData.flight.legs[1]?.date || ''}
-                          onChange={(e) => {
-                            if (formData.flight.legs[1]) {
-                              handleFlightLegChange(1, 'date', e.target.value);
-                            }
-                          }}
-                          className="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
-                        />
+                                                 <LocalizationProvider dateAdapter={AdapterDateFns}>
+                           <DatePicker
+                             value={formData.flight.legs[1]?.date ? new Date(formData.flight.legs[1].date) : null}
+                             onChange={(newValue) => {
+                               if (newValue) {
+                                 handleFlightLegChange(1, 'date', newValue.toISOString());
+                               }
+                             }}
+                             renderInput={(params) => (
+                               <TextField
+                                 {...params}
+                                 size="small"
+                                 fullWidth
+                                 sx={{
+                                   '& .MuiOutlinedInput-root': {
+                                     height: '32px',
+                                     borderRadius: '0.375rem',
+                                     fontSize: '0.75rem',
+                                     '& fieldset': {
+                                       borderColor: 'rgb(209, 213, 219)',
+                                     },
+                                     '&:hover fieldset': {
+                                       borderColor: 'rgb(59, 130, 246)',
+                                     },
+                                     '&.Mui-focused fieldset': {
+                                       borderColor: 'rgb(59, 130, 246)',
+                                       borderWidth: '1px',
+                                     },
+                                   },
+                                   '& .MuiInputBase-input': {
+                                     padding: '4px 8px',
+                                     fontSize: '0.75rem',
+                                   },
+                                 }}
+                               />
+                             )}
+                           />
+                         </LocalizationProvider>
                       </div>
                     )}
                   </div>
@@ -405,18 +539,18 @@ const HeroBookingSection = () => {
               {activeTab === 'hotel' && (
                 <>
                   {/* Location Section - Wide Layout */}
-                  <div className="bg-gray-50 rounded-lg p-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">City, Property Name or Location</label>
+                  <div className="bg-gray-50 rounded-lg p-2">
+                    <label className="block text-xs font-medium text-gray-700 mb-1.5">City, Property Name or Location</label>
                     <div className="relative">
                       <input
                         type="text"
                         placeholder="Where do you want to stay?"
                         value={formData.hotel.destination}
                         onChange={(e) => handleInputChange('hotel.destination', e.target.value)}
-                        className="w-full px-3 py-2.5 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm bg-white"
+                        className="w-full px-2 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
                       />
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-2">
+                        <svg className="h-3 w-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                       </div>
@@ -424,24 +558,88 @@ const HeroBookingSection = () => {
                   </div>
                   
                   {/* Date Section - Small Boxes Grid */}
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-2 gap-1.5">
+                    <div className="bg-gray-50 rounded-lg p-2">
                       <label className="block text-xs font-medium text-gray-600 mb-1">Check-In Date</label>
-                      <input
-                        type="date"
-                        value={formData.hotel.checkIn || ''}
-                        onChange={(e) => handleInputChange('hotel.checkIn', e.target.value)}
-                        className="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
-                      />
+                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
+                         <DatePicker
+                           value={formData.hotel.checkIn ? new Date(formData.hotel.checkIn) : null}
+                           onChange={(newValue) => {
+                             if (newValue) {
+                               handleInputChange('hotel.checkIn', newValue.toISOString());
+                             }
+                           }}
+                           renderInput={(params) => (
+                             <TextField
+                               {...params}
+                               size="small"
+                               fullWidth
+                               sx={{
+                                 '& .MuiOutlinedInput-root': {
+                                   height: '32px',
+                                   borderRadius: '0.375rem',
+                                   fontSize: '0.75rem',
+                                   '& fieldset': {
+                                     borderColor: 'rgb(209, 213, 219)',
+                                   },
+                                   '&:hover fieldset': {
+                                     borderColor: 'rgb(59, 130, 246)',
+                                   },
+                                   '&.Mui-focused fieldset': {
+                                     borderColor: 'rgb(59, 130, 246)',
+                                     borderWidth: '1px',
+                                   },
+                                 },
+                                 '& .MuiInputBase-input': {
+                                   padding: '4px 8px',
+                                   fontSize: '0.75rem',
+                                 },
+                               }}
+                             />
+                           )}
+                         />
+                       </LocalizationProvider>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-3">
+                    <div className="bg-gray-50 rounded-lg p-2">
                       <label className="block text-xs font-medium text-gray-600 mb-1">Check-Out Date</label>
-                      <input
-                        type="date"
-                        value={formData.hotel.checkOut || ''}
-                        onChange={(e) => handleInputChange('hotel.checkOut', e.target.value)}
-                        className="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
-                      />
+                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
+                         <DatePicker
+                           value={formData.hotel.checkOut ? new Date(formData.hotel.checkOut) : null}
+                           onChange={(newValue) => {
+                             if (newValue) {
+                               handleInputChange('hotel.checkOut', newValue.toISOString());
+                             }
+                           }}
+                           renderInput={(params) => (
+                             <TextField
+                               {...params}
+                               size="small"
+                               fullWidth
+                               sx={{
+                                 '& .MuiOutlinedInput-root': {
+                                   height: '32px',
+                                   borderRadius: '0.375rem',
+                                   fontSize: '0.75rem',
+                                   '& fieldset': {
+                                     borderColor: 'rgb(209, 213, 219)',
+                                   },
+                                   '&:hover fieldset': {
+                                     borderColor: 'rgb(59, 130, 246)',
+                                   },
+                                   '&.Mui-focused fieldset': {
+                                     borderColor: 'rgb(59, 130, 246)',
+                                     borderWidth: '1px',
+                                   },
+                                 },
+                                 '& .MuiInputBase-input': {
+                                   padding: '4px 8px',
+                                   fontSize: '0.75rem',
+                                 },
+                               }}
+                             />
+                           )}
+                         />
+                       </LocalizationProvider>
                     </div>
                   </div>
                 </>
@@ -450,12 +648,12 @@ const HeroBookingSection = () => {
 
             {/* Price Display */}
             {price > 0 && (
-              <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mt-3 p-2 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-medium text-gray-700">
+                  <span className="text-sm font-medium text-gray-700">
                     Total Price for {formData.travelers.count} traveler{formData.travelers.count > 1 ? 's' : ''}:
                   </span>
-                  <span className="text-2xl font-bold text-blue-600">₹{price}</span>
+                  <span className="text-lg font-bold text-blue-600">₹{price}</span>
                 </div>
               </div>
             )}
@@ -463,7 +661,7 @@ const HeroBookingSection = () => {
               {/* Book Now Button */}
               <Button
                 onClick={handleBookNow}
-                className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg text-lg font-semibold shadow-lg transform transition hover:scale-105"
+                className="w-full mt-3 bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-semibold shadow-lg transform transition hover:scale-105"
               >
                 BUY DUMMY TICKET - ₹{price}
               </Button>
@@ -473,25 +671,25 @@ const HeroBookingSection = () => {
       </div>
 
       {/* Floating Feature Cards - Half overlapping hero and next section */}
-      <div className="absolute bottom-0 left-0 right-0 transform translate-y-3/4 z-20 mb-2">
+      <div className="absolute bottom-0 left-0 right-0 transform translate-y-2/3 z-20 mb-2">
         <div className="max-w-[1200px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64 mb-6"
+              className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 mb-4"
             >
               <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-16 h-16 bg-green-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:opacity-0">
-                  <FaCheck className="text-green-600 text-2xl" />
+                <div className="w-12 h-12 bg-green-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
+                  <FaCheck className="text-green-600 text-lg" />
                 </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Legitimate & Verifiable</h4>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Legitimate & Verifiable</h4>
                 <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
                 </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
-                  <p className="text-sm leading-relaxed text-center text-white">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
+                  <p className="text-xs leading-relaxed text-center text-white">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
                 </div>
               </div>
             </motion.div>
@@ -500,18 +698,18 @@ const HeroBookingSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64 mb-6"
+              className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 mb-4"
             >
               <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-16 h-16 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:opacity-0">
-                  <FaPlane className="text-blue-600 text-2xl" />
+                <div className="w-12 h-12 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
+                  <FaPlane className="text-blue-600 text-lg" />
                 </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Instant PDF</h4>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Instant PDF</h4>
                 <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
                 </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
-                  <p className="text-sm leading-relaxed text-center text-white">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
+                  <p className="text-xs leading-relaxed text-center text-white">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
                 </div>
               </div>
             </motion.div>
@@ -520,18 +718,18 @@ const HeroBookingSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64 mb-6"
+              className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 mb-4"
             >
               <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-16 h-16 bg-purple-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:opacity-0">
-                  <FaCheck className="text-purple-600 text-2xl" />
+                <div className="w-12 h-12 bg-purple-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
+                  <FaCheck className="text-purple-600 text-lg" />
                 </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">Unlimited Revisions</h4>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Unlimited Revisions</h4>
                 <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
                 </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
-                  <p className="text-sm leading-relaxed text-center text-white">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
+                  <p className="text-xs leading-relaxed text-center text-white">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
                 </div>
               </div>
             </motion.div>
@@ -540,18 +738,18 @@ const HeroBookingSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-64 mb-6"
+              className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 mb-4"
             >
               <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-16 h-16 bg-red-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:opacity-0">
-                  <FaCheck className="text-red-600 text-2xl" />
+                <div className="w-12 h-12 bg-red-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
+                  <FaCheck className="text-red-600 text-lg" />
                 </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-3 text-lg transition-all duration-300 group-hover:opacity-0">No Cancellation Fee</h4>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">No Cancellation Fee</h4>
                 <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-sm">Hover for details</p>
+                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
                 </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-4 flex items-center justify-center">
-                  <p className="text-sm leading-relaxed text-center text-white">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
+                  <p className="text-xs leading-relaxed text-center text-white">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
                 </div>
               </div>
             </motion.div>
