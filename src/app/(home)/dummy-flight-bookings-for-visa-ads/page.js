@@ -161,7 +161,7 @@ const DummyFlightBookingsAdsPage = () => {
                   <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
                 </div>
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
-                  <p className="text-xs leading-relaxed text-center text-white">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we're here to help.</p>
+                  <p className="text-xs leading-relaxed text-center text-white">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
                 </div>
               </div>
             </motion.div>
@@ -218,7 +218,7 @@ const DummyFlightBookingsAdsPage = () => {
                   </div>
                 )}
                 <div className="absolute top-[-50px] right-0 p-2">
-                  <img src='/images/pricing/hourly-badge1.png' alt="hourly" className="w-20 h-20" />
+                  <Image src='/images/pricing/hourly-badge1.png' alt="hourly" width={80} height={80} className="w-20 h-20" />
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start">
