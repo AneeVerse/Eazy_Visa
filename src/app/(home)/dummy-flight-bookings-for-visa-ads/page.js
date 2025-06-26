@@ -260,10 +260,6 @@ const DummyFlightBookingsAdsPage = () => {
         <div id="booking-section" className="mb-16">
           {showFlightBooking && (
             <div className="mb-8">
-              <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-8">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center">Complete Your Flight Booking</h3>
-                <p className="text-base sm:text-lg text-gray-600 text-center mb-8">Fill in your flight details to get your dummy booking for visa application</p>
-              </div>
               <FlightBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
             </div>
           )}
