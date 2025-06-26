@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaPlane, FaHotel, FaCheck, FaArrowRight } from 'react-icons/fa';
+import { FaPlane, FaHotel, FaCheck, FaArrowRight, FaCalendarAlt, FaShieldAlt, FaFilePdf, FaEdit, FaBan } from 'react-icons/fa';
 import { MdFlight, MdHotel } from 'react-icons/md';
 import Image from 'next/image';
 import Button from '../common/Button';
@@ -11,8 +11,110 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 import { format } from 'date-fns';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const HeroBookingSection = () => {
+  // Custom styles for react-datepicker
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      .custom-datepicker {
+        border: 1px solid #e5e7eb !important;
+        border-radius: 0.5rem !important;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+        font-family: inherit !important;
+      }
+      
+      .custom-datepicker .react-datepicker__header {
+        background-color: #3b82f6 !important;
+        border-bottom: none !important;
+        border-radius: 0.5rem 0.5rem 0 0 !important;
+        padding: 1rem !important;
+      }
+      
+      .custom-datepicker .react-datepicker__current-month {
+        color: white !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .custom-datepicker .react-datepicker__day-name {
+        color: white !important;
+        font-weight: 500 !important;
+        font-size: 0.75rem !important;
+        width: 2rem !important;
+        line-height: 2rem !important;
+      }
+      
+      .custom-datepicker .react-datepicker__day {
+        width: 2rem !important;
+        line-height: 2rem !important;
+        font-size: 0.875rem !important;
+        border-radius: 0.25rem !important;
+        color: #374151 !important;
+        transition: all 0.2s ease !important;
+      }
+      
+      .custom-datepicker .react-datepicker__day:hover {
+        background-color: #dbeafe !important;
+        color: #1d4ed8 !important;
+      }
+      
+      .custom-datepicker .react-datepicker__day--selected {
+        background-color: #3b82f6 !important;
+        color: white !important;
+        font-weight: 600 !important;
+      }
+      
+      .custom-datepicker .react-datepicker__day--today {
+        background-color: #fef3c7 !important;
+        color: #d97706 !important;
+        font-weight: 600 !important;
+      }
+      
+      .custom-datepicker .react-datepicker__navigation {
+        border: none !important;
+        width: 2rem !important;
+        height: 2rem !important;
+        top: 1rem !important;
+      }
+      
+      .custom-datepicker .react-datepicker__navigation--previous {
+        left: 1rem !important;
+      }
+      
+      .custom-datepicker .react-datepicker__navigation--next {
+        right: 1rem !important;
+      }
+      
+      .custom-datepicker .react-datepicker__navigation-icon::before {
+        border-color: white !important;
+        border-width: 2px 2px 0 0 !important;
+        width: 6px !important;
+        height: 6px !important;
+      }
+      
+      .custom-datepicker .react-datepicker__month-container {
+        background-color: white !important;
+      }
+      
+      .custom-datepicker .react-datepicker__month {
+        padding: 1rem !important;
+      }
+      
+      .custom-datepicker .react-datepicker__day--disabled {
+        color: #d1d5db !important;
+        cursor: not-allowed !important;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
   const [activeTab, setActiveTab] = useState('flight');
   const [tripType, setTripType] = useState('one-way');
   
@@ -206,19 +308,19 @@ const HeroBookingSection = () => {
    };
 
   return (
-    <div className="min-h-screen flex items-start bg-gradient-to-r from-purple-100 to-blue-100 relative">
-      <div className="max-w-[1440px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto py-6">
-        <div className="grid lg:grid-cols-5 gap-8 items-start">
+    <div className="min-h-screen flex items-start bg-gradient-to-r from-purple-100 to-blue-100 relative overflow-hidden">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] py-4 sm:py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-start">
           
           {/* Left Content Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8 lg:col-span-3 mt-40"
+            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-40 order-2 lg:order-1"
           >
-            <div className="space-y-4">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+            <div className="space-y-4 text-center lg:text-left">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -291,15 +393,16 @@ const HeroBookingSection = () => {
                 </motion.span>
               </h1>
               
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                 For visa application/immigration/proof of return/passport renewal/visa extension.
-                We Offer Genuine Dummy Ticket At A Reasonable Price <br />
-                Within 60 Minutes
+                We Offer Genuine Dummy Ticket At A Reasonable Price 
+                <br className="hidden sm:block" />
+                <span className="block sm:inline"> Within 60 Minutes</span>
               </p>
             </div>
 
             {/* CTA Button */}
-            <div>
+            <div className="flex justify-center lg:justify-start">
               <Button
                 onClick={() => {
                   const bookingSection = document.getElementById('booking-section');
@@ -307,7 +410,7 @@ const HeroBookingSection = () => {
                     bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }
                 }}
-                className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold"
+                className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
                 Book Now
               </Button>
@@ -319,10 +422,10 @@ const HeroBookingSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-2 w-full self-start relative"
+            className="lg:col-span-2 w-full self-start relative order-1 lg:order-2"
           >
             {/* Simplified Form Container - Like detailed form but smaller */}
-            <div id="booking-form" className="bg-white rounded-2xl shadow-2xl p-2 max-w-md mx-auto">
+            <div id="booking-form" className="bg-white rounded-2xl shadow-2xl p-3 sm:p-4 lg:p-2 max-w-full sm:max-w-lg lg:max-w-md mx-auto">
               
               {/* Service Type Icons - Top section like detailed form */}
               <div className="bg-gray-100 rounded-xl p-1.5 mb-3">
@@ -337,7 +440,7 @@ const HeroBookingSection = () => {
                   >
                     <div className="relative w-12 h-12 mb-0.5">
                       <Image
-                        src={activeTab === 'flight' ? '/images/icon/png/aeroplan-blue.png' : '/images/icon/png/aeroplan-black.png'}
+                        src={activeTab === 'flight' ? '/images/icon/png/aeroplan-black.png' : '/images/icon/png/aeroplan-blue.png'}
                         alt="Flight"
                         width={48}
                         height={48}
@@ -356,7 +459,7 @@ const HeroBookingSection = () => {
                   >
                     <div className="relative w-12 h-12 mb-0.5">
                       <Image
-                        src={activeTab === 'hotel' ? '/images/icon/png/hotel-blue.png' : '/images/icon/png/hotel-black.png'}
+                        src={activeTab === 'hotel' ? '/images/icon/png/hotel-black.png' : '/images/icon/png/hotel-blue.png'}
                         alt="Hotel"
                         width={48}
                         height={48}
@@ -378,8 +481,8 @@ const HeroBookingSection = () => {
 
             {/* Trip Type - Only show for flight */}
             {activeTab === 'flight' && (
-              <div className="bg-blue-50 rounded-lg p-4 mb-2">
-                <div className="flex space-x-4">
+              <div className="bg-blue-50 rounded-lg p-3 sm:p-4 mb-2">
+                <div className="flex flex-wrap gap-2 sm:gap-4 justify-center sm:justify-start">
                   <label className="flex items-center cursor-pointer">
                     <input
                       type="radio"
@@ -389,7 +492,7 @@ const HeroBookingSection = () => {
                       onChange={(e) => handleTripTypeChange(e.target.value)}
                       className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-0 focus:outline-none"
                     />
-                    <span className="ml-2 text-xs font-medium text-blue-600">ONE WAY</span>
+                    <span className="ml-2 text-xs sm:text-sm font-medium text-blue-600">ONE WAY</span>
                   </label>
                   <label className="flex items-center cursor-pointer">
                     <input
@@ -400,7 +503,7 @@ const HeroBookingSection = () => {
                       onChange={(e) => handleTripTypeChange(e.target.value)}
                       className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-0 focus:outline-none"
                     />
-                    <span className="ml-2 text-xs font-medium text-blue-600">ROUND TRIP</span>
+                    <span className="ml-2 text-xs sm:text-sm font-medium text-blue-600">ROUND TRIP</span>
                   </label>
                   <label className="flex items-center cursor-pointer">
                     <input
@@ -411,7 +514,7 @@ const HeroBookingSection = () => {
                       onChange={(e) => handleTripTypeChange(e.target.value)}
                       className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-0 focus:outline-none"
                     />
-                    <span className="ml-2 text-xs font-medium text-blue-600">MULTI TRIP</span>
+                    <span className="ml-2 text-xs sm:text-sm font-medium text-blue-600">MULTI TRIP</span>
                   </label>
                 </div>
               </div>
@@ -445,90 +548,50 @@ const HeroBookingSection = () => {
                     </div>
                   </div>
                   
-                  {/* Date Section - Small Boxes */}
-                  <div className="grid grid-cols-1 gap-1.5">
+                  {/* Date Section - Side by Side */}
+                  <div className={`grid gap-1.5 ${formData.flight.type === 'round-trip' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
                     <div className="bg-gray-50 rounded-lg p-2">
                       <label className="block text-xs font-medium text-gray-600 mb-1">Departure Date</label>
-                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
-                         <DatePicker
-                           value={formData.flight.legs[0].date ? new Date(formData.flight.legs[0].date) : null}
-                           onChange={(newValue) => {
-                             if (newValue) {
-                               handleFlightLegChange(0, 'date', newValue.toISOString());
-                             }
-                           }}
-                           renderInput={(params) => (
-                             <TextField
-                               {...params}
-                               size="small"
-                               fullWidth
-                               sx={{
-                                 '& .MuiOutlinedInput-root': {
-                                   height: '32px',
-                                   borderRadius: '0.375rem',
-                                   fontSize: '0.75rem',
-                                   '& fieldset': {
-                                     borderColor: 'rgb(209, 213, 219)',
-                                   },
-                                   '&:hover fieldset': {
-                                     borderColor: 'rgb(59, 130, 246)',
-                                   },
-                                   '&.Mui-focused fieldset': {
-                                     borderColor: 'rgb(59, 130, 246)',
-                                     borderWidth: '1px',
-                                   },
-                                 },
-                                 '& .MuiInputBase-input': {
-                                   padding: '4px 8px',
-                                   fontSize: '0.75rem',
-                                 },
-                               }}
-                             />
-                           )}
-                         />
-                       </LocalizationProvider>
+                      <div className="relative">
+                        <ReactDatePicker
+                          selected={formData.flight.legs[0].date ? new Date(formData.flight.legs[0].date) : null}
+                          onChange={(date) => {
+                            if (date) {
+                              handleFlightLegChange(0, 'date', date.toISOString());
+                            }
+                          }}
+                          dateFormat="dd/MM/yyyy"
+                          placeholderText="Select departure date"
+                          className="w-full h-10 px-2 py-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs bg-white pr-8"
+                          calendarClassName="custom-datepicker"
+                          showPopperArrow={false}
+                          minDate={new Date()}
+                          wrapperClassName="w-full"
+                        />
+                        <FaCalendarAlt className="absolute right-3 top-3 text-gray-400 text-xs pointer-events-none z-10" />
+                      </div>
                     </div>
                     {formData.flight.type === 'round-trip' && (
                       <div className="bg-gray-50 rounded-lg p-2">
                         <label className="block text-xs font-medium text-gray-600 mb-1">Return Date</label>
-                                                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                           <DatePicker
-                             value={formData.flight.legs[1]?.date ? new Date(formData.flight.legs[1].date) : null}
-                             onChange={(newValue) => {
-                               if (newValue) {
-                                 handleFlightLegChange(1, 'date', newValue.toISOString());
-                               }
-                             }}
-                             renderInput={(params) => (
-                               <TextField
-                                 {...params}
-                                 size="small"
-                                 fullWidth
-                                 sx={{
-                                   '& .MuiOutlinedInput-root': {
-                                     height: '32px',
-                                     borderRadius: '0.375rem',
-                                     fontSize: '0.75rem',
-                                     '& fieldset': {
-                                       borderColor: 'rgb(209, 213, 219)',
-                                     },
-                                     '&:hover fieldset': {
-                                       borderColor: 'rgb(59, 130, 246)',
-                                     },
-                                     '&.Mui-focused fieldset': {
-                                       borderColor: 'rgb(59, 130, 246)',
-                                       borderWidth: '1px',
-                                     },
-                                   },
-                                   '& .MuiInputBase-input': {
-                                     padding: '4px 8px',
-                                     fontSize: '0.75rem',
-                                   },
-                                 }}
-                               />
-                             )}
-                           />
-                         </LocalizationProvider>
+                        <div className="relative">
+                          <ReactDatePicker
+                            selected={formData.flight.legs[1]?.date ? new Date(formData.flight.legs[1].date) : null}
+                            onChange={(date) => {
+                              if (date) {
+                                handleFlightLegChange(1, 'date', date.toISOString());
+                              }
+                            }}
+                            dateFormat="dd/MM/yyyy"
+                            placeholderText="Select return date"
+                            className="w-full h-10 px-2 py-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs bg-white pr-8"
+                            calendarClassName="custom-datepicker"
+                            showPopperArrow={false}
+                            minDate={formData.flight.legs[0].date ? new Date(formData.flight.legs[0].date) : new Date()}
+                            wrapperClassName="w-full"
+                          />
+                          <FaCalendarAlt className="absolute right-3 top-3 text-gray-400 text-xs pointer-events-none z-10" />
+                        </div>
                       </div>
                     )}
                   </div>
@@ -547,7 +610,7 @@ const HeroBookingSection = () => {
                         placeholder="Where do you want to stay?"
                         value={formData.hotel.destination}
                         onChange={(e) => handleInputChange('hotel.destination', e.target.value)}
-                        className="w-full px-2 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
+                        className="w-full h-10 px-2 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
                       />
                       <div className="absolute inset-y-0 right-0 flex items-center pr-2">
                         <svg className="h-3 w-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -557,89 +620,49 @@ const HeroBookingSection = () => {
                     </div>
                   </div>
                   
-                  {/* Date Section - Small Boxes Grid */}
-                  <div className="grid grid-cols-2 gap-1.5">
+                  {/* Date Section - Side by Side */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                     <div className="bg-gray-50 rounded-lg p-2">
                       <label className="block text-xs font-medium text-gray-600 mb-1">Check-In Date</label>
-                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
-                         <DatePicker
-                           value={formData.hotel.checkIn ? new Date(formData.hotel.checkIn) : null}
-                           onChange={(newValue) => {
-                             if (newValue) {
-                               handleInputChange('hotel.checkIn', newValue.toISOString());
-                             }
-                           }}
-                           renderInput={(params) => (
-                             <TextField
-                               {...params}
-                               size="small"
-                               fullWidth
-                               sx={{
-                                 '& .MuiOutlinedInput-root': {
-                                   height: '32px',
-                                   borderRadius: '0.375rem',
-                                   fontSize: '0.75rem',
-                                   '& fieldset': {
-                                     borderColor: 'rgb(209, 213, 219)',
-                                   },
-                                   '&:hover fieldset': {
-                                     borderColor: 'rgb(59, 130, 246)',
-                                   },
-                                   '&.Mui-focused fieldset': {
-                                     borderColor: 'rgb(59, 130, 246)',
-                                     borderWidth: '1px',
-                                   },
-                                 },
-                                 '& .MuiInputBase-input': {
-                                   padding: '4px 8px',
-                                   fontSize: '0.75rem',
-                                 },
-                               }}
-                             />
-                           )}
-                         />
-                       </LocalizationProvider>
+                      <div className="relative">
+                        <ReactDatePicker
+                          selected={formData.hotel.checkIn ? new Date(formData.hotel.checkIn) : null}
+                          onChange={(date) => {
+                            if (date) {
+                              handleInputChange('hotel.checkIn', date.toISOString());
+                            }
+                          }}
+                          dateFormat="dd/MM/yyyy"
+                          placeholderText="Select check-in date"
+                          className="w-full h-10 px-2 py-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs bg-white pr-8"
+                          calendarClassName="custom-datepicker"
+                          showPopperArrow={false}
+                          minDate={new Date()}
+                          wrapperClassName="w-full"
+                        />
+                        <FaCalendarAlt className="absolute right-3 top-3 text-gray-400 text-xs pointer-events-none z-10" />
+                      </div>
                     </div>
                     <div className="bg-gray-50 rounded-lg p-2">
                       <label className="block text-xs font-medium text-gray-600 mb-1">Check-Out Date</label>
-                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
-                         <DatePicker
-                           value={formData.hotel.checkOut ? new Date(formData.hotel.checkOut) : null}
-                           onChange={(newValue) => {
-                             if (newValue) {
-                               handleInputChange('hotel.checkOut', newValue.toISOString());
-                             }
-                           }}
-                           renderInput={(params) => (
-                             <TextField
-                               {...params}
-                               size="small"
-                               fullWidth
-                               sx={{
-                                 '& .MuiOutlinedInput-root': {
-                                   height: '32px',
-                                   borderRadius: '0.375rem',
-                                   fontSize: '0.75rem',
-                                   '& fieldset': {
-                                     borderColor: 'rgb(209, 213, 219)',
-                                   },
-                                   '&:hover fieldset': {
-                                     borderColor: 'rgb(59, 130, 246)',
-                                   },
-                                   '&.Mui-focused fieldset': {
-                                     borderColor: 'rgb(59, 130, 246)',
-                                     borderWidth: '1px',
-                                   },
-                                 },
-                                 '& .MuiInputBase-input': {
-                                   padding: '4px 8px',
-                                   fontSize: '0.75rem',
-                                 },
-                               }}
-                             />
-                           )}
-                         />
-                       </LocalizationProvider>
+                      <div className="relative">
+                        <ReactDatePicker
+                          selected={formData.hotel.checkOut ? new Date(formData.hotel.checkOut) : null}
+                          onChange={(date) => {
+                            if (date) {
+                              handleInputChange('hotel.checkOut', date.toISOString());
+                            }
+                          }}
+                          dateFormat="dd/MM/yyyy"
+                          placeholderText="Select check-out date"
+                          className="w-full h-10 px-2 py-1 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs bg-white pr-8"
+                          calendarClassName="custom-datepicker"
+                          showPopperArrow={false}
+                          minDate={formData.hotel.checkIn ? new Date(formData.hotel.checkIn) : new Date()}
+                          wrapperClassName="w-full"
+                        />
+                        <FaCalendarAlt className="absolute right-3 top-3 text-gray-400 text-xs pointer-events-none z-10" />
+                      </div>
                     </div>
                   </div>
                 </>
@@ -648,12 +671,12 @@ const HeroBookingSection = () => {
 
             {/* Price Display */}
             {price > 0 && (
-              <div className="mt-3 p-2 bg-blue-50 rounded-lg border border-blue-200">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-700">
+              <div className="mt-3 p-2 sm:p-3 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                  <span className="text-xs sm:text-sm font-medium text-gray-700">
                     Total Price for {formData.travelers.count} traveler{formData.travelers.count > 1 ? 's' : ''}:
                   </span>
-                  <span className="text-lg font-bold text-blue-600">₹{price}</span>
+                  <span className="text-lg sm:text-xl font-bold text-blue-600">₹{price}</span>
                 </div>
               </div>
             )}
@@ -661,99 +684,12 @@ const HeroBookingSection = () => {
               {/* Book Now Button */}
               <Button
                 onClick={handleBookNow}
-                className="w-full mt-3 bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-semibold shadow-lg transform transition hover:scale-105"
+                className="w-full mt-3 bg-blue-600 hover:bg-blue-700 text-white py-3 sm:py-2.5 px-4 rounded-lg text-sm sm:text-base font-semibold shadow-lg transform transition hover:scale-105"
               >
                 BUY DUMMY TICKET - ₹{price}
               </Button>
             </div>
           </motion.div>
-        </div>
-      </div>
-
-      {/* Floating Feature Cards - Half overlapping hero and next section */}
-      <div className="absolute bottom-0 left-0 right-0 transform translate-y-2/3 z-20 mb-2">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 w-full max-w-sm"
-            >
-              <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-green-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
-                  <FaCheck className="text-green-600 text-lg" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Legitimate & Verifiable</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
-                  <p className="text-xs leading-relaxed text-center text-white">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 w-full max-w-sm"
-            >
-              <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
-                  <FaPlane className="text-blue-600 text-lg" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Instant PDF</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
-                  <p className="text-xs leading-relaxed text-center text-white">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 w-full max-w-sm"
-            >
-              <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-purple-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
-                  <FaCheck className="text-purple-600 text-lg" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Unlimited Revisions</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
-                  <p className="text-xs leading-relaxed text-center text-white">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 w-full max-w-sm"
-            >
-              <div className="text-center h-full flex flex-col justify-center">
-                <div className="w-12 h-12 bg-red-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
-                  <FaCheck className="text-red-600 text-lg" />
-                </div>
-                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">No Cancellation Fee</h4>
-                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
-                </div>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
-                  <p className="text-xs leading-relaxed text-center text-white">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </div>
       </div>
     </div>

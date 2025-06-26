@@ -4,7 +4,7 @@ import Layout from '../../../components/common/Layout';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel } from 'react-icons/fa';
+import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFilePdf, FaEdit, FaBan } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import FlightBookingComponent from '../../../components/dummyFlight/DummyBooking';
 import HotelBookingComponent from '../../../components/dummyHotel/HotelBookingComponent';
@@ -102,28 +102,112 @@ const DummyFlightBookingsAdsPage = () => {
       {/* New Hero Section */}
       <HeroBookingSection />
       
-      <Layout className="relative z-10 bg-white pt-32 pb-16 mb-16">
+      {/* Feature Cards Section */}
+      <div className="relative z-30 bg-white py-12 lg:py-0">
+                 <div className="max-w-none mx-auto px-4 lg:absolute lg:-bottom-20 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:translate-y-1/2 w-full">
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 max-w-screen-xl mx-auto">
+                         <motion.div
+               initial={{ opacity: 0, y: 30 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8, delay: 0.2 }}
+               className="bg-white p-4 lg:p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 lg:h-64"
+             >
+              <div className="text-center h-full flex flex-col justify-center">
+                <div className="w-12 h-12 bg-green-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
+                  <FaShieldAlt className="text-green-600 text-lg" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Legitimate & Verifiable</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
+                  <p className="text-xs leading-relaxed text-center text-white">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
+                </div>
+              </div>
+            </motion.div>
+            
+                         <motion.div
+               initial={{ opacity: 0, y: 30 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8, delay: 0.3 }}
+               className="bg-white p-4 lg:p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 lg:h-64"
+             >
+              <div className="text-center h-full flex flex-col justify-center">
+                <div className="w-12 h-12 bg-blue-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
+                  <FaFilePdf className="text-blue-600 text-lg" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Instant PDF</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
+                  <p className="text-xs leading-relaxed text-center text-white">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
+                </div>
+              </div>
+            </motion.div>
+            
+                         <motion.div
+               initial={{ opacity: 0, y: 30 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8, delay: 0.4 }}
+               className="bg-white p-4 lg:p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 lg:h-64"
+             >
+              <div className="text-center h-full flex flex-col justify-center">
+                <div className="w-12 h-12 bg-purple-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
+                  <FaEdit className="text-purple-600 text-lg" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">Unlimited Revisions</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
+                  <p className="text-xs leading-relaxed text-center text-white">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we're here to help.</p>
+                </div>
+              </div>
+            </motion.div>
+            
+                         <motion.div
+               initial={{ opacity: 0, y: 30 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8, delay: 0.5 }}
+               className="bg-white p-4 lg:p-8 rounded-xl shadow-lg border border-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-300 group cursor-pointer relative overflow-hidden h-48 lg:h-64"
+             >
+              <div className="text-center h-full flex flex-col justify-center">
+                <div className="w-12 h-12 bg-red-100 group-hover:bg-white rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:opacity-0">
+                  <FaBan className="text-red-600 text-lg" />
+                </div>
+                <h4 className="font-bold text-gray-900 group-hover:text-white mb-2 text-base transition-all duration-300 group-hover:opacity-0">No Cancellation Fee</h4>
+                <div className="opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <p className="text-gray-600 group-hover:text-white text-xs">Hover for details</p>
+                </div>
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-3 flex items-center justify-center">
+                  <p className="text-xs leading-relaxed text-center text-white">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+      
+      <Layout className="relative z-20 bg-white pt-8 lg:pt-32 pb-16 mb-16">
 
         {/* Pricing Cards Section - Moved up to accommodate floating cards */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-40 mb-20"
+          className="mt-16 sm:mt-24 lg:mt-40 mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-0"
           id="pricing-section"
         >
-          <div
-            className="pricing-cards-container flex justify-center gap-8 mx-auto"
-            style={{ width: "calc(4 * 20rem + 3 * 2rem)", maxWidth: "100%" }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
+          
             {plans.map((plan, index) => (
               <motion.div
                 key={index}
-                style={{ width: "20rem", minWidth: "20rem", height: "500px" }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col
+                className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-[500px] w-full max-w-sm mx-auto
                   ${plan.popular ? 'ring-2 ring-blue-500/50 shadow-blue-100/50' : ''}`}
               >
                 {plan.popular && (
@@ -191,11 +275,11 @@ const DummyFlightBookingsAdsPage = () => {
 
 
         {/* Second CTA Section */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-16 text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-12 sm:mb-16 text-center">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Ready to Get Your Visa Documents?
           </h3>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Start your visa application process today with our reliable and verifiable dummy bookings. Trusted by thousands of successful visa applicants worldwide.
           </p>
         </div>
@@ -205,8 +289,8 @@ const DummyFlightBookingsAdsPage = () => {
           {showFlightBooking && (
             <div className="mb-8">
               <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">Complete Your Flight Booking</h3>
-                <p className="text-lg text-gray-600 text-center mb-8">Fill in your flight details to get your dummy booking for visa application</p>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center">Complete Your Flight Booking</h3>
+                <p className="text-base sm:text-lg text-gray-600 text-center mb-8">Fill in your flight details to get your dummy booking for visa application</p>
               </div>
               <FlightBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
             </div>
@@ -215,8 +299,8 @@ const DummyFlightBookingsAdsPage = () => {
           {showHotelBooking && (
             <div className="mb-8">
               <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-8">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4 text-center">Complete Your Hotel Booking</h3>
-                <p className="text-lg text-gray-600 text-center mb-8">Fill in your hotel details to get your dummy booking for visa application</p>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center">Complete Your Hotel Booking</h3>
+                <p className="text-base sm:text-lg text-gray-600 text-center mb-8">Fill in your hotel details to get your dummy booking for visa application</p>
               </div>
               <HotelBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
             </div>
@@ -227,8 +311,8 @@ const DummyFlightBookingsAdsPage = () => {
         <FeedbackReviewComponent />
 
         {/* Help Section */}
-        <div className="max-w-[1440px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-16">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-2xl">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-12 sm:mb-16">
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-2xl">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-48 -translate-y-48"></div>
@@ -236,25 +320,25 @@ const DummyFlightBookingsAdsPage = () => {
               <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-white rounded-full opacity-50"></div>
             </div>
             
-                         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between p-6 lg:p-8">
+                         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between p-4 sm:p-6 lg:p-8">
                {/* Left Content */}
-               <div className="flex-1 text-white mb-6 lg:mb-0 lg:pr-8">
-                 <div className="flex items-center mb-4">
-                   <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center mr-4">
-                     <FaWhatsapp className="text-blue-600 text-xl" />
+               <div className="flex-1 text-white mb-6 lg:mb-0 lg:pr-8 text-center lg:text-left">
+                 <div className="flex flex-col sm:flex-row items-center mb-4">
+                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex items-center justify-center mb-3 sm:mb-0 sm:mr-4">
+                     <FaWhatsapp className="text-blue-600 text-lg sm:text-xl" />
                    </div>
                    <div>
-                     <h3 className="text-2xl lg:text-3xl font-bold mb-2">Need Help Choosing?</h3>
-                     <p className="text-blue-100 text-base lg:text-lg">Our visa specialists are available to help you select the perfect plan for your needs.</p>
+                     <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">Need Help Choosing?</h3>
+                     <p className="text-blue-100 text-sm sm:text-base lg:text-lg">Our visa specialists are available to help you select the perfect plan for your needs.</p>
                    </div>
                  </div>
                  
                  <div className="mb-4">
-                   <p className="text-white font-medium text-lg mb-1">Get In Touch</p>
-                   <p className="text-blue-100 text-sm lg:text-base">Email: support@eazyvisas.com & Phone: +917700006525</p>
+                   <p className="text-white font-medium text-base sm:text-lg mb-1">Get In Touch</p>
+                   <p className="text-blue-100 text-xs sm:text-sm lg:text-base">Email: support@eazyvisas.com & Phone: +917700006525</p>
                  </div>
                  
-                 <div className="flex flex-col sm:flex-row gap-3">
+                 <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                    <a 
                      href="https://wa.me/917700006525" 
                      target="_blank" 
@@ -312,19 +396,7 @@ const DummyFlightBookingsAdsPage = () => {
         .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
         .animate-float-fast { animation: float-fast 5s ease-in-out infinite; }
 
-        /* Responsive pricing cards */
-        @media (max-width: 900px) {
-          .pricing-cards-container {
-            flex-direction: column !important;
-            width: 100% !important;
-            gap: 1.5rem !important;
-          }
-          .pricing-cards-container > * {
-            width: 100% !important;
-            min-width: 0 !important;
-            max-width: 100% !important;
-          }
-        }
+
       `}</style>
     </div>
   );

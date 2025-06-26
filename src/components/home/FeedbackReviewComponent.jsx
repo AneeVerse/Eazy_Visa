@@ -86,6 +86,86 @@ const FeedbackReviewComponent = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [notification, setNotification] = useState(null);
   const [activeReview, setActiveReview] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [lastScrollPosition, setLastScrollPosition] = useState(0);
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    const container = document.getElementById('review-carousel');
+    if (!container) return;
+
+    let animationId;
+    let lastTimestamp = 0;
+    const scrollSpeed = 0.8; // Slightly faster for better visibility
+
+    const autoScroll = (timestamp) => {
+      if (isPaused) {
+        animationId = requestAnimationFrame(autoScroll);
+        return;
+      }
+
+      if (timestamp - lastTimestamp >= 16) { // ~60fps
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        // Check if we can actually scroll (has overflow content)
+        if (maxScroll <= 0) {
+          animationId = requestAnimationFrame(autoScroll);
+          return;
+        }
+        
+        if (container.scrollLeft >= maxScroll - 1) { // Small buffer to prevent stuck
+          // Smooth reset to beginning with a small delay
+          setTimeout(() => {
+            if (container) {
+              container.scrollLeft = 0;
+            }
+          }, 1000); // 1 second pause before reset
+          // Pause briefly during reset
+          setIsPaused(true);
+          setTimeout(() => setIsPaused(false), 1500);
+        } else {
+          container.scrollLeft += scrollSpeed;
+        }
+        
+        lastTimestamp = timestamp;
+      }
+      
+      animationId = requestAnimationFrame(autoScroll);
+    };
+
+    // Fallback mechanism to prevent getting stuck
+    const stuckCheckInterval = setInterval(() => {
+      if (!isPaused && container) {
+        const currentPosition = container.scrollLeft;
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        // If position hasn't changed and we're not at the beginning, reset
+        if (currentPosition === lastScrollPosition && currentPosition > 0 && maxScroll > 0) {
+          container.scrollLeft = 0;
+          setLastScrollPosition(0);
+        } else {
+          setLastScrollPosition(currentPosition);
+        }
+      }
+    }, 3000); // Check every 3 seconds
+
+    // Start auto-scroll after a small delay to ensure container is ready
+    const startTimeout = setTimeout(() => {
+      animationId = requestAnimationFrame(autoScroll);
+    }, 500);
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+      if (startTimeout) {
+        clearTimeout(startTimeout);
+      }
+      if (stuckCheckInterval) {
+        clearInterval(stuckCheckInterval);
+      }
+    };
+  }, [isPaused, lastScrollPosition]);
 
   // ✅ Handle Star Selection
   const handleStarClick = (rating) => {
@@ -170,10 +250,15 @@ const FeedbackReviewComponent = () => {
             {/* Left scroll button */}
             <button
               onClick={() => {
+                setIsPaused(true);
                 const container = document.getElementById('review-carousel');
-                if (container) container.scrollBy({ left: -350, behavior: 'smooth' });
+                if (container) {
+                  container.scrollBy({ left: -350, behavior: 'smooth' });
+                  // Resume auto-scroll after manual scroll completes
+                  setTimeout(() => setIsPaused(false), 1000);
+                }
               }}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10 hover:bg-blue-50 transition-colors"
               style={{marginLeft: '-20px'}}
             >
               <FaAngleLeft size={22} />
@@ -183,6 +268,8 @@ const FeedbackReviewComponent = () => {
               id="review-carousel"
               className="flex gap-6 overflow-x-auto scroll-smooth py-2 px-1 hide-scrollbar"
               style={{scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch'}}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
             >
               {reviews.map((review, idx) => (
                 <div
@@ -214,10 +301,15 @@ const FeedbackReviewComponent = () => {
             {/* Right scroll button */}
             <button
               onClick={() => {
+                setIsPaused(true);
                 const container = document.getElementById('review-carousel');
-                if (container) container.scrollBy({ left: 350, behavior: 'smooth' });
+                if (container) {
+                  container.scrollBy({ left: 350, behavior: 'smooth' });
+                  // Resume auto-scroll after manual scroll completes
+                  setTimeout(() => setIsPaused(false), 1000);
+                }
               }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10 hover:bg-blue-50 transition-colors"
               style={{marginRight: '-20px'}}
             >
               <FaAngleRight size={22} />
