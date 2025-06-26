@@ -158,17 +158,17 @@ const DummyFlightBookingsAdsPage = () => {
                 </div>
                 <div className="border-t border-gray-200/50 px-6 pt-5 pb-6 bg-white/30 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What&apos;s included:</h3>
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What&apos;s included:</h3>
                     <ul className="space-y-3">
-                      {plan.features.map((feature, i) => (
-                        <li key={i} className="flex items-start">
-                          <div className="flex-shrink-0 h-5 w-5 mr-2 mt-0.5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                            <FaCheck className="h-3 w-3" />
-                          </div>
-                          <span className="text-gray-700 text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-start">
+                        <div className="flex-shrink-0 h-5 w-5 mr-2 mt-0.5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                          <FaCheck className="h-3 w-3" />
+                        </div>
+                        <span className="text-gray-700 text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                   </div>
                   <div className="mt-6">
                     <button 
