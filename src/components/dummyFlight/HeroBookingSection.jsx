@@ -432,41 +432,33 @@ const HeroBookingSection = () => {
                 <div className="flex gap-1.5">
                   <button
                     onClick={() => setActiveTab('flight')}
-                    className={`flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all duration-300 ${
-                      activeTab === 'flight'
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'text-gray-600 hover:bg-white'
-                    }`}
+                    className="flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all duration-300"
                   >
-                    <div className="relative w-12 h-12 mb-0.5">
+                    <div className="relative w-16 h-16 mb-0.5">
                       <Image
-                        src={activeTab === 'flight' ? '/images/icon/png/aeroplan-black.png' : '/images/icon/png/aeroplan-blue.png'}
+                        src={activeTab === 'flight' ? '/images/icon/png/aeroplan-blue.png' : '/images/icon/png/aeroplan-black.png'}
                         alt="Flight"
-                        width={48}
-                        height={48}
+                        width={64}
+                        height={64}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <span className="text-xs font-semibold">Flights</span>
+                    <span className={`text-xs font-semibold ${activeTab === 'flight' ? 'text-blue-600' : 'text-gray-600'}`}>Flights</span>
                   </button>
                   <button
                     onClick={() => setActiveTab('hotel')}
-                    className={`flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all duration-300 ${
-                      activeTab === 'hotel'
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'text-gray-600 hover:bg-white'
-                    }`}
+                    className="flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all duration-300"
                   >
-                    <div className="relative w-12 h-12 mb-0.5">
+                    <div className="relative w-16 h-16 mb-0.5">
                       <Image
-                        src={activeTab === 'hotel' ? '/images/icon/png/hotel-black.png' : '/images/icon/png/hotel-blue.png'}
+                        src={activeTab === 'hotel' ? '/images/icon/png/hotel-blue.png' : '/images/icon/png/hotel-black.png'}
                         alt="Hotel"
-                        width={48}
-                        height={48}
+                        width={64}
+                        height={64}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <span className="text-xs font-semibold">Hotels</span>
+                    <span className={`text-xs font-semibold ${activeTab === 'hotel' ? 'text-blue-600' : 'text-gray-600'}`}>Hotels</span>
                   </button>
                 </div>
               </div>
