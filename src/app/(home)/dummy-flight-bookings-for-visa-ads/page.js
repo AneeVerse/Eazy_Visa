@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '../../../components/common/Layout';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
@@ -16,6 +16,51 @@ import HeroBookingSection from '../../../components/dummyFlight/HeroBookingSecti
 const DummyFlightBookingsAdsPage = () => {
   const [showFlightBooking, setShowFlightBooking] = useState(true);
   const [showHotelBooking, setShowHotelBooking] = useState(false);
+
+  // Function to scroll to booking form
+  const scrollToBookingForm = () => {
+    const detailedBookingSection = document.getElementById('booking-section');
+    
+    // Target the detailed booking section at the bottom
+    if (detailedBookingSection) {
+      detailedBookingSection.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
+  };
+
+  // Listen for Get Started button clicks from navbar
+  useEffect(() => {
+    const handleGetStartedClick = (event) => {
+      // Only handle on this specific page
+      if (window.location.pathname === '/dummy-flight-bookings-for-visa-ads') {
+        event.preventDefault();
+        scrollToBookingForm();
+      }
+    };
+
+    // Listen for custom event from navbar Get Started button
+    const handleNavbarGetStarted = () => {
+      scrollToBookingForm();
+    };
+
+    // Add event listener for custom event
+    window.addEventListener('navbarGetStartedClick', handleNavbarGetStarted);
+    
+    // Also listen for clicks on any element with get-started class or data attribute
+    document.addEventListener('click', (e) => {
+      if (e.target.matches('[data-action="get-started"]') || 
+          e.target.matches('.get-started-btn') ||
+          e.target.textContent?.trim() === 'Get Started') {
+        handleGetStartedClick(e);
+      }
+    });
+
+    return () => {
+      window.removeEventListener('navbarGetStartedClick', handleNavbarGetStarted);
+    };
+  }, []);
 
   const plans = [
     {

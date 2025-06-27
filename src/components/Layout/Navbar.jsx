@@ -78,6 +78,21 @@ export default function Navbar({ transparent = false }) {
   const searchResultsRef = useRef(null);
   const timeoutRef = useRef(null);
 
+  // Handle Get Started button click
+  const handleGetStartedClick = (e) => {
+    // Check if we're on the dummy flight bookings page
+    if (typeof window !== 'undefined' && window.location.pathname === '/dummy-flight-bookings-for-visa-ads') {
+      e.preventDefault();
+      
+      // Dispatch custom event for the page to handle
+      window.dispatchEvent(new CustomEvent('navbarGetStartedClick'));
+      
+      // Close mobile menu if open
+      setIsOpen(false);
+    }
+    // If not on the special page, let the link work normally (go to contact)
+  };
+
   // Fetch countries based on search query
   useEffect(() => {
     if (searchQuery.trim() === "") {
@@ -289,6 +304,7 @@ export default function Navbar({ transparent = false }) {
             
             <Link
               href="/contact"
+              onClick={handleGetStartedClick}
               className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-5 py-2.5 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-sm hover:shadow-md font-medium"
             >
               Get Started
@@ -555,7 +571,10 @@ export default function Navbar({ transparent = false }) {
               <Link
                 href="/contact"
                 className="block w-full bg-gradient-to-r from-blue-600 to-blue-500 text-white text-center py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-600 transition-all font-medium shadow-sm"
-                onClick={handleMobileLinkClick}
+                onClick={(e) => {
+                  handleGetStartedClick(e);
+                  handleMobileLinkClick();
+                }}
               >
                 Get Started
               </Link>

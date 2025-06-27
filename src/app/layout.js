@@ -5,6 +5,7 @@ import NextTopLoader from "nextjs-toploader";
 import ConditionalLayout from "../components/Layout/ConditionalLayout";
 import MetaPixel from "../components/common/MetaPixel";
 import Script from "next/script";
+import ConditionalTopLoader from "../components/common/ConditionalTopLoader";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -84,15 +85,7 @@ export default function RootLayout({ children }) {
         <MetaPixel />
 
         {/* Page Content */}
-        <NextTopLoader
-          color="#0B82E6"
-          initialPosition={0.08}
-          height={3}
-          showSpinner={false}
-          easing="ease"
-          speed={500}
-          shadow="0 0 10px #2299DD,0 0 5px #2299DD"
-        />
+        <ConditionalTopLoader />
         <ConditionalLayout>
           {children}
         </ConditionalLayout>

@@ -352,7 +352,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <Button
                 onClick={() => {
                   setActiveTab('flight');
@@ -367,7 +367,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
                     }
                   }
                 }}
-                className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
+                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
                 Book Flight
               </Button>
@@ -385,7 +385,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
                     }
                   }
                 }}
-                className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
+                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
                 Book Hotels
               </Button>
@@ -451,29 +451,34 @@ const HeroBookingSection = ({ onBookingClick }) => {
               </div>
 
               {/* Step Progress Indicator */}
-              <div className="flex items-center justify-center mb-4">
-                <div className="flex items-center space-x-2">
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+              <div className="flex items-center justify-center mb-4 px-2">
+                <div className="flex items-center space-x-1 sm:space-x-2 w-full max-w-xs sm:max-w-none">
+                  <div className="flex items-center flex-1 sm:flex-none">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold flex-shrink-0">
                       1
                     </div>
-                    <span className="ml-2 text-xs font-medium text-gray-700">
-                      {activeTab === 'flight' ? 'Flight Details' : 'Hotel Details'}
+                    <span className="ml-1 sm:ml-2 text-xs font-medium text-gray-700 truncate">
+                      <span className="hidden sm:inline">
+                        {activeTab === 'flight' ? 'Flight Details' : 'Hotel Details'}
+                      </span>
+                      <span className="sm:hidden">
+                        {activeTab === 'flight' ? 'Flight' : 'Hotel'}
+                      </span>
                     </span>
                   </div>
-                  <div className="w-12 h-px bg-gray-300"></div>
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center text-sm font-semibold">
+                  <div className="w-4 sm:w-12 h-px bg-gray-300 flex-shrink-0"></div>
+                  <div className="flex items-center flex-1 sm:flex-none">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold flex-shrink-0">
                       2
                     </div>
-                    <span className="ml-2 text-xs font-medium text-gray-500">Review</span>
+                    <span className="ml-1 sm:ml-2 text-xs font-medium text-gray-500 truncate">Review</span>
                   </div>
-                  <div className="w-12 h-px bg-gray-300"></div>
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center text-sm font-semibold">
+                  <div className="w-4 sm:w-12 h-px bg-gray-300 flex-shrink-0"></div>
+                  <div className="flex items-center flex-1 sm:flex-none">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold flex-shrink-0">
                       3
                     </div>
-                    <span className="ml-2 text-xs font-medium text-gray-500">Payment</span>
+                    <span className="ml-1 sm:ml-2 text-xs font-medium text-gray-500 truncate">Payment</span>
                   </div>
                 </div>
               </div>
