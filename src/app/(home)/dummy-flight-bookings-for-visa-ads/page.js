@@ -537,6 +537,7 @@ const DummyFlightBookingsAdsPage = () => {
     <div className="mb-20">
       <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-indigo-100">
         <div className="grid md:grid-cols-2 gap-10 items-center">
+          {/* Left Side: Text + Buttons */}
           <div>
             <p className="text-gray-600 mb-6">
               Eazy Visas is a one stop shop for all your Visa documentation woes. We understand arranging documents for your visa application can be stressful. While your financials may be in place and you may feel confident about your visa application, there is still a possibility for your application to get rejected. In such a situation the flight tickets and hotel bookings are gone for a waste. Barring a huge loss in penalty charged by the Airline or the Hotel or the Travel Agent.
@@ -547,33 +548,34 @@ const DummyFlightBookingsAdsPage = () => {
             <p className="text-gray-600">
               Our Flight itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
             </p>
-          </div>
 
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-8 h-full flex items-center justify-center">
-            <Image src="/logo/logo-white.png" alt="Eazy Visas Logo" width={200} height={80} />
-          </div>
-
-
-                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* Button Group */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-start">
               <button
                 onClick={() => handleBookingClick({ type: 'flight' })}
-                className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center min-w-[160px]"
+                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 min-w-[160px]"
               >
                 Book Flight
               </button>
               <button
                 onClick={() => handleBookingClick({ type: 'hotel' })}
-                className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center min-w-[160px]"
+                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 min-w-[160px]"
               >
                 Book Hotels
               </button>
             </div>
+          </div>
 
+          {/* Right Side: Logo */}
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-8 h-full flex items-center justify-center">
+            <Image src="/logo/logo-white.png" alt="Eazy Visas Logo" width={200} height={80} />
+          </div>
         </div>
       </div>
     </div>
   </Layout>
 </section>
+
 
 
 
