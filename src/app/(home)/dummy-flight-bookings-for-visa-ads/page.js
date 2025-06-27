@@ -149,8 +149,8 @@ const DummyFlightBookingsAdsPage = () => {
       
       {/* Feature Cards Section */}
       <div className="relative z-30 bg-white py-12 lg:py-0">
-                 <div className="max-w-none mx-auto px-4 lg:absolute lg:-bottom-20 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:translate-y-1/2 w-full">
-           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div className="max-w-[1440px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto lg:absolute lg:-bottom-20 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:translate-y-1/2 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 lg:gap-8">
                          <motion.div
                initial={{ opacity: 0, y: 30 }}
                animate={{ opacity: 1, y: 0 }}
@@ -320,7 +320,7 @@ const DummyFlightBookingsAdsPage = () => {
         <FeedbackReviewComponent />
 
         {/* Help Section */}
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-12 sm:mb-16">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-4 sm:mb-6 lg:-mb-20">
           <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-2xl">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
