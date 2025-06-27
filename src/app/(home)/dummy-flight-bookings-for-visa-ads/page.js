@@ -12,6 +12,7 @@ import ConsultationForm from "../../../components/common/ConsultationForm";
 import { FcGoogle } from "react-icons/fc";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import HeroBookingSection from '../../../components/dummyFlight/HeroBookingSection';
+import Button from '../../../components/common/Button';
 
 const DummyFlightBookingsAdsPage = () => {
   const [showFlightBooking, setShowFlightBooking] = useState(true);
@@ -214,13 +215,59 @@ const DummyFlightBookingsAdsPage = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
               Reason to use our service?
             </h2>
+        
           </div>
           
-          {/* Grid container aligned with price cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto lg:px-0">
+          {/* Scrollable container on mobile, grid on larger screens */}
+          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto lg:px-0">
+            {/* Mobile horizontal scroll container */}
+            <div className="flex overflow-x-auto gap-4 pb-4 sm:hidden scrollbar-hide snap-x snap-mandatory px-4 -mx-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex-shrink-0 w-72 snap-center flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="text-center">
+                  <FaShieldAlt className="text-green-500 text-3xl mb-4 mx-auto" />
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Legitimate & Verifiable</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
+                className="flex-shrink-0 w-72 snap-center flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="text-center">
+                  <FaFilePdf className="text-blue-500 text-3xl mb-4 mx-auto" />
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Instant PDF</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex-shrink-0 w-72 snap-center flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="text-center">
+                  <FaEdit className="text-purple-500 text-3xl mb-4 mx-auto" />
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Unlimited Revisions</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
+                className="flex-shrink-0 w-72 snap-center flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="text-center">
+                  <FaTimes className="text-red-500 text-3xl mb-4 mx-auto" />
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">No Cancellation Fee</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
+                </div>
+              </motion.div>
+            </div>
+            
+            {/* Desktop/Tablet grid layout */}
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-              className="h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="hidden sm:flex h-full flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaShieldAlt className="text-green-500 text-3xl mb-4 mx-auto" />
@@ -230,7 +277,7 @@ const DummyFlightBookingsAdsPage = () => {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="hidden sm:flex h-full flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaFilePdf className="text-blue-500 text-3xl mb-4 mx-auto" />
@@ -240,7 +287,7 @@ const DummyFlightBookingsAdsPage = () => {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}
-              className="h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="hidden sm:flex h-full flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaEdit className="text-purple-500 text-3xl mb-4 mx-auto" />
@@ -250,7 +297,7 @@ const DummyFlightBookingsAdsPage = () => {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
-              className="h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="hidden sm:flex h-full flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaTimes className="text-red-500 text-3xl mb-4 mx-auto" />
@@ -500,19 +547,19 @@ const DummyFlightBookingsAdsPage = () => {
         {/* Booking Buttons Section */}
         <div className="py-8 bg-white -mt-10">
           <div className="max-w-md mx-auto px-4">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
+            <div className="flex flex-row gap-4 justify-center">
+              <Button
                 onClick={() => handleBookingClick({ type: 'flight' })}
-                className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center min-w-[160px]"
+                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
                 Book Flight
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => handleBookingClick({ type: 'hotel' })}
-                className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center min-w-[160px]"
+                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
                 Book Hotels
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -526,7 +573,7 @@ const DummyFlightBookingsAdsPage = () => {
 
   <Layout>
     {/* Hero Section */}
-    <div className="text-center mb-20">
+    <div className="text-center mb-0">
       <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Story</h1>
       <p className="text-xl text-gray-600 max-w-3xl mx-auto">
         Pioneering in solving complex visa application processes and simplifying them for end customers
@@ -550,19 +597,19 @@ const DummyFlightBookingsAdsPage = () => {
             </p>
 
             {/* Button Group */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-start">
-              <button
+            <div className="mt-8 flex flex-row gap-4 justify-start">
+              <Button
                 onClick={() => handleBookingClick({ type: 'flight' })}
-                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 min-w-[160px]"
+                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
                 Book Flight
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => handleBookingClick({ type: 'hotel' })}
-                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 min-w-[160px]"
+                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
                 Book Hotels
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -588,7 +635,7 @@ const DummyFlightBookingsAdsPage = () => {
 
 
         {/* Help Section */}
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-4 sm:mb-6 lg:-mb-20">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-4 sm:mb-6 lg:-mb-8 -mt-15">
           <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-2xl">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
