@@ -522,7 +522,7 @@ const DummyFlightBookingsAdsPage = () => {
 
                 {/* About Section */}
 <section className="min-h-screen relative py-20">
-  <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
+  <div className="absolute blur-[200px] top-0 -left-[30px] -z-10 w-[400px] h-[400px] bg-white opacity-50"></div>
   <Layout>
     {/* Hero Section */}
     <div className="text-center mb-20">
@@ -547,6 +547,22 @@ const DummyFlightBookingsAdsPage = () => {
               Our Flight itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
             </p>
           </div>
+
+           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => handleBookingClick({ type: 'flight' })}
+                className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center min-w-[160px]"
+              >
+                Book Flight
+              </button>
+              <button
+                onClick={() => handleBookingClick({ type: 'hotel' })}
+                className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center min-w-[160px]"
+              >
+                Book Hotels
+              </button>
+            </div>
+
           <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-8 h-full flex items-center justify-center">
             <Image src="/logo/logo-white.png" alt="Eazy Visas Logo" width={200} height={80} />
           </div>
