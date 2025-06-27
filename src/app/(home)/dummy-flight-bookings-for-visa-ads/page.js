@@ -517,6 +517,55 @@ const DummyFlightBookingsAdsPage = () => {
           </div>
         </div>
 
+
+
+
+                {/* About Section */}
+<section className="min-h-screen relative py-20">
+  <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[400px] h-[400px] bg-[#0B82E6] opacity-50"></div>
+  <Layout>
+    {/* Hero Section */}
+    <div className="text-center mb-20">
+      <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Story</h1>
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        Pioneering in solving complex visa application processes and simplifying them for end customers
+      </p>
+    </div>
+
+    {/* Mission Section */}
+    <div className="mb-20">
+      <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-indigo-100">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <p className="text-gray-600 mb-6">
+              Eazy Visas is a one stop shop for all your Visa documentation woes. We understand arranging documents for your visa application can be stressful. While your financials may be in place and you may feel confident about your visa application, there is still a possibility for your application to get rejected. In such a situation the flight tickets and hotel bookings are gone for a waste. Barring a huge loss in penalty charged by the Airline or the Hotel or the Travel Agent.
+            </p>
+            <p className="text-gray-600 mb-6">
+              However, what most people are unaware of is that the Embassy does not advise you to book a confirmed ticket or hotel booking. All they want is a flight itinerary and hotel booking along with a day wise itinerary to show that you have every intention of visiting their country and would be returning home.
+            </p>
+            <p className="text-gray-600">
+              Our Flight itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
+            </p>
+          </div>
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-8 h-full flex items-center justify-center">
+            <Image src="/logo/logo-white.png" alt="Eazy Visas Logo" width={200} height={80} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </Layout>
+</section>
+
+
+
+
+
+
+
+
+
+
+
         {/* Help Section */}
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-4 sm:mb-6 lg:-mb-20">
           <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-2xl">
