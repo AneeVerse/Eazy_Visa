@@ -202,7 +202,7 @@ const DummyFlightBookingsAdsPage = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       {/* New Hero Section */}
       <HeroBookingSection onBookingClick={handleBookingClick} />
       
@@ -457,8 +457,7 @@ const DummyFlightBookingsAdsPage = () => {
                     setTimeout(() => setIsPaused(false), 1000);
                   }
                 }}
-                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10 hover:bg-blue-50 transition-colors"
-                style={{marginLeft: '-20px'}}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10 hover:bg-blue-50 transition-colors"
               >
                 <FaAngleLeft size={22} />
               </button>
@@ -535,8 +534,7 @@ const DummyFlightBookingsAdsPage = () => {
                     setTimeout(() => setIsPaused(false), 1000);
                   }
                 }}
-                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10 hover:bg-blue-50 transition-colors"
-                style={{marginRight: '-20px'}}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10 hover:bg-blue-50 transition-colors"
               >
                 <FaAngleRight size={22} />
               </button>
@@ -568,36 +566,36 @@ const DummyFlightBookingsAdsPage = () => {
 
 
                 {/* About Section */}
-<section className="min-h-screen relative py-20">
-  <div className="absolute blur-[200px] top-0 -left-[30px] -z-10 w-[400px] h-[400px] bg-white opacity-50"></div>
+<section className="min-h-screen relative py-12 sm:py-16 lg:py-20 overflow-hidden">
+  <div className="absolute blur-[200px] top-0 left-0 -z-10 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-white opacity-50 -translate-x-1/2 -translate-y-1/4"></div>
 
   <Layout>
     {/* Hero Section */}
-    <div className="text-center mb-0">
-      <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Story</h1>
-      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+    <div className="text-center mb-8 px-4">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">Our Story</h1>
+      <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
         Pioneering in solving complex visa application processes and simplifying them for end customers
       </p>
     </div>
 
     {/* Mission Section */}
-    <div className="mb-20">
-      <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-8 shadow-2xl shadow-indigo-100">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+    <div className="mb-12 sm:mb-16 lg:mb-20 px-4">
+      <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-indigo-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-center">
           {/* Left Side: Text + Buttons */}
-          <div>
-            <p className="text-gray-600 mb-6">
+          <div className="order-2 md:order-1">
+            <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
               Eazy Visas is a one stop shop for all your Visa documentation woes. We understand arranging documents for your visa application can be stressful. While your financials may be in place and you may feel confident about your visa application, there is still a possibility for your application to get rejected. In such a situation the flight tickets and hotel bookings are gone for a waste. Barring a huge loss in penalty charged by the Airline or the Hotel or the Travel Agent.
             </p>
-            <p className="text-gray-600 mb-6">
+            <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
               However, what most people are unaware of is that the Embassy does not advise you to book a confirmed ticket or hotel booking. All they want is a flight itinerary and hotel booking along with a day wise itinerary to show that you have every intention of visiting their country and would be returning home.
             </p>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 leading-relaxed">
               Our Flight itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
             </p>
 
             {/* Button Group */}
-            <div className="mt-8 flex flex-row gap-4 justify-start">
+            <div className="flex flex-row gap-3 sm:gap-4 justify-center sm:justify-start">
               <Button
                 onClick={() => handleBookingClick({ type: 'flight' })}
                 className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
@@ -614,8 +612,14 @@ const DummyFlightBookingsAdsPage = () => {
           </div>
 
           {/* Right Side: Logo */}
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-8 h-full flex items-center justify-center">
-            <Image src="/logo/logo-white.png" alt="Eazy Visas Logo" width={200} height={80} />
+          <div className="order-1 md:order-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] md:h-full flex items-center justify-center">
+            <Image 
+              src="/logo/logo-white.png" 
+              alt="Eazy Visas Logo" 
+              width={200} 
+              height={80}
+              className="w-auto h-12 sm:h-16 md:h-20 max-w-full"
+            />
           </div>
         </div>
       </div>
@@ -635,12 +639,12 @@ const DummyFlightBookingsAdsPage = () => {
 
 
         {/* Help Section */}
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-4 sm:mb-6 lg:-mb-8 -mt-15">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-4 sm:mb-6 lg:-mb-8 -mt-16">
           <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-2xl">
             {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-48 -translate-y-48"></div>
-              <div className="absolute bottom-0 right-0 w-80 h-80 bg-white rounded-full translate-x-40 translate-y-40"></div>
+            <div className="absolute inset-0 opacity-10 overflow-hidden">
+              <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+              <div className="absolute bottom-0 right-0 w-80 h-80 bg-white rounded-full translate-x-1/2 translate-y-1/2"></div>
               <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-white rounded-full opacity-50"></div>
             </div>
             
