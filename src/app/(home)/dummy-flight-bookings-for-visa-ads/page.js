@@ -580,7 +580,7 @@ const DummyFlightBookingsAdsPage = () => {
 
     {/* Mission Section */}
     <div className="mb-12 sm:mb-16 lg:mb-20 px-4">
-      <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-indigo-100">
+      <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-indigo-100" style={{boxShadow: '0 -25px 50px -12px rgba(99, 102, 241, 0.25), 0 25px 50px -12px rgba(99, 102, 241, 0.25)'}}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-center">
           {/* Left Side: Text + Buttons */}
           <div className="order-2 md:order-1">
@@ -598,13 +598,13 @@ const DummyFlightBookingsAdsPage = () => {
             <div className="flex flex-row gap-3 sm:gap-4 justify-center sm:justify-start">
               <Button
                 onClick={() => handleBookingClick({ type: 'flight' })}
-                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
+                className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
               >
                 Book Flight
               </Button>
               <Button
                 onClick={() => handleBookingClick({ type: 'hotel' })}
-                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
+                className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
               >
                 Book Hotels
               </Button>
