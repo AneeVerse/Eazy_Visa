@@ -317,7 +317,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-10 order-2 lg:order-1"
+            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-30 order-2 lg:order-1"
           >
             <div className="space-y-4 text-center lg:text-left">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -347,10 +347,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
               </h1>
               
               <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                There are some countries that have flight & hotel reservations as a mandatory requirement while applying for Visa. However denial of visa application can lead to heavy cancellation costs of flight tickets and hotel reservations. But with Eazy Visas, we make this easy and simple for you.
-                <br className="hidden sm:block" />
-                <br className="hidden sm:block" />
-                Book legitimate and verifiable flight tickets and hotel reservations for your visa applications at a fraction of actual cost. You can make reservations for flight & hotel to any destinations or countries instantly. These reservations are acceptable for visa application to any country.
+                Some countries require flight & hotel reservations for visa applications, but visa denials can lead to heavy cancellation costs. With Eazy Visas, book legitimate, verifiable reservations at a fraction of the cost instantly accepted for any country's visa.
               </p>
             </div>
 
@@ -406,33 +403,45 @@ const HeroBookingSection = ({ onBookingClick }) => {
             <div id="booking-form" className="bg-white rounded-2xl shadow-2xl p-3 sm:p-4 lg:p-2 max-w-full sm:max-w-lg lg:max-w-md mx-auto">
               
               {/* Service Type Icons - Top section like detailed form */}
-              <div className="bg-gray-100 rounded-xl p-1.5 mb-3">
-                <div className="flex gap-1.5">
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm mb-4">
+                <div className="flex">
                   <button
                     onClick={() => setActiveTab('flight')}
-                    className="flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all duration-300"
+                    className={`flex-1 flex flex-col items-center justify-center py-3 px-2 transition-all duration-150 focus:outline-none ${
+                      activeTab === 'flight' 
+                        ? 'bg-blue-50 border-b-2 border-blue-500' 
+                        : 'hover:bg-gray-50 border-b-2 border-transparent'
+                    }`}
                   >
-                    <div className="relative w-16 h-16 mb-0.5">
+                    <div className="relative w-12 h-12 mb-1">
                       <Image
                         src={activeTab === 'flight' ? '/images/icon/png/aeroplan-blue.png' : '/images/icon/png/aeroplan-black.png'}
                         alt="Flight"
-                        width={64}
-                        height={64}
+                        width={48}
+                        height={48}
                         className="w-full h-full object-contain"
                       />
                     </div>
                     <span className={`text-xs font-semibold ${activeTab === 'flight' ? 'text-blue-600' : 'text-gray-600'}`}>Flights</span>
                   </button>
+                  
+                  {/* Vertical Divider */}
+                  <div className="w-px bg-gray-200"></div>
+                  
                   <button
                     onClick={() => setActiveTab('hotel')}
-                    className="flex-1 flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all duration-300"
+                    className={`flex-1 flex flex-col items-center justify-center py-3 px-2 transition-all duration-150 focus:outline-none ${
+                      activeTab === 'hotel' 
+                        ? 'bg-blue-50 border-b-2 border-blue-500' 
+                        : 'hover:bg-gray-50 border-b-2 border-transparent'
+                    }`}
                   >
-                    <div className="relative w-16 h-16 mb-0.5">
+                    <div className="relative w-12 h-12 mb-1">
                       <Image
                         src={activeTab === 'hotel' ? '/images/icon/png/hotel-blue.png' : '/images/icon/png/hotel-black.png'}
                         alt="Hotel"
-                        width={64}
-                        height={64}
+                        width={48}
+                        height={48}
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -441,11 +450,32 @@ const HeroBookingSection = ({ onBookingClick }) => {
                 </div>
               </div>
 
-              {/* Section Title */}
-              <div className="mb-2">
-                <h3 className="text-sm font-semibold text-gray-900">
-                  {activeTab === 'flight' ? 'Flight Details' : 'Hotels Details'}
-                </h3>
+              {/* Step Progress Indicator */}
+              <div className="flex items-center justify-center mb-4">
+                <div className="flex items-center space-x-2">
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+                      1
+                    </div>
+                    <span className="ml-2 text-xs font-medium text-gray-700">
+                      {activeTab === 'flight' ? 'Flight Details' : 'Hotel Details'}
+                    </span>
+                  </div>
+                  <div className="w-12 h-px bg-gray-300"></div>
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center text-sm font-semibold">
+                      2
+                    </div>
+                    <span className="ml-2 text-xs font-medium text-gray-500">Review</span>
+                  </div>
+                  <div className="w-12 h-px bg-gray-300"></div>
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center text-sm font-semibold">
+                      3
+                    </div>
+                    <span className="ml-2 text-xs font-medium text-gray-500">Payment</span>
+                  </div>
+                </div>
               </div>
             
 
