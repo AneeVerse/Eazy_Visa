@@ -8,14 +8,72 @@ import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFileP
 import { motion } from 'framer-motion';
 import FlightBookingComponent from '../../../components/dummyFlight/DummyBooking';
 import HotelBookingComponent from '../../../components/dummyHotel/HotelBookingComponent';
-import FeedbackReviewComponent from '../../../components/home/FeedbackReviewComponent';
-import PricingComponent from '../../../components/common/PricingComponent';
-import SupportSection from '../../../components/common/SupportSection';
+import ConsultationForm from "../../../components/common/ConsultationForm";
+import { FcGoogle } from "react-icons/fc";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import HeroBookingSection from '../../../components/dummyFlight/HeroBookingSection';
 
 const DummyFlightBookingsAdsPage = () => {
   const [showFlightBooking, setShowFlightBooking] = useState(true);
   const [showHotelBooking, setShowHotelBooking] = useState(false);
+  
+  // Auto-scroll states for testimonials
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-scroll functionality for testimonials
+  useEffect(() => {
+    const container = document.getElementById('review-carousel');
+    if (!container) return;
+
+    let animationId;
+    let lastTimestamp = 0;
+    const scrollSpeed = 0.8; // Scroll speed
+
+    const autoScroll = (timestamp) => {
+      if (isPaused) {
+        animationId = requestAnimationFrame(autoScroll);
+        return;
+      }
+
+      if (timestamp - lastTimestamp >= 16) { // ~60fps
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        // Check if we can actually scroll (has overflow content)
+        if (maxScroll <= 0) {
+          animationId = requestAnimationFrame(autoScroll);
+          return;
+        }
+        
+        if (container.scrollLeft >= maxScroll - 1) { // Small buffer to prevent stuck
+          // Smooth reset to beginning with a small delay
+          setTimeout(() => {
+            if (container) {
+              container.scrollLeft = 0;
+            }
+          }, 1000); // 1 second pause before reset
+          // Pause briefly during reset
+          setIsPaused(true);
+          setTimeout(() => setIsPaused(false), 1500);
+        } else {
+          container.scrollLeft += scrollSpeed;
+        }
+        
+        lastTimestamp = timestamp;
+      }
+      
+      animationId = requestAnimationFrame(autoScroll);
+    };
+
+    // Start auto-scroll
+    animationId = requestAnimationFrame(autoScroll);
+
+    // Cleanup
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, [isPaused]);
 
   // Function to scroll to booking form
   const scrollToBookingForm = () => {
@@ -148,14 +206,21 @@ const DummyFlightBookingsAdsPage = () => {
       <HeroBookingSection onBookingClick={handleBookingClick} />
       
       {/* Feature Cards Section */}
-      <div className="relative z-30 bg-white pt-16 pb-10">
-        {/* Container matching navbar padding */}
-        <div className="max-w-[1440px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto">
-          {/* Grid container with increased gap and slight upward float */}
-          <div className="w-full mx-auto flex lg:grid flex-nowrap lg:flex-none overflow-x-auto lg:overflow-visible gap-6 lg:gap-32 items-stretch lg:grid-cols-4 lg:-mt-24">
+      <div className="relative z-30 bg-white pt-8 pb-8">
+        {/* Container matching price cards alignment */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+          {/* Heading */}
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+              Reason to use our service?
+            </h2>
+          </div>
+          
+          {/* Grid container aligned with price cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto lg:px-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-              className="min-w-[80vw] lg:min-w-0 h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md lg:border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaShieldAlt className="text-green-500 text-3xl mb-4 mx-auto" />
@@ -165,7 +230,7 @@ const DummyFlightBookingsAdsPage = () => {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
-              className="min-w-[80vw] lg:min-w-0 h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md lg:border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaFilePdf className="text-blue-500 text-3xl mb-4 mx-auto" />
@@ -175,7 +240,7 @@ const DummyFlightBookingsAdsPage = () => {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}
-              className="min-w-[80vw] lg:min-w-0 h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md lg:border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaEdit className="text-purple-500 text-3xl mb-4 mx-auto" />
@@ -185,7 +250,7 @@ const DummyFlightBookingsAdsPage = () => {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
-              className="min-w-[80vw] lg:min-w-0 h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md lg:border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaTimes className="text-red-500 text-3xl mb-4 mx-auto" />
@@ -309,7 +374,148 @@ const DummyFlightBookingsAdsPage = () => {
         </div>
 
         {/* Testimonials Section */}
-        <FeedbackReviewComponent />
+        <section className="py-12 sm:py-16 lg:py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Centered Heading */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800">
+                See What Our <span className="text-blue-500">Happy Clients</span> Say
+              </h2>
+            </div>
+
+            {/* Google Rating Summary */}
+            <div className="flex flex-col items-center mb-8">
+              <div className="flex items-center mb-1">
+                <FcGoogle size={32} className="mr-2" />
+                <span className="text-2xl font-semibold text-gray-800">Excellent on Google</span>
+              </div>
+              <div className="text-lg font-medium text-gray-700">5.0 out of 5 based on 50 reviews</div>
+              <div className="flex mt-2">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-yellow-400 text-2xl">★</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Reviews Carousel */}
+            <div className="relative">
+              {/* Left scroll button */}
+              <button
+                onClick={() => {
+                  setIsPaused(true);
+                  const container = document.getElementById('review-carousel');
+                  if (container) {
+                    container.scrollBy({ left: -350, behavior: 'smooth' });
+                    // Resume auto-scroll after manual scroll completes
+                    setTimeout(() => setIsPaused(false), 1000);
+                  }
+                }}
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10 hover:bg-blue-50 transition-colors"
+                style={{marginLeft: '-20px'}}
+              >
+                <FaAngleLeft size={22} />
+              </button>
+
+              {/* Carousel container */}
+              <div
+                id="review-carousel"
+                className="flex gap-6 overflow-x-auto scroll-smooth py-2 px-1"
+                style={{scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch'}}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+              >
+                {[
+                  {
+                    name: "macsen jose",
+                    image: "/images/review/macsen jose.png",
+                    date: "16 days ago",
+                    text: "Had taken Shaheens assistance from EazyVisas and it was a smooth process. Highly recommended!"
+                  },
+                  {
+                    name: "Aditya Bhardwaj",
+                    image: "/images/review/Aditya Bhardwaj.png",
+                    date: "2 weeks ago",
+                    text: "Very professional and prompt service. Got my visa without any hassle. Thank you!"
+                  },
+                  {
+                    name: "Mozammil Khan",
+                    image: "/images/review/Mozammil Khan.png",
+                    date: "1 week ago",
+                    text: "Great experience! The team was very supportive throughout the process."
+                  },
+                  {
+                    name: "Ramachandran",
+                    image: "/images/review/Ramachandran R S.png",
+                    date: "3 weeks ago",
+                    text: "Very helpful and efficient service. Highly recommend EazyVisas!"
+                  },
+                  {
+                    name: "SHUBHAM JAIN",
+                    image: "/images/review/SHUBHAM JAIN.png",
+                    date: "2 weeks ago",
+                    text: "Quick response and very professional. Got my visa on time. Thank you!"
+                  }
+                ].map((review, idx) => (
+                  <div
+                    key={review.name}
+                    className="bg-white rounded-xl shadow-md p-4 flex-shrink-0 flex flex-col justify-between hover:shadow-lg transition-shadow w-[280px] max-w-[90vw] min-h-[200px]"
+                  >
+                    <div className="flex items-center mb-3">
+                      <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full mr-3 object-cover" />
+                      <div>
+                        <div className="font-semibold text-gray-900">{review.name}</div>
+                        <div className="text-sm text-gray-500">{review.date}</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-yellow-500 text-lg">★</span>
+                      ))}
+                    </div>
+                    <div className="text-gray-700 text-sm leading-relaxed">{review.text}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Right scroll button */}
+              <button
+                onClick={() => {
+                  setIsPaused(true);
+                  const container = document.getElementById('review-carousel');
+                  if (container) {
+                    container.scrollBy({ left: 350, behavior: 'smooth' });
+                    // Resume auto-scroll after manual scroll completes
+                    setTimeout(() => setIsPaused(false), 1000);
+                  }
+                }}
+                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md text-blue-500 h-10 w-10 rounded-full hidden md:flex items-center justify-center z-10 hover:bg-blue-50 transition-colors"
+                style={{marginRight: '-20px'}}
+              >
+                <FaAngleRight size={22} />
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Booking Buttons Section */}
+        <div className="py-8 bg-white -mt-10">
+          <div className="max-w-md mx-auto px-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => handleBookingClick({ type: 'flight' })}
+                className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center min-w-[160px]"
+              >
+                Book Flight
+              </button>
+              <button
+                onClick={() => handleBookingClick({ type: 'hotel' })}
+                className="flex-1 sm:flex-none px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-center min-w-[160px]"
+              >
+                Book Hotels
+              </button>
+            </div>
+          </div>
+        </div>
 
         {/* Help Section */}
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-4 sm:mb-6 lg:-mb-20">

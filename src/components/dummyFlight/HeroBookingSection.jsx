@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaPlane, FaHotel, FaCheck, FaArrowRight, FaCalendarAlt, FaShieldAlt, FaFilePdf, FaEdit, FaBan } from 'react-icons/fa';
 import { MdFlight, MdHotel } from 'react-icons/md';
@@ -118,6 +118,43 @@ const HeroBookingSection = ({ onBookingClick }) => {
   const [activeTab, setActiveTab] = useState('flight');
   const [tripType, setTripType] = useState('one-way');
   
+  // Hotel city search states
+  const [citySearch, setCitySearch] = useState("");
+  const [showCitySuggestions, setShowCitySuggestions] = useState(false);
+  const cityInputRef = useRef(null);
+
+  // Popular cities data for hotel search
+  const popularCities = [
+    { id: 1, name: "New Delhi", country: "India" },
+    { id: 2, name: "Mumbai", country: "India" },
+    { id: 3, name: "Bangalore", country: "India" },
+    { id: 4, name: "Hyderabad", country: "India" },
+    { id: 5, name: "Chennai", country: "India" },
+    { id: 6, name: "Kolkata", country: "India" },
+    { id: 7, name: "Pune", country: "India" },
+    { id: 8, name: "Goa", country: "India" },
+    { id: 9, name: "Jaipur", country: "India" },
+    { id: 10, name: "Dubai", country: "UAE" },
+    { id: 11, name: "Singapore", country: "Singapore" },
+    { id: 12, name: "Bangkok", country: "Thailand" },
+    { id: 13, name: "London", country: "UK" },
+    { id: 14, name: "New York", country: "USA" },
+    { id: 15, name: "Paris", country: "France" },
+    { id: 16, name: "Rome", country: "Italy" },
+    { id: 17, name: "Barcelona", country: "Spain" },
+    { id: 18, name: "Amsterdam", country: "Netherlands" },
+    { id: 19, name: "Tokyo", country: "Japan" },
+    { id: 20, name: "Sydney", country: "Australia" }
+  ];
+
+  // Filter cities based on search
+  const filteredCities = citySearch
+    ? popularCities.filter(city =>
+      city.name.toLowerCase().includes(citySearch.toLowerCase()) ||
+      city.country.toLowerCase().includes(citySearch.toLowerCase())
+    )
+    : popularCities.slice(0, 8); // Show first 8 cities by default
+
   // Form data structure similar to original
   const [formData, setFormData] = useState({
     contact: {
@@ -161,12 +198,37 @@ const HeroBookingSection = ({ onBookingClick }) => {
     { code: "NRT", name: "Narita International Airport, Tokyo" }
      ]);
 
+   // Handle city selection
+   const handleCitySelect = (city) => {
+     handleInputChange('hotel.destination', city.name);
+     setCitySearch(city.name);
+     setShowCitySuggestions(false);
+   };
+
+   // Handle city input focus
+   const handleCityFocus = () => {
+     setShowCitySuggestions(true);
+   };
+
+   // Close suggestions when clicking outside
+   useEffect(() => {
+     const handleClickOutside = (event) => {
+       if (cityInputRef.current && !cityInputRef.current.contains(event.target)) {
+         setShowCitySuggestions(false);
+       }
+     };
+
+     document.addEventListener("mousedown", handleClickOutside);
+     return () => {
+       document.removeEventListener("mousedown", handleClickOutside);
+     };
+   }, []);
+
    // Price calculation
    useEffect(() => {
      const basePrice = activeTab === 'hotel' ? 999 : activeTab === 'both' ? 1499 : 999;
-     const discount = 1; // ₹1 discount per person
      const calculatedPrice = formData.travelers.count > 0 ?
-       (formData.travelers.count * basePrice) - discount : 0;
+       (formData.travelers.count * basePrice) : 0;
      setPrice(calculatedPrice);
    }, [formData.travelers.count, activeTab]);
 
@@ -252,63 +314,26 @@ const HeroBookingSection = ({ onBookingClick }) => {
      return true;
    };
 
-   const handleBookNow = async () => {
+   const handleBookNow = () => {
      if (!validateForm()) return;
 
-     try {
-       let response;
-       
-       if (activeTab === 'flight') {
-         response = await fetch('/api/flight-booking', {
-           method: 'POST',
-           headers: {
-             'Content-Type': 'application/json',
-           },
-           body: JSON.stringify({
-             ...formData,
-             price: price,
-             flight: {
-               ...formData.flight,
-               legs: formData.flight.legs.map(leg => ({
-                 ...leg,
-                 date: leg.date ? new Date(leg.date).toISOString() : null
-               }))
-             }
-           }),
-         });
-       } else if (activeTab === 'hotel') {
-         response = await fetch('/api/hotel-booking', {
-           method: 'POST',
-           headers: {
-             'Content-Type': 'application/json',
-           },
-           body: JSON.stringify({
-             ...formData,
-             price: price,
-             hotel: {
-               ...formData.hotel,
-               checkIn: formData.hotel.checkIn ? new Date(formData.hotel.checkIn).toISOString() : null,
-               checkOut: formData.hotel.checkOut ? new Date(formData.hotel.checkOut).toISOString() : null
-             }
-           }),
-         });
+     // Store the hero form data in sessionStorage to pre-fill the detailed form
+     sessionStorage.setItem('heroFormData', JSON.stringify(formData));
+     
+     // Use onBookingClick if provided (from parent page), otherwise scroll to detailed form
+     if (onBookingClick) {
+       onBookingClick({ type: activeTab });
+     } else {
+       // Scroll to the detailed booking section
+       const bookingSection = document.getElementById('booking-section');
+       if (bookingSection) {
+         bookingSection.scrollIntoView({ behavior: 'smooth' });
        }
-
-       if (response && response.ok) {
-         sessionStorage.setItem('formSubmitted', 'true');
-         sessionStorage.setItem('bookingPrice', price.toString());
-         window.location.href = '/thank-you';
-       } else {
-         alert('Error submitting booking. Please try again.');
-       }
-     } catch (error) {
-       console.error('Error submitting booking:', error);
-       alert('Error submitting booking. Please try again.');
      }
    };
 
   return (
-    <div className="min-h-screen flex items-start bg-gradient-to-r from-purple-100 to-blue-100 relative overflow-hidden">
+    <div className="min-h-screen flex items-start bg-gradient-to-r from-purple-100 to-blue-100 relative">
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] py-4 sm:py-6">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-start">
           
@@ -317,7 +342,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-35 order-2 lg:order-1"
+            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-10 order-2 lg:order-1"
           >
             <div className="space-y-4 text-center lg:text-left">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -326,7 +351,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.1 }}
                 >
-                  {["Need", " a", " flight", " or", " hotel", " booking", " for", " your", " visa?"].map((word, wordIndex) => (
+                  {["Need", " a", " flight", " ticket", " or", " hotel", " reservation", " for", " your", " visa", " application?"].map((word, wordIndex) => (
                     <span key={wordIndex}>
                       {word.split('').map((char, charIndex) => (
                         <motion.span
@@ -347,7 +372,9 @@ const HeroBookingSection = ({ onBookingClick }) => {
               </h1>
               
               <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                Some countries require flight & hotel reservations for visa applications, but visa denials can lead to heavy cancellation costs. With Eazy Visas, book legitimate, verifiable reservations at a fraction of the cost instantly accepted for any country's visa.
+                There are some countries that have flight & hotel reservations as a mandatory requirement while applying for Visa. However denial of visa application can lead to heavy cancellation costs of flight tickets and hotel reservations. But with Eazy Visas, we make this easy and simple for you.
+                <br /><br />
+                Book legitimate and verifiable flight tickets and hotel reservations for your visa applications at a fraction of actual cost. You can make reservations for flight & hotel to any destinations or countries instantly. These reservations are acceptable for visa application to any country.
               </p>
             </div>
 
@@ -400,7 +427,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
             className="lg:col-span-2 w-full self-start relative order-1 lg:order-2"
           >
             {/* Simplified Form Container - Like detailed form but smaller */}
-            <div id="booking-form" className="bg-white rounded-2xl shadow-2xl p-3 sm:p-4 lg:p-2 max-w-full sm:max-w-lg lg:max-w-md mx-auto">
+            <div id="booking-form" className="bg-white rounded-2xl shadow-2xl p-3 sm:p-4 lg:p-2 max-w-full sm:max-w-lg lg:max-w-md mx-auto overflow-visible">
               
               {/* Service Type Icons - Top section like detailed form */}
               <div className="bg-white rounded-xl border border-gray-200 shadow-sm mb-4">
@@ -554,10 +581,10 @@ const HeroBookingSection = ({ onBookingClick }) => {
                   </div>
                   
                   {/* Date Section - Side by Side */}
-                  <div className={`grid gap-1.5 ${formData.flight.type === 'round-trip' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
-                    <div className="bg-gray-50 rounded-lg p-2">
+                  <div className={`grid gap-1.5 ${formData.flight.type === 'round-trip' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'} overflow-visible`}>
+                    <div className="bg-gray-50 rounded-lg p-2 overflow-visible">
                       <label className="block text-xs font-medium text-gray-600 mb-1">Departure Date</label>
-                      <div className="relative">
+                      <div className="relative overflow-visible">
                         <ReactDatePicker
                           selected={formData.flight.legs[0].date ? new Date(formData.flight.legs[0].date) : null}
                           onChange={(date) => {
@@ -577,9 +604,9 @@ const HeroBookingSection = ({ onBookingClick }) => {
                       </div>
                     </div>
                     {formData.flight.type === 'round-trip' && (
-                      <div className="bg-gray-50 rounded-lg p-2">
+                      <div className="bg-gray-50 rounded-lg p-2 overflow-visible">
                         <label className="block text-xs font-medium text-gray-600 mb-1">Return Date</label>
-                        <div className="relative">
+                        <div className="relative overflow-visible">
                           <ReactDatePicker
                             selected={formData.flight.legs[1]?.date ? new Date(formData.flight.legs[1].date) : null}
                             onChange={(date) => {
@@ -594,6 +621,16 @@ const HeroBookingSection = ({ onBookingClick }) => {
                             showPopperArrow={false}
                             minDate={formData.flight.legs[0].date ? new Date(formData.flight.legs[0].date) : new Date()}
                             wrapperClassName="w-full"
+                            popperClassName="z-50"
+                            popperPlacement="bottom"
+                            popperModifiers={[
+                              {
+                                name: 'offset',
+                                options: {
+                                  offset: [0, 5],
+                                },
+                              },
+                            ]}
                           />
                           <FaCalendarAlt className="absolute right-3 top-3 text-gray-400 text-xs pointer-events-none z-10" />
                         </div>
@@ -607,14 +644,18 @@ const HeroBookingSection = ({ onBookingClick }) => {
               {activeTab === 'hotel' && (
                 <>
                   {/* Location Section - Wide Layout */}
-                  <div className="bg-gray-50 rounded-lg p-2">
+                  <div className="bg-gray-50 rounded-lg p-2" ref={cityInputRef}>
                     <label className="block text-xs font-medium text-gray-700 mb-1.5">City, Property Name or Location</label>
                     <div className="relative">
                       <input
                         type="text"
                         placeholder="Where do you want to stay?"
                         value={formData.hotel.destination}
-                        onChange={(e) => handleInputChange('hotel.destination', e.target.value)}
+                        onChange={(e) => {
+                          handleInputChange('hotel.destination', e.target.value);
+                          setCitySearch(e.target.value);
+                        }}
+                        onFocus={handleCityFocus}
                         className="w-full h-10 px-2 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs bg-white"
                       />
                       <div className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -622,14 +663,34 @@ const HeroBookingSection = ({ onBookingClick }) => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                       </div>
+
+                      {/* City Suggestions Dropdown */}
+                      {showCitySuggestions && (
+                        <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-lg border border-gray-200 max-h-48 overflow-auto">
+                          {filteredCities.length > 0 ? (
+                            filteredCities.map((city) => (
+                              <div
+                                key={city.id}
+                                className="px-3 py-2 hover:bg-blue-50 cursor-pointer flex justify-between items-center text-xs"
+                                onClick={() => handleCitySelect(city)}
+                              >
+                                <span className="font-medium">{city.name}</span>
+                                <span className="text-gray-500">{city.country}</span>
+                              </div>
+                            ))
+                          ) : (
+                            <div className="px-3 py-2 text-gray-500 text-xs">No cities found</div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                   
                   {/* Date Section - Side by Side */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                    <div className="bg-gray-50 rounded-lg p-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 overflow-visible">
+                    <div className="bg-gray-50 rounded-lg p-2 overflow-visible">
                       <label className="block text-xs font-medium text-gray-600 mb-1">Check-In Date</label>
-                      <div className="relative">
+                      <div className="relative overflow-visible">
                         <ReactDatePicker
                           selected={formData.hotel.checkIn ? new Date(formData.hotel.checkIn) : null}
                           onChange={(date) => {
@@ -644,13 +705,23 @@ const HeroBookingSection = ({ onBookingClick }) => {
                           showPopperArrow={false}
                           minDate={new Date()}
                           wrapperClassName="w-full"
+                          popperClassName="z-50"
+                          popperPlacement="bottom"
+                          popperModifiers={[
+                            {
+                              name: 'offset',
+                              options: {
+                                offset: [0, 5],
+                              },
+                            },
+                          ]}
                         />
                         <FaCalendarAlt className="absolute right-3 top-3 text-gray-400 text-xs pointer-events-none z-10" />
                       </div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-2">
+                    <div className="bg-gray-50 rounded-lg p-2 overflow-visible">
                       <label className="block text-xs font-medium text-gray-600 mb-1">Check-Out Date</label>
-                      <div className="relative">
+                      <div className="relative overflow-visible">
                         <ReactDatePicker
                           selected={formData.hotel.checkOut ? new Date(formData.hotel.checkOut) : null}
                           onChange={(date) => {
@@ -665,6 +736,16 @@ const HeroBookingSection = ({ onBookingClick }) => {
                           showPopperArrow={false}
                           minDate={formData.hotel.checkIn ? new Date(formData.hotel.checkIn) : new Date()}
                           wrapperClassName="w-full"
+                          popperClassName="z-50"
+                          popperPlacement="bottom"
+                          popperModifiers={[
+                            {
+                              name: 'offset',
+                              options: {
+                                offset: [0, 5],
+                              },
+                            },
+                          ]}
                         />
                         <FaCalendarAlt className="absolute right-3 top-3 text-gray-400 text-xs pointer-events-none z-10" />
                       </div>

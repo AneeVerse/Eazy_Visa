@@ -192,6 +192,42 @@ export default function HotelBookingComponent({ onTabClick }) {
   // UI states
   const [price, setPrice] = useState(0);
 
+  // Check for hero form data and pre-fill
+  useEffect(() => {
+    const heroFormData = sessionStorage.getItem('heroFormData');
+    if (heroFormData) {
+      try {
+        const parsedData = JSON.parse(heroFormData);
+        
+        // Pre-fill hotel form with hero form data
+        if (parsedData.hotel) {
+          setFormData(prev => ({
+            ...prev,
+            hotels: [{
+              location: parsedData.hotel.destination || "",
+              checkInDate: parsedData.hotel.checkIn ? new Date(parsedData.hotel.checkIn) : null,
+              checkOutDate: parsedData.hotel.checkOut ? new Date(parsedData.hotel.checkOut) : null,
+            }],
+            guests: {
+              ...prev.guests,
+              adults: parsedData.travelers?.count || 1,
+            }
+          }));
+          
+          // Set city search if destination is provided
+          if (parsedData.hotel.destination) {
+            setCitySearch(parsedData.hotel.destination);
+          }
+        }
+        
+        // Clear the hero form data after using it
+        sessionStorage.removeItem('heroFormData');
+      } catch (error) {
+        console.error('Error parsing hero form data:', error);
+      }
+    }
+  }, []);
+
   const countryCodes = [
     { code: "+91", name: "India" },
     { code: "+1", name: "USA" },

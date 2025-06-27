@@ -50,6 +50,47 @@ const FlightBookingComponent = ({ onTabClick }) => {
 
     // UI states
     const [price, setPrice] = useState(0);
+
+    // Check for hero form data and pre-fill
+    useEffect(() => {
+        const heroFormData = sessionStorage.getItem('heroFormData');
+        if (heroFormData) {
+            try {
+                const parsedData = JSON.parse(heroFormData);
+                
+                // Pre-fill flight form with hero form data
+                if (parsedData.flight) {
+                    setFormData(prev => ({
+                        ...prev,
+                        flight: {
+                            type: parsedData.flight.type || "one-way",
+                            legs: parsedData.flight.legs.map(leg => ({
+                                from: leg.from || "DEL",
+                                to: leg.to || "BOM",
+                                date: leg.date ? new Date(leg.date) : null
+                            }))
+                        },
+                        travelers: {
+                            ...prev.travelers,
+                            count: parsedData.travelers?.count || 1,
+                            list: Array(parsedData.travelers?.count || 1).fill().map(() => ({ 
+                                type: "adult", 
+                                title: "Mr", 
+                                firstName: "", 
+                                lastName: "", 
+                                age: "" 
+                            }))
+                        }
+                    }));
+                }
+                
+                // Clear the hero form data after using it
+                sessionStorage.removeItem('heroFormData');
+            } catch (error) {
+                console.error('Error parsing hero form data:', error);
+            }
+        }
+    }, []);
     const [airports] = useState([
         { code: "DEL", name: "Delhi" },
         { code: "BOM", name: "Mumbai" },
