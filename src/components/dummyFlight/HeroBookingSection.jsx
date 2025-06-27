@@ -342,10 +342,10 @@ const HeroBookingSection = ({ onBookingClick }) => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-10 order-2 lg:order-1"
+            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-20 order-2 lg:order-1"
           >
             <div className="space-y-4 text-center lg:text-left">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
