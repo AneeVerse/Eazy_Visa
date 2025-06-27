@@ -152,10 +152,10 @@ const DummyFlightBookingsAdsPage = () => {
         {/* Container matching navbar padding */}
         <div className="max-w-[1440px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto">
           {/* Grid container with increased gap and slight upward float */}
-          <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-32 -mt-28">
+          <div className="w-full mx-auto flex lg:grid flex-nowrap lg:flex-none overflow-x-auto lg:overflow-visible gap-6 lg:gap-32 items-stretch lg:grid-cols-4 lg:-mt-24">
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="min-w-[80vw] lg:min-w-0 h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md lg:border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaShieldAlt className="text-green-500 text-3xl mb-4 mx-auto" />
@@ -165,7 +165,7 @@ const DummyFlightBookingsAdsPage = () => {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="min-w-[80vw] lg:min-w-0 h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md lg:border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaFilePdf className="text-blue-500 text-3xl mb-4 mx-auto" />
@@ -175,7 +175,7 @@ const DummyFlightBookingsAdsPage = () => {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="min-w-[80vw] lg:min-w-0 h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md lg:border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaEdit className="text-purple-500 text-3xl mb-4 mx-auto" />
@@ -185,7 +185,7 @@ const DummyFlightBookingsAdsPage = () => {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }}
-              className="bg-white/90 backdrop-blur-sm p-5 rounded-xl shadow-md border border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="min-w-[80vw] lg:min-w-0 h-full flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md lg:border-white/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
                 <FaTimes className="text-red-500 text-3xl mb-4 mx-auto" />
@@ -204,10 +204,10 @@ const DummyFlightBookingsAdsPage = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-4 sm:mt-6 lg:mt-8 mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-0"
+          className="mt-8 sm:mt-6 lg:mt-8 mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-0"
           id="pricing-section"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 sm:gap-8 sm:gap-y-8 lg:gap-12 max-w-7xl mx-auto">
           
             {plans.map((plan, index) => (
               <motion.div
@@ -215,8 +215,9 @@ const DummyFlightBookingsAdsPage = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-[500px] w-full max-w-sm mx-auto
-                  ${plan.popular ? 'ring-2 ring-blue-500/50 shadow-blue-100/50' : ''}`}
+                className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-[500px] w-full max-w-sm mx-auto
+                  ${plan.popular ? 'ring-2 ring-blue-500/50' : ''}
+                  shadow-[0_8px_30px_rgba(0,0,0,0.12),0_-8px_30px_rgba(0,0,0,0.12)] md:shadow-[0_-8px_30px_rgba(0,0,0,0.08)]`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
