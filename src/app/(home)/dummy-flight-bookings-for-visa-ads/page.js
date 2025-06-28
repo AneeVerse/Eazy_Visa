@@ -8,6 +8,7 @@ import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFileP
 import { motion } from 'framer-motion';
 import FlightBookingComponent from '../../../components/dummyFlight/DummyBooking';
 import HotelBookingComponent from '../../../components/dummyHotel/HotelBookingComponent';
+import MostPreferredBooking from '../../../components/dummyFlight/MostPreferredBooking';
 import ConsultationForm from "../../../components/common/ConsultationForm";
 import { FcGoogle } from "react-icons/fc";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
@@ -17,6 +18,7 @@ import Button from '../../../components/common/Button';
 const DummyFlightBookingsAdsPage = () => {
   const [showFlightBooking, setShowFlightBooking] = useState(true);
   const [showHotelBooking, setShowHotelBooking] = useState(false);
+  const [showMostPreferredBooking, setShowMostPreferredBooking] = useState(false);
   
   // Auto-scroll states for testimonials
   const [isPaused, setIsPaused] = useState(false);
@@ -184,12 +186,20 @@ const DummyFlightBookingsAdsPage = () => {
 
   const handleBookingClick = (plan) => {
     const type = plan.type;
-    if (type === 'flight' || type === 'both') {
+    const planName = plan.name;
+    
+    // Reset all booking states
+    setShowFlightBooking(false);
+    setShowHotelBooking(false);
+    setShowMostPreferredBooking(false);
+    
+    // Check if this is the "Most Preferred" plan
+    if (planName === 'Most Preferred' || type === 'both') {
+      setShowMostPreferredBooking(true);
+    } else if (type === 'flight') {
       setShowFlightBooking(true);
-      setShowHotelBooking(false);
     } else if (type === 'hotel') {
       setShowHotelBooking(true);
-      setShowFlightBooking(false);
     }
     
     // Scroll to booking section
@@ -416,6 +426,12 @@ const DummyFlightBookingsAdsPage = () => {
           {showHotelBooking && (
             <div className="mb-8">
               <HotelBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
+            </div>
+          )}
+
+          {showMostPreferredBooking && (
+            <div className="mb-8">
+              <MostPreferredBooking onTabClick={(type) => handleBookingClick({ type })} />
             </div>
           )}
         </div>
