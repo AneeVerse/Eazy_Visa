@@ -82,7 +82,7 @@ export default function RootLayout({ children }) {
         </noscript>
 
         {/* Meta Pixel - Original */}
-        <MetaPixel pixelId="1366921161271735" />
+        <MetaPixel pixelId="1736415037003830" />
         
         {/* Meta Pixel - Additional */}
         <MetaPixel pixelId="2000698917125544" />
