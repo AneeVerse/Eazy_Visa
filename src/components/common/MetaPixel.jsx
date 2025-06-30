@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from 'react';
 
-const MetaPixel = ({ pixelId = '1366921161271735' }) => {
+const MetaPixel = ({ pixelId = '2000698917125544' }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // Meta Pixel Code
