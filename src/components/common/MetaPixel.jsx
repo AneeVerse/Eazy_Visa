@@ -1,7 +1,12 @@
 "use client";
 import { useEffect } from 'react';
 
-const MetaPixel = ({ pixelId = '2000698917125544' }) => {
+const MetaPixel = ({ pixelId }) => {
+  // Return early if no pixelId provided
+  if (!pixelId) {
+    console.warn('MetaPixel: No pixelId provided');
+    return null;
+  }
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // Meta Pixel Code

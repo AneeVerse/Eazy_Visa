@@ -622,21 +622,21 @@ const DummyFlightBookingsAdsPage = () => {
             />
           </div>
         </div>
-        
+
         {/* Button Group - Moved outside and centered below */}
         <div className="flex flex-row gap-3 sm:gap-4 justify-center mt-6 sm:mt-8">
-          <Button
-            onClick={() => handleBookingClick({ type: 'flight' })}
-            className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
-          >
-            Book Flight
-          </Button>
-          <Button
-            onClick={() => handleBookingClick({ type: 'hotel' })}
-            className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
-          >
-            Book Hotels
-          </Button>
+              <Button
+                onClick={() => handleBookingClick({ type: 'flight' })}
+                className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
+              >
+                Book Flight
+              </Button>
+              <Button
+                onClick={() => handleBookingClick({ type: 'hotel' })}
+                className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
+              >
+                Book Hotels
+              </Button>
         </div>
       </div>
     </div>

@@ -81,8 +81,11 @@ export default function RootLayout({ children }) {
           />
         </noscript>
 
-        {/* Meta Pixel */}
-        <MetaPixel />
+        {/* Meta Pixel - Original */}
+        <MetaPixel pixelId="1366921161271735" />
+        
+        {/* Meta Pixel - Additional */}
+        <MetaPixel pixelId="2000698917125544" />
 
         {/* Page Content */}
         <ConditionalTopLoader />
