@@ -7,6 +7,7 @@ import Layout from '../../../components/common/Layout';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
 import Image from "next/image";
+import Script from 'next/script';
 
 export default function ThankYouPage() {
   const router = useRouter();
@@ -22,6 +23,17 @@ export default function ThankYouPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-12">
+      {/* Event snippet for Leads (GADS) conversion page */}
+      <Script id="google-ads-conversion" strategy="afterInteractive">
+        {`
+          gtag('event', 'conversion', {
+              'send_to': 'AW-11158930668/lNOxCMTyiN8aEOyJ_8gp',
+              'value': 1500.0,
+              'currency': 'INR'
+          });
+        `}
+      </Script>
+
       <Layout className="">
         <div className="text-center mb-12">
           <div className="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-green-100">
