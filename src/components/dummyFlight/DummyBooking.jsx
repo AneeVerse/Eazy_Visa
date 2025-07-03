@@ -15,7 +15,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 import ConversionTracking from '../common/ConversionTracking';
 
-const FlightBookingComponent = ({ onTabClick }) => {
+const FlightBookingComponent = ({ onTabClick, origin }) => {
     // Form steps
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -533,8 +533,9 @@ const FlightBookingComponent = ({ onTabClick }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    formName: origin,
                     ...formData,
-                    price:price,
+                    price: price,
                     flight: {
                         ...formData.flight,
                         legs: formData.flight.legs.map(leg => ({

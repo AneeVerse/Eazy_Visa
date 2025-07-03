@@ -419,13 +419,13 @@ const DummyFlightBookingsAdsPage = () => {
         <div id="booking-section" className="mb-16">
           {showFlightBooking && (
             <div className="mb-8">
-              <FlightBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
+              <FlightBookingComponent onTabClick={(type) => handleBookingClick({ type })} origin="landing-flight" />
             </div>
           )}
 
           {showHotelBooking && (
             <div className="mb-8">
-              <HotelBookingComponent onTabClick={(type) => handleBookingClick({ type })} />
+              <HotelBookingComponent onTabClick={(type) => handleBookingClick({ type })} origin="landing-hotel" />
             </div>
           )}
 

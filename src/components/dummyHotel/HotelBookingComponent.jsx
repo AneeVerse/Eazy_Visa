@@ -15,7 +15,7 @@ import { TextField } from '@mui/material';
 import { format } from 'date-fns';
 import ConversionTracking from '../common/ConversionTracking';
 
-export default function HotelBookingComponent({ onTabClick }) {
+export default function HotelBookingComponent({ onTabClick, origin }) {
   // Form steps
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -461,6 +461,7 @@ export default function HotelBookingComponent({ onTabClick }) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          formName: origin,
           ...formData,
           price: price,
           hotels: formData.hotels.map(hotel => ({
