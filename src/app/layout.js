@@ -14,8 +14,25 @@ const comfortaa = Comfortaa({
 });
 
 export const metadata = {
-  title: "Apply for Visa with low fare dummy flight & hotel bookings - Home page",
-  description: "Apply for Visa with low fare dummy flight & hotel bookingsMake dummy flight and hotel",
+  title: "Easy Visa - Migration Consulting Services",
+  description: "easy visa offers a range of migration consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+  robots: {
+    index: true,
+    follow: true,
+    noimageindex: true,
+  },
+  openGraph: {
+    title: "Easy Visa - Migration Consulting Services",
+    description: "easy visa offers a range of migration consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+    type: "website",
+    locale: "en_US",
+    siteName: "Easy Visa",
+  },
+  twitter: {
+    card: "summary",
+    title: "Easy Visa - Migration Consulting Services",
+    description: "easy visa offers a range of migration consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+  },
   icons: {
     icon: [
       {
@@ -67,6 +84,26 @@ export default function RootLayout({ children }) {
             gtag('js', new Date());
 
             gtag('config', 'G-C2WPXNZGXG');
+          `}
+        </Script>
+
+        {/* Structured Data for Organization without logo */}
+        <Script id="organization-schema" type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Easy Visa",
+              "description": "easy visa offers a range of migration consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+              "url": "https://www.eazyvisas.com",
+              "telephone": "+91 88501 46905",
+              "email": "info@eazyvisas.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              },
+              "sameAs": []
+            }
           `}
         </Script>
         {/* Google Tag Manager (GTM) NoScript */}

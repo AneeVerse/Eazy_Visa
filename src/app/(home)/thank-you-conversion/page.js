@@ -12,14 +12,15 @@ import Script from 'next/script';
 export default function ThankYouConversionPage() {
   const router = useRouter();
 
-  // Redirect to home if accessed directly without submission
+  // Clear the form submission flag if it exists
   useEffect(() => {
-    if (!sessionStorage.getItem('formSubmitted')) {
-      router.push('/');
-    }
     // Clear the flag so it doesn't affect future visits
-    return () => sessionStorage.removeItem('formSubmitted');
-  }, [router]);
+    return () => {
+      if (typeof window !== 'undefined' && sessionStorage.getItem('formSubmitted')) {
+        sessionStorage.removeItem('formSubmitted');
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-12">
