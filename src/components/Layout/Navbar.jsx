@@ -201,7 +201,7 @@ export default function Navbar({ transparent = false }) {
             <div className="flex items-center gap-2">
               <img 
                 src="/logo/main-logo.png" 
-                alt="Eazy Visas Logo" 
+                alt="Eazy Visas" 
                 className="h-11 w-auto"
                 width={36}
                 height={36}
@@ -449,7 +449,7 @@ export default function Navbar({ transparent = false }) {
               <Link href="/" className="flex items-center" onClick={handleMobileLinkClick}>
                 <img 
                   src="/logo/main-logo.png" 
-                  alt="Eazy Visas Logo" 
+                  alt="Eazy Visas" 
                   className="h-8 w-auto"
                 />
               </Link>
