@@ -157,7 +157,7 @@ const FloatingActionButton = () => {
           initial="hidden" 
           animate="visible" 
           exit="exit" 
-          className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
         >
           <motion.div
             className="bg-white relative rounded-xl shadow-lg p-8 max-w-md w-full mx-4"
