@@ -1,18 +1,86 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaWhatsapp, FaEnvelope, FaPhone } from 'react-icons/fa';
-import { IoIosClose, IoIosAdd, IoIosRemove,IoMdChatboxes } from "react-icons/io";
-import { MdContentCopy } from 'react-icons/md';
+import { IoIosClose, IoMdChatboxes } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 
 const FloatingActionButton = () => {
   const [open, setOpen] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [selectedContactType, setSelectedContactType] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    contactType: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [countdown, setCountdown] = useState(3);
 
-  const handleCopy = (text) => {
-    navigator.clipboard.writeText(text)
-      .then(() => setOpen(false))
-      .catch((err) => alert('Failed to copy: ' + err));
+  const handleContactClick = (type) => {
+    setSelectedContactType(type);
+    setFormData({ ...formData, contactType: type });
+    setShowForm(true);
+    setOpen(false);
+  };
+
+  const handleInputChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Validation
+    if (!formData.name || !formData.email || !formData.phone) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact-widget', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: 'contact widget'
+        }),
+      });
+
+      if (response.ok) {
+        setShowSuccess(true);
+        setFormData({ name: '', email: '', phone: '', contactType: '' });
+        let timeLeft = 3;
+        setCountdown(timeLeft);
+        const countdownInterval = setInterval(() => {
+          timeLeft--;
+          setCountdown(timeLeft);
+          if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+          }
+        }, 1000);
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Framer Motion variants for animation
@@ -29,128 +97,169 @@ const FloatingActionButton = () => {
     tap: { scale: 0.95 }
   };
 
+  // Add this useEffect after all useState declarations
+  useEffect(() => {
+    if (showSuccess && countdown === 0) {
+      setShowSuccess(false);
+      setShowForm(false);
+      setCountdown(3);
+      if (selectedContactType === 'WhatsApp') {
+        window.location.href = 'https://wa.me/+918850146905';
+      } else if (selectedContactType === 'Email') {
+        window.location.href = 'mailto:info@eazyvisas.com';
+      } else if (selectedContactType === 'Phone') {
+        window.location.href = 'tel:+918850146905';
+      }
+    }
+  }, [showSuccess, countdown, selectedContactType]);
+
   return (
     <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40">
-      {!open && (
+      {!open && !showForm && (
         <motion.div 
           initial="hidden" 
           animate="visible" 
           exit="exit" 
           className="flex flex-col items-center gap-3 mb-4"
         >
-          <motion.a
-            href="https://wa.me/+918850146905"
+          <motion.button
+            onClick={() => handleContactClick('WhatsApp')}
             className="w-14 h-14 bg-white text-blue-500 rounded-full flex items-center justify-center shadow-lg border border-blue-500"
-            target="_blank"
-            rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <FaWhatsapp size={26} />
-          </motion.a>
+          </motion.button>
 
-          <motion.a
-            href="mailto:info@eazyvisas.com"
+          <motion.button
+            onClick={() => handleContactClick('Email')}
             className="w-14 h-14 bg-white text-blue-500 rounded-full flex items-center justify-center shadow-lg border border-blue-500"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <FaEnvelope size={26} />
-          </motion.a>
+          </motion.button>
 
-          <motion.a
-            href="tel:+918850146905"
+          <motion.button
+            onClick={() => handleContactClick('Phone')}
             className="w-14 h-14 bg-white text-blue-500 rounded-full flex items-center justify-center shadow-lg border border-blue-500"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <FaPhone size={26} />
-          </motion.a>
+          </motion.button>
         </motion.div>
       )}
 
-      {open && (
+      {/* Contact Form Modal */}
+      {showForm && (
         <motion.div 
           initial="hidden" 
           animate="visible" 
           exit="exit" 
-          className="fixed inset-0 bg-gray-900 bg-opacity-50 hidden  items-center justify-center z-50"
+          className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50"
         >
           <motion.div
-            className="bg-white relative rounded-xl shadow-lg p-8 max-w-md md:max-w-lg w-full text-center"
+            className="bg-white relative rounded-xl shadow-lg p-8 max-w-md w-full mx-4"
             variants={containerVariants}
           >
-            <h2 className="text-2xl font-semibold mb-6 text-gray-800">Get in Touch</h2>
-            <motion.button
-              className="text-blue-500 absolute top-3 right-3 px-1 py-1 rounded-full focus:outline-none"
-              onClick={() => setOpen(false)}
-              whileHover={{ scale: 1.2 }}
-            >
-              <IoIosClose className="self-center h-8 w-8" />
-            </motion.button>
-            <div className="flex flex-col gap-5">
-              <motion.div 
-                className="flex items-center justify-between p-4 border border-blue-500 rounded-xl"
-                whileHover={{ scale: 1.05 }}
-              >
-                <a
-                  href="https://wa.me/+918850146905"
-                  className="flex items-center text-blue-500 cursor-pointer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaWhatsapp size={24} />
-                  <span className="ml-3 text-lg font-medium text-gray-700">WhatsApp: +918850146905</span>
-                </a>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-semibold text-gray-800">
+                {showSuccess ? 'Thank You!' : `Contact Us via ${selectedContactType}`}
+              </h2>
+              {!showSuccess && (
                 <motion.button
-                  onClick={() => handleCopy('+91 9321315524')}
-                  className="text-gray-500 hover:text-blue-500 focus:outline-none"
-                  whileTap={{ scale: 0.9 }}
+                  className="text-gray-500 hover:text-gray-700 p-1"
+                  onClick={() => setShowForm(false)}
+                  whileHover={{ scale: 1.2 }}
                 >
-                  <MdContentCopy size={20} />
+                  <IoIosClose className="h-8 w-8" />
                 </motion.button>
-              </motion.div>
-              
-              <motion.div 
-                className="flex items-center justify-between p-4 border border-blue-500 rounded-xl"
-                whileHover={{ scale: 1.05 }}
-              >
-                <a
-                  href="mailto:info@eazyvisas.com"
-                  className="flex items-center text-blue-500 cursor-pointer"
-                >
-                  <FaEnvelope size={24} />
-                  <span className="ml-3 text-lg font-medium text-gray-700">Email: info@eazyvisas.com</span>
-                </a>
-                <motion.button
-                  onClick={() => handleCopy('info@eazyvisas.com')}
-                  className="text-gray-500 hover:text-blue-500 focus:outline-none"
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <MdContentCopy size={20} />
-                </motion.button>
-              </motion.div>
-
-              <motion.div 
-                className="flex items-center justify-between p-4 border border-blue-500 rounded-xl"
-                whileHover={{ scale: 1.05 }}
-              >
-                <a
-                  href="tel:+918850146905"
-                  className="flex items-center text-blue-500 cursor-pointer"
-                >
-                  <FaPhone size={24} />
-                  <span className="ml-3 text-lg font-medium text-gray-700">Call: +918850146905</span>
-                </a>
-                <motion.button
-                  onClick={() => handleCopy('+918850146905')}
-                  className="text-gray-500 hover:text-blue-500 focus:outline-none"
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <MdContentCopy size={20} />
-                </motion.button>
-              </motion.div>
+              )}
             </div>
+
+            {showSuccess ? (
+              <div className="text-center py-8">
+                <div className="mb-4">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">Form Submitted Successfully!</h3>
+                  <p className="text-gray-600 mb-4">
+                    Redirecting to {selectedContactType} in {countdown} seconds...
+                  </p>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-blue-500 h-2 rounded-full transition-all duration-1000"
+                      style={{ width: `${((3 - countdown) / 3) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    placeholder="Enter your name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    placeholder="Enter your email"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowForm(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50"
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
+                  </button>
+                </div>
+              </form>
+            )}
           </motion.div>
         </motion.div>
       )}
@@ -162,7 +271,13 @@ const FloatingActionButton = () => {
         whileTap="tap"
         variants={buttonVariants}
       >
-        <div>{open ?<div className='self-center'><IoMdChatboxes className="self-center h-8 w-8 block " />  <IoIosRemove className="self-center h-8 w-8 hidden " /> </div> : <div className='self-center'><IoMdChatboxes className="self-center h-8 w-8 hidden " /> <IoClose className='self-center h-7 w-7 block ' /> </div> } </div> 
+        <div>
+          {open ? (
+            <IoClose className='self-center h-7 w-7' />
+          ) : (
+            <IoMdChatboxes className="self-center h-8 w-8" />
+          )}
+        </div> 
       </motion.button>
     </div>
   );
