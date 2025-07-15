@@ -579,7 +579,7 @@ const addFlightLeg = () => {
                 sessionStorage.setItem('bookingPrice', price.toString());
                 
                 // Redirect to thank you page
-                window.location.href = '/thank-you';
+                window.location.href = '/dummy-booking-confirmation';
             } else {
                 toast.error(result.error || 'Failed to submit booking');
             }

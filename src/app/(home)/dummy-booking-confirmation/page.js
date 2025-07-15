@@ -12,14 +12,7 @@ import Script from 'next/script';
 export default function ThankYouPage() {
   const router = useRouter();
 
-  // Redirect to home if accessed directly without submission
-  useEffect(() => {
-    if (!sessionStorage.getItem('formSubmitted')) {
-      router.push('/');
-    }
-    // Clear the flag so it doesn't affect future visits
-    return () => sessionStorage.removeItem('formSubmitted');
-  }, [router]);
+  // Allow direct access to this page without form submission requirement
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-12">

@@ -72,7 +72,7 @@ const SubscribeForm = () => {
       }
 
       // Redirect to thank you page after successful submission
-      window.location.href = '/thank-you';
+      window.location.href = '/dummy-booking-confirmation';
       
     } catch (error) {
       toast.error(error.message || 'Failed to submit. Please try again later.');

@@ -250,7 +250,7 @@ const Contact = () => {
      sessionStorage.setItem('formSubmitted', 'true');
       
      // Redirect to thank you page
-     window.location.href = '/thank-you';
+     window.location.href = '/dummy-booking-confirmation';
 
     } catch (error) {
       toast.error(error.message || 'Failed to send message. Please try again.', {
