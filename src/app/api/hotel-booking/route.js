@@ -116,7 +116,6 @@ export const POST = async (req) => {
 
     // Get the first traveler's name for the Google Sheet
     const firstTraveler = formData.travelers.list[0];
-    const travelerName = `${firstTraveler.title} ${firstTraveler.firstName} ${firstTraveler.lastName}`;
     
     // Create a simplified hotel info (keep it short for Google Sheets)
     const hotelLocations = formData.hotels.map(hotel => hotel.location).join(', ');
@@ -132,7 +131,8 @@ export const POST = async (req) => {
     // Prepare data for Google Sheets
     const sheetData = {
       formName: formData.formName || 'Hotel Booking',
-      name: travelerName,
+      firstName: firstTraveler.firstName || '',
+      lastName: firstTraveler.lastName || '',
       email: formData.contact.email,
       phone: formData.contact.phoneCode + formData.contact.phone,
       message: `Hotels: ${hotelLocations}, Check-in: ${checkInDates}, Check-out: ${checkOutDates}`,

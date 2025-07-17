@@ -137,7 +137,8 @@ export const POST = async (req) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           formName: 'Blog Contact',
-          name: name || '',
+          firstName: formData.firstName || (formData.name ? formData.name.split(' ')[0] : ''),
+          lastName: formData.lastName || (formData.name ? formData.name.split(' ').slice(1).join(' ') : ''),
           email: email || '',
           phone: phone || '',
           message: '',

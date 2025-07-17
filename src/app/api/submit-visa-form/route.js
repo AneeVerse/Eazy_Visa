@@ -124,7 +124,8 @@ export const POST = async (req) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         formName: formName,
-        name: name || '',
+        firstName: firstName || '',
+        lastName: lastName || '',
         email: email || '',
         phone: phone || '',
         message: '', // No message field in this form

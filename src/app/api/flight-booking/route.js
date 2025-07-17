@@ -127,7 +127,6 @@ export const POST = async (req) => {
 
     // Get the first traveler's name for the Google Sheet
     const firstTraveler = formData.travelers.list[0];
-    const travelerName = `${firstTraveler.title} ${firstTraveler.firstName} ${firstTraveler.lastName}`;
     
     // Create formatted flight info (keep it short for Google Sheets)
     const flightRoute = formData.flight.legs.map(leg => 
@@ -141,7 +140,8 @@ export const POST = async (req) => {
     // Prepare data for Google Sheets
     const sheetData = {
       formName: formData.formName || 'Flight Booking',
-      name: travelerName,
+      firstName: firstTraveler.firstName || '',
+      lastName: firstTraveler.lastName || '',
       email: formData.contact.email,
       phone: formData.contact.phoneCode + formData.contact.phone,
       message: `Flight Type: ${formData.flight.type}, Routes: ${flightRoute}, Dates: ${flightDates}`,

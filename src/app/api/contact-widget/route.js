@@ -89,7 +89,8 @@ export async function POST(req) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           formName: 'Contact Widget',
-          name: name || '',
+          firstName: name ? name.split(' ')[0] : '',
+          lastName: name ? name.split(' ').slice(1).join(' ') : '',
           email: email || '',
           phone: phone || '',
           message: `Contact Type: ${contactType}`,
