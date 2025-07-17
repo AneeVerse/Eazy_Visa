@@ -42,8 +42,9 @@ export async function POST(req) {
           <h2 style="color: #2563eb; margin-bottom: 20px;">New Contact Widget Inquiry</h2>
           
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-            <h3 style="color: #1e40af; margin-top: 0;">Contact Details</h3>
-            <p><strong>Name:</strong> ${name}</p>
+            <h2 style="color: #2563eb; margin-top: 0;">Contact Information</h2>
+            <p><strong>First Name:</strong> ${firstName}</p>
+            <p><strong>Last Name:</strong> ${lastName}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Preferred Contact Method:</strong> ${contactType}</p>

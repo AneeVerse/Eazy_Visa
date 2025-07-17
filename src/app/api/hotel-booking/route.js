@@ -118,7 +118,16 @@ export const POST = async (req) => {
           ${hotelsHTML}
           
           <h2 style="color: #2563eb; margin-top: 20px;">Guest Information</h2>
-          ${travelersHTML}
+          ${formData.travelers.list.map((traveler, index) => `
+            <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #e2e8f0; border-radius: 5px;">
+              <h3 style="color: #2563eb; margin-top: 0;">
+                ${index < formData.guests.adults ? `Adult ${index + 1}` : `Child ${index - formData.guests.adults + 1}`}
+              </h3>
+              <p><strong>Title:</strong> ${traveler.title}</p>
+              <p><strong>First Name:</strong> ${traveler.firstName}</p>
+              <p><strong>Last Name:</strong> ${traveler.lastName}</p>
+            </div>
+          `).join('')}
           
           <h2 style="color: #2563eb; margin-top: 20px;">Additional Information</h2>
           <p><strong>Visa Interview Date:</strong> ${formData.additional.visaInterviewDate ? 

@@ -96,10 +96,11 @@ export const POST = async (req) => {
           
           <div style="padding: 20px; background: #ffffff;">
             <div style="margin-bottom: 15px;">
-              <h2 style="color: #2563eb; margin-bottom: 5px; font-size: 18px;">Contact Details</h2>
-              <p style="margin: 5px 0;"><strong>Name:</strong> ${name}</p>
-              <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
-              <p style="margin: 5px 0;"><strong>Phone:</strong> ${phone || 'N/A'}</p>
+              <h2 style="color: #2563eb; margin-top: 0;">Contact Information</h2>
+              <p><strong>First Name:</strong> ${formData.firstName || ''}</p>
+              <p><strong>Last Name:</strong> ${formData.lastName || ''}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Phone:</strong> ${phone}</p>
               <p style="margin: 5px 0;"><strong>Timestamp:</strong> ${indianTime}</p>
             </div>
             

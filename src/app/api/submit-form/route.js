@@ -83,7 +83,8 @@ export const POST = async (req) => {
             <p><strong>Form Source:</strong> ${formSource || 'Homepage'}</p>
             
             <h2 style="color: #2563eb; margin-top: 20px;">Applicant Information</h2>
-            <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+            <p><strong>First Name:</strong> ${firstName}</p>
+            <p><strong>Last Name:</strong> ${lastName}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
           </div>

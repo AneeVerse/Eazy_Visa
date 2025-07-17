@@ -70,11 +70,11 @@ export const POST = async (req) => {
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; padding: 20px; border-radius: 5px;">
-          <h2 style="color: #1a73e8;">New Contact Form Submission</h2>
-          <p><strong>Timestamp:</strong> ${indianTime}</p>
-          <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+          <h2 style="color: #2563eb; margin-top: 0;">Contact Information</h2>
+          <p><strong>First Name:</strong> ${firstName}</p>
+          <p><strong>Last Name:</strong> ${lastName}</p>
           <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+          <p><strong>Phone:</strong> ${phone}</p>
           ${visaType ? `<p><strong>Visa Type:</strong> ${visaType}</p>` : ''}
           ${country ? `<p><strong>Country:</strong> ${country}</p>` : ''}
           <div style="margin-top: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 4px;">
