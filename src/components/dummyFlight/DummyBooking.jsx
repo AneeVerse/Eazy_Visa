@@ -559,7 +559,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                 sessionStorage.setItem('bookingPrice', price.toString());
                 
                 // Redirect to thank you page with conversion tracking
-                window.location.href = '/dummy-booking-confirmation-conversion';
+                window.location.href = '/thank-you-conversion';
 
                 setFormData(initialFormData);
                 // setCurrentStep(1);

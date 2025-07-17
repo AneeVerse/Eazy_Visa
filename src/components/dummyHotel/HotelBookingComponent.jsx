@@ -481,7 +481,7 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
 
       if (response.ok) {
         sessionStorage.setItem('formSubmitted', 'true');
-        window.location.href = '/dummy-booking-confirmation-conversion';
+        window.location.href = '/thank-you-conversion';
       } else {
         toast.error(result.error || 'Failed to submit booking');
       }
