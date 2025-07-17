@@ -129,7 +129,7 @@ export const POST = async (req) => {
         </div>
         
         <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
-          <p style="margin: 0;">This booking was created at ${new Date().toLocaleString()}</p>
+          <p style="margin: 0;">This booking was created at ${getIndianTime()}</p>
         </div>
       </div>
     `,
