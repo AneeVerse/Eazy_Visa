@@ -128,6 +128,9 @@ export const POST = async (req) => {
       new Date(hotel.checkOutDate).toISOString().split("T")[0]
     ).join(', ');
 
+    // Add this line before using indianTime
+    const indianTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+
     // Prepare data for Google Sheets
     const sheetData = {
       formName: formData.formName || 'Hotel Booking',
