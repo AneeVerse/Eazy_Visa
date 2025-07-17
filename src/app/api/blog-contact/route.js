@@ -56,9 +56,32 @@ export const POST = async (req) => {
       },
     });
 
-    // Generate timestamp in 24-hour format
-    const now = new Date();
-    const timestamp = now.toLocaleString('en-GB', { hour12: false });
+    // Aggressive IST time function - This will definitely work
+    const getIndianTime = () => {
+      const now = new Date();
+      // Get current UTC time
+      const utcTime = now.getTime();
+      // IST is UTC + 5 hours 30 minutes
+      const istOffset = 5.5 * 60 * 60 * 1000; // 5.5 hours in milliseconds
+      // Create IST time
+      const istTime = new Date(utcTime + istOffset);
+      // Extract components
+      const year = istTime.getUTCFullYear();
+      const month = String(istTime.getUTCMonth() + 1).padStart(2, '0');
+      const day = String(istTime.getUTCDate()).padStart(2, '0');
+      let hours = istTime.getUTCHours();
+      const minutes = String(istTime.getUTCMinutes()).padStart(2, '0');
+      const seconds = String(istTime.getUTCSeconds()).padStart(2, '0');
+      // Convert to 12-hour format
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // 0 should be 12
+      const displayHours = String(hours).padStart(2, '0');
+      return `${day}/${month}/${year}, ${displayHours}:${minutes}:${seconds} ${ampm} (IST)`;
+    };
+
+    // Generate timestamp in IST
+    const indianTime = getIndianTime();
 
     // Email options
     const mailOptions = {
@@ -77,7 +100,7 @@ export const POST = async (req) => {
               <p style="margin: 5px 0;"><strong>Name:</strong> ${name}</p>
               <p style="margin: 5px 0;"><strong>Email:</strong> ${email}</p>
               <p style="margin: 5px 0;"><strong>Phone:</strong> ${phone || 'N/A'}</p>
-              <p style="margin: 5px 0;"><strong>Timestamp:</strong> ${timestamp}</p>
+              <p style="margin: 5px 0;"><strong>Timestamp:</strong> ${indianTime}</p>
             </div>
             
           </div>
@@ -93,7 +116,7 @@ export const POST = async (req) => {
         Name: ${name}
         Email: ${email}
         Phone: ${phone || 'N/A'}
-        Timestamp: ${timestamp}
+        Timestamp: ${indianTime}
       `,
     };
 
@@ -121,7 +144,7 @@ export const POST = async (req) => {
           rating: '',
           country: '',
           visaType: '',
-          extraInfo: `Submitted from blog contact form at ${timestamp}`
+          extraInfo: `Submitted from blog contact form at ${indianTime}`
         }),
       });
       console.log('Blog contact data sent to Google Sheets successfully');
