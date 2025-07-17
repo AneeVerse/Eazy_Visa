@@ -166,7 +166,7 @@ export const POST = async (req) => {
       rating: '',
       country: formData.hotels[0].location,
       visaType: '',
-      extraInfo: `Guests: ${formData.guests.adults} Adults, ${formData.guests.children} Children, Rooms: ${formData.guests.rooms}, Price: ₹${formData.price.toLocaleString()} | Submitted At (IST): ${indianTime}`
+      extraInfo: `Guests: ${formData.guests.adults} Adults, ${formData.guests.children} Children, Rooms: ${formData.guests.rooms}, Price: ₹${formData.price.toLocaleString()}, Special Instructions: ${formData.additional.specialInstructions || 'None'} | Submitted At (IST): ${indianTime}`
     };
     
     console.log('Sending to Google Sheets:', sheetData);
