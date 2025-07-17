@@ -36,9 +36,32 @@ export const POST = async (req) => {
       },
     });
 
-    // Generate timestamp in 24-hour format
-    const now = new Date();
-    const timestamp = now.toLocaleString('en-GB', { hour12: false });
+    // Aggressive IST time function - This will definitely work
+    const getIndianTime = () => {
+      const now = new Date();
+      // Get current UTC time
+      const utcTime = now.getTime();
+      // IST is UTC + 5 hours 30 minutes
+      const istOffset = 5.5 * 60 * 60 * 1000; // 5.5 hours in milliseconds
+      // Create IST time
+      const istTime = new Date(utcTime + istOffset);
+      // Extract components
+      const year = istTime.getUTCFullYear();
+      const month = String(istTime.getUTCMonth() + 1).padStart(2, '0');
+      const day = String(istTime.getUTCDate()).padStart(2, '0');
+      let hours = istTime.getUTCHours();
+      const minutes = String(istTime.getUTCMinutes()).padStart(2, '0');
+      const seconds = String(istTime.getUTCSeconds()).padStart(2, '0');
+      // Convert to 12-hour format
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // 0 should be 12
+      const displayHours = String(hours).padStart(2, '0');
+      return `${day}/${month}/${year}, ${displayHours}:${minutes}:${seconds} ${ampm} (IST)`;
+    };
+
+    // Generate timestamp in IST
+    const indianTime = getIndianTime();
 
     // Compose email content
     const mailOptions = {
@@ -48,7 +71,7 @@ export const POST = async (req) => {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; padding: 20px; border-radius: 5px;">
           <h2 style="color: #1a73e8;">New Contact Form Submission</h2>
-          <p><strong>Timestamp:</strong> ${timestamp}</p>
+          <p><strong>Timestamp:</strong> ${indianTime}</p>
           <p><strong>Name:</strong> ${firstName} ${lastName}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
@@ -65,7 +88,7 @@ export const POST = async (req) => {
         New Contact Form Submission
         ==========================
         
-        Timestamp: ${timestamp}
+        Timestamp: ${indianTime}
         Name: ${firstName} ${lastName}
         Email: ${email}
         Phone: ${phone || 'Not provided'}
@@ -96,7 +119,7 @@ export const POST = async (req) => {
         rating: '',
         country: country || '',
         visaType: visaType || '',
-        extraInfo: ''
+        extraInfo: `Submitted from contact form at ${indianTime}`
       }),
     });
 

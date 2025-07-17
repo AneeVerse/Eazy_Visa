@@ -1,6 +1,30 @@
 // app/api/flight-booking/route.js
 import nodemailer from 'nodemailer';
 
+// Aggressive IST time function - This will definitely work
+const getIndianTime = () => {
+  const now = new Date();
+  // Get current UTC time
+  const utcTime = now.getTime();
+  // IST is UTC + 5 hours 30 minutes
+  const istOffset = 5.5 * 60 * 60 * 1000; // 5.5 hours in milliseconds
+  // Create IST time
+  const istTime = new Date(utcTime + istOffset);
+  // Extract components
+  const year = istTime.getUTCFullYear();
+  const month = String(istTime.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(istTime.getUTCDate()).padStart(2, '0');
+  let hours = istTime.getUTCHours();
+  const minutes = String(istTime.getUTCMinutes()).padStart(2, '0');
+  const seconds = String(istTime.getUTCSeconds()).padStart(2, '0');
+  // Convert to 12-hour format
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // 0 should be 12
+  const displayHours = String(hours).padStart(2, '0');
+  return `${day}/${month}/${year}, ${displayHours}:${minutes}:${seconds} ${ampm} (IST)`;
+};
+
 export const POST = async (req) => {
   try {
     console.log('Flight booking API called');
@@ -86,7 +110,7 @@ export const POST = async (req) => {
           </div>
           
            <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
-          <p style="margin: 0;">This booking was created at ${new Date().toLocaleString()}</p>
+          <p style="margin: 0;">This booking was created at ${getIndianTime()}</p>
         </div>
         </div>
       `,
@@ -124,7 +148,7 @@ export const POST = async (req) => {
       rating: '',
       country: formData.flight.legs[0].from + ' to ' + formData.flight.legs[0].to,
       visaType: '',
-      extraInfo: `Travelers: ${formData.travelers.count}, Price: ${formData.price}, Special Instructions: ${formData.additional.specialInstructions || 'None'}`
+      extraInfo: `Travelers: ${formData.travelers.count}, Price: ${formData.price}, Special Instructions: ${formData.additional.specialInstructions || 'None'} | Submitted At (IST): ${getIndianTime()}`
     };
     
     console.log('Sending flight data to Google Sheets:', sheetData);

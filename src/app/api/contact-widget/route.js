@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 
+
 export async function POST(req) {
   try {
     const { name, email, phone, contactType, source } = await req.json();
@@ -47,6 +48,7 @@ export async function POST(req) {
             <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Preferred Contact Method:</strong> ${contactType}</p>
             <p><strong>Source:</strong> ${source}</p>
+            <p><strong>Submitted At (IST):</strong> ${indianTime}</p>
           </div>
           
           <div style="background-color: #dbeafe; padding: 15px; border-radius: 8px; margin-top: 20px;">
@@ -69,6 +71,7 @@ export async function POST(req) {
         Phone: ${phone}
         Preferred Contact Method: ${contactType}
         Source: ${source}
+        Submitted At (IST): ${indianTime}
         
         Please contact this lead through their preferred method: ${contactType}
         
@@ -93,7 +96,7 @@ export async function POST(req) {
           rating: '',
           country: '',
           visaType: '',
-          extraInfo: `Source: ${source}`
+          extraInfo: `Source: ${source} | Submitted At (IST): ${indianTime}`
         }),
       });
       console.log('Successfully added to Google Sheets');
