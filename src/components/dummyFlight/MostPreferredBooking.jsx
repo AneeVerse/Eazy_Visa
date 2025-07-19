@@ -14,7 +14,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 
-const MostPreferredBooking = () => {
+const MostPreferredBooking = ({ origin, onTabClick }) => {
     // Form steps
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -578,8 +578,14 @@ const addFlightLeg = () => {
                 sessionStorage.setItem('formSubmitted', 'true');
                 sessionStorage.setItem('bookingPrice', price.toString());
                 
-                // Redirect to thank you page
-                window.location.href = '/dummy-booking-confirmation';
+                // Redirect based on origin
+                if (origin === 'landing-flight') {
+                    // For visa ads page, redirect to thank-you-conversion
+                    window.location.href = '/thank-you-conversion';
+                } else {
+                    // For normal dummy bookings, redirect to dummy-booking-confirmation
+                    window.location.href = '/dummy-booking-confirmation';
+                }
             } else {
                 toast.error(result.error || 'Failed to submit booking');
             }
@@ -631,28 +637,56 @@ const addFlightLeg = () => {
             <div className="mt-8 relative " ref={formRef}>
                 {/* Header with Flight and Hotel Navigation */}
                 <div className="flex bg-white shadow-md relative z-30 -mb-13 border mx-5 sm:mx-10 md:mx-16 rounded-2xl border-gray-200">
-                    <Link
-                        href="/services/dummy-flights"
-                        className={`flex-1 py-3 px-6 cursor-pointer flex flex-col rounded-l-2xl items-center justify-center font-bold text-lg transition-colors text-white bg-white`}
-                    >
-                        <img
-                            src="/images/icon/png/aeroplan-blue.png"
-                            alt="Flight Icon"
-                            className="w-16 h-14 object-cover"
-                        />
-                        <span className="text-primary-500">Flights</span>
-                    </Link>
-                    <Link
-                        href={"/services/dummy-hotel"}
-                        className={`flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-r-2xl text-gray-600 hover:text-blue-600`}
-                    >
-                        <img
-                            src="/images/icon/png/hotel-black.png"
-                            alt="Flight Icon"
-                            className="w-16 h-14 object-cover"
-                        />
-                        <span className="text-gray-600">Hotels</span>
-                    </Link>
+                    {onTabClick ? (
+                        <button
+                            onClick={() => onTabClick('flight')}
+                            className={`flex-1 py-3 px-6 cursor-pointer flex flex-col rounded-l-2xl items-center justify-center font-bold text-lg transition-colors text-white bg-white`}
+                        >
+                            <img
+                                src="/images/icon/png/aeroplan-blue.png"
+                                alt="Flight Icon"
+                                className="w-16 h-14 object-cover"
+                            />
+                            <span className="text-primary-500">Flights</span>
+                        </button>
+                    ) : (
+                        <Link
+                            href="/services/dummy-flights"
+                            className={`flex-1 py-3 px-6 cursor-pointer flex flex-col rounded-l-2xl items-center justify-center font-bold text-lg transition-colors text-white bg-white`}
+                        >
+                            <img
+                                src="/images/icon/png/aeroplan-blue.png"
+                                alt="Flight Icon"
+                                className="w-16 h-14 object-cover"
+                            />
+                            <span className="text-primary-500">Flights</span>
+                        </Link>
+                    )}
+                    {onTabClick ? (
+                        <button
+                            onClick={() => onTabClick('hotel')}
+                            className={`flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-r-2xl text-gray-600 hover:text-blue-600`}
+                        >
+                            <img
+                                src="/images/icon/png/hotel-black.png"
+                                alt="Hotel Icon"
+                                className="w-16 h-14 object-cover"
+                            />
+                            <span className="text-gray-600">Hotels</span>
+                        </button>
+                    ) : (
+                        <Link
+                            href="/services/dummy-hotel"
+                            className={`flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-r-2xl text-gray-600 hover:text-blue-600`}
+                        >
+                            <img
+                                src="/images/icon/png/hotel-black.png"
+                                alt="Hotel Icon"
+                                className="w-16 h-14 object-cover"
+                            />
+                            <span className="text-gray-600">Hotels</span>
+                        </Link>
+                    )}
                 </div>
 
                 {/* Progress Steps */}
