@@ -78,7 +78,7 @@ export default function AirportDropdown({
                             <span className="text-xs line-clamp-1 max-w-full text-gray-500 mt-1">{selectedOption.city || selectedOption.name}</span>
                         </div>
                     ) : (
-                        <span className="text-gray-400">Select</span>
+                        <span className="text-gray-400">Country, city or airport</span>
                     )}
                 </span>
                 <FiChevronDown className={`ml-2 h-5 w-5 text-gray-500 transition-transform ${isOpen ? 'transform rotate-180' : ''}`} />

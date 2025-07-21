@@ -32,7 +32,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
         },
         flight: {
             type: "one-way",
-            legs: [{ from: "DEL", to: "BOM", date: null }],
+            legs: [{ from: "", to: "", date: null }],
         },
         travelers: {
             count: 1,
