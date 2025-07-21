@@ -164,7 +164,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
     },
     flight: {
       type: "one-way",
-      legs: [{ from: "DEL", to: "BOM", date: null }],
+      legs: [{ from: "", to: "", date: null }],
     },
     travelers: {
       count: 1,
@@ -567,6 +567,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
                           onChange={(value) => handleFlightLegChange(0, 'from', value)}
                           label="From"
                           options={airports}
+                          placeholderSize="sm"
                         />
                       </div>
                       <div>
@@ -575,6 +576,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
                           onChange={(value) => handleFlightLegChange(0, 'to', value)}
                           label="To"
                           options={airports}
+                          placeholderSize="sm"
                         />
                       </div>
                     </div>

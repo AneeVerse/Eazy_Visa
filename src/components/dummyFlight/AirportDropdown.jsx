@@ -8,7 +8,8 @@ export default function AirportDropdown({
     options,
     onChange,
     label,
-    className = ""
+    className = "",
+    placeholderSize = "base"
 }) {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
@@ -67,20 +68,20 @@ export default function AirportDropdown({
             {/* Custom dropdown trigger */}
             <button
                 type="button"
-                className="w-full flex items-center justify-between text-2xl font-bold rounded-lg h-14 focus:outline-none hover:bg-gray-50 transition-colors"
+                className="w-full min-w-[180px] flex items-center justify-between text-2xl font-bold rounded-lg h-14 focus:outline-none hover:bg-gray-50 transition-colors"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label={`${label} dropdown`}
             >
-                <span className="truncate text-left">
-                    {selectedOption ? (
+                {selectedOption ? (
+                    <span className="truncate text-left">
                         <div className="flex flex-col">
                             <span className="text-3xl font-bold">{selectedOption.code}</span>
                             <span className="text-xs line-clamp-1 max-w-full text-gray-500 mt-1">{selectedOption.city || selectedOption.name}</span>
                         </div>
-                    ) : (
-                        <span className="text-gray-400">Country, city or airport</span>
-                    )}
-                </span>
+                    </span>
+                ) : (
+                    <span className={`whitespace-normal text-left text-gray-400 ${placeholderSize === "sm" ? 'text-sm' : 'text-xl'}`}>Country, city or airport</span>
+                )}
                 <FiChevronDown className={`ml-2 h-5 w-5 text-gray-500 transition-transform ${isOpen ? 'transform rotate-180' : ''}`} />
             </button>
 
