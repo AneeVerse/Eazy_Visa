@@ -272,7 +272,7 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
     // Price calculation
     useEffect(() => {
         if (formData.travelers.count === 1) {
-            setPrice(2000); // ₹2000 for 1 person
+            setPrice(1999); // ₹1999 for 1 person
         } else if (formData.travelers.count > 1) {
             // ₹1499 per additional person, but subtract 1 from count for calculation
             setPrice((formData.travelers.count * 1500) - 1);
