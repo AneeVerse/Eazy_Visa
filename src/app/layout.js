@@ -15,7 +15,7 @@ const comfortaa = Comfortaa({
 
 export const metadata = {
   title: "Eazy Visas - Visa Consultant",
-  description: "easy visa offers a range of migration consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+  description: "easy visa offers a range of visa consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
   robots: {
     index: true,
     follow: true,
@@ -23,7 +23,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Eazy Visas - Visa Consultant",
-    description: "easy visa offers a range of migration consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+    description: "easy visa offers a range of visa consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
     type: "website",
     locale: "en_US",
     siteName: "Easy Visa",
@@ -31,7 +31,7 @@ export const metadata = {
   twitter: {
     card: "summary",
     title: "Eazy Visas - Visa Consultant",
-    description: "easy visa offers a range of migration consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+    description: "easy visa offers a range of visa consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
   },
   icons: {
     icon: [
@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Easy Visa",
-              "description": "easy visa offers a range of migration consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+              "description": "easy visa offers a range of visa consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
               "url": "https://www.eazyvisas.com",
               "telephone": "+91 88501 46905",
               "email": "info@eazyvisas.com",
