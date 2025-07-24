@@ -62,6 +62,7 @@ export default function RootLayout({ children }) {
   return (
           <html lang="en" className={`${comfortaa.variable}`}>
         <head>
+          <meta name="google-site-verification" content="mzi68Swu3UM_EQoy75guBPrCCFP8GbcSHLlyDFUEE2E" />
         </head>
         <body className="font-comfortaa">
         {/* Google Tag Manager Script */}
