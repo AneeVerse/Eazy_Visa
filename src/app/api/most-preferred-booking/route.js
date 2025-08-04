@@ -148,7 +148,7 @@ export const POST = async (req) => {
 
     // Prepare data for Google Sheets
     const sheetData = {
-      formName: 'Flight Booking',
+      formName: formData.formName || 'Most Preferred Booking',
       firstName: firstTraveler.firstName || '',
       lastName: firstTraveler.lastName || '',
       email: formData.contact.email,

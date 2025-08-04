@@ -552,6 +552,7 @@ const addFlightLeg = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    formName: origin,
                     ...formData,
                     price:price,
                     flight: {
@@ -580,7 +581,7 @@ const addFlightLeg = () => {
                 sessionStorage.setItem('bookingPrice', price.toString());
                 
                 // Redirect based on origin
-                if (origin === 'landing-flight') {
+                if (origin === 'landing-flight' || origin === 'landing-hotel' || origin === 'landing-most-preferred') {
                     // For visa ads page, redirect to thank-you-conversion
                     window.location.href = '/thank-you-conversion';
                 } else {

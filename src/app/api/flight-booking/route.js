@@ -153,14 +153,22 @@ export const POST = async (req) => {
       lastName: firstTraveler.lastName || '',
       email: formData.contact.email,
       phone: formData.contact.phoneCode + formData.contact.phone,
-      message: `Flight Type: ${formData.flight.type}, Routes: ${flightRoute}, Dates: ${flightDates}`,
+      message: `Flight: ${formData.flight.type} | From: ${formData.flight.legs[0].from} | To: ${formData.flight.legs[0].to} | Dates: ${flightDates} | Route: ${flightRoute}`,
       rating: '',
       country: formData.flight.legs[0].from + ' to ' + formData.flight.legs[0].to,
       visaType: '',
+      Flight: formData.flight.type || '',
+      Fr: formData.flight.legs[0].from || '',
+      To: formData.flight.legs[0].to || '',
+      'Flight Dates': flightDates || '',
+      'Flight Route': flightRoute || '',
+      'Travelers Count': formData.travelers.count || '',
       extraInfo: `Travelers: ${formData.travelers.count}, Price: ${formData.price}, Special Instructions: ${formData.additional.specialInstructions || 'None'} | Submitted At (IST): ${getIndianTime()}`
     };
     
     console.log('Sending flight data to Google Sheets:', sheetData);
+    console.log('Flight type:', formData.flight.type);
+    console.log('Flight legs:', formData.flight.legs);
 
     // Send to Google Sheets
     try {

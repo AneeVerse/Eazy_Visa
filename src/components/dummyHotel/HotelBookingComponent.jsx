@@ -484,7 +484,7 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
         sessionStorage.setItem('formSubmitted', 'true');
         
         // Redirect based on origin
-        if (origin === 'landing-flight') {
+        if (origin === 'landing-flight' || origin === 'landing-hotel' || origin === 'landing-most-preferred') {
           // For visa ads page, redirect to thank-you-conversion
           window.location.href = '/thank-you-conversion';
         } else {
@@ -1040,15 +1040,12 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
                           <span className="text-xs text-gray-500 block mt-1">For booking confirmation</span>
                         </label>
                         <div className="flex">
-                          <div className="flex-shrink-0">
-                            <CountryCodeDropdown
-                              value={formData.contact.phoneCode}
-                              onChange={handleCountryCodeChange}
-                              height="h-14"
-                              borderColor="border-gray-300"
-                              bgColor="bg-white"
-                            />
-                          </div>
+                          <CountryCodeDropdown
+                            value={formData.contact.phoneCode}
+                            onChange={handleCountryCodeChange}
+                            height="h-14"
+                            borderColor="border-gray-300"
+                          />
                           <input
                             type="tel"
                             name="phone"
