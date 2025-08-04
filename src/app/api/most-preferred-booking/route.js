@@ -64,7 +64,7 @@ export const POST = async (req) => {
         <h3 style="color: #2563eb; margin-top: 0;">Flight Leg ${index + 1}</h3>
         <p><strong>From:</strong> ${leg.from}</p>
         <p><strong>To:</strong> ${leg.to}</p>
-        <p><strong>Date:</strong> ${new Date(leg.date + 'T00:00:00').toISOString().split('T')[0]}</p>
+        <p><strong>Date:</strong> ${leg.date ? (leg.date.includes('T') ? new Date(leg.date).toLocaleDateString('en-CA') : new Date(leg.date + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'}</p>
       </div>
     `).join('');
 
@@ -113,8 +113,8 @@ export const POST = async (req) => {
             `).join('')}
             
             <h2 style="color: #2563eb; margin-top: 20px;">Additional Information</h2>
-            <p><strong>Visa Interview Date:</strong> ${formData.additional.visaInterviewDate ? new Date(formData.additional.visaInterviewDate + 'T00:00:00').toISOString().split('T')[0] : 'Not specified'}</p>
-            <p><strong>Delivery Date:</strong> ${formData.additional.deliveryDate ? new Date(formData.additional.deliveryDate + 'T00:00:00').toISOString().split('T')[0] : 'Not specified'}</p>
+            <p><strong>Visa Interview Date:</strong> ${formData.additional.visaInterviewDate ? (formData.additional.visaInterviewDate.includes('T') ? new Date(formData.additional.visaInterviewDate).toLocaleDateString('en-CA') : new Date(formData.additional.visaInterviewDate + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'}</p>
+            <p><strong>Delivery Date:</strong> ${formData.additional.deliveryDate ? (formData.additional.deliveryDate.includes('T') ? new Date(formData.additional.deliveryDate).toLocaleDateString('en-CA') : new Date(formData.additional.deliveryDate + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'}</p>
             <p><strong>Special Instructions:</strong> ${formData.additional.specialInstructions || 'None'}</p>
           </div>
           
@@ -143,7 +143,7 @@ export const POST = async (req) => {
     ).join(', ');
     
     const flightDates = formData.flight.legs.map(leg => 
-      new Date(leg.date + 'T00:00:00').toISOString().split('T')[0]
+      leg.date ? (leg.date.includes('T') ? new Date(leg.date).toLocaleDateString('en-CA') : new Date(leg.date + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'
     ).join(', ');
 
     // Prepare data for Google Sheets

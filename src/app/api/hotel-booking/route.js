@@ -75,8 +75,8 @@ export const POST = async (req) => {
       <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #e2e8f0; border-radius: 5px;">
         <h3 style="color: #2563eb; margin-top: 0;">Hotel ${index + 1}</h3>
         <p><strong>Location:</strong> ${hotel.location}</p>
-        <p><strong>Check-In:</strong> ${new Date(hotel.checkInDate + 'T00:00:00').toISOString().split('T')[0]}</p>
-        <p><strong>Check-Out:</strong> ${new Date(hotel.checkOutDate + 'T00:00:00').toISOString().split('T')[0]}</p>
+        <p><strong>Check-In:</strong> ${hotel.checkInDate ? (hotel.checkInDate.includes('T') ? new Date(hotel.checkInDate).toLocaleDateString('en-CA') : new Date(hotel.checkInDate + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'}</p>
+        <p><strong>Check-Out:</strong> ${hotel.checkOutDate ? (hotel.checkOutDate.includes('T') ? new Date(hotel.checkOutDate).toLocaleDateString('en-CA') : new Date(hotel.checkOutDate + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'}</p>
         <p><strong>Nights:</strong> ${nights}</p>
       </div>
     `;
@@ -131,9 +131,9 @@ export const POST = async (req) => {
           
           <h2 style="color: #2563eb; margin-top: 20px;">Additional Information</h2>
           <p><strong>Visa Interview Date:</strong> ${formData.additional.visaInterviewDate ? 
-            new Date(formData.additional.visaInterviewDate + 'T00:00:00').toISOString().split('T')[0] : 'Not specified'}</p>
+            (formData.additional.visaInterviewDate.includes('T') ? new Date(formData.additional.visaInterviewDate).toLocaleDateString('en-CA') : new Date(formData.additional.visaInterviewDate + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'}</p>
           <p><strong>Delivery Date:</strong> ${formData.additional.deliveryDate ? 
-            new Date(formData.additional.deliveryDate + 'T00:00:00').toISOString().split('T')[0] : 'Not specified'}</p>
+            (formData.additional.deliveryDate.includes('T') ? new Date(formData.additional.deliveryDate).toLocaleDateString('en-CA') : new Date(formData.additional.deliveryDate + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'}</p>
           <p><strong>Special Requests:</strong> ${formData.additional.specialInstructions || 'None'}</p>
         </div>
         
@@ -154,11 +154,11 @@ export const POST = async (req) => {
     const hotelLocations = formData.hotels.map(hotel => hotel.location).join(', ');
     
     const checkInDates = formData.hotels.map(hotel => 
-      new Date(hotel.checkInDate + 'T00:00:00').toISOString().split('T')[0]
+      hotel.checkInDate ? (hotel.checkInDate.includes('T') ? new Date(hotel.checkInDate).toLocaleDateString('en-CA') : new Date(hotel.checkInDate + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'
     ).join(', ');
     
     const checkOutDates = formData.hotels.map(hotel => 
-      new Date(hotel.checkOutDate + 'T00:00:00').toISOString().split('T')[0]
+      hotel.checkOutDate ? (hotel.checkOutDate.includes('T') ? new Date(hotel.checkOutDate).toLocaleDateString('en-CA') : new Date(hotel.checkOutDate + 'T00:00:00').toISOString().split('T')[0]) : 'Not specified'
     ).join(', ');
 
     // Add this line before using indianTime
