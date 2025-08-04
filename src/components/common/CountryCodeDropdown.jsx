@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
-import { createPortal } from 'react-dom';
 import { getCountries, getCountryCallingCode } from 'react-phone-number-input';
 
 const CountryCodeDropdown = ({ 
@@ -16,7 +15,6 @@ const CountryCodeDropdown = ({
   borderColor = "border-blue-700" // Default border color
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
   const [searchTerm, setSearchTerm] = useState('');
   const buttonRef = useRef(null);
   const searchInputRef = useRef(null);
@@ -69,14 +67,10 @@ const CountryCodeDropdown = ({
     setSearchTerm('');
   };
 
-  const handleToggle = () => {
+  const handleToggle = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
     if (!disabled) {
-      if (!isOpen && buttonRef.current) {
-        const rect = buttonRef.current.getBoundingClientRect();
-        setDropdownPosition({
-          top: rect.bottom + window.scrollY + 4,
-          left: rect.left + window.scrollX
-        });
+      if (!isOpen) {
         // Reset search term when opening
         setSearchTerm('');
       }
@@ -128,15 +122,10 @@ const CountryCodeDropdown = ({
         <FiChevronDown className={`h-4 w-4 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-      {isOpen && !disabled && typeof window !== 'undefined' && createPortal(
+            {isOpen && !disabled && (
         <div 
           data-country-dropdown
-          className="fixed z-[9999] w-72 bg-white border border-gray-300 rounded-lg shadow-lg max-h-80 overflow-hidden"
-          style={{
-            top: dropdownPosition.top,
-            left: dropdownPosition.left,
-            position: 'fixed'
-          }}
+          className="absolute z-50 w-72 bg-white border border-gray-300 rounded-lg shadow-lg max-h-80 overflow-hidden top-full mt-1"
         >
           {/* Search Input */}
           <div className="sticky top-0 bg-white border-b border-gray-200 p-3">
@@ -176,8 +165,7 @@ const CountryCodeDropdown = ({
               </div>
             )}
         </div>
-        </div>,
-        document.body
+        </div>
       )}
     </div>
   );

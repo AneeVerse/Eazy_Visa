@@ -14,6 +14,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 import ConversionTracking from '../common/ConversionTracking';
+import CountryCodeDropdown from '../common/CountryCodeDropdown';
+import { BiPhone } from 'react-icons/bi';
 
 const FlightBookingComponent = ({ onTabClick, origin }) => {
     // Form steps
@@ -283,13 +285,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
         { code: "YXY", name: "Erik Nielsen Whitehorse International Airport" },
     ]);
 
-    const countryCodes = [
-        { code: "+91", name: "India" },
-        { code: "+1", name: "USA" },
-        { code: "+44", name: "UK" },
-        { code: "+971", name: "UAE" },
-        { code: "+65", name: "Singapore" },
-    ];
+
 
     const travelerTypes = [
         { value: "adult", label: "Adult (12+ years)", titles: ["Mr", "Mrs", "Ms", "Dr"] },
@@ -317,6 +313,12 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
             (formData.travelers.count * basePrice) - discount : 0;
         setPrice(calculatedPrice);
     }, [formData.travelers.count]);
+
+    // Handle country code change
+    const handleCountryCodeChange = (value) => {
+        console.log('Country code changed to:', value);
+        handleInputChange('contact.phoneCode', value);
+    };
 
     // Handle input changes
     const handleInputChange = (path, value) => {
@@ -1052,19 +1054,15 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                                                     <span className="text-xs text-gray-500 block mt-1">For booking confirmation</span>
                                                 </label>
                                                 <div className="flex">
-                                                    <select
-                                                        name="phoneCode"
-                                                        value={formData.contact.phoneCode}
-                                                        onChange={(e) => handleInputChange('contact.phoneCode', e.target.value)}
-                                                        className="w-24 p-3.5 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
-                                                    >
-                                                        {countryCodes.map((country) => (
-                                                            <option key={country.code} value={country.code}>
-                                                                {country.code}
-                                                            </option>
-                                                        ))}
-                                                    </select>
-                                                    <FiChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
+                                                    <div className="flex-shrink-0 relative">
+                                                        <CountryCodeDropdown
+                                                            value={formData.contact.phoneCode}
+                                                            onChange={handleCountryCodeChange}
+                                                            height="h-14"
+                                                            borderColor="border-gray-300"
+                                                            bgColor="bg-white"
+                                                        />
+                                                    </div>
                                                     <input
                                                         type="tel"
                                                         name="phone"
