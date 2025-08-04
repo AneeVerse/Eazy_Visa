@@ -3,16 +3,29 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req) {
   try {
-    const { name, email, phone, contactType, source } = await req.json();
-    console.log('Received contact widget submission:', { name, email, phone, contactType, source });
+    const { firstName, lastName, email, phone, googleSheetsPhone, contactType, source } = await req.json();
+    console.log('Received contact widget submission:', { firstName, lastName, email, phone, contactType, source });
 
     // Validation
-    if (!name || !email || !phone || !contactType) {
+    if (!firstName || !lastName || !email || !phone || !contactType) {
       return Response.json({ 
         success: false, 
         message: 'All fields are required!' 
       }, { status: 400 });
     }
+
+    // Get current time in IST
+    const now = new Date();
+    const indianTime = new Intl.DateTimeFormat('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).format(now);
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -45,6 +58,7 @@ export async function POST(req) {
             <h2 style="color: #2563eb; margin-top: 0;">Contact Information</h2>
             <p><strong>First Name:</strong> ${firstName}</p>
             <p><strong>Last Name:</strong> ${lastName}</p>
+            <p><strong>Full Name:</strong> ${firstName} ${lastName}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Preferred Contact Method:</strong> ${contactType}</p>
@@ -67,7 +81,9 @@ export async function POST(req) {
       text: `
         New Contact Widget Inquiry
         
-        Name: ${name}
+        First Name: ${firstName}
+        Last Name: ${lastName}
+        Full Name: ${firstName} ${lastName}
         Email: ${email}
         Phone: ${phone}
         Preferred Contact Method: ${contactType}
@@ -90,10 +106,10 @@ export async function POST(req) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           formName: 'Contact Widget',
-          firstName: name ? name.split(' ')[0] : '',
-          lastName: name ? name.split(' ').slice(1).join(' ') : '',
+          firstName: firstName,
+          lastName: lastName,
           email: email || '',
-          phone: phone || '',
+          phone: googleSheetsPhone || phone || '', // Use clean version for Google Sheets
           message: `Contact Type: ${contactType}`,
           rating: '',
           country: '',

@@ -33,7 +33,7 @@ const getIndianTime = () => {
 
 export const POST = async (req) => {
   try {
-    const { firstName, lastName, email, phone, country, visaType, formSource } = await req.json();
+    const { firstName, lastName, email, phone, googleSheetsPhone, country, visaType, formSource } = await req.json();
     const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
 
     console.log('Received form submission:', { firstName, lastName, email, phone, country, visaType, formSource });
@@ -128,7 +128,7 @@ export const POST = async (req) => {
         firstName: firstName || '',
         lastName: lastName || '',
         email: email || '',
-        phone: phone || '',
+        phone: googleSheetsPhone || phone || '', // Use clean version for Google Sheets
         message: '', // No message field in this form
         rating: '',
         country: country || '',

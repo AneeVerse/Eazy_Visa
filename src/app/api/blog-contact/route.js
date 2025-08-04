@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 export const POST = async (req) => {
   try {
     const formData = await req.json();
+    const { googleSheetsPhone } = formData;
     console.log('Blog contact form submission:', formData);
     
     // Handle different field formats (either name as single field or firstName+lastName)
@@ -141,7 +142,7 @@ export const POST = async (req) => {
           firstName: formData.firstName || (formData.name ? formData.name.split(' ')[0] : ''),
           lastName: formData.lastName || (formData.name ? formData.name.split(' ').slice(1).join(' ') : ''),
           email: email || '',
-          phone: phone || '',
+          phone: googleSheetsPhone || phone || '', // Use clean version for Google Sheets
           message: '',
           rating: '',
           country: '',

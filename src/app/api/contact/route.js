@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 export const POST = async (req) => {
   try {
-    const { firstName, lastName, phone, email, message, visaType, country } = await req.json();
+    const { firstName, lastName, phone, googleSheetsPhone, email, message, visaType, country } = await req.json();
 
     // Validate required fields
     if (!firstName || !lastName || !email || !message) {
@@ -115,7 +115,7 @@ export const POST = async (req) => {
         firstName: firstName || '',
         lastName: lastName || '',
         email: email || '',
-        phone: phone || '',
+        phone: googleSheetsPhone || phone || '', // Use clean version for Google Sheets
         message: message || '',
         rating: '',
         country: country || '',

@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RiVisaLine } from "react-icons/ri";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CountryCodeDropdown from './CountryCodeDropdown';
 
 const ConsultationForm = () => {
   const [formData, setFormData] = useState({ 
@@ -14,6 +15,7 @@ const ConsultationForm = () => {
     lastName: "", 
     email: "", 
     phone: "",
+    countryCode: "+91", // Default to India
     visaType: ""
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +31,13 @@ const ConsultationForm = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
+  };
+
+  const handleCountryCodeChange = (code) => {
+    setFormData({
+      ...formData,
+      countryCode: code
+    });
   };
 
   const handleCheckboxChange = () => {
@@ -76,6 +85,12 @@ const ConsultationForm = () => {
 
     setIsLoading(true);
     try {
+      // Combine country code with phone number (with space)
+      const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
+      
+      // For Google Sheets compatibility, also create a version without special characters
+      const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
+      
       const response = await fetch('/api/submit-visa-form', {
         method: 'POST',
         headers: {
@@ -85,7 +100,8 @@ const ConsultationForm = () => {
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
-          phone: formData.phone,
+          phone: fullPhoneNumber, // Send the complete phone number with country code for email
+          googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
           visaType: formData.visaType
         }),
       });
@@ -240,18 +256,27 @@ const ConsultationForm = () => {
                 <BiPhone className="mr-2 self-center text-blue-500" />
                 Phone Number*
               </label>
-              <div className="relative">
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${
-                    errors.phone ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
-                  placeholder="9876543210"
+              <div className="flex">
+                <CountryCodeDropdown
+                  value={formData.countryCode}
+                  onChange={handleCountryCodeChange}
+                  error={errors.phone}
+                  height="h-12"
+                  borderColor="border-gray-300"
                 />
-                <BiPhone className="absolute left-3 top-4 text-gray-400" />
+                <div className="relative flex-1">
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className={`w-full pl-10 pr-4 py-3 border border-l-0 rounded-r-lg ${
+                      errors.phone ? "border-red-500" : "border-gray-300"
+                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                    placeholder="9876543210"
+                  />
+                  <BiPhone className="absolute left-3 top-4 text-gray-400" />
+                </div>
               </div>
               {errors.phone && (
                 <p className="text-red-500 text-xs mt-1 flex items-center">

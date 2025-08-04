@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Image from "next/image";
 import Link from "next/link";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import CountryCodeDropdown from '../../../../components/common/CountryCodeDropdown';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const Contact = () => {
     lastName: '',
     email: '',
     phone: '',
+    countryCode: '+91', // Default to India
     message: '',
     visaType: '',
     country: ''
@@ -227,6 +229,14 @@ const Contact = () => {
     "Zambia",
     "Zimbabwe"
   ];
+
+  const handleCountryCodeChange = (code) => {
+    setFormData({
+      ...formData,
+      countryCode: code
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -237,7 +247,11 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData }),
+        body: JSON.stringify({ 
+          ...formData,
+          phone: `${formData.countryCode} ${formData.phone}`, // Combine country code with phone (with space)
+          googleSheetsPhone: `${formData.countryCode.replace('+', '')}${formData.phone}` // Clean version for Google Sheets
+        }),
       });
 
       const data = await response.json();
@@ -378,17 +392,28 @@ const Contact = () => {
                   />
                 </div>
               </div>
+              
+              {/* Phone Field with Country Code */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number*</label>
-                <div className="relative">
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
-                    placeholder="+91 88501 46905"
-                    required
+                <div className="flex">
+                  <CountryCodeDropdown
+                    value={formData.countryCode}
+                    onChange={handleCountryCodeChange}
+                    className="flex-shrink-0"
+                    height="h-12"
+                    borderColor="border-gray-200"
                   />
+                  <div className="relative flex-1">
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3 border border-l-0 rounded-r-lg border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+                      placeholder="9876543210"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -408,29 +433,37 @@ const Contact = () => {
               {/* add visa type and country */}
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Visa Type*</label>
-                <select 
+                <label
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Visa Type*
+                </label>
+                <select
                   value={formData.visaType}
                   onChange={(e) => setFormData({ ...formData, visaType: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                   required
                 >
-                  <option value="" disabled>Select Visa Type</option>
-                  {visaTypes.map((visaType, index) => (
-                    <option key={index} value={visaType}>{visaType}</option>
+                  <option value="">Select Visa Type</option>
+                  {visaTypes.map((type, index) => (
+                    <option key={index} value={type}>{type}</option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Country*</label>
+                <label
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Destination Country*
+                </label>
                 <select
                   value={formData.country}
                   onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                   required
                 >
-                  <option value="" disabled>Select Country</option>
+                  <option value="">Select Country</option>
                   {countries.map((country, index) => (
                     <option key={index} value={country}>{country}</option>
                   ))}
@@ -439,28 +472,24 @@ const Contact = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Message*</label>
-                <div className="relative">
-                  <textarea
-                    rows="4"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
-                    placeholder="Write your message here..."
-                    required
-                  ></textarea>
-                </div>
+                <textarea
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none resize-none"
+                  placeholder="Tell us about your visa requirements..."
+                  required
+                />
               </div>
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full cursor-pointer flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white px-6 py-3.5 rounded-lg font-medium transition-all transform ${
-                  isLoading ? 'opacity-70 cursor-not-allowed' : ''
-                }`}
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>

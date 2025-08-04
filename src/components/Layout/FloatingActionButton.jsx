@@ -4,15 +4,18 @@ import { motion } from 'framer-motion';
 import { FaWhatsapp, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { IoIosClose, IoMdChatboxes } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import CountryCodeDropdown from '../common/CountryCodeDropdown';
 
 const FloatingActionButton = () => {
   const [open, setOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [selectedContactType, setSelectedContactType] = useState('');
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
+    countryCode: '+91', // Default to India
     contactType: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,11 +33,18 @@ const FloatingActionButton = () => {
     setFormData({ ...formData, [field]: value });
   };
 
+  const handleCountryCodeChange = (code) => {
+    setFormData({
+      ...formData,
+      countryCode: code
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validation
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
       alert('Please fill in all required fields');
       return;
     }
@@ -49,6 +59,12 @@ const FloatingActionButton = () => {
     setIsSubmitting(true);
 
     try {
+      // Combine country code with phone number (with space)
+      const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
+      
+      // For Google Sheets compatibility, also create a version without special characters
+      const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
+      
       const response = await fetch('/api/contact-widget', {
         method: 'POST',
         headers: {
@@ -56,13 +72,15 @@ const FloatingActionButton = () => {
         },
         body: JSON.stringify({
           ...formData,
+          phone: fullPhoneNumber, // Send the complete phone number with country code for email
+          googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
           source: 'contact widget'
         }),
       });
 
       if (response.ok) {
         setShowSuccess(true);
-        setFormData({ name: '', email: '', phone: '', contactType: '' });
+        setFormData({ firstName: '', lastName: '', email: '', phone: '', contactType: '' });
         let timeLeft = 3;
         setCountdown(timeLeft);
         const countdownInterval = setInterval(() => {
@@ -200,18 +218,33 @@ const FloatingActionButton = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                    placeholder="Enter your name"
-                  />
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      First Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.firstName}
+                      onChange={(e) => handleInputChange('firstName', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      placeholder="First name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Last Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.lastName}
+                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      placeholder="Last name"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -232,14 +265,24 @@ const FloatingActionButton = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Phone Number *
                   </label>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange('phone', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                    placeholder="Enter your phone number"
-                  />
+                  <div className="flex">
+                    <CountryCodeDropdown
+                      value={formData.countryCode}
+                      onChange={handleCountryCodeChange}
+                      height="h-10"
+                      borderColor="border-gray-300"
+                    />
+                    <div className="relative flex-1">
+                      <input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="w-full px-3 py-2 border border-l-0 rounded-r-lg border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                        placeholder="Enter your phone number"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex gap-3 pt-4">

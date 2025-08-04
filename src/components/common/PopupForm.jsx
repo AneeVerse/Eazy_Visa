@@ -5,6 +5,7 @@ import { BiSupport, BiUser, BiEnvelope, BiPhone, BiCheckShield, BiWorld, BiTask,
 import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CountryCodeDropdown from './CountryCodeDropdown';
 
 const PopupForm = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,6 +14,7 @@ const PopupForm = () => {
     lastName: '',
     email: '',
     phone: '',
+    countryCode: '+91', // Default to India
     country: '',
     visaType: '',
     formSource: 'homepage'
@@ -292,6 +294,13 @@ const PopupForm = () => {
     }
   };
 
+  const handleCountryCodeChange = (code) => {
+    setFormData({
+      ...formData,
+      countryCode: code
+    });
+  };
+
   const handleCheckboxChange = () => {
     setIsAccepted(!isAccepted);
   };
@@ -319,12 +328,22 @@ const PopupForm = () => {
     setIsLoading(true);
 
     try {
+      // Combine country code with phone number (with space)
+      const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
+      
+      // For Google Sheets compatibility, also create a version without special characters
+      const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
+      
       const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          phone: fullPhoneNumber, // Send the complete phone number with country code for email
+          googleSheetsPhone: googleSheetsPhone // Send clean version for Google Sheets
+        }),
       });
 
       const data = await response.json();
@@ -503,18 +522,27 @@ const PopupForm = () => {
                   <BiPhone className="mr-2 text-blue-500 text-sm" />
                   Phone Number*
                 </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className={`w-full pl-9 pr-3 py-2 text-sm border rounded-lg ${
-                      errors.phone ? "border-red-500" : "border-gray-300"
-                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
-                    placeholder="9876543210"
+                <div className="flex">
+                  <CountryCodeDropdown
+                    value={formData.countryCode}
+                    onChange={handleCountryCodeChange}
+                    error={errors.phone}
+                    height="h-10"
+                    borderColor="border-gray-300"
                   />
-                  <BiPhone className="absolute left-3 top-3 text-gray-400 text-sm" />
+                  <div className="relative flex-1">
+                    <input
+                      type="number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className={`w-full pl-9 pr-3 py-2 text-sm border border-l-0 rounded-r-lg ${
+                        errors.phone ? "border-red-500" : "border-gray-300"
+                      } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                      placeholder="9876543210"
+                    />
+                    <BiPhone className="absolute left-3 top-3 text-gray-400 text-sm" />
+                  </div>
                 </div>
                 {errors.phone && (
                   <p className="text-red-500 text-xs mt-1 flex items-center">
