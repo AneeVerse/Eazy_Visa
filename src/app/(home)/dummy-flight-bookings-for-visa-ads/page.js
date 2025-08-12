@@ -95,7 +95,7 @@ const DummyFlightBookingsAdsPage = () => {
   useEffect(() => {
     const handleGetStartedClick = (event) => {
       // Only handle on this specific page
-      if (window.location.pathname === '/dummy-flight-bookings-for-visa-ads') {
+      if (window.location.pathname === '/dummy-flight/visa-ads') {
         event.preventDefault();
         scrollToBookingForm();
       }
