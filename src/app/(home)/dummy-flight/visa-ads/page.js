@@ -1,19 +1,19 @@
 "use client";
 import { useState, useEffect } from 'react';
-import Layout from '../../../components/common/Layout';
-import Footer from '../../../components/Layout/Footer';
+import Layout from '../../../../components/common/Layout';
+import Footer from '../../../../components/Layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFilePdf, FaEdit, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import FlightBookingComponent from '../../../components/dummyFlight/DummyBooking';
-import HotelBookingComponent from '../../../components/dummyHotel/HotelBookingComponent';
-import MostPreferredBooking from '../../../components/dummyFlight/MostPreferredBooking';
-import ConsultationForm from "../../../components/common/ConsultationForm";
+import FlightBookingComponent from '../../../../components/dummyFlight/DummyBooking';
+import HotelBookingComponent from '../../../../components/dummyHotel/HotelBookingComponent';
+import MostPreferredBooking from '../../../../components/dummyFlight/MostPreferredBooking';
+import ConsultationForm from "../../../../components/common/ConsultationForm";
 import { FcGoogle } from "react-icons/fc";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import HeroBookingSection from '../../../components/dummyFlight/HeroBookingSection';
-import Button from '../../../components/common/Button';
+import HeroBookingSection from '../../../../components/dummyFlight/HeroBookingSection';
+import Button from '../../../../components/common/Button';
 
 const DummyFlightBookingsAdsPage = () => {
   const [showFlightBooking, setShowFlightBooking] = useState(true);
