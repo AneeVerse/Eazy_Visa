@@ -1345,10 +1345,10 @@ export const countryData = [
       "Historic site visits (like Auschwitz) require advance online registrations",
   },
   {
-    id: 3,
+    id: 3, 
     name: "Singapore",
     searchName: "Singapore SG",
-    price: "2950",
+    price: "4000",
     continent: "Asia",
     isTrending: false,
     visasOnTime: "280K+",
