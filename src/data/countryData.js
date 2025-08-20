@@ -20,7 +20,16 @@ export const countryData = [
     validity: "3 months",
     entry: "Single/Multiple",
 
-    pdfDownload: "/pdf/visa-guides/japan-visa-guide.pdf",
+    pdfDownloads: [
+      {
+        name: "Tourist Visa Checklist",
+        url: "/pdf/Japan Tourist Visa Checklist.pdf"
+      },
+      {
+        name: "Business Visa Checklist", 
+        url: "/pdf/Japan Business Visa Checklist.pdf"
+      }
+    ],
 
     documentsRequired: [
       {
@@ -67,7 +76,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/japan-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 1,
@@ -87,7 +96,7 @@ export const countryData = [
     visaType: "Sticker Visa",
     lengthOfStay: "Up to 90 days",
     validity: "6 months",
-    pdfDownload: "/pdf/visa-guides/france-visa-guide.pdf",
+    pdfDownload: "/pdf/France Tourist Visa Checklist.pdf",
     documentsRequired: [
       {
         category: "Mandatory Documents",
@@ -122,7 +131,7 @@ export const countryData = [
         answer: "Extensions are possible under specific circumstances.",
       },
     ],
-    sampleVisaCopy: "/pdf/visa-samples/france-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
 
   {
@@ -145,7 +154,7 @@ export const countryData = [
     visaType: "Sticker Visa",
     lengthOfStay: "Up to 90 days",
     validity: "6 months",
-    pdfDownload: "/pdf/visa-guides/hungary-visa-guide.pdf",
+    pdfDownload: "/pdf/HUNGARY TOURIST VISA CHECKLIST.pdf",
     documentsRequired: [
       {
         category: "Essential Documents",
@@ -180,7 +189,7 @@ export const countryData = [
         answer: "Extensions are possible under specific circumstances.",
       },
     ],
-    sampleVisaCopy: "/pdf/visa-samples/hungary-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
 
   {
@@ -203,7 +212,7 @@ export const countryData = [
     lengthOfStay: "Up to 90 days",
     validity: "6 months",
 
-    pdfDownload: "/pdf/visa-guides/italy-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -242,7 +251,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/italy-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 4,
@@ -265,7 +274,7 @@ export const countryData = [
     lengthOfStay: "Up to 90 days",
     validity: "6 months",
 
-    pdfDownload: "/pdf/visa-guides/spain-visa-guide.pdf",
+    pdfDownload: "/pdf/SPAIN VISA REQUIREMENT.pdf",
 
     documentsRequired: [
       {
@@ -304,7 +313,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/spain-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 5,
@@ -327,7 +336,7 @@ export const countryData = [
     lengthOfStay: "Up to 90 days",
     validity: "6 months",
 
-    pdfDownload: "/pdf/visa-guides/switzerland-visa-guide.pdf",
+    pdfDownload: "/pdf/SWISS VISA REQUIREMENT.pdf",
 
     documentsRequired: [
       {
@@ -355,7 +364,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/switzerland-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 6,
@@ -377,7 +386,7 @@ export const countryData = [
     lengthOfStay: "Up to 90 days",
     validity: "6 months",
 
-    pdfDownload: "/pdf/visa-guides/netherlands-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -405,7 +414,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/netherlands-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 7,
@@ -428,7 +437,7 @@ export const countryData = [
     lengthOfStay: "Up to 90 days",
     validity: "6 months",
 
-    pdfDownload: "/pdf/visa-guides/portugal-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -474,7 +483,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/portugal-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 8,
@@ -497,7 +506,7 @@ export const countryData = [
     lengthOfStay: "Up to 90 days",
     validity: "6 months",
 
-    pdfDownload: "/pdf/visa-guides/austria-visa-guide.pdf",
+    pdfDownload: "/pdf/Austria Tourist Visa checklist.pdf",
 
     documentsRequired: [
       {
@@ -539,7 +548,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/austria-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 9,
@@ -562,7 +571,7 @@ export const countryData = [
     validity: "6 months",
     entryType: "Single/Multiple",
 
-    pdfDownload: "/pdf/visa-guides/belgium-visa-guide.pdf",
+    pdfDownload: "/pdf/Belgium Tourist visa checklist.pdf",
 
     documentsRequired: [
       {
@@ -609,7 +618,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/belgium-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 10,
@@ -631,7 +640,7 @@ export const countryData = [
     validity: "6 months",
     entryType: "Single/Multiple",
 
-    pdfDownload: "/pdf/visa-guides/greece-visa-guide.pdf",
+    pdfDownload: "/pdf/Greece Visa Checklist.pdf",
 
     documentsRequired: [
       {
@@ -677,7 +686,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/greece-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 11,
@@ -699,7 +708,7 @@ export const countryData = [
     lengthOfStay: "Up to 90 days",
     validity: "6 months",
     entryType: "Single/Multiple",
-    pdfDownload: "/pdf/visa-guides/norway-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -747,7 +756,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/norway-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 12,
@@ -770,7 +779,7 @@ export const countryData = [
     validity: "6 months",
     entryType: "Single/Multiple",
 
-    pdfDownload: "/pdf/visa-guides/denmark-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -814,7 +823,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/denmark-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 13,
@@ -838,7 +847,7 @@ export const countryData = [
     entryType: "Single/Multiple",
     processingTime: "15 calendar days",
 
-    pdfDownload: "/pdf/visa-guides/finland-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -885,7 +894,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/finland-visa-sample.pdf",
+    sampleVisaCopy: null,
     specialNotes:
       "Lapland visits require extra documentation for winter activities between November-March",
   },
@@ -910,7 +919,7 @@ export const countryData = [
     entryType: "Single/Multiple",
     processingTime: "10-15 working days",
 
-    pdfDownload: "/pdf/visa-guides/sweden-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -955,7 +964,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/sweden-visa-sample.pdf",
+    sampleVisaCopy: null,
     specialNotes:
       "Stockholm archipelago visits require detailed ferry schedules in summer months",
   },
@@ -980,7 +989,7 @@ export const countryData = [
     entryType: "Single/Multiple",
     processingTime: "10-15 working days",
 
-    pdfDownload: "/pdf/visa-guides/iceland-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -1026,7 +1035,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/iceland-visa-sample.pdf",
+    sampleVisaCopy: null,
     specialNotes:
       "F-road mountain routes require certified 4x4 vehicles between June-September",
   },
@@ -1053,7 +1062,7 @@ export const countryData = [
     entryType: "Single / Multiple",
     processingTime: "15 working days",
 
-    pdfDownload: "/pdf/visa-sample/uk-visa-sample.pdf",
+    pdfDownload: "/pdf/UK TOURIST VISA CHECKLIST.pdf",
 
     documentsRequired: [
       {
@@ -1107,7 +1116,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-sample/uk-visa-sample.pdf",
+    sampleVisaCopy: null,
     specialNotes:
       "Visitor visas do not allow employment or extended study beyond 30 days.",
   },
@@ -1132,7 +1141,7 @@ export const countryData = [
     entryType: "Single / Multiple",
     processingTime: "3-10 working days",
 
-    pdfDownload: "/pdf/visa-sample/turkey-visa-sample.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -1186,7 +1195,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-sample/turkey-visa-sample.pdf",
+    sampleVisaCopy: null,
     specialNotes:
       "For long stays or study, sticker visa is mandatory. E-visas are issued for tourism and business purposes only.",
   },
@@ -1211,7 +1220,7 @@ export const countryData = [
     entryType: "Single / Multiple",
     processingTime: "5-10 working days",
 
-    pdfDownload: "/pdf/visa-sample/georgia-visa-sample.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -1266,7 +1275,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-sample/georgia-visa-sample.pdf",
+    sampleVisaCopy: null,
     specialNotes:
       "Georgia is a visa-free destination for some countries. E-visas are suitable for short-term stays involving tourism or business.",
   },
@@ -1293,7 +1302,7 @@ export const countryData = [
     entryType: "Single/Multiple",
     processingTime: "10-15 working days",
 
-    pdfDownload: "/pdf/visa-guides/poland-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -1340,7 +1349,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/poland-visa-sample.pdf",
+    sampleVisaCopy: null,
     specialNotes:
       "Historic site visits (like Auschwitz) require advance online registrations",
   },
@@ -1365,7 +1374,7 @@ export const countryData = [
     validity: "2 years",
     entry: "Multiple",
 
-    pdfDownload: "/pdf/visa-guides/singapore-visa-guide.pdf",
+    pdfDownload: "/pdf/Singapore Tourist Visa Checklist- Bangalore.pdf",
 
     documentsRequired: [
       {
@@ -1407,7 +1416,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/singapore-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
   {
     id: 114,
@@ -1429,7 +1438,7 @@ export const countryData = [
     validity: "6 months",
     entry: "Single / Multiple",
 
-    pdfDownload: "/pdf/visa-guides/croatia-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -1477,7 +1486,7 @@ export const countryData = [
       },
     ],
 
-    sampleVisaCopy: "/pdf/visa-samples/croatia-visa-sample.pdf",
+    sampleVisaCopy: null,
   },
 
   {
@@ -1500,7 +1509,7 @@ export const countryData = [
     validity: "6 months",
     entry: "Single / Multiple",
 
-    pdfDownload: "/pdf/visa-guides/malta-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -1571,7 +1580,7 @@ export const countryData = [
     validity: "6 months",
     entry: "Single / Multiple",
 
-    pdfDownload: "/pdf/visa-guides/germany-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -1642,7 +1651,7 @@ export const countryData = [
     lengthOfStay: "Up to 6 months",
     validity: "10 years",
 
-    pdfDownload: "/pdf/visa-guides/usa-visa-guide.pdf",
+    pdfDownload: null,
 
     documentsRequired: [
       {
@@ -1732,7 +1741,7 @@ export const countryData = [
     validity: "3 months",
     entry: "Single/Multiple",
 
-    pdfDownload: "/pdf/visa-guides/south-korea-visa-guide.pdf",
+    pdfDownload: "/pdf/South Korea Tourist Visa Checklist.pdf",
 
     documentsRequired: [
       {
@@ -1781,6 +1790,84 @@ export const countryData = [
 
     sampleVisaCopy: "/pdf/visa-samples/south-korea-visa-sample.pdf",
   },
+  {
+    id: 20,
+    name: "South Africa",
+    searchName: "South Africa ZA",
+    price: "8500",
+    continent: "Africa",
+    isTrending: true,
+    visasOnTime: "120K+",
+    flag: "/images/flags/za.webp",
+    landmark: "/images/landmarks/Table Mountain tourist places in South Africa Visa.webp",
+    landmarkName: "Table Mountain",
+    altName: "Table Mountain tourist places in South Africa Visa",
+    description: "South Africa offers diverse landscapes, wildlife safaris, vibrant cities, and rich cultural heritage.",
+
+    visaType: "Sticker Visa",
+    lengthOfStay: "Up to 90 days",
+    validity: "6 months",
+    entry: "Single/Multiple",
+
+    pdfDownloads: [
+      {
+        name: "Tourist Visa Checklist",
+        url: "/pdf/South Africa Tourist Visa checklist.pdf"
+      },
+      {
+        name: "Business Visa Checklist",
+        url: "/pdf/South Africa Business Visa checklist.pdf"
+      }
+    ],
+
+    documentsRequired: [
+      {
+        category: "Standard Documents",
+        documents: [
+          "Passport (valid for 6+ months beyond stay)",
+          "Completed application form",
+          "Recent passport-size photograph",
+          "Proof of accommodation",
+          "Return flight tickets",
+          "Bank statements (last 3 months)",
+        ],
+      },
+      {
+        category: "For Business Visits",
+        documents: [
+          "Invitation letter from South African company",
+          "Company registration documents",
+          "Cover letter from Indian employer",
+        ],
+      },
+    ],
+
+    rejectionReasons: [
+      {
+        title: "Insufficient Financial Proof",
+        description: "Bank statements don't show adequate funds for the trip",
+        icon: "money",
+      },
+      {
+        title: "Missing Accommodation Details",
+        description: "No confirmed hotel bookings or invitation letter",
+        icon: "hotel",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Can I visit other African countries with this visa?",
+        answer: "No, this visa is only valid for South Africa",
+      },
+      {
+        question: "Is yellow fever vaccination required?",
+        answer: "Yes, if traveling from or through yellow fever endemic countries",
+      },
+    ],
+
+    sampleVisaCopy: null,
+  },
 ];
 
  // {
@@ -1804,7 +1891,7 @@ export const countryData = [
   //     entryType: "Single",
   //     processingTime: "4-8 weeks (peak season)"
   //   },
-  //   pdfDownload: "/pdf/visa-guides/ireland-visa-guide.pdf",
+  //   pdfDownload: "/pdf/IRELAND FAMILY VISIT VISA CHECKLIST.pdf",
 
   //   documentsRequired: [
   //     {
@@ -2442,7 +2529,7 @@ export const countryData = [
 //       lengthOfStay: "Up to 90 days",
 //       validity: "5 years (for US visa holders)",
 //     },
-//     pdfDownload: "/pdf/visa-guides/brazil-visa-guide.pdf",
+//     pdfDownload: "/pdf/Brazil Tourist Visa Checklist.pdf",
 
 //     documentsRequired: [
 //       {
@@ -2509,7 +2596,7 @@ export const countryData = [
 //       lengthOfStay: "90 days",
 //       validity: "Multiple entries for 3 years",
 //     },
-//     pdfDownload: "/pdf/visa-guides/argentina-visa-guide.pdf",
+//     pdfDownload: "/pdf/Argentina Tourist Visa Checklist.pdf",
 
 //     documentsRequired: [
 //       {

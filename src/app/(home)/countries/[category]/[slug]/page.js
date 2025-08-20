@@ -185,13 +185,50 @@ const CountryDetails = () => {
                 ))}
               </div>
             </section>
-            <div className="mt-6">
-              <button className="bg-blue-600 mx-auto cursor-pointer hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-                Download Document Checklist
-              </button>
+            <div className="mt-6 flex justify-center">
+              {(country.pdfDownload || country.pdfDownloads) ? (
+                <button 
+                  onClick={() => {
+                    if (country.pdfDownloads) {
+                      // Download multiple PDFs
+                      country.pdfDownloads.forEach((pdf, index) => {
+                        setTimeout(() => {
+                          const link = document.createElement('a');
+                          link.href = pdf.url;
+                          link.download = pdf.name + '.pdf';
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                        }, index * 500); // 500ms delay between downloads
+                      });
+                    } else if (country.pdfDownload) {
+                      // Download single PDF
+                      const link = document.createElement('a');
+                      link.href = country.pdfDownload;
+                      link.download = 'Document Checklist.pdf';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }
+                  }}
+                  className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 w-fit"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                  {country.pdfDownloads ? 'Download All Document Checklists' : 'Download Document Checklist'}
+                </button>
+              ) : (
+                <button 
+                  disabled
+                  className="bg-gray-400 cursor-not-allowed text-white px-6 py-3 rounded-lg flex items-center gap-2 opacity-50 w-fit"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                  Document Checklist Not Available
+                </button>
+              )}
             </div>
 
             {/* Rejection Reasons */}
