@@ -1799,9 +1799,9 @@ export const countryData = [
     isTrending: true,
     visasOnTime: "120K+",
     flag: "/images/flags/za.webp",
-    landmark: "/images/landmarks/Table Mountain tourist places in South Africa Visa.webp",
+    landmark: "/images/landmarks/Table Mountain in South Africa Visa.webp",
     landmarkName: "Table Mountain",
-    altName: "Table Mountain tourist places in South Africa Visa",
+    altName: "Table Mountain in South Africa Visa",
     description: "South Africa offers diverse landscapes, wildlife safaris, vibrant cities, and rich cultural heritage.",
 
     visaType: "Sticker Visa",
@@ -1868,781 +1868,351 @@ export const countryData = [
 
     sampleVisaCopy: null,
   },
+  {
+    id: 21,
+    name: "Ireland",
+    searchName: "Ireland IE",
+    price: "8500",
+    continent: "Europe",
+    isTrending: false,
+    visasOnTime: "95K+",
+    flag: "/images/flags/ie.webp",
+    landmark: "/images/landmarks/Cliffs of Moher in Ireland Visa.webp",
+    landmarkName: "Cliffs of Moher",
+    altName: "Cliffs of Moher in Ireland Visa",
+    description: "Ireland captivates with rugged coastlines, ancient castles, vibrant pubs, and rich literary heritage.",
+
+    visaType: "Short-Stay 'C' Visa",
+    lengthOfStay: "Up to 90 days",
+    validity: "6 months",
+    entry: "Single",
+    processingTime: "4-8 weeks (peak season)",
+
+    pdfDownload: "/pdf/IRELAND FAMILY VISIT VISA CHECKLIST.pdf",
+
+    documentsRequired: [
+      {
+        category: "Core Documents",
+        documents: [
+          "Passport valid 6+ months beyond stay",
+          "Signed letter of application",
+          "Proof of ties to home country",
+          "Medical/travel insurance (minimum €25,000)"
+        ]
+      },
+      {
+        category: "Financial Proof",
+        documents: [
+          "6 months bank statements",
+          "Sponsorship form if applicable",
+          "Minimum €100 per day of stay"
+        ]
+      }
+    ],
+
+    rejectionReasons: [
+      {
+        title: "Pub Crawl Itinerary",
+        description: "Focusing only on alcohol-related activities",
+        icon: "beer"
+      },
+      {
+        title: "UK-Ireland Confusion",
+        description: "Attempting to enter UK with Irish visa",
+        icon: "border"
+      }
+    ],
+
+    faqs: [
+      {
+        question: "Can I visit Northern Ireland?",
+        answer: "No, requires separate UK visa despite geographic proximity"
+      },
+      {
+        question: "Is Gaelic language proof required?",
+        answer: "No, English is sufficient for all official purposes"
+      }
+    ],
+
+    sampleVisaCopy: null,
+    specialNotes: "Important: Ireland is not part of Schengen despite EU membership"
+  },
+
+  {
+    id: 22,
+    name: "New Zealand",
+    searchName: "New Zealand NZ",
+    price: "9500",
+    continent: "Oceania",
+    isTrending: true,
+    visasOnTime: "85K+",
+    flag: "/images/flags/nz.webp",
+    landmark: "/images/landmarks/Milford Sound in New Zealand Visa.webp",
+    landmarkName: "Milford Sound",
+    altName: "Milford Sound in New Zealand Visa",
+    description: "New Zealand offers breathtaking landscapes, adventure sports, Maori culture, and world-class hiking trails.",
+
+    visaType: "Visitor Visa",
+    lengthOfStay: "Up to 9 months",
+    validity: "18 months",
+    entry: "Multiple",
+    processingTime: "20 working days",
+
+    pdfDownload: "/pdf/New Zealand Tourist Visa Checklist.pdf",
+
+    documentsRequired: [
+      {
+        category: "Standard Requirements",
+        documents: [
+          "Passport valid 3+ months beyond stay",
+          "Completed application form",
+          "Recent passport photo",
+          "Proof of funds (NZD 1,000 per month)",
+          "Return flight tickets"
+        ]
+      },
+      {
+        category: "Additional Documents",
+        documents: [
+          "Travel insurance",
+          "Detailed itinerary",
+          "Proof of accommodation"
+        ]
+      }
+    ],
+
+    rejectionReasons: [
+      {
+        title: "Insufficient Funds",
+        description: "Cannot demonstrate adequate financial support",
+        icon: "money"
+      },
+      {
+        title: "Vague Travel Plans",
+        description: "Lack of detailed itinerary or accommodation proof",
+        icon: "itinerary"
+      }
+    ],
+
+    faqs: [
+      {
+        question: "Can I work on a visitor visa?",
+        answer: "No, visitor visas do not permit employment"
+      },
+      {
+        question: "Is travel insurance mandatory?",
+        answer: "Highly recommended but not legally required"
+      }
+    ],
+
+    sampleVisaCopy: null
+  },
+
+  {
+    id: 23,
+    name: "Brazil",
+    searchName: "Brazil BR",
+    price: "9500",
+    continent: "South America",
+    isTrending: true,
+    visasOnTime: "85K+",
+    flag: "/images/flags/br.webp",
+    landmark: "/images/landmarks/Christ the Redeemer tourist places in Brazil Visa.webp",
+    landmarkName: "Christ the Redeemer",
+    altName: "Christ the Redeemer tourist places in Brazil Visa",
+    description: "Brazil dazzles with its vibrant carnivals, Amazon rainforest, and iconic beaches of Rio de Janeiro.",
+
+    visaType: "Tourist Visa (VIVIS)",
+    lengthOfStay: "Up to 90 days",
+    validity: "5 years (for US visa holders)",
+    entry: "Multiple",
+    processingTime: "10-15 working days",
+
+    pdfDownload: "/pdf/Brazil Tourist Visa Checklist.pdf",
+
+    documentsRequired: [
+      {
+        category: "Core Requirements",
+        documents: [
+          "Passport with 2 blank pages",
+          "Recent 2x2 inch photo (white background)",
+          "Proof of onward travel",
+          "Bank statements (last 3 months)",
+          "Yellow fever certificate (if applicable)"
+        ]
+      },
+      {
+        category: "For Minors",
+        documents: [
+          "Notarized parental consent",
+          "Birth certificate copy"
+        ]
+      }
+    ],
+
+    rejectionReasons: [
+      {
+        title: "Criminal Record",
+        description: "Felony convictions may disqualify applicants",
+        icon: "criminal"
+      },
+      {
+        title: "Incomplete Application",
+        description: "Missing biometrics or signatures",
+        icon: "incomplete"
+      }
+    ],
+
+    faqs: [
+      {
+        question: "Is visa required for Carnival visit?",
+        answer: "Yes, all tourists need visa regardless of purpose"
+      },
+      {
+        question: "Can I visit Iguazu Falls with this visa?",
+        answer: "Yes, but need separate permit for Argentine side"
+      }
+    ],
+
+    sampleVisaCopy: null
+  },
+
+  {
+    id: 24,
+    name: "Argentina",
+    searchName: "Argentina AR",
+    price: "8800",
+    continent: "South America",
+    isTrending: false,
+    visasOnTime: "72K+",
+    flag: "/images/flags/ar.webp",
+    landmark: "/images/landmarks/Iguazu Falls tourist places in Argentina Visa.webp",
+    landmarkName: "Iguazu Falls",
+    altName: "Iguazu Falls tourist places in Argentina Visa",
+    description: "Argentina offers spectacular natural wonders, passionate tango, and world-renowned beef cuisine.",
+
+    visaType: "ETA",
+    lengthOfStay: "90 days",
+    validity: "Multiple entries for 3 years",
+    entry: "Multiple",
+    processingTime: "5-10 working days",
+
+    pdfDownload: "/pdf/Argentina Tourist Visa Checklist.pdf",
+
+    documentsRequired: [
+      {
+        category: "ETA Requirements",
+        documents: [
+          "Passport valid for 6+ months",
+          "Digital photo meeting specifications",
+          "Credit card for payment",
+          "Confirmed accommodation details"
+        ]
+      },
+      {
+        category: "Additional for Business",
+        documents: [
+          "Invitation from Argentine company",
+          "Company registration documents"
+        ]
+      }
+    ],
+
+    rejectionReasons: [
+      {
+        title: "Previous Immigration Violations",
+        description: "Overstays in Argentina or neighboring countries",
+        icon: "overstay"
+      },
+      {
+        title: "Health Restrictions",
+        description: "Failure to meet vaccination requirements",
+        icon: "health"
+      }
+    ],
+
+    faqs: [
+      {
+        question: "Is reciprocity fee still applicable?",
+        answer: "No, abolished for most nationalities since 2016"
+      },
+      {
+        question: "Can I visit Antarctica from Argentina?",
+        answer: "Yes, but requires additional permits from tour operators"
+      }
+    ],
+
+    sampleVisaCopy: null
+  },
+
+  {
+    id: 25,
+    name: "Australia",
+    searchName: "Australia AU",
+    price: "12000",
+    continent: "Oceania",
+    isTrending: true,
+    visasOnTime: "180K+",
+    flag: "/images/flags/au.webp",
+    landmark: "/images/landmarks/Sydney Opera House in Australia Visa.webp",
+    landmarkName: "Sydney Opera House",
+    altName: "Sydney Opera House in Australia Visa",
+    description: "Australia offers stunning beaches, unique wildlife, vibrant cities, and the iconic Outback landscape.",
+
+    visaType: "Visitor Visa (Subclass 600)",
+    lengthOfStay: "Up to 12 months",
+    validity: "12 months",
+    entry: "Single/Multiple",
+    processingTime: "15-30 working days",
+
+    pdfDownload: "/pdf/Australia Tourist Visa Checklist.pdf",
+
+    documentsRequired: [
+      {
+        category: "Standard Requirements",
+        documents: [
+          "Passport valid 6+ months beyond stay",
+          "Completed application form",
+          "Recent passport photo",
+          "Proof of funds (AUD 5,000+ for 3 months)",
+          "Travel insurance"
+        ]
+      },
+      {
+        category: "Additional Documents",
+        documents: [
+          "Detailed travel itinerary",
+          "Proof of accommodation",
+          "Return flight tickets",
+          "Employment/study proof"
+        ]
+      }
+    ],
+
+    rejectionReasons: [
+      {
+        title: "Insufficient Financial Proof",
+        description: "Cannot demonstrate adequate funds for the trip",
+        icon: "money"
+      },
+      {
+        title: "Weak Ties to Home Country",
+        description: "Insufficient proof of return intention",
+        icon: "home"
+      }
+    ],
+
+    faqs: [
+      {
+        question: "Can I work on a visitor visa?",
+        answer: "No, visitor visas strictly prohibit employment"
+      },
+      {
+        question: "Is medical examination required?",
+        answer: "Usually not required for stays under 6 months"
+      }
+    ],
+
+    sampleVisaCopy: null
+  },
 ];
-
- // {
-  //   id: 16,
-  //   name: "Ireland",
-  //   searchName: "Ireland",
-  //   price: "8,500",
-  //   continent: "Europe",
-  //   isTrending: false,
-  //   visasOnTime: "95K+",
-  //   flag: "/images/flags/ie.webp",
-  //   landmark: "/images/landmarks/Cliffs of Moher in Ireland Visa.webp",
-  //   landmarkName: "Cliffs of Moher",
-  //   altName: "Cliffs of Moher in Ireland Visa",
-  //   description: "Ireland captivates with rugged coastlines, ancient castles, vibrant pubs, and rich literary heritage.",
-
-  //   basicInfo: {
-  //     visaType: "Short-Stay 'C' Visa",
-  //     lengthOfStay: "Up to 90 days",
-  //     validity: "6 months",
-  //     entryType: "Single",
-  //     processingTime: "4-8 weeks (peak season)"
-  //   },
-  //   pdfDownload: "/pdf/IRELAND FAMILY VISIT VISA CHECKLIST.pdf",
-
-  //   documentsRequired: [
-  //     {
-  //       category: "Core Documents",
-  //       documents: [
-  //         "Passport valid 6+ months beyond stay",
-  //         "Signed letter of application",
-  //         "Proof of ties to home country",
-  //         "Medical/travel insurance (minimum €25,000)"
-  //       ]
-  //     },
-  //     {
-  //       category: "Financial Proof",
-  //       documents: [
-  //         "6 months bank statements",
-  //         "Sponsorship form if applicable",
-  //         "Minimum €100 per day of stay"
-  //       ]
-  //     }
-  //   ],
-
-  //   rejectionReasons: [
-  //     {
-  //       title: "Pub Crawl Itinerary",
-  //       description: "Focusing only on alcohol-related activities",
-  //       icon: "beer"
-  //     },
-  //     {
-  //       title: "UK-Ireland Confusion",
-  //       description: "Attempting to enter UK with Irish visa",
-  //       icon: "border"
-  //     }
-  //   ],
-
-  //   faqs: [
-  //     {
-  //       question: "Can I visit Northern Ireland?",
-  //       answer: "No, requires separate UK visa despite geographic proximity"
-  //     },
-  //     {
-  //       question: "Is Gaelic language proof required?",
-  //       answer: "No, English is sufficient for all official purposes"
-  //     }
-  //   ],
-
-  //   sampleVisaCopy: "/pdf/visa-samples/ireland-visa-sample.pdf",
-  //   specialNotes: "Important: Ireland is not part of Schengen despite EU membership"
-  // },
-
-// Other continents can be added similarly...
-// asia: [
-
-//   {
-//     id: 2,
-//     name: "Thailand",
-//     searchName: "Thailand",
-//     price: "4,500",
-//     continent: "Asia",
-//     isTrending: true,
-//     visasOnTime: "350K+",
-//     flag: "/images/flags/th.webp",
-//     landmark: "/images/landmarks/Grand Palace tourist places in Thailand Visa.webp",
-//     landmarkName: "Grand Palace",
-//     altName: "Grand Palace tourist places in Thailand Visa",
-//     description: "Thailand attracts visitors with tropical beaches, ornate temples, vibrant street life, and delicious cuisine.",
-
-//     basicInfo: {
-//       visaType: "Tourist Visa",
-//       lengthOfStay: "60 days",
-//       validity: "3 months",
-//       entry: "Single"
-//     },
-//     pdfDownload: "/pdf/visa-guides/thailand-visa-guide.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "Essential Documents",
-//         documents: [
-//           "Passport with 2 blank pages",
-//           "Application form with 4x6cm photo",
-//           "Proof of onward travel",
-//           "Financial proof (20,000 THB)"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Previous Overstay",
-//         description: "History of visa violations in Thailand",
-//         icon: "overstay"
-//       },
-//       {
-//         title: "Suspected Employment",
-//         description: "Insufficient tourism purpose evidence",
-//         icon: "work"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Can I extend my stay?",
-//         answer: "Yes, at immigration offices for 30 days (1,900 THB fee)"
-//       },
-//       {
-//         question: "Is visa-on-arrival available?",
-//         answer: "Yes for 15 days (2,000 THB, cash only)"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/thailand-visa-sample.pdf"
-//   },
-
-//   {
-//     id: 4,
-//     name: "South Korea",
-//     searchName: "South Korea KR",
-//     price: "8,200",
-//     continent: "Asia",
-//     isTrending: true,
-//     visasOnTime: "190K+",
-//     flag: "/images/flags/kr.webp",
-//     landmark: "/images/landmarks/Gyeongbokgung Palace in South Korea Visa.webp",
-//     landmarkName: "Gyeongbokgung Palace",
-//     altName: "Gyeongbokgung Palace in South Korea Visa",
-//     description: "South Korea combines futuristic cities, ancient palaces, K-pop culture, and world-renowned cuisine.",
-
-//     basicInfo: {
-//       visaType: "C-3 Tourist Visa",
-//       lengthOfStay: "90 days",
-//       validity: "3 months",
-//       entry: "Single/Multiple"
-//     },
-//     pdfDownload: "/pdf/visa-guides/south-korea-visa-guide.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "Mandatory Documents",
-//         documents: [
-//           "Passport (6+ months validity)",
-//           "Completed application form",
-//           "35x45mm color photo (white background)",
-//           "Detailed travel itinerary",
-//           "Bank statements (min. ₩1,000,000 balance)"
-//         ]
-//       },
-//       {
-//         category: "For First-Time Visitors",
-//         documents: [
-//           "Proof of employment/studies",
-//           "Return flight tickets",
-//           "Hotel reservations"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Incomplete Itinerary",
-//         description: "Missing day-by-day travel plans",
-//         icon: "itinerary"
-//       },
-//       {
-//         title: "North Korea Travel History",
-//         description: "Recent visits to DPRK without clearance",
-//         icon: "security"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Can I visit Jeju Island without visa?",
-//         answer: "Yes, visa-free for 30 days (direct flights only)"
-//       },
-//       {
-//         question: "Is K-ETA required with visa?",
-//         answer: "No, K-ETA is only for visa-free entries"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/south-korea-visa-sample.pdf"
-//   },
-//   {
-//     id: 5,
-//     name: "Malaysia",
-//     searchName: "Malaysia MY",
-//     price: "5,500",
-//     continent: "Asia",
-//     isTrending: false,
-//     visasOnTime: "320K+",
-//     flag: "/images/flags/my.webp",
-//     landmark: "/images/landmarks/Petronas Towers tourist places in Malaysia Visa.webp",
-//     landmarkName: "Petronas Towers",
-//     altName: "Petronas Towers tourist places in Malaysia Visa",
-//     description: "Malaysia offers diverse experiences from Kuala Lumpur's skyscrapers to Borneo's rainforests and pristine islands.",
-
-//     basicInfo: {
-//       visaType: "eVISA",
-//       lengthOfStay: "30 days",
-//       validity: "3 months",
-//       entry: "Single"
-//     },
-//     pdfDownload: "/pdf/visa-guides/malaysia-visa-guide.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "eVISA Requirements",
-//         documents: [
-//           "Passport bio page scan",
-//           "Digital photo (35x50mm)",
-//           "Confirmed return ticket",
-//           "Hotel booking (first 3 nights)"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Incorrect Photo Format",
-//         description: "Doesn't meet Malaysia's specifications",
-//         icon: "photo"
-//       },
-//       {
-//         title: "Previous Immigration Ban",
-//         description: "Record of overstay in Malaysia",
-//         icon: "ban"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Can I enter East Malaysia with this visa?",
-//         answer: "Yes, but may require additional documentation"
-//       },
-//       {
-//         question: "Is vaccination proof required?",
-//         answer: "Check latest MySejahtera requirements"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/malaysia-visa-sample.pdf"
-//   },
-//   {
-//     id: 6,
-//     name: "Vietnam",
-//     searchName: "Vietnam VN",
-//     price: "6,300",
-//     continent: "Asia",
-//     isTrending: true,
-//     visasOnTime: "250K+",
-//     flag: "/images/flags/vn.webp",
-//     landmark: "/images/landmarks/Ha Long Bay tourist places in Vietnam Visa.webp",
-//     landmarkName: "Ha Long Bay",
-//     altName: "Ha Long Bay tourist places in Vietnam Visa",
-//     description: "Vietnam captivates with its emerald waters, ancient towns, French colonial architecture, and vibrant street food culture.",
-
-//     basicInfo: {
-//       visaType: "eVISA/VOA",
-//       lengthOfStay: "30 days",
-//       validity: "1 month",
-//       entry: "Single"
-//     },
-//     pdfDownload: "/pdf/visa-guides/vietnam-visa-guide.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "For eVISA",
-//         documents: [
-//           "Passport scan (front page)",
-//           "Digital portrait photo (4x6cm)",
-//           "Entry/exit dates",
-//           "Port of entry details"
-//         ]
-//       },
-//       {
-//         category: "For Visa on Arrival",
-//         documents: [
-//           "Approval letter (pre-arranged)",
-//           "Passport photos (2 copies)",
-//           "USD cash for stamping fee ($25-$50)"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Name Mismatch",
-//         description: "Discrepancy between documents",
-//         icon: "name"
-//       },
-//       {
-//         title: "Invalid Port of Entry",
-//         description: "Applied for wrong airport/seaport",
-//         icon: "location"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Can I extend my eVISA in Vietnam?",
-//         answer: "Yes, through immigration offices (3-5 day processing)"
-//       },
-//       {
-//         question: "Is Phu Quoc Island visa-free?",
-//         answer: "Yes, for 30 days if arriving directly"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/vietnam-visa-sample.pdf"
-//   },
-//   {
-//     id: 7,
-//     name: "India",
-//     searchName: "India Bharat Hindustan",
-//     price: "3,800",
-//     continent: "Asia",
-//     isTrending: true,
-//     visasOnTime: "500K+",
-//     flag: "/images/flags/in.webp",
-//     landmark: "/images/landmarks/gateway-of-india.jpeg",
-//     landmarkName: "Gateway of India",
-//     altName: "Gateway of India in Mumbai",
-//     description: "India mesmerizes with its ancient heritage, diverse cultures, vibrant festivals, and breathtaking landscapes from Himalayas to tropical beaches.",
-
-//     basicInfo: {
-//       visaType: "e-Visa",
-//       lengthOfStay: "30/60/180 days",
-//       validity: "1 year",
-//       entry: "Multiple"
-//     },
-//     pdfDownload: "/pdf/visa-guides/india-visa-guide.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "e-Visa Requirements",
-//         documents: [
-//           "Passport with 6+ months validity",
-//           "Digital photo (2x2 inch)",
-//           "Scanned passport bio page",
-//           "Proof of onward travel"
-//         ]
-//       },
-//       {
-//         category: "Special Cases",
-//         documents: [
-//           "PIO/OCI card if applicable",
-//           "Parental authorization for minors"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Pakistani Travel History",
-//         description: "Recent visits without special clearance",
-//         icon: "security"
-//       },
-//       {
-//         title: "Incorrect Photo",
-//         description: "Doesn't meet India's strict standards",
-//         icon: "photo"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Can I visit restricted areas like Andamans?",
-//         answer: "Yes, but need RAP (Restricted Area Permit)"
-//       },
-//       {
-//         question: "Is separate visa required for Bhutan/Nepal?",
-//         answer: "No visa needed for these neighboring countries"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/india-visa-sample.pdf"
-//   },
-//   {
-//     id: 8,
-//     name: "Sri Lanka",
-//     searchName: "Sri Lanka SL",
-//     price: "4,200",
-//     continent: "Asia",
-//     isTrending: false,
-//     visasOnTime: "180K+",
-//     flag: "/images/flags/lk.webp",
-//     landmark: "/images/landmarks/Sigiriya Rock tourist places in Sri Lanka Visa.webp",
-//     landmarkName: "Sigiriya Rock",
-//     altName: "Ancient Sigiriya Rock Fortress",
-//     description: "Sri Lanka delights with its golden beaches, ancient ruins, tea plantations, and incredible wildlife including leopards and elephants.",
-
-//     basicInfo: {
-//       visaType: "ETA",
-//       lengthOfStay: "30 days",
-//       validity: "6 months",
-//       entry: "Double"
-//     },
-//     pdfDownload: "/pdf/visa-guides/sri-lanka-visa-guide.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "ETA Requirements",
-//         documents: [
-//           "Passport valid 6+ months",
-//           "Return/onward ticket",
-//           "Proof of sufficient funds ($50/day)"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Previous Visa Violations",
-//         description: "Overstaying during last visit",
-//         icon: "overstay"
-//       },
-//       {
-//         title: "Incomplete ETA Form",
-//         description: "Missing critical information",
-//         icon: "form"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Can I extend my stay beyond 30 days?",
-//         answer: "Yes, at Colombo Immigration for up to 6 months"
-//       },
-//       {
-//         question: "Is visa required for transit passengers?",
-//         answer: "No, if staying airside less than 12 hours"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/sri-lanka-visa-sample.pdf"
-//   },
-// ],
-
-// northamerica: [
-
-//   {
-//     id: 10,
-//     name: "Canada",
-//     searchName: "Canada",
-//     price: "12,500",
-//     continent: "North America",
-//     isTrending: true,
-//     visasOnTime: "350K+",
-//     flag: "/images/flags/ca.webp",
-//     landmark: "/images/landmarks/Tourist Places in Canada Visa.webp",
-//     landmarkName: "Niagara Falls",
-//     altName: "Niagara Falls in Canada Visa",
-//     description: "Canada boasts stunning natural landscapes from the Rocky Mountains to coastal beauty, along with vibrant multicultural cities like Toronto and Vancouver.",
-
-//     basicInfo: {
-//       visaType: "Visitor Visa",
-//       lengthOfStay: "Up to 6 months",
-//       validity: "10 years or passport expiry",
-//     },
-//     pdfDownload: "/pdf/visa-guides/canada-visa-guide.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "General Requirements",
-//         documents: [
-//           "Valid passport",
-//           "Proof of financial support",
-//           "Travel history",
-//           "Purpose of visit proof",
-//           "Immigration medical exam (if staying >6 months)"
-//         ]
-//       },
-//       {
-//         category: "For Super Visa (Parents/Grandparents)",
-//         documents: [
-//           "Letter of invitation from Canadian host",
-//           "Proof of private medical insurance",
-//           "Host's financial documents"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Insufficient Funds",
-//         description: "Cannot demonstrate ability to support stay",
-//         icon: "funds"
-//       },
-//       {
-//         title: "Criminal Inadmissibility",
-//         description: "Previous criminal record",
-//         icon: "criminal"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Is biometrics required?",
-//         answer: "Yes, for most applicants aged 14-79"
-//       },
-//       {
-//         question: "Can I work on visitor visa?",
-//         answer: "No, requires separate work permit"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/canada-visa-sample.pdf",
-//     visaTypes: [
-//       {
-//         type: "Canada Visitor Visa",
-//         processingTime: "15-20 days",
-//         stayPeriod: "Up to 6 months",
-//         validity: "10 years or until passport expiry",
-//         visaCategory: "Tourist / Family Visit",
-//         entry: "Single / Multiple",
-//         fees: "CAD 100/-"
-//       },
-//       {
-//         type: "Canada Student Visa",
-//         processingTime: "45 days",
-//         stayPeriod: "Course duration",
-//         validity: "1-4 years",
-//         visaCategory: "Student",
-//         entry: "Multiple",
-//         fees: "CAD 150/-"
-//       }
-//     ]
-//   },
-//   {
-//     id: 11,
-//     name: "Mexico",
-//     searchName: "Mexico",
-//     price: "8,800",
-//     continent: "North America",
-//     isTrending: false,
-//     visasOnTime: "200K+",
-//     flag: "/images/flags/mx.webp",
-//     landmark: "/images/landmarks/Tourist Places in Mexico Visa.webp",
-//     landmarkName: "Chichen Itza",
-//     altName: "Chichen Itza in Mexico Visa",
-//     description: "Mexico fascinates with ancient Mayan ruins, vibrant festivals, beautiful beaches, and rich culinary traditions recognized by UNESCO.",
-
-//     basicInfo: {
-//       visaType: "Tourist Visa",
-//       lengthOfStay: "Up to 180 days",
-//       validity: "6 months",
-//     },
-//     pdfDownload: "/pdf/visa-guides/mexico-visa-guide.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "Basic Requirements",
-//         documents: [
-//           "Passport (6+ months validity)",
-//           "Completed application form",
-//           "Proof of economic solvency",
-//           "Hotel reservation or invitation letter",
-//           "Return flight ticket"
-//         ]
-//       },
-//       {
-//         category: "For Business Visas",
-//         documents: [
-//           "Letter from Mexican company",
-//           "Company registration documents",
-//           "Bank statements"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Previous Immigration Issues",
-//         description: "History of overstay in Mexico",
-//         icon: "overstay"
-//       },
-//       {
-//         title: "Incomplete Itinerary",
-//         description: "Lack of clear travel plans",
-//         icon: "itinerary"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Do I need visa if I have US visa?",
-//         answer: "Yes, but can enter with valid US visa under certain conditions"
-//       },
-//       {
-//         question: "Can I extend my stay in Mexico?",
-//         answer: "Possible at INM offices before visa expires"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/mexico-visa-sample.pdf",
-//     visaTypes: [
-//       {
-//         type: "Mexico Tourist Visa",
-//         processingTime: "10-15 days",
-//         stayPeriod: "Up to 180 days",
-//         validity: "6 months",
-//         visaCategory: "Tourist",
-//         entry: "Single / Multiple",
-//         fees: "USD 36/-"
-//       },
-//       {
-//         type: "Mexico Business Visa",
-//         processingTime: "10-15 days",
-//         stayPeriod: "Up to 180 days",
-//         validity: "6 months",
-//         visaCategory: "Business",
-//         entry: "Single / Multiple",
-//         fees: "USD 36/-"
-//       }
-//     ]
-//   },
-// ],
-// southAmerica: [
-//   {
-//     id: 1,
-//     name: "Brazil",
-//     searchName: "Brazil",
-//     price: "9,500",
-//     continent: "South America",
-//     isTrending: true,
-//     visasOnTime: "85K+",
-//     flag: "/images/flags/br.webp",
-//     landmark: "/images/landmarks/Christ the Redeemer tourist places in Brazil Visa.webp",
-//     landmarkName: "Christ the Redeemer",
-//     altName: "Christ the Redeemer tourist places in Brazil Visa",
-//     description: "Brazil dazzles with its vibrant carnivals, Amazon rainforest, and iconic beaches of Rio de Janeiro.",
-
-//     basicInfo: {
-//       visaType: "Tourist Visa (VIVIS)",
-//       lengthOfStay: "Up to 90 days",
-//       validity: "5 years (for US visa holders)",
-//     },
-//     pdfDownload: "/pdf/Brazil Tourist Visa Checklist.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "Core Requirements",
-//         documents: [
-//           "Passport with 2 blank pages",
-//           "Recent 2x2 inch photo (white background)",
-//           "Proof of onward travel",
-//           "Bank statements (last 3 months)",
-//           "Yellow fever certificate (if applicable)"
-//         ]
-//       },
-//       {
-//         category: "For Minors",
-//         documents: [
-//           "Notarized parental consent",
-//           "Birth certificate copy"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Criminal Record",
-//         description: "Felony convictions may disqualify applicants",
-//         icon: "criminal"
-//       },
-//       {
-//         title: "Incomplete Application",
-//         description: "Missing biometrics or signatures",
-//         icon: "incomplete"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Is visa required for Carnival visit?",
-//         answer: "Yes, all tourists need visa regardless of purpose"
-//       },
-//       {
-//         question: "Can I visit Iguazu Falls with this visa?",
-//         answer: "Yes, but need separate permit for Argentine side"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/brazil-visa-sample.pdf"
-//   },
-//   {
-//     id: 2,
-//     name: "Argentina",
-//     searchName: "Argentina",
-//     price: "8,800",
-//     continent: "South America",
-//     isTrending: false,
-//     visasOnTime: "72K+",
-//     flag: "/images/flags/ar.webp",
-//     landmark: "/images/landmarks/Iguazu Falls tourist places in Argentina Visa.webp",
-//     landmarkName: "Iguazu Falls",
-//     altName: "Iguazu Falls tourist places in Argentina Visa",
-//     description: "Argentina offers spectacular natural wonders, passionate tango, and world-renowned beef cuisine.",
-
-//     basicInfo: {
-//       visaType: "ETA",
-//       lengthOfStay: "90 days",
-//       validity: "Multiple entries for 3 years",
-//     },
-//     pdfDownload: "/pdf/Argentina Tourist Visa Checklist.pdf",
-
-//     documentsRequired: [
-//       {
-//         category: "ETA Requirements",
-//         documents: [
-//           "Passport valid for 6+ months",
-//           "Digital photo meeting specifications",
-//           "Credit card for payment",
-//           "Confirmed accommodation details"
-//         ]
-//       },
-//       {
-//         category: "Additional for Business",
-//         documents: [
-//           "Invitation from Argentine company",
-//           "Company registration documents"
-//         ]
-//       }
-//     ],
-
-//     rejectionReasons: [
-//       {
-//         title: "Previous Immigration Violations",
-//         description: "Overstays in Argentina or neighboring countries",
-//         icon: "overstay"
-//       },
-//       {
-//         title: "Health Restrictions",
-//         description: "Failure to meet vaccination requirements",
-//         icon: "health"
-//       }
-//     ],
-
-//     faqs: [
-//       {
-//         question: "Is reciprocity fee still applicable?",
-//         answer: "No, abolished for most nationalities since 2016"
-//       },
-//       {
-//         question: "Can I visit Antarctica from Argentina?",
-//         answer: "Yes, but requires additional permits from tour operators"
-//       }
-//     ],
-
-//     sampleVisaCopy: "/pdf/visa-samples/argentina-visa-sample.pdf"
-//   }
-// ]
-
-// };
