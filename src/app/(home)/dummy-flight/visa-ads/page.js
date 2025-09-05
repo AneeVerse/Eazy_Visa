@@ -679,12 +679,12 @@ const DummyFlightBookingsAdsPage = () => {
                  
                  <div className="mb-4">
                    <p className="text-white font-medium text-base sm:text-lg mb-1">Get In Touch</p>
-                   <p className="text-blue-100 text-xs sm:text-sm lg:text-base">Email: support@eazyvisas.com & Phone: +917700006525</p>
+                   <p className="text-blue-100 text-xs sm:text-sm lg:text-base">Email: info@eazyvisas.com & Phone: +918850146905</p>
                  </div>
                  
                  <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                    <a 
-                     href="https://wa.me/917700006525" 
+                     href="https://wa.me/918850146905" 
                      target="_blank" 
                      rel="noopener noreferrer"
                      className="inline-flex items-center justify-center px-5 py-2.5 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 shadow-lg text-sm lg:text-base"
@@ -693,7 +693,7 @@ const DummyFlightBookingsAdsPage = () => {
                      Chat with us
                    </a>
                    <a 
-                     href="tel:+917700006525"
+                     href="tel:+918850146905"
                      className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-all duration-300 border-2 border-white shadow-lg text-sm lg:text-base"
                    >
                      <FaPhoneAlt className="mr-2" />
