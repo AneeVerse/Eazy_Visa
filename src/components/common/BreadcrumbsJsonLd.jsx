@@ -27,20 +27,20 @@ export default function BreadcrumbsJsonLd() {
       : process.env.NEXT_PUBLIC_SITE_URL) || "https://www.eazyvisas.com";
 
   const itemListElements = useMemo(() => {
-    // Do not compute for root path
-    if (!pathname || pathname === "/") {
-      return [];
-    }
-
+    // Build from path segments; include Home always
     const segments = pathname.split("/").filter(Boolean);
     const elements = [];
 
-    // Always include Home as the first breadcrumb
     elements.push({
       position: 1,
       name: "Home",
       item: siteUrl,
     });
+
+    // If root path, return only Home
+    if (!segments.length) {
+      return elements;
+    }
 
     let cumulativePath = "";
     segments.forEach((segment, index) => {
