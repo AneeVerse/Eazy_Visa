@@ -6,6 +6,7 @@ import ConditionalLayout from "../components/Layout/ConditionalLayout";
 import MetaPixel from "../components/common/MetaPixel";
 import Script from "next/script";
 import ConditionalTopLoader from "../components/common/ConditionalTopLoader";
+import BreadcrumbsJsonLd from "../components/common/BreadcrumbsJsonLd";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -125,6 +126,7 @@ export default function RootLayout({ children }) {
 
         {/* Page Content */}
         <ConditionalTopLoader />
+        <BreadcrumbsJsonLd />
         <ConditionalLayout>
           {children}
         </ConditionalLayout>
