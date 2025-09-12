@@ -264,7 +264,7 @@ const Contact = () => {
      sessionStorage.setItem('formSubmitted', 'true');
       
      // Redirect to thank you page
-     window.location.href = '/dummy-booking-confirmation';
+     window.location.href = '/visa-confirmation';
 
     } catch (error) {
       toast.error(error.message || 'Failed to send message. Please try again.', {

@@ -585,8 +585,8 @@ const addFlightLeg = () => {
                     // For visa ads page, redirect to thank-you-conversion
                     window.location.href = '/thank-you-conversion';
                 } else {
-                    // For normal dummy bookings, redirect to dummy-booking-confirmation
-                    window.location.href = '/dummy-booking-confirmation';
+                    // For normal dummy bookings, redirect to visa-confirmation
+                    window.location.href = '/visa-confirmation';
                 }
             } else {
                 toast.error(result.error || 'Failed to submit booking');
