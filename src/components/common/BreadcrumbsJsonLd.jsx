@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { BreadcrumbJsonLd } from "next-seo";
 
@@ -15,6 +15,11 @@ function toTitleCase(input) {
 
 export default function BreadcrumbsJsonLd() {
   const pathname = usePathname() || "/";
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const siteUrl =
     (typeof window === "undefined"
@@ -22,7 +27,7 @@ export default function BreadcrumbsJsonLd() {
       : process.env.NEXT_PUBLIC_SITE_URL) || "https://www.eazyvisas.com";
 
   const itemListElements = useMemo(() => {
-    // Do not render breadcrumbs on the root path
+    // Do not compute for root path
     if (!pathname || pathname === "/") {
       return [];
     }
@@ -50,9 +55,15 @@ export default function BreadcrumbsJsonLd() {
     return elements;
   }, [pathname, siteUrl]);
 
-  if (!itemListElements.length) return null;
+  // Avoid rendering during prerender/build and duplicate breadcrumb for root-only path
+  if (!isMounted || !itemListElements.length) return null;
 
-  return <BreadcrumbJsonLd itemListElements={itemListElements} />;
+  return (
+    <BreadcrumbJsonLd
+      useAppDir
+      itemListElements={itemListElements}
+    />
+  );
 }
 
 
