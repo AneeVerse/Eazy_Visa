@@ -565,8 +565,8 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                     // For visa ads page, redirect to thank-you-conversion
                     window.location.href = '/thank-you-conversion';
                 } else {
-                    // For normal dummy bookings, redirect to visa-confirmation
-                    window.location.href = '/visa-confirmation';
+                    // For normal dummy bookings, redirect to dynamic confirmation
+                    window.location.href = '/Confirmation-flight';
                 }
 
                 setFormData(initialFormData);

@@ -7,9 +7,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RiVisaLine } from "react-icons/ri";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { usePathname } from 'next/navigation';
 import CountryCodeDropdown from './CountryCodeDropdown';
 
 const ConsultationForm = () => {
+  const pathname = usePathname();
   const [formData, setFormData] = useState({ 
     firstName: "", 
     lastName: "", 
@@ -115,8 +117,26 @@ const ConsultationForm = () => {
       // Set flag in sessionStorage before redirecting
       sessionStorage.setItem('formSubmitted', 'true');
       
-      // Redirect to thank you page
-      window.location.href = '/visa-confirmation';
+      // Redirect to dynamic thank you page based on service context or visa type
+      let redirectUrl = '/Confirmation-contact'; // Default fallback
+      
+      // Check service page context first, then check countries pages, then fallback to visa type selection
+      if (pathname && pathname.includes('/services/end-to-end')) {
+        redirectUrl = '/Confirmation-end-to-end';
+      } else if (pathname && pathname.includes('/services/tourist-visa')) {
+        redirectUrl = '/Visa-confirmation-tourist';
+      } else if (pathname && pathname.includes('/services/business-visa')) {
+        redirectUrl = '/Visa-confirmation-business';
+      } else if (pathname && pathname.includes('/countries/')) {
+        // For countries pages, always redirect to countries confirmation
+        redirectUrl = '/Confirmation-countries';
+      } else if (formData.visaType === 'Tourist Visa') {
+        redirectUrl = '/Visa-confirmation-tourist';
+      } else if (formData.visaType === 'Business Visa') {
+        redirectUrl = '/Visa-confirmation-business';
+      }
+      
+      window.location.href = redirectUrl;
       
     } catch (error) {
       toast.error(error.message || "Submission failed. Please try again.", {

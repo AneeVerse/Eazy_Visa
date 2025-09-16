@@ -263,8 +263,8 @@ const Contact = () => {
      // Set flag in sessionStorage before redirecting
      sessionStorage.setItem('formSubmitted', 'true');
       
-     // Redirect to thank you page
-     window.location.href = '/visa-confirmation';
+     // Redirect to dynamic thank you page for contact form
+     window.location.href = '/Confirmation-contact';
 
     } catch (error) {
       toast.error(error.message || 'Failed to send message. Please try again.', {

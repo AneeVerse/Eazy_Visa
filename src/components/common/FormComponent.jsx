@@ -5,11 +5,12 @@ import { BiSupport, BiUser, BiEnvelope, BiPhone, BiCheckShield, BiWorld, BiTask 
 import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import CountryCodeDropdown from './CountryCodeDropdown';
 
 const FormComponent = () => {
   const params = useParams();
+  const pathname = usePathname();
   const slug = params?.slug || '';
   
   const [formData, setFormData] = useState({
@@ -363,8 +364,26 @@ const FormComponent = () => {
       // Set flag in sessionStorage before redirecting
       sessionStorage.setItem('formSubmitted', 'true');
       
-      // Redirect to thank you page
-      window.location.href = '/visa-confirmation';
+      // Redirect to dynamic thank you page based on service context or visa type
+      let redirectUrl = '/Confirmation-contact'; // Default fallback
+      
+      // Check service page context first, then check countries pages, then fallback to visa type selection
+      if (pathname && pathname.includes('/services/end-to-end')) {
+        redirectUrl = '/Confirmation-end-to-end';
+      } else if (pathname && pathname.includes('/services/tourist-visa')) {
+        redirectUrl = '/Visa-confirmation-tourist';
+      } else if (pathname && pathname.includes('/services/business-visa')) {
+        redirectUrl = '/Visa-confirmation-business';
+      } else if (pathname && pathname.includes('/countries/')) {
+        // For countries pages, always redirect to countries confirmation
+        redirectUrl = '/Confirmation-countries';
+      } else if (formData.visaType === 'Tourist Visa') {
+        redirectUrl = '/Visa-confirmation-tourist';
+      } else if (formData.visaType === 'Business Visa') {
+        redirectUrl = '/Visa-confirmation-business';
+      }
+      
+      window.location.href = redirectUrl;
       
     } catch (error) {
       toast.error(error.message || 'Failed to submit form. Please try again later.', {

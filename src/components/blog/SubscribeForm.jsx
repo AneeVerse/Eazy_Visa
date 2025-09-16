@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BiUser, BiEnvelope, BiPhone } from 'react-icons/bi';
+import { BiUser, BiEnvelope, BiPhone, BiTask } from 'react-icons/bi';
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
 
 const SubscribeForm = () => {
@@ -13,7 +13,8 @@ const SubscribeForm = () => {
     lastName: '',
     email: '',
     phone: '',
-    countryCode: '+91' // Default to India
+    countryCode: '+91', // Default to India
+    service: '' // Add service field
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,6 +52,10 @@ const SubscribeForm = () => {
       errors.phone = 'Please enter a valid phone number (10-15 digits)';
     }
 
+    if (!formData.service) {
+      errors.service = 'Please select a service';
+    }
+
     return errors;
   };
 
@@ -80,7 +85,8 @@ const SubscribeForm = () => {
         body: JSON.stringify({
           ...formData,
           phone: fullPhoneNumber, // Send the complete phone number with country code for email
-          googleSheetsPhone: googleSheetsPhone // Send clean version for Google Sheets
+          googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
+          service: formData.service // Include selected service
         }),
       });
 
@@ -90,8 +96,8 @@ const SubscribeForm = () => {
         throw new Error(data.message || 'Submission failed');
       }
 
-      // Redirect to thank you page after successful submission
-      window.location.href = '/visa-confirmation';
+      // Always redirect to blog confirmation page regardless of selected service
+      window.location.href = '/confirmation-blogs';
       
     } catch (error) {
       toast.error(error.message || 'Failed to submit. Please try again later.');
@@ -102,7 +108,7 @@ const SubscribeForm = () => {
 
   return (
     <>
-      <div className="bg-[#003554] text-white rounded-2xl shadow-lg overflow-hidden max-w-md mx-auto">
+      <div className="bg-[#003554] text-white rounded-2xl shadow-lg overflow-visible max-w-md mx-auto">
         <div className="relative h-[170px]">
           <Image
             src="https://images.unsplash.com/photo-1601342550031-d6df73676153?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -168,15 +174,20 @@ const SubscribeForm = () => {
 
             {/* Phone Field */}
             <div>
-              <div className="flex">
-                <CountryCodeDropdown
-                  value={formData.countryCode}
-                  onChange={handleCountryCodeChange}
-                  height="h-12"
-                  bgColor="bg-[#006494]/80"
-                  borderColor="border-blue-700"
-                  className="flex-shrink-0"
-                />
+              <div className="flex relative z-50">
+                <div className="relative z-[60]">
+                  <CountryCodeDropdown
+                    value={formData.countryCode}
+                    onChange={handleCountryCodeChange}
+                    height="h-12"
+                    bgColor="bg-[#006494]/80"
+                    borderColor="border-blue-700"
+                    className="flex-shrink-0 w-20 text-sm"
+                    direction="up"
+                    dropdownClassName="absolute top-full left-0 mt-1 bg-[#003554] border border-blue-700 rounded-md shadow-lg max-h-40 overflow-y-auto z-[70] min-w-[120px]"
+                    textSize="text-sm"
+                  />
+                </div>
                 <div className="relative flex-1">
                   <input
                     type="tel"
@@ -187,6 +198,31 @@ const SubscribeForm = () => {
                     className="w-full px-4 pl-10 py-3 border border-l-0 rounded-r-lg bg-[#006494]/80 text-white border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <BiPhone className="absolute left-3 top-3 mt-1 text-gray-300" />
+                </div>
+              </div>
+            </div>
+
+            {/* Service Field */}
+            <div>
+              <div className="relative">
+                <select
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  className="w-full px-4 pl-10 py-3 rounded-lg bg-[#006494]/80 text-white border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
+                >
+                  <option value="" className="bg-[#003554] text-white">Select Service</option>
+                  <option value="Tourist Visa" className="bg-[#003554] text-white">Tourist Visa</option>
+                  <option value="Business Visa" className="bg-[#003554] text-white">Business Visa</option>
+                  <option value="End to End" className="bg-[#003554] text-white">End to End</option>
+                  <option value="Dummy Hotel" className="bg-[#003554] text-white">Dummy Hotel</option>
+                  <option value="Dummy Flight" className="bg-[#003554] text-white">Dummy Flight</option>
+                </select>
+                <BiTask className="absolute left-3 top-3 mt-1 text-gray-300" />
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                  <svg className="h-4 w-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
                 </div>
               </div>
             </div>

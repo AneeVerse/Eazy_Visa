@@ -12,7 +12,8 @@ const CountryCodeDropdown = ({
   error = false,
   height = "h-10", // Default height to match input fields
   bgColor = "bg-white", // Default background color
-  borderColor = "border-blue-700" // Default border color
+  borderColor = "border-blue-700", // Default border color
+  direction = "down" // 'down' (default) or 'up'
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -125,7 +126,7 @@ const CountryCodeDropdown = ({
             {isOpen && !disabled && (
         <div 
           data-country-dropdown
-          className="absolute z-50 w-72 bg-white border border-gray-300 rounded-lg shadow-lg max-h-80 overflow-hidden top-full mt-1"
+          className={`absolute z-50 w-72 bg-white border border-gray-300 rounded-lg shadow-lg max-h-80 overflow-hidden ${direction === 'up' ? 'bottom-full mb-1' : 'top-full mt-1'}`}
         >
           {/* Search Input */}
           <div className="sticky top-0 bg-white border-b border-gray-200 p-3">
@@ -137,7 +138,7 @@ const CountryCodeDropdown = ({
               onChange={handleSearchChange}
               onFocus={(e) => e.stopPropagation()}
               onMouseDown={(e) => e.stopPropagation()}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-400"
               autoFocus
             />
           </div>

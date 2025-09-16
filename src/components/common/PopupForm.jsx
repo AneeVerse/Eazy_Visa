@@ -353,7 +353,9 @@ const PopupForm = () => {
       }
 
       sessionStorage.setItem('formSubmitted', 'true');
-      window.location.href = '/visa-confirmation';
+      
+      // PopupForm is generally for contact/general inquiries
+      window.location.href = '/Confirmation-contact';
       
     } catch (error) {
       toast.error(error.message || 'Failed to submit form. Please try again later.', {
