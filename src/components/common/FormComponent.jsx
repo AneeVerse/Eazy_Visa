@@ -5,14 +5,17 @@ import { BiSupport, BiUser, BiEnvelope, BiPhone, BiCheckShield, BiWorld, BiTask 
 import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import CountryCodeDropdown from './CountryCodeDropdown';
+import CalendarPopup from './CalendarPopup';
+import InvoicePopup from './InvoicePopup';
+import PaymentGateway from './PaymentGateway';
 
 const FormComponent = () => {
   const params = useParams();
   const pathname = usePathname();
   const slug = params?.slug || '';
-  
+  const router = useRouter();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -39,6 +42,14 @@ const FormComponent = () => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isAccepted, setIsAccepted] = useState(true);
+
+  // New state for booking flow
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showInvoice, setShowInvoice] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDateTime, setSelectedDateTime] = useState("");
+  const [paymentData, setPaymentData] = useState(null);
 
   // Sample options for dropdowns
   const visaTypes = [
@@ -334,6 +345,16 @@ const FormComponent = () => {
       return;
     }
 
+    // Check if we're on a country page or service page - if so, trigger booking flow
+    if (pathname && (pathname.includes('/countries/') || 
+                     pathname.includes('/services/tourist-visa') || 
+                     pathname.includes('/services/business-visa') || 
+                     pathname.includes('/services/end-to-end'))) {
+      setShowCalendar(true);
+      return;
+    }
+
+    // Original form submission logic for non-country pages
     setIsLoading(true);
 
     try {
@@ -374,9 +395,6 @@ const FormComponent = () => {
         redirectUrl = '/Visa-confirmation-tourist';
       } else if (pathname && pathname.includes('/services/business-visa')) {
         redirectUrl = '/Visa-confirmation-business';
-      } else if (pathname && pathname.includes('/countries/')) {
-        // For countries pages, always redirect to countries confirmation
-        redirectUrl = '/Confirmation-countries';
       } else if (formData.visaType === 'Tourist Visa') {
         redirectUrl = '/Visa-confirmation-tourist';
       } else if (formData.visaType === 'Business Visa') {
@@ -398,6 +416,43 @@ const FormComponent = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Booking flow handlers
+  const handleDateSelect = (date, time) => {
+    setSelectedDate(date);
+    setSelectedDateTime(time);
+    setShowCalendar(false);
+    setShowInvoice(true);
+  };
+
+  const handleInvoiceConfirm = (invoiceData) => {
+    try {
+      localStorage.setItem('paymentData', JSON.stringify(invoiceData));
+    } catch (_) {}
+    setPaymentData(invoiceData);
+    setShowInvoice(false);
+    router.push('/payment');
+  };
+
+  const handlePaymentSuccess = () => {
+    setShowPayment(false);
+    // Redirect to confirmation page
+    window.location.href = '/Confirmation-countries';
+  };
+
+  const handleCloseCalendar = () => {
+    setShowCalendar(false);
+  };
+
+  const handleCloseInvoice = () => {
+    setShowInvoice(false);
+    setShowCalendar(true);
+  };
+
+  const handleClosePayment = () => {
+    setShowPayment(false);
+    setShowInvoice(true);
   };
 
   return (
@@ -670,7 +725,7 @@ const FormComponent = () => {
                 </>
               ) : (
                 <>
-                  <span>Get Free Consultation</span>
+                  <span>Book Now</span>
                   <FiArrowRight className="text-sm" />
                 </>
               )}
@@ -678,6 +733,36 @@ const FormComponent = () => {
           </form>
         </div>
       </div>
+
+      {/* Booking Flow Components */}
+      {showCalendar && (
+        <CalendarPopup
+          isOpen={showCalendar}
+          onClose={handleCloseCalendar}
+          onDateSelect={handleDateSelect}
+          formData={formData}
+        />
+      )}
+
+      {showInvoice && (
+        <InvoicePopup
+          isOpen={showInvoice}
+          onClose={handleCloseInvoice}
+          onPayNow={handleInvoiceConfirm}
+          formData={formData}
+          selectedDate={selectedDate}
+          selectedDateTime={selectedDateTime}
+        />
+      )}
+
+      {showPayment && (
+        <PaymentGateway
+          paymentData={paymentData}
+          onBack={handleClosePayment}
+          onPaymentSuccess={handlePaymentSuccess}
+          onPaymentCancel={handleClosePayment}
+        />
+      )}
     </>
   );
 };

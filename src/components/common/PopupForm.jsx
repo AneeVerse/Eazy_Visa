@@ -5,9 +5,15 @@ import { BiSupport, BiUser, BiEnvelope, BiPhone, BiCheckShield, BiWorld, BiTask,
 import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { usePathname, useRouter } from 'next/navigation';
 import CountryCodeDropdown from './CountryCodeDropdown';
+import CalendarPopup from './CalendarPopup';
+import InvoicePopup from './InvoicePopup';
+import PaymentGateway from './PaymentGateway';
 
 const PopupForm = () => {
+  const pathname = usePathname();
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -23,6 +29,14 @@ const PopupForm = () => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isAccepted, setIsAccepted] = useState(true);
+
+  // Booking flow states
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showInvoice, setShowInvoice] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
+  const [paymentData, setPaymentData] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -354,8 +368,14 @@ const PopupForm = () => {
 
       sessionStorage.setItem('formSubmitted', 'true');
       
-      // PopupForm is generally for contact/general inquiries
-      window.location.href = '/Confirmation-contact';
+      // Check if this is a visa-related form that should trigger booking flow
+      if (formData.visaType && (formData.visaType.toLowerCase().includes('tourist') || formData.visaType.toLowerCase().includes('business'))) {
+        // Trigger booking flow for visa applications
+        setShowCalendar(true);
+      } else {
+        // PopupForm is generally for contact/general inquiries
+        window.location.href = '/Confirmation-contact';
+      }
       
     } catch (error) {
       toast.error(error.message || 'Failed to submit form. Please try again later.', {
@@ -370,6 +390,48 @@ const PopupForm = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Booking flow handlers
+  const handleDateSelect = (date, dateTime) => {
+    setSelectedDate(date);
+    setSelectedDateTime(dateTime);
+    setShowCalendar(false);
+    setShowInvoice(true);
+  };
+
+  const handleCloseCalendar = () => {
+    setShowCalendar(false);
+  };
+
+  const handleInvoiceConfirm = (invoiceData) => {
+    try {
+      localStorage.setItem('paymentData', JSON.stringify(invoiceData));
+    } catch (_) {}
+    setPaymentData(invoiceData);
+    setShowInvoice(false);
+    router.push('/payment');
+  };
+
+  const handleCloseInvoice = () => {
+    setShowInvoice(false);
+    setShowCalendar(true);
+  };
+
+  const handlePaymentSuccess = () => {
+    setShowPayment(false);
+    
+    // Redirect based on visa type or default to tourist confirmation
+    if (formData.visaType && formData.visaType.toLowerCase().includes('business')) {
+      window.location.href = '/Visa-confirmation-business';
+    } else {
+      window.location.href = '/Visa-confirmation-tourist';
+    }
+  };
+
+  const handleClosePayment = () => {
+    setShowPayment(false);
+    setShowInvoice(true);
   };
 
   if (!isVisible) return null;
@@ -673,7 +735,7 @@ const PopupForm = () => {
                   </>
                 ) : (
                   <>
-                    <span>Get Free Consultation</span>
+                    <span>Book now</span>
                     <FiArrowRight className="text-sm" />
                   </>
                 )}
@@ -682,6 +744,36 @@ const PopupForm = () => {
           </div>
         </div>
       </div>
+
+      {/* Booking Flow Components */}
+      {showCalendar && (
+        <CalendarPopup
+          isOpen={showCalendar}
+          onClose={handleCloseCalendar}
+          onDateSelect={handleDateSelect}
+          formData={formData}
+        />
+      )}
+
+      {showInvoice && (
+        <InvoicePopup
+          isOpen={showInvoice}
+          onClose={handleCloseInvoice}
+          onPayNow={handleInvoiceConfirm}
+          formData={formData}
+          selectedDate={selectedDate}
+          selectedDateTime={selectedDateTime}
+        />
+      )}
+
+      {showPayment && (
+        <PaymentGateway
+          paymentData={paymentData}
+          onBack={handleClosePayment}
+          onPaymentSuccess={handlePaymentSuccess}
+          onPaymentCancel={handleClosePayment}
+        />
+      )}
     </>
   );
 };
