@@ -11,7 +11,7 @@ import Link from "next/link";
 const footerLinks = [
   { name: "Home", href: "/" },
   { name: "Blog", href: "/blog" },
-  { name: "Dummy Bookings", href: "/dummy-bookings" },
+  // { name: "Dummy Bookings", href: "/dummy-bookings" },
   { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
