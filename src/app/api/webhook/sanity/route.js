@@ -1,81 +1,131 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
+import crypto from 'crypto';
+import { webhookRetryOperations, CircuitBreaker } from './retry.js';
+
+// Create a circuit breaker for sitemap operations
+const sitemapCircuitBreaker = new CircuitBreaker(3, 30000); // 3 failures, 30 second timeout
 
 // Webhook secret for security (optional but recommended)
 const WEBHOOK_SECRET = process.env.SANITY_WEBHOOK_SECRET;
 
 export async function POST(request) {
+  const startTime = Date.now();
+  
   try {
+    // Get the raw body for signature verification
+    const body = await request.text();
+    
     // Verify webhook secret if configured
-    if (WEBHOOK_SECRET) {
-      const authHeader = request.headers.get('authorization');
-      const providedSecret = authHeader?.replace('Bearer ', '');
+    if (process.env.SANITY_WEBHOOK_SECRET) {
+      const signature = request.headers.get('sanity-webhook-signature');
       
-      if (providedSecret !== WEBHOOK_SECRET) {
-        console.log('Webhook authentication failed');
+      if (!signature) {
+        console.error('Missing webhook signature');
         return NextResponse.json(
-          { error: 'Unauthorized' },
+          { error: 'Missing webhook signature' },
+          { status: 401 }
+        );
+      }
+      
+      // Verify the signature (basic implementation)
+      const expectedSignature = `sha256=${crypto
+        .createHmac('sha256', process.env.SANITY_WEBHOOK_SECRET)
+        .update(body)
+        .digest('hex')}`;
+      
+      if (signature !== expectedSignature) {
+        console.error('Invalid webhook signature');
+        return NextResponse.json(
+          { error: 'Invalid webhook signature' },
           { status: 401 }
         );
       }
     }
-
-    // Parse the webhook payload
-    const body = await request.json();
     
-    // Log the webhook trigger for debugging
-    console.log('Sanity webhook triggered:', {
-      type: body._type,
-      id: body._id,
-      slug: body.slug?.current,
+    // Parse the webhook payload
+    const payload = await webhookRetryOperations.parseWebhookPayload(body);
+    
+    console.log('Webhook received:', {
+      type: payload._type,
+      id: payload._id,
+      slug: payload.slug?.current,
       timestamp: new Date().toISOString()
     });
-
-    // Check if this is a blog post or category change
-    if (body._type === 'post' || body._type === 'category') {
+    
+    // Handle different content types
+    if (payload._type === 'post' || payload._type === 'category') {
+      // Import revalidatePath at the top level for better performance
+      const { revalidatePath } = require('next/cache');
       
-      // Trigger sitemap regeneration
-      await regenerateSitemap();
+      // Perform revalidation with retry logic
+       try {
+         // Always revalidate these paths with retry
+         await webhookRetryOperations.revalidatePath(revalidatePath, '/', 'page');
+         await webhookRetryOperations.revalidatePath(revalidatePath, '/blogs', 'page');
+         
+         // If it's a specific post, revalidate that post's page
+         if (payload._type === 'post' && payload.slug?.current) {
+           await webhookRetryOperations.revalidatePath(revalidatePath, `/blogs/${payload.slug.current}`, 'page');
+         }
+         
+         // Revalidate sitemap
+         await webhookRetryOperations.revalidatePath(revalidatePath, '/sitemap.xml', 'page');
+         
+         console.log('Cache revalidation completed with retry protection');
+       } catch (revalidationError) {
+         console.warn('Revalidation failed after retries:', revalidationError.message);
+         // Continue processing even if revalidation has issues
+       }
       
-      // Revalidate relevant paths
-      if (body._type === 'post' && body.slug?.current) {
-        // Revalidate the specific blog post page
-        revalidatePath(`/blogs/${body.slug.current}`);
-        console.log(`Revalidated blog post: /blogs/${body.slug.current}`);
-      }
+      // Trigger sitemap regeneration with circuit breaker protection
+       sitemapCircuitBreaker.execute(
+         () => regenerateSitemap(),
+         { operation: 'sitemap_regeneration', type: payload._type, slug: payload.slug?.current }
+       ).catch(error => {
+         console.warn('Sitemap regeneration failed with circuit breaker:', error.message);
+       });
       
-      // Revalidate the blogs listing page
-      revalidatePath('/blogs');
+      const processingTime = Date.now() - startTime;
       
-      // Revalidate the home page (in case it shows recent blogs)
-      revalidatePath('/');
-      
-      console.log('Sitemap regeneration and cache revalidation completed');
+      console.log('Webhook processed successfully:', {
+        type: payload._type,
+        slug: payload.slug?.current,
+        processingTime: `${processingTime}ms`,
+        timestamp: new Date().toISOString()
+      });
       
       return NextResponse.json({
         success: true,
-        message: 'Sitemap updated and cache revalidated',
+        message: 'Content updated and cache revalidated',
         timestamp: new Date().toISOString(),
-        type: body._type,
-        slug: body.slug?.current
+        type: payload._type,
+        slug: payload.slug?.current,
+        processingTime: `${processingTime}ms`
       });
     }
-
-    // If it's not a relevant content type, still return success
+    
+    // For other content types, just acknowledge quickly
+    const processingTime = Date.now() - startTime;
+    
     return NextResponse.json({
       success: true,
-      message: 'Webhook received but no action needed',
-      type: body._type
+      message: 'Webhook received but no action taken',
+      timestamp: new Date().toISOString(),
+      type: payload._type,
+      processingTime: `${processingTime}ms`
     });
-
+    
   } catch (error) {
-    console.error('Webhook processing error:', error);
+    const processingTime = Date.now() - startTime;
+    console.error('Webhook error:', error);
     
     return NextResponse.json(
       { 
         error: 'Internal server error',
         message: error.message,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        processingTime: `${processingTime}ms`
       },
       { status: 500 }
     );
@@ -90,31 +140,39 @@ async function regenerateSitemap() {
     const { revalidatePath } = require('next/cache');
     
     // Revalidate the sitemap path to force regeneration
-    revalidatePath('/sitemap.xml');
+    revalidatePath('/sitemap.xml', 'page');
     
     console.log('Sitemap revalidation triggered successfully');
     
     // Optionally, we can also call our sitemap API endpoint to generate it immediately
+    // But we'll do this asynchronously to not block the webhook response
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.eazyvisas.com';
+    
     try {
-      const sitemapResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.eazyvisas.com'}/api/sitemap`, {
+      const sitemapResponse = await webhookRetryOperations.fetchSitemap(`${baseUrl}/api/sitemap`, {
         method: 'GET',
         headers: {
-          'User-Agent': 'Webhook-Sitemap-Generator'
+          'User-Agent': 'Webhook-Sitemap-Generator',
+          'Cache-Control': 'no-cache'
         }
       });
       
       if (sitemapResponse.ok) {
-        console.log('Sitemap generated successfully via API');
+        console.log('Sitemap generated successfully via API with retry protection');
       } else {
-        console.warn('Sitemap API call failed, but revalidation was triggered');
+        console.warn('Sitemap API call failed after retries, but revalidation was triggered');
       }
     } catch (fetchError) {
-      console.warn('Could not fetch sitemap API, but revalidation was triggered:', fetchError.message);
+      if (fetchError.name === 'AbortError') {
+        console.warn('Sitemap API call timed out after retries, but revalidation was triggered');
+      } else {
+        console.warn('Could not fetch sitemap API after retries, but revalidation was triggered:', fetchError.message);
+      }
     }
     
   } catch (error) {
     console.error('Error regenerating sitemap:', error);
-    throw error;
+    // Don't throw the error - we want the webhook to succeed even if sitemap fails
   }
 }
 
