@@ -1,119 +1,257 @@
-import { getAllBlogs } from '../../lib/sanity';
+import { NextResponse } from 'next/server';
+import { createClient } from '@sanity/client';
+import { countryData } from '../../data/countryData.js';
 
-export async function GET() {
+// Sanity client configuration
+const sanityClient = createClient({
+  projectId: '53ejcnpy',
+  dataset: 'production',
+  apiVersion: '2024-03-13',
+  useCdn: false,
+});
+
+// Configuration
+const CONFIG = {
+  baseUrl: 'https://www.eazyvisas.com',
+};
+
+// Function to fetch blog posts from Sanity
+async function fetchBlogPosts() {
   try {
-    // Fetch all blog posts from Sanity
-    const blogs = await getAllBlogs();
-    
-    // Base URL for the site
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.eazyvisas.com';
-    
-    // Generate sitemap XML
-    const sitemap = generateSitemapXML(baseUrl, blogs);
-    
-    return new Response(sitemap, {
-      headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600'
+    const posts = await sanityClient.fetch(`
+      *[_type == "post"] {
+        "slug": slug.current,
+        _updatedAt,
+        publishedAt
       }
-    });
+    `);
     
+    return posts.map(post => ({
+      url: `${CONFIG.baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post._updatedAt || post.publishedAt),
+      changeFrequency: 'weekly',
+      priority: 0.7
+    }));
   } catch (error) {
-    console.error('Error generating sitemap:', error);
-    
-    // Return a basic sitemap if there's an error
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.eazyvisas.com';
-    const basicSitemap = generateBasicSitemap(baseUrl);
-    
-    return new Response(basicSitemap, {
-      headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=300, s-maxage=300'
-      }
-    });
+    console.error(`Error fetching blog posts: ${error.message}`);
+    return [];
   }
 }
 
-function generateSitemapXML(baseUrl, blogs) {
-  const staticPages = [
-    { url: '', priority: '1.0', changefreq: 'daily' },
-    { url: '/countries', priority: '0.9', changefreq: 'weekly' },
-    { url: '/services', priority: '0.9', changefreq: 'weekly' },
-    { url: '/services/tourist-visa', priority: '0.8', changefreq: 'weekly' },
-    { url: '/services/dummy-flight', priority: '0.8', changefreq: 'weekly' },
-    { url: '/services/dummy-hotel', priority: '0.8', changefreq: 'weekly' },
-    { url: '/contact', priority: '0.7', changefreq: 'monthly' },
-    { url: '/blogs', priority: '0.8', changefreq: 'daily' }
-  ];
-
-  const currentDate = new Date().toISOString();
-
-  let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
-
-  // Add static pages
-  staticPages.forEach(page => {
-    xml += `
-  <url>
-    <loc>${baseUrl}${page.url}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`;
-  });
-
-  // Add blog posts
-  blogs.forEach(blog => {
-    const lastmod = blog.publishedAt || blog._updatedAt || currentDate;
-    xml += `
-  <url>
-    <loc>${baseUrl}/blogs/${blog.slug.current}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>`;
-  });
-
-  xml += `
-</urlset>`;
-
-  return xml;
+// Function to fetch categories from Sanity
+async function fetchCategories() {
+  try {
+    const categories = await sanityClient.fetch(`
+      *[_type == "category"] {
+        "slug": slug.current,
+        _updatedAt
+      }
+    `);
+    
+    return categories.map(category => ({
+      url: `${CONFIG.baseUrl}/blog/category/${category.slug}`,
+      lastModified: new Date(category._updatedAt),
+      changeFrequency: 'weekly',
+      priority: 0.6
+    }));
+  } catch (error) {
+    console.error(`Error fetching categories: ${error.message}`);
+    return [];
+  }
 }
 
-function generateBasicSitemap(baseUrl) {
-  const currentDate = new Date().toISOString();
+// Static URLs configuration
+async function getStaticUrls() {
+  return [
+    // Homepage
+    {
+      url: CONFIG.baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1.0,
+    },
+    // Info pages
+    {
+      url: `${CONFIG.baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${CONFIG.baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${CONFIG.baseUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
+    {
+      url: `${CONFIG.baseUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
+    },
+    // Countries
+    {
+      url: `${CONFIG.baseUrl}/countries`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    // Services that actually exist
+    {
+      url: `${CONFIG.baseUrl}/services/tourist-visa`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${CONFIG.baseUrl}/services/business-visa`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${CONFIG.baseUrl}/services/dummy-flights`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${CONFIG.baseUrl}/services/dummy-hotel`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${CONFIG.baseUrl}/services/most-preferred`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${CONFIG.baseUrl}/services/end-to-end`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    // Dummy bookings
+    {
+      url: `${CONFIG.baseUrl}/dummy-bookings`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    // Blog section
+    {
+      url: `${CONFIG.baseUrl}/blogs`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    // Thank you page
+    {
+      url: `${CONFIG.baseUrl}/thank-you-conversion`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.3,
+    },
+  ];
+
+  // Add country URLs dynamically
+  const countryUrls = [];
   
-  return `<?xml version="1.0" encoding="UTF-8"?>
+  countryData.forEach(country => {
+    if (country.continent && country.name) {
+      const slug = country.name.toLowerCase().replace(/\s+/g, '-');
+      countryUrls.push({
+        url: `${CONFIG.baseUrl}/countries/${country.continent}/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.7,
+      });
+    }
+  });
+
+  return [...staticUrls, ...countryUrls];
+}
+
+// Function to generate sitemap XML content
+function generateSitemapXML(urls) {
+  const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>';
+  const urlsetOpen = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+  const urlsetClose = '</urlset>';
+  
+  const urlEntries = urls.map(url => {
+    const lastmod = url.lastModified ? url.lastModified.toISOString() : new Date().toISOString();
+    const changefreq = url.changeFrequency || 'monthly';
+    const priority = url.priority || 0.5;
+    
+    return `  <url>
+    <loc>${url.url}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+  }).join('\n');
+  
+  return `${xmlHeader}
+${urlsetOpen}
+${urlEntries}
+${urlsetClose}`;
+}
+
+// API Route Handler for sitemap.xml
+export async function GET() {
+  try {
+    // Get static URLs
+    const staticUrls = await getStaticUrls();
+    
+    // Fetch dynamic content from Sanity
+    const [blogPosts, categories] = await Promise.all([
+      fetchBlogPosts(),
+      fetchCategories()
+    ]);
+    
+    // Combine all URLs
+    const allUrls = [...staticUrls, ...blogPosts, ...categories];
+    
+    // Generate XML content
+    const sitemapXML = generateSitemapXML(allUrls);
+    
+    // Return XML response with proper headers
+    return new NextResponse(sitemapXML, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600', // Cache for 1 hour
+      },
+    });
+    
+  } catch (error) {
+    console.error(`Error generating sitemap: ${error.message}`);
+    
+    // Return a basic sitemap with just the homepage if there's an error
+    const fallbackSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${baseUrl}</loc>
-    <lastmod>${currentDate}</lastmod>
+    <loc>${CONFIG.baseUrl}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>${baseUrl}/countries</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/services</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/blogs</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/contact</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
 </urlset>`;
+    
+    return new NextResponse(fallbackSitemap, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'public, max-age=300, s-maxage=300', // Cache for 5 minutes on error
+      },
+    });
+  }
 }
