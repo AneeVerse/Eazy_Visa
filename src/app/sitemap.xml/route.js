@@ -62,7 +62,7 @@ async function fetchCategories() {
 
 // Static URLs configuration
 async function getStaticUrls() {
-  return [
+  const staticUrls = [
     // Homepage
     {
       url: CONFIG.baseUrl,
