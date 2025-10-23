@@ -34,33 +34,31 @@ const services = [
     rating: 4.7,
     size: "small",
   },
-  // TEMPORARILY HIDDEN - Dummy Flights
-  // {
-  //   id: 4,
-  //   title: "Dummy Flights",
-  //   url: "/dummy-flights",
-  //   description: "Verifiable flight tickets for visa applications",
-  //   image:
-  //     "/images/home/dummy-flight.webp",
-  //   rating: 4.9,
-  //   size: "large",
-  // },
-  // TEMPORARILY HIDDEN - Dummy Hotel
-  // {
-  //   id: 5,
-  //   title: "Dummy Hotel",
-  //   url: "/dummy-hotel",
-  //   description: "Verifiable hotel booking for visa applications",
-  //   image:
-  //   "/images/home/dummy-hotel.webp",
-  //   rating: 4.6,
-  //   size: "large",
-  // },
+  {
+    id: 4,
+    title: "Dummy Flights",
+    url: "/dummy-flights",
+    description: "Verifiable flight tickets for visa applications",
+    image:
+      "/images/home/dummy-flight.webp",
+    rating: 4.9,
+    size: "large",
+  },
+  {
+    id: 5,
+    title: "Dummy Hotel",
+    url: "/dummy-hotel",
+    description: "Verifiable hotel booking for visa applications",
+    image:
+    "/images/home/dummy-hotel.webp",
+    rating: 4.6,
+    size: "large",
+  },
 ];
 
 const navLinks = [
   { name: "Home", href: "/" },
-  // {name: "Dummy Bookings", href: "/dummy-bookings"}, // TEMPORARILY HIDDEN
+  {name: "Dummy Bookings", href: "/dummy-bookings"},
   { name: "Visa Services", href: "/services", hasMegaMenu: true },
   { name: "Countries", href: "/countries" },
   { name: "Blogs", href: "/blogs" },
