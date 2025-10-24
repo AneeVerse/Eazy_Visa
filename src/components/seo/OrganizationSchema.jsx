@@ -5,11 +5,17 @@ import Script from 'next/script';
 export default function OrganizationSchema() {
   const organizationData = {
     "@context": "https://schema.org",
-    "@type": ["Organization", "LocalBusiness"],
+    "@type": "LocalBusiness",
     "name": "Easy Visa",
     "alternateName": "Eazyvisas",
     "description": "Easy visa offers a range of visa consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and solutions.",
     "url": "https://www.eazyvisas.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.eazyvisas.com/logo/main-logo.png",
+      "width": 200,
+      "height": 60
+    },
     "telephone": "+91 88501 46905",
     "email": "info@eazyvisas.com",
     "foundingDate": "2020",

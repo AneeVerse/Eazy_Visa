@@ -67,10 +67,9 @@ export default function BlogSchema({ post }) {
     "publisher": {
       "@type": "Organization",
       "name": "Easy Visa",
-      "url": siteUrl,
       "logo": {
         "@type": "ImageObject",
-        "url": `${siteUrl}/logo.png`,
+        "url": `${siteUrl}/logo/main-logo.png`,
         "width": 200,
         "height": 60
       }
