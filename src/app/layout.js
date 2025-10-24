@@ -6,7 +6,8 @@ import ConditionalLayout from "../components/Layout/ConditionalLayout";
 import MetaPixel from "../components/common/MetaPixel";
 import Script from "next/script";
 import ConditionalTopLoader from "../components/common/ConditionalTopLoader";
-import BreadcrumbsJsonLd from "../components/common/BreadcrumbsJsonLd";
+import OrganizationSchema from "../components/seo/OrganizationSchema";
+import BreadcrumbSchema from "../components/seo/BreadcrumbSchema";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -89,25 +90,9 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {/* Structured Data for Organization without logo */}
-        <Script id="organization-schema" type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Easy Visa",
-              "description": "easy visa offers a range of visa consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
-              "url": "https://www.eazyvisas.com",
-              "telephone": "+91 88501 46905",
-              "email": "info@eazyvisas.com",
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "IN"
-              },
-              "sameAs": []
-            }
-          `}
-        </Script>
+        {/* Structured Data */}
+        <OrganizationSchema />
+
         {/* Google Tag Manager (GTM) NoScript */}
         <noscript>
           <iframe
@@ -126,7 +111,7 @@ export default function RootLayout({ children }) {
 
         {/* Page Content */}
         <ConditionalTopLoader />
-        <BreadcrumbsJsonLd />
+        <BreadcrumbSchema />
         <ConditionalLayout>
           {children}
         </ConditionalLayout>

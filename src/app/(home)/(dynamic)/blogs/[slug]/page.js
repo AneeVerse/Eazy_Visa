@@ -12,6 +12,8 @@ import { PortableText } from '@portabletext/react';
 import TableBlock from '../../../../../components/blog/TableBlock';
 import { sanityClient } from "../../../../../lib/sanity";
 import FAQAccordion from '../../../../../components/blog/FAQAccordion';
+import BlogSchema from '../../../../../components/seo/BlogSchema';
+import FAQSchema from '../../../../../components/seo/FAQSchema';
 
 export const revalidate = 60;
 
@@ -160,6 +162,10 @@ async function BlogDetailsPage({ params }) {
 
   return (
     <Layout className="py-12">
+      {/* Structured Data */}
+      <BlogSchema post={post} />
+      {post.faq && post.faq.length > 0 && <FAQSchema faqs={post.faq} pageTitle={post.title} />}
+      
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Main Content - Left Side */}
