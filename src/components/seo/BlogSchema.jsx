@@ -35,7 +35,7 @@ export default function BlogSchema({ post }) {
 
   const blogSchema = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "Article",
     "headline": post.title,
     "name": post.title,
     "description": post.metaDescription || post.title,
@@ -49,7 +49,7 @@ export default function BlogSchema({ post }) {
       ...(post.author?.image && {
         "image": {
           "@type": "ImageObject",
-          "url": post.author.image,
+          
           "width": 400,
           "height": 400
         }
@@ -81,7 +81,7 @@ export default function BlogSchema({ post }) {
     ...(post.mainImage && {
       "image": {
         "@type": "ImageObject",
-        "url": post.mainImage,
+      
         "width": 1200,
         "height": 630,
         "caption": post.title
@@ -97,19 +97,7 @@ export default function BlogSchema({ post }) {
     "wordCount": wordCount,
     "timeRequired": calculateReadingTime(bodyText),
     "inLanguage": "en-US",
-    "isAccessibleForFree": true,
-    "genre": "Travel and Immigration",
-    "audience": {
-      "@type": "Audience",
-      "audienceType": "Travel enthusiasts, visa applicants, immigrants"
-    },
-    ...(post.categories && post.categories.length > 0 && {
-      "about": post.categories.map(category => ({
-        "@type": "Thing",
-        "name": category.title,
-        "description": `Information about ${category.title}`
-      }))
-    })
+    "isAccessibleForFree": true
   };
 
   return (

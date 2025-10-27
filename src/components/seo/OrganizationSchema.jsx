@@ -42,15 +42,7 @@ export default function OrganizationSchema() {
         "name": "Global"
       }
     ],
-    "serviceType": [
-      "Visa Consulting Services",
-      "Immigration Services",
-      "Travel Documentation",
-      "Visa Application Processing",
-      "Business Visa Services",
-      "Tourist Visa Services",
-      "Student Visa Services"
-    ],
+
     "priceRange": "$$",
     "currenciesAccepted": ["INR", "USD"],
     "paymentAccepted": ["Cash", "Credit Card", "Debit Card", "Bank Transfer"],
