@@ -173,7 +173,7 @@ async function BlogDetailsPage({ params }) {
           {/* Blog Meta */}
           <div className="mb-8">
             {/* Featured Image */}
-            <div className="relative w-full h-[280px] md:h-[420px] mb-6">
+            <div className="relative w-full h-[320px] md:h-[480px] lg:h-[590px] mb-6">
               <Image
                 src={urlFor(post.mainImage).url()}
                 alt={post.title}
