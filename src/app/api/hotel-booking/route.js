@@ -1,5 +1,6 @@
 // app/api/hotel-booking/route.js
 import nodemailer from 'nodemailer';
+import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
 
 // Aggressive IST time function - This will definitely work
 const getIndianTime = () => {
@@ -181,19 +182,27 @@ export const POST = async (req) => {
     console.log('Sending to Google Sheets:', sheetData);
 
     // Send to Google Sheets
-    try {
-      const googleResponse = await fetch('https://script.google.com/macros/s/AKfycbymh3pK7scJVrPCxmX2tloCmvrc2ARxlGYVCHB2tuQ37saHOCPqxfDZN4NMd7_spyvz9Q/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(sheetData),
-      });
-      
-      const googleData = await googleResponse.text();
-      console.log('Google Sheets response:', googleResponse.status, googleData);
-      
-    } catch (sheetError) {
-      console.error('Error sending to Google Sheets:', sheetError);
-    }
+    const isLanding = formData.formName === 'landing-hotel';
+    const leadSource = isLanding ? 'ad@visa-ads' : 'service';
+    const sourceCategory = isLanding ? 'ad' : 'service';
+    const pageLink = isLanding ? '/dummy-flight/visa-ads#hotel' : '/services/dummy-hotel';
+    const pageName = isLanding ? 'Visa Ads Landing – Dummy Hotel' : 'Dummy Hotel Booking';
+
+    await sendToGoogleSheets(
+      {
+        ...sheetData,
+        from: leadSource,
+        fromCategory: sourceCategory,
+        source: leadSource,
+        pageLink,
+        pageName,
+        serviceSelected: 'Dummy Hotel Booking',
+        countryCode: (formData.contact.phoneCode || '').replace('+', ''),
+        phoneWithoutCode: formData.contact.phone,
+        extraInfo: `${sheetData.extraInfo} | Origin: ${formData.formName || 'service-page'}`,
+      },
+      'hotel booking'
+    );
 
     return new Response(
       JSON.stringify({ 

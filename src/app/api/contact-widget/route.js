@@ -1,9 +1,30 @@
 import nodemailer from 'nodemailer';
+import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
 
+const normalizeCountryCode = (code) =>
+  (code || '').toString().replace('+', '').trim();
+
+const extractLocalPhone = (googleSheetsPhone, countryCodeDigits, fallbackPhone) => {
+  const safeDigits = (googleSheetsPhone || '').replace(/\D/g, '');
+  if (safeDigits && countryCodeDigits && safeDigits.startsWith(countryCodeDigits)) {
+    return safeDigits.slice(countryCodeDigits.length);
+  }
+  if (safeDigits) return safeDigits;
+  return (fallbackPhone || '').replace(/\D/g, '');
+};
 
 export async function POST(req) {
   try {
-    const { firstName, lastName, email, phone, googleSheetsPhone, contactType, source } = await req.json();
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      googleSheetsPhone,
+      contactType,
+      source,
+      countryCode,
+    } = await req.json();
     console.log('Received contact widget submission:', { firstName, lastName, email, phone, contactType, source });
 
     // Validation
@@ -100,28 +121,30 @@ export async function POST(req) {
     await transporter.sendMail(mailOptions);
 
     // Send to Google Sheets
-    try {
-      await fetch('https://script.google.com/macros/s/AKfycbymh3pK7scJVrPCxmX2tloCmvrc2ARxlGYVCHB2tuQ37saHOCPqxfDZN4NMd7_spyvz9Q/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          formName: 'Contact Widget',
-          firstName: firstName,
-          lastName: lastName,
-          email: email || '',
-          phone: googleSheetsPhone || phone || '', // Use clean version for Google Sheets
-          message: `Contact Type: ${contactType}`,
-          rating: '',
-          country: '',
-          visaType: '',
-          extraInfo: `Source: ${source} | Submitted At (IST): ${indianTime}`
-        }),
-      });
-      console.log('Successfully added to Google Sheets');
-    } catch (sheetsError) {
-      console.error('Google Sheets error:', sheetsError);
-      // Continue execution even if sheets fails
-    }
+    const digitsCountryCode = normalizeCountryCode(countryCode);
+    const phoneWithoutCode = extractLocalPhone(googleSheetsPhone, digitsCountryCode, phone);
+
+    await sendToGoogleSheets(
+      {
+        firstName,
+        lastName,
+        name: `${firstName} ${lastName}`.trim(),
+        email: email || '',
+        phone: googleSheetsPhone || phone || '',
+        googleSheetsPhone: googleSheetsPhone || '',
+        countryCode: digitsCountryCode,
+        phoneWithoutCode,
+        from: 'others',
+        fromCategory: 'others',
+        source: source || 'contact widget',
+        pageLink: 'contact widget',
+        pageName: 'contact widget',
+        message: `Preferred contact: ${contactType}`,
+        extraInfo: `Source: ${source} | Contact Type: ${contactType} | Submitted At (IST): ${indianTime}`,
+        submittedAt: indianTime,
+      },
+      'contact widget'
+    );
 
     return Response.json({ 
       success: true, 

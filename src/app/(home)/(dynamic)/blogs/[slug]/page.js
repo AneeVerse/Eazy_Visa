@@ -1,12 +1,10 @@
 // app/blog/[slug]/page.js
 
 import Image from "next/image";
-import SubscribeForm from "../../../../../components/blog/SubscribeForm";
+import FormComponent from "../../../../../components/common/FormComponent";
 import RelatedBlogs from "../../../../../components/blog/RelatedBlogs";
-import Newsletter from "../../../../../components/blog/NewsLetter";
 import Layout from "../../../../../components/common/Layout";
 import FeedbackReviewComponent from "../../../../../components/home/FeedbackReviewComponent";
-import { Heading } from "../../../../../components/common/Typography";
 import { getBlogBySlug, getRelatedBlogs, urlFor } from "../../../../../lib/sanity";
 import { PortableText } from '@portabletext/react';
 import TableBlock from '../../../../../components/blog/TableBlock';
@@ -221,9 +219,9 @@ async function BlogDetailsPage({ params }) {
         {/* Sidebar - Right Side */}
         <div className="lg:col-span-4 xl:col-span-3">
           <div className="sticky top-24 space-y-8">
-            {/* Subscribe Form */}
+            {/* Consultation Form */}
             <div className="">
-              <SubscribeForm />
+              <FormComponent />
             </div>
 
             {/* Related Blogs */}

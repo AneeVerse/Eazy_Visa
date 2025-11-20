@@ -1,5 +1,5 @@
 import BlogCard from "../../../../components/cards/BlogCard";
-import SubscribeForm from "../../../../components/blog/SubscribeForm";
+import FormComponent from "../../../../components/common/FormComponent";
 import { getAllBlogs } from "../../../../lib/sanity";
 
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -39,10 +39,10 @@ async function BlogPage() {
           </div>
         </div>
 
-        {/* Subscribe Form Column - Takes 1/4 width on large screens */}
+        {/* Consultation Form Column */}
         <div className="lg:col-span-1">
           <div className="sticky top-24 h-fit">
-            <SubscribeForm />
+            <FormComponent />
           </div>
         </div>
       </div>

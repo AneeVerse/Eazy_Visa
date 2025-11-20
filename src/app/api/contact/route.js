@@ -1,8 +1,31 @@
 import nodemailer from 'nodemailer';
+import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
+
+const normalizeCountryCode = (code) =>
+  (code || '').toString().replace('+', '').trim();
+
+const extractLocalPhone = (googleSheetsPhone, countryCodeDigits, fallbackPhone) => {
+  const safeDigits = (googleSheetsPhone || '').replace(/\D/g, '');
+  if (safeDigits && countryCodeDigits && safeDigits.startsWith(countryCodeDigits)) {
+    return safeDigits.slice(countryCodeDigits.length);
+  }
+  if (safeDigits) return safeDigits;
+  return (fallbackPhone || '').replace(/\D/g, '');
+};
 
 export const POST = async (req) => {
   try {
-    const { firstName, lastName, phone, googleSheetsPhone, email, message, visaType, country } = await req.json();
+    const {
+      firstName,
+      lastName,
+      phone,
+      googleSheetsPhone,
+      email,
+      message,
+      visaType,
+      country,
+      countryCode,
+    } = await req.json();
 
     // Validate required fields
     if (!firstName || !lastName || !email || !message) {
@@ -107,22 +130,34 @@ export const POST = async (req) => {
 
     // Send to Google Sheets
     const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
-    await fetch('https://script.google.com/macros/s/AKfycbymh3pK7scJVrPCxmX2tloCmvrc2ARxlGYVCHB2tuQ37saHOCPqxfDZN4NMd7_spyvz9Q/exec', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        formName: 'Contact Form',
+    const digitsCountryCode = normalizeCountryCode(countryCode);
+    const phoneWithoutCode = extractLocalPhone(googleSheetsPhone, digitsCountryCode, phone);
+
+    await sendToGoogleSheets(
+      {
         firstName: firstName || '',
         lastName: lastName || '',
+        name,
         email: email || '',
-        phone: googleSheetsPhone || phone || '', // Use clean version for Google Sheets
-        message: message || '',
-        rating: '',
+        phone: googleSheetsPhone || phone || '',
+        googleSheetsPhone: googleSheetsPhone || '',
+        countryCode: digitsCountryCode,
+        phoneWithoutCode,
         country: country || '',
+        countryName: country || '',
         visaType: visaType || '',
-        extraInfo: `Submitted from contact form at ${indianTime}`
-      }),
-    });
+        serviceSelected: visaType || '',
+        message: message || '',
+        from: 'others',
+        fromCategory: 'others',
+        source: 'others',
+        pageLink: '/contact',
+        pageName: 'contact page',
+        extraInfo: `Submitted from contact form at ${indianTime}`,
+        submittedAt: indianTime,
+      },
+      'contact form'
+    );
 
     return new Response(
       JSON.stringify({ 

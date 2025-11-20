@@ -1,4 +1,17 @@
 import nodemailer from 'nodemailer';
+import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
+
+const normalizeCountryCode = (code) =>
+  (code || '').toString().replace('+', '').trim();
+
+const extractLocalPhone = (googleSheetsPhone, countryCodeDigits, fallbackPhone) => {
+  const safeDigits = (googleSheetsPhone || '').replace(/\D/g, '');
+  if (safeDigits && countryCodeDigits && safeDigits.startsWith(countryCodeDigits)) {
+    return safeDigits.slice(countryCodeDigits.length);
+  }
+  if (safeDigits) return safeDigits;
+  return (fallbackPhone || '').replace(/\D/g, '');
+};
 
 export const POST = async (req) => {
   try {
@@ -133,27 +146,31 @@ export const POST = async (req) => {
 
     // Send to Google Sheets
     console.log('Sending blog contact data to Google Sheets');
-    try {
-      await fetch('https://script.google.com/macros/s/AKfycbymh3pK7scJVrPCxmX2tloCmvrc2ARxlGYVCHB2tuQ37saHOCPqxfDZN4NMd7_spyvz9Q/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          formName: 'Blog Contact',
-          firstName: formData.firstName || (formData.name ? formData.name.split(' ')[0] : ''),
-          lastName: formData.lastName || (formData.name ? formData.name.split(' ').slice(1).join(' ') : ''),
-          email: email || '',
-          phone: googleSheetsPhone || phone || '', // Use clean version for Google Sheets
-          message: '',
-          rating: '',
-          country: '',
-          visaType: '',
-          extraInfo: `Submitted from blog contact form at ${indianTime}`
-        }),
-      });
-      console.log('Blog contact data sent to Google Sheets successfully');
-    } catch (sheetError) {
-      console.error('Error sending blog contact data to Google Sheets:', sheetError);
-    }
+    const digitsCountryCode = normalizeCountryCode(formData.countryCode);
+    const phoneWithoutCode = extractLocalPhone(googleSheetsPhone, digitsCountryCode, phone);
+    const slug = formData.slug || formData.blogSlug;
+    const blogLink = formData.blogLink || (slug ? `/blogs/${slug}` : '');
+
+    await sendToGoogleSheets(
+      {
+        firstName: formData.firstName || (formData.name ? formData.name.split(' ')[0] : ''),
+        lastName: formData.lastName || (formData.name ? formData.name.split(' ').slice(1).join(' ') : ''),
+        name,
+        email: email || '',
+        phone: googleSheetsPhone || phone || '',
+        googleSheetsPhone: googleSheetsPhone || '',
+        countryCode: digitsCountryCode,
+        phoneWithoutCode,
+        from: 'blogs',
+        fromCategory: 'blogs',
+        source: 'blogs',
+        pageLink: blogLink || formData.pageLink || '',
+        pageName: formData.blogTitle || blogLink || 'blog contact form',
+        extraInfo: `Submitted from blog contact form at ${indianTime}`,
+        submittedAt: indianTime,
+      },
+      'blog contact'
+    );
 
     return new Response(
       JSON.stringify({ 

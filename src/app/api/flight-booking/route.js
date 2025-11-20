@@ -1,5 +1,6 @@
 // app/api/flight-booking/route.js
 import nodemailer from 'nodemailer';
+import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
 
 // Aggressive IST time function - This will definitely work
 const getIndianTime = () => {
@@ -171,23 +172,27 @@ export const POST = async (req) => {
     console.log('Flight legs:', formData.flight.legs);
 
     // Send to Google Sheets
-    try {
-      console.log('Attempting to send flight data to Google Sheet...');
-      const googleResponse = await fetch('https://script.google.com/macros/s/AKfycbymh3pK7scJVrPCxmX2tloCmvrc2ARxlGYVCHB2tuQ37saHOCPqxfDZN4NMd7_spyvz9Q/exec', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(sheetData),
-      });
-      
-      const googleData = await googleResponse.text();
-      console.log('Google Sheets response for flight booking:', googleResponse.status, googleData);
-      
-      if (googleResponse.status !== 200) {
-        console.error('Google Sheets returned non-200 status for flight booking', googleResponse.status);
-      }
-    } catch (sheetError) {
-      console.error('Error sending flight data to Google Sheets:', sheetError);
-    }
+    const isLanding = formData.formName === 'landing-flight';
+    const leadSource = isLanding ? 'ad@visa-ads' : 'service';
+    const sourceCategory = isLanding ? 'ad' : 'service';
+    const pageLink = isLanding ? '/dummy-flight/visa-ads#flight' : '/services/dummy-flights';
+    const pageName = isLanding ? 'Visa Ads Landing – Dummy Flight' : 'Dummy Flight Booking';
+
+    await sendToGoogleSheets(
+      {
+        ...sheetData,
+        from: leadSource,
+        fromCategory: sourceCategory,
+        source: leadSource,
+        pageLink,
+        pageName,
+        serviceSelected: 'Dummy Flight Booking',
+        countryCode: (formData.contact.phoneCode || '').replace('+', ''),
+        phoneWithoutCode: formData.contact.phone,
+        extraInfo: `${sheetData.extraInfo} | Origin: ${formData.formName || 'service-page'}`,
+      },
+      'flight booking'
+    );
 
     return new Response(
       JSON.stringify({ 

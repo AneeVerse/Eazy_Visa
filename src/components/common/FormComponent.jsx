@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { BiSupport, BiUser, BiEnvelope, BiPhone, BiCheckShield, BiWorld, BiTask } from 'react-icons/bi';
+import { BiSupport, BiCheckShield } from 'react-icons/bi';
 import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,20 +21,82 @@ const FormComponent = () => {
     countryCode: '+91', // Default to India
     country: '',
     visaType: '',
-    formSource: 'country'
+    formSource: 'others'
   });
+  const [formMeta, setFormMeta] = useState({
+    from: 'others',
+    pageLabel: '',
+    pageLink: ''
+  });
+  const [countryName, setCountryName] = useState('');
 
   // Effect to set country name from URL slug if available
   useEffect(() => {
     if (slug) {
       // Convert slug to proper name format (e.g., "japan" to "Japan")
       const countryName = slug.charAt(0).toUpperCase() + slug.slice(1).toLowerCase();
+      setCountryName(countryName);
       setFormData(prev => ({
         ...prev,
         country: countryName
       }));
     }
   }, [slug]);
+
+  const serviceSlugNameMap = {
+    'tourist-visa': 'Tourist Visa',
+    'business-visa': 'Business Visa',
+    'end-to-end': 'End-to-End Visa Assistance',
+    'dummy-hotel': 'Dummy Hotel Booking',
+    'dummy-flights': 'Dummy Flight Booking',
+    'dummy-flight': 'Dummy Flight Booking',
+  };
+
+  const formatFromSlug = (slugValue) => {
+    if (!slugValue) return '';
+    return slugValue
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
+  useEffect(() => {
+    if (!pathname) return;
+
+    const fullUrl = typeof window !== 'undefined'
+      ? window.location.href
+      : pathname;
+
+    const meta = {
+      from: 'others',
+      pageLabel: '',
+      pageLink: fullUrl
+    };
+
+    if (pathname.startsWith('/services/')) {
+      const serviceSlug = pathname.replace('/services/', '').split('/')[0];
+      meta.from = 'service';
+      meta.pageLabel = serviceSlugNameMap[serviceSlug] || formatFromSlug(serviceSlug);
+    } else if (pathname.startsWith('/blogs')) {
+      meta.from = 'blogs';
+      meta.pageLabel = pathname;
+    } else if (pathname.includes('/countries/')) {
+      meta.from = 'others';
+      meta.pageLabel = countryName
+        ? `country page – ${countryName}`
+        : 'country page';
+    } else {
+      meta.from = 'others';
+      meta.pageLabel = pathname === '/' ? 'home page' : pathname;
+    }
+
+    setFormMeta(meta);
+    setFormData(prev => (
+      prev.formSource === meta.from
+        ? prev
+        : { ...prev, formSource: meta.from }
+    ));
+  }, [pathname, countryName]);
   
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -43,11 +105,10 @@ const FormComponent = () => {
   // Sample options for dropdowns
   const visaTypes = [
     "Tourist Visa",
-    // "Student Visa",
     "Business Visa",
-    // "Family Visa",
-    // "End to End Visa Assistance",
-    // "Permanent Residence"
+    "End-to-End Visa Assistance",
+    "Dummy Hotel Booking",
+    "Dummy Flight Booking"
   ];
 
   const countries = [
@@ -343,7 +404,7 @@ const FormComponent = () => {
       // For Google Sheets compatibility, also create a version without special characters
       const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
       
-      const response = await fetch('/api/submit-form', {
+    const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -351,7 +412,13 @@ const FormComponent = () => {
         body: JSON.stringify({ 
           ...formData, 
           phone: fullPhoneNumber, // Send the complete phone number with country code for email
-          googleSheetsPhone: googleSheetsPhone // Send clean version for Google Sheets
+        googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
+        from: formMeta.from,
+        fromCategory: formMeta.from,
+        pageLink: formMeta.pageLink,
+        pageName: formMeta.pageLabel || pathname,
+        serviceSelected: formData.visaType,
+        extraInfo: `source=${formMeta.from || 'others'} | page=${formMeta.pageLabel || formMeta.pageLink || pathname} | country=${formData.country || 'N/A'}`
         }),
       });
 
@@ -436,21 +503,14 @@ const FormComponent = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
-                  <BiUser className="mr-2 text-blue-500 text-sm" />
-                  First Name*
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    className={`w-full pl-9 pr-3 py-2 text-sm border rounded-lg ${errors.firstName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
-                    placeholder="John"
-                  />
-                  <BiUser className="absolute left-3 top-3 text-gray-400 text-sm" />
-                </div>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-2 text-sm border rounded-lg ${errors.firstName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  placeholder="First Name*"
+                />
                 {errors.firstName && (
                   <p className="text-red-500 text-xs mt-1 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -461,21 +521,14 @@ const FormComponent = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
-                  <BiUser className="mr-2 text-blue-500 text-sm" />
-                  Last Name*
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    className={`w-full pl-9 pr-3 py-2 text-sm border rounded-lg ${errors.lastName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
-                    placeholder="Doe"
-                  />
-                  <BiUser className="absolute left-3 top-3 text-gray-400 text-sm" />
-                </div>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-2 text-sm border rounded-lg ${errors.lastName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  placeholder="Last Name*"
+                />
                 {errors.lastName && (
                   <p className="text-red-500 text-xs mt-1 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -489,23 +542,16 @@ const FormComponent = () => {
 
             {/* Email Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
-                <BiEnvelope className="mr-2 text-blue-500 text-sm" />
-                Email Address*
-              </label>
-              <div className="relative">
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full pl-9 pr-3 py-2 text-sm border rounded-lg ${
-                    errors.email ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
-                  placeholder="your@email.com"
-                />
-                <BiEnvelope className="absolute left-3 top-3 text-gray-400 text-sm" />
-              </div>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={`w-full px-4 py-2 text-sm border rounded-lg ${
+                  errors.email ? "border-red-500" : "border-gray-300"
+                } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                placeholder="Email Address*"
+              />
               {errors.email && (
                 <p className="text-red-500 text-xs mt-1 flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -518,10 +564,6 @@ const FormComponent = () => {
 
             {/* Phone Field */}
             <div>
-              <label className="text-sm font-medium text-gray-700 mb-1 flex items-center">
-                <BiPhone className="mr-2 text-blue-500 text-sm" />
-                Phone Number*
-              </label>
               <div className="flex">
                 <CountryCodeDropdown
                   value={formData.countryCode}
@@ -530,18 +572,17 @@ const FormComponent = () => {
                   height="h-10"
                   borderColor="border-gray-300"
                 />
-                <div className="relative flex-1">
+                <div className="flex-1">
                   <input
                     type="number"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full pl-9 pr-3 py-2 text-sm border border-l-0 rounded-r-lg ${
+                    className={`w-full px-4 py-2 text-sm border border-l-0 rounded-r-lg ${
                       errors.phone ? "border-red-500" : "border-gray-300"
                     } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
-                    placeholder="9876543210"
+                    placeholder="Phone Number*"
                   />
-                  <BiPhone className="absolute left-3 top-3 text-gray-400 text-sm" />
                 </div>
               </div>
               {errors.phone && (
@@ -556,25 +597,20 @@ const FormComponent = () => {
 
             {/* Visa Type Field - Compact Dropdown */}
             <div>
-              <label className=" text-sm font-medium text-gray-700 mb-1 flex items-center">
-                <BiTask className="mr-2 text-blue-500 text-sm" />
-                Visa Type*
-              </label>
               <div className="relative">
                 <select
                   name="visaType"
                   value={formData.visaType}
                   onChange={handleChange}
-                  className={`w-full pl-9 pr-8 py-2 text-sm border rounded-lg appearance-none ${
+                  className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${
                     errors.visaType ? "border-red-500" : "border-gray-300"
                   } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                 >
-                  <option value="">Select Visa Type</option>
+                  <option value="">Visa Type*</option>
                   {visaTypes.map((type, index) => (
                     <option key={index} value={type}>{type}</option>
                   ))}
                 </select>
-                <BiTask className="absolute left-3 top-3 text-gray-400 text-sm" />
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                   <svg className="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -593,25 +629,20 @@ const FormComponent = () => {
 
             {/* Country Field - Compact Dropdown */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
-                <BiWorld className="mr-2 text-blue-500 text-sm" />
-                Destination Country*
-              </label>
               <div className="relative">
                 <select
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className={`w-full pl-9 pr-8 py-2 text-sm border rounded-lg appearance-none ${
+                  className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${
                     errors.country ? "border-red-500" : "border-gray-300"
                   } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                 >
-                  <option value="">Select Country</option>
+                  <option value="">Destination Country*</option>
                   {countries.map((country, index) => (
                     <option key={index} value={country}>{country}</option>
                   ))}
                 </select>
-                <BiWorld className="absolute left-3 top-3 text-gray-400 text-sm" />
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                   <svg className="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -630,23 +661,22 @@ const FormComponent = () => {
 
             {/* Terms Checkbox - Compact */}
             <div className="flex items-start pt-1">
-              <div className="flex items-center h-4">
-                <input
-                  type="checkbox"
-                  id="terms"
-                  checked={isAccepted}
-                  onChange={handleCheckboxChange}
-                  className="h-3.5 w-3.5 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-                />
-              </div>
-              <label htmlFor="terms" className="ml-2 block text-xs text-gray-700">
-                <div className="flex items-center">
-                  <BiCheckShield className="text-blue-500 mr-1 text-xs" />
-                  I agreed to the{" "}
-                  <a href="/terms" className="text-blue-600 hover:underline ml-0.5">
-                    terms and conditions
-                  </a>
-                </div>
+              <input
+                type="checkbox"
+                id="terms"
+                checked={isAccepted}
+                onChange={handleCheckboxChange}
+                className="mt-0.5 h-3.5 w-3.5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 shrink-0"
+              />
+              <label
+                htmlFor="terms"
+                className="ml-2 text-[11px] leading-tight text-gray-600 flex items-center flex-wrap gap-1"
+              >
+                <BiCheckShield className="text-blue-500 text-xs" />
+                <span>I agreed to the</span>
+                <a href="/terms" className="text-blue-600 hover:underline">
+                  terms and conditions
+                </a>
               </label>
             </div>
 
