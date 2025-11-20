@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from 'react';
+import { useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Layout from '../../../../../components/common/Layout';
 import Footer from '../../../../../components/Layout/Footer';
@@ -15,7 +15,7 @@ const normalizeType = (type) => {
   return 'flight';
 };
 
-const AdsBookingPage = () => {
+const AdsBookingContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -57,6 +57,16 @@ const AdsBookingPage = () => {
   };
 
   return (
+    <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+      <div className="p-4 sm:p-6">{renderForm()}</div>
+    </div>
+  );
+};
+
+const AdsBookingPage = () => {
+  const router = useRouter();
+
+  return (
     <div className="min-h-screen bg-white">
       <Layout className="pt-8 pb-16">
         <div className="max-w-5xl mx-auto">
@@ -69,9 +79,19 @@ const AdsBookingPage = () => {
             </Button>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
-            <div className="p-4 sm:p-6">{renderForm()}</div>
-          </div>
+          <Suspense fallback={
+            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+              <div className="p-4 sm:p-6">
+                <div className="animate-pulse">
+                  <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
+                  <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                </div>
+              </div>
+            </div>
+          }>
+            <AdsBookingContent />
+          </Suspense>
         </div>
       </Layout>
       <Footer />
