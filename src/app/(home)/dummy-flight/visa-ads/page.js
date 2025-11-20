@@ -1,14 +1,12 @@
 "use client";
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Layout from '../../../../components/common/Layout';
 import Footer from '../../../../components/Layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFilePdf, FaEdit, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import FlightBookingComponent from '../../../../components/dummyFlight/DummyBooking';
-import HotelBookingComponent from '../../../../components/dummyHotel/HotelBookingComponent';
-import MostPreferredBooking from '../../../../components/dummyFlight/MostPreferredBooking';
 import ConsultationForm from "../../../../components/common/ConsultationForm";
 import { FcGoogle } from "react-icons/fc";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
@@ -16,9 +14,7 @@ import HeroBookingSection from '../../../../components/dummyFlight/HeroBookingSe
 import Button from '../../../../components/common/Button';
 
 const DummyFlightBookingsAdsPage = () => {
-  const [showFlightBooking, setShowFlightBooking] = useState(true);
-  const [showHotelBooking, setShowHotelBooking] = useState(false);
-  const [showMostPreferredBooking, setShowMostPreferredBooking] = useState(false);
+  const router = useRouter();
   
   // Auto-scroll states for testimonials
   const [isPaused, setIsPaused] = useState(false);
@@ -78,17 +74,14 @@ const DummyFlightBookingsAdsPage = () => {
     };
   }, [isPaused]);
 
-  // Function to scroll to booking form
+  const goToBookingPage = (targetType = 'flight') => {
+    const normalizedType = targetType === 'both' ? 'most-preferred' : targetType;
+    router.push(`/dummy-flight/visa-ads/bookings?type=${normalizedType}`);
+  };
+
+  // Function to scroll to booking form (redirect to dedicated page)
   const scrollToBookingForm = () => {
-    const detailedBookingSection = document.getElementById('booking-section');
-    
-    // Target the detailed booking section at the bottom
-    if (detailedBookingSection) {
-      detailedBookingSection.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
-    }
+    goToBookingPage('flight');
   };
 
   // Listen for Get Started button clicks from navbar
@@ -184,31 +177,23 @@ const DummyFlightBookingsAdsPage = () => {
     }
   ];
 
-  const handleBookingClick = (plan) => {
-    const type = plan.type;
-    const planName = plan.name;
-    
-    // Reset all booking states
-    setShowFlightBooking(false);
-    setShowHotelBooking(false);
-    setShowMostPreferredBooking(false);
-    
-    // Check if this is the "Most Preferred" plan
-    if (planName === 'Most Preferred' || type === 'both') {
-      setShowMostPreferredBooking(true);
-    } else if (type === 'flight') {
-      setShowFlightBooking(true);
-    } else if (type === 'hotel') {
-      setShowHotelBooking(true);
+  const handleBookingClick = (planOrType) => {
+    if (!planOrType) {
+      goToBookingPage('flight');
+      return;
     }
-    
-    // Scroll to booking section
-    setTimeout(() => {
-      const bookingSection = document.getElementById('booking-section');
-      if (bookingSection) {
-        bookingSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+
+    if (typeof planOrType === 'string') {
+      goToBookingPage(planOrType);
+      return;
+    }
+
+    const planType =
+      planOrType.name === 'Most Preferred' || planOrType.type === 'both'
+        ? 'most-preferred'
+        : planOrType.type || 'flight';
+
+    goToBookingPage(planType);
   };
 
   return (
@@ -413,27 +398,6 @@ const DummyFlightBookingsAdsPage = () => {
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Start your visa application process today with our reliable and verifiable dummy bookings. Trusted by thousands of successful visa applicants worldwide.
           </p>
-        </div>
-
-        {/* Booking Section */}
-        <div id="booking-section" className="mb-16">
-          {showFlightBooking && (
-            <div className="mb-8">
-              <FlightBookingComponent onTabClick={(type) => handleBookingClick({ type })} origin="landing-flight" />
-            </div>
-          )}
-
-          {showHotelBooking && (
-            <div className="mb-8">
-              <HotelBookingComponent onTabClick={(type) => handleBookingClick({ type })} origin="landing-hotel" />
-            </div>
-          )}
-
-          {showMostPreferredBooking && (
-            <div className="mb-8">
-              <MostPreferredBooking onTabClick={(type) => handleBookingClick({ type })} origin="landing-most-preferred" />
-            </div>
-          )}
         </div>
 
         {/* Testimonials Section */}
