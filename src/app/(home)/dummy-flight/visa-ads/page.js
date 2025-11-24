@@ -15,7 +15,7 @@ import Button from '../../../../components/common/Button';
 
 const DummyFlightBookingsAdsPage = () => {
   const router = useRouter();
-  
+
   // Auto-scroll states for testimonials
   const [isPaused, setIsPaused] = useState(false);
 
@@ -36,13 +36,13 @@ const DummyFlightBookingsAdsPage = () => {
 
       if (timestamp - lastTimestamp >= 16) { // ~60fps
         const maxScroll = container.scrollWidth - container.clientWidth;
-        
+
         // Check if we can actually scroll (has overflow content)
         if (maxScroll <= 0) {
           animationId = requestAnimationFrame(autoScroll);
           return;
         }
-        
+
         if (container.scrollLeft >= maxScroll - 1) { // Small buffer to prevent stuck
           // Smooth reset to beginning with a small delay
           setTimeout(() => {
@@ -56,10 +56,10 @@ const DummyFlightBookingsAdsPage = () => {
         } else {
           container.scrollLeft += scrollSpeed;
         }
-        
+
         lastTimestamp = timestamp;
       }
-      
+
       animationId = requestAnimationFrame(autoScroll);
     };
 
@@ -79,9 +79,17 @@ const DummyFlightBookingsAdsPage = () => {
     router.push(`/dummy-flight/visa-ads/bookings?type=${normalizedType}`);
   };
 
+  // Function to scroll to pricing section
+  const scrollToPricing = () => {
+    const pricingSection = document.getElementById('pricing-section');
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   // Function to scroll to booking form (redirect to dedicated page)
   const scrollToBookingForm = () => {
-    goToBookingPage('flight');
+    scrollToPricing();
   };
 
   // Listen for Get Started button clicks from navbar
@@ -101,12 +109,12 @@ const DummyFlightBookingsAdsPage = () => {
 
     // Add event listener for custom event
     window.addEventListener('navbarGetStartedClick', handleNavbarGetStarted);
-    
+
     // Also listen for clicks on any element with get-started class or data attribute
     document.addEventListener('click', (e) => {
-      if (e.target.matches('[data-action="get-started"]') || 
-          e.target.matches('.get-started-btn') ||
-          e.target.textContent?.trim() === 'Get Started') {
+      if (e.target.matches('[data-action="get-started"]') ||
+        e.target.matches('.get-started-btn') ||
+        e.target.textContent?.trim() === 'Get Started') {
         handleGetStartedClick(e);
       }
     });
@@ -133,7 +141,7 @@ const DummyFlightBookingsAdsPage = () => {
     },
     {
       name: "Hotel Booking",
-      description: "24 Hours Delivery", 
+      description: "24 Hours Delivery",
       price: "999",
       billing: "per person",
       note: "*Price applicable for 2+ passengers",
@@ -148,7 +156,7 @@ const DummyFlightBookingsAdsPage = () => {
     {
       name: "Daywise Itinerary",
       description: "24 Hours Delivery",
-      price: "999", 
+      price: "999",
       billing: "per person",
       note: "",
       features: [
@@ -168,7 +176,7 @@ const DummyFlightBookingsAdsPage = () => {
       features: [
         "24 Hours Delivery",
         "Flight Itinerary",
-        "Hotel Confirmation", 
+        "Hotel Confirmation",
         "Day wise Itinerary",
         "Name change not allowed"
       ],
@@ -200,19 +208,19 @@ const DummyFlightBookingsAdsPage = () => {
     <div className="min-h-screen overflow-x-hidden">
       {/* New Hero Section */}
       <HeroBookingSection onBookingClick={handleBookingClick} />
-      
+
       {/* Feature Cards Section */}
       <div className="relative z-30 bg-white pt-8 pb-8">
         {/* Container matching price cards alignment */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
           {/* Heading */}
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
               Reason to use our service?
             </h2>
-        
+
           </div>
-          
+
           {/* Scrollable container on mobile, grid on larger screens */}
           <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto lg:px-0">
             {/* Mobile horizontal scroll container */}
@@ -258,7 +266,7 @@ const DummyFlightBookingsAdsPage = () => {
                 </div>
               </motion.div>
             </div>
-            
+
             {/* Desktop/Tablet grid layout */}
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
@@ -303,8 +311,18 @@ const DummyFlightBookingsAdsPage = () => {
           </div>
         </div>
       </div>
-      
+
       <Layout className="relative z-20 bg-white pt-0 lg:pt-4 pb-4 mb-16">
+
+        {/* CTA Section - Moved above pricing */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-12 sm:mb-22 mt-12 sm:mt-16 text-center">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Ready to Get Your Visa Documents?
+          </h3>
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+            Start your visa application process today with our reliable and verifiable dummy bookings. Trusted by thousands of successful visa applicants worldwide.
+          </p>
+        </div>
 
         {/* Pricing Cards Section - Moved up to accommodate floating cards */}
         <motion.div
@@ -315,7 +333,7 @@ const DummyFlightBookingsAdsPage = () => {
           id="pricing-section"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 sm:gap-8 sm:gap-y-8 lg:gap-12 max-w-7xl mx-auto">
-          
+
             {plans.map((plan, index) => (
               <motion.div
                 key={index}
@@ -349,33 +367,33 @@ const DummyFlightBookingsAdsPage = () => {
                     </p>
                     <p className="text-black mb-5 font-semibold text-[13px]">/{plan.billing}</p>
                   </div>
-                  <p 
-                    style={{"color": `${plan.popular ? "#0B82E6":""}`}} 
-                    className={`${plan.note != "" ? " mt-[-6px]  ":" hidden "}text-black mb-5 font-semibold text-[12px]`}
+                  <p
+                    style={{ "color": `${plan.popular ? "#0B82E6" : ""}` }}
+                    className={`${plan.note != "" ? " mt-[-6px]  " : " hidden "}text-black mb-5 font-semibold text-[12px]`}
                   >
                     {plan.note}
                   </p>
                 </div>
                 <div className="border-t border-gray-200/50 px-6 pt-5 pb-6 bg-white/30 flex-1 flex flex-col justify-between">
                   <div>
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What&apos;s included:</h3>
+                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What&apos;s included:</h3>
                     <ul className="space-y-3">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-start">
-                        <div className="flex-shrink-0 h-5 w-5 mr-2 mt-0.5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                          <FaCheck className="h-3 w-3" />
-                        </div>
-                        <span className="text-gray-700 text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      {plan.features.map((feature, i) => (
+                        <li key={i} className="flex items-start">
+                          <div className="flex-shrink-0 h-5 w-5 mr-2 mt-0.5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                            <FaCheck className="h-3 w-3" />
+                          </div>
+                          <span className="text-gray-700 text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                   <div className="mt-6">
-                    <button 
+                    <button
                       onClick={() => handleBookingClick(plan)}
                       className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 shadow-sm
-                        ${plan.popular 
-                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-md' 
+                        ${plan.popular
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-md'
                           : 'bg-white text-gray-800 border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
                         }`}
                     >
@@ -390,15 +408,7 @@ const DummyFlightBookingsAdsPage = () => {
 
 
 
-        {/* Second CTA Section */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-12 sm:mb-16 text-center">
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Ready to Get Your Visa Documents?
-          </h3>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            Start your visa application process today with our reliable and verifiable dummy bookings. Trusted by thousands of successful visa applicants worldwide.
-          </p>
-        </div>
+
 
         {/* Testimonials Section */}
         <section className="py-12 sm:py-16 lg:py-20 bg-white">
@@ -446,7 +456,7 @@ const DummyFlightBookingsAdsPage = () => {
               <div
                 id="review-carousel"
                 className="flex gap-6 overflow-x-auto scroll-smooth py-2 px-1"
-                style={{scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch'}}
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
               >
@@ -522,90 +532,69 @@ const DummyFlightBookingsAdsPage = () => {
           </div>
         </section>
 
-        {/* Booking Buttons Section */}
-        <div className="py-8 bg-white -mt-10">
-          <div className="max-w-md mx-auto px-4">
-            <div className="flex flex-row gap-4 justify-center">
-              <Button
-                onClick={() => handleBookingClick({ type: 'flight' })}
-                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
-              >
-                Book Flight
-              </Button>
-              <Button
-                onClick={() => handleBookingClick({ type: 'hotel' })}
-                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
-              >
-                Book Hotels
-              </Button>
+
+
+        {/* About Section */}
+        <section className="min-h-screen relative py-4 sm:py-8 lg:py-12 overflow-hidden mb-12">
+          <div className="absolute blur-[200px] top-0 left-0 -z-10 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-white opacity-50 -translate-x-1/2 -translate-y-1/4"></div>
+
+          <Layout>
+            {/* Hero Section */}
+            <div className="text-center mb-4 px-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">Our Story</h1>
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+                Pioneering in solving complex visa application processes and simplifying them for end customers
+              </p>
             </div>
-          </div>
-        </div>
 
+            {/* Mission Section */}
+            <div className="mb-6 sm:mb-8 lg:mb-12 px-4">
+              <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-indigo-100" style={{ boxShadow: '0 -25px 50px -12px rgba(99, 102, 241, 0.25), 0 25px 50px -12px rgba(99, 102, 241, 0.25)' }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-start">
+                  {/* Left Side: Text Only */}
+                  <div className="order-2 md:order-1">
+                    <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
+                      Eazy Visas is a one stop shop for all your Visa documentation woes. We understand arranging documents for your visa application can be stressful. While your financials may be in place and you may feel confident about your visa application, there is still a possibility for your application to get rejected. In such a situation the flight tickets and hotel bookings are gone for a waste. Barring a huge loss in penalty charged by the Airline or the Hotel or the Travel Agent.
+                    </p>
+                    <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
+                      However, what most people are unaware of is that the Embassy does not advise you to book a confirmed ticket or hotel booking. All they want is a flight itinerary and hotel booking along with a day wise itinerary to show that you have every intention of visiting their country and would be returning home.
+                    </p>
+                    <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
+                      Our Flight itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
+                    </p>
+                  </div>
 
+                  {/* Right Side: Logo */}
+                  <div className="order-1 md:order-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 sm:p-6 min-h-[150px] sm:min-h-[180px] md:h-full flex items-center justify-center">
+                    <Image
+                      src="/logo/logo-white.png"
+                      alt="Eazy Visas Logo"
+                      width={200}
+                      height={80}
+                      className="w-auto h-10 sm:h-14 md:h-16 max-w-full"
+                    />
+                  </div>
+                </div>
 
-
-                {/* About Section */}
-<section className="min-h-screen relative py-4 sm:py-8 lg:py-12 overflow-hidden mb-12">
-  <div className="absolute blur-[200px] top-0 left-0 -z-10 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-white opacity-50 -translate-x-1/2 -translate-y-1/4"></div>
-
-  <Layout>
-    {/* Hero Section */}
-    <div className="text-center mb-4 px-4">
-      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">Our Story</h1>
-      <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-        Pioneering in solving complex visa application processes and simplifying them for end customers
-      </p>
-    </div>
-
-    {/* Mission Section */}
-    <div className="mb-6 sm:mb-8 lg:mb-12 px-4">
-      <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-indigo-100" style={{boxShadow: '0 -25px 50px -12px rgba(99, 102, 241, 0.25), 0 25px 50px -12px rgba(99, 102, 241, 0.25)'}}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-start">
-          {/* Left Side: Text Only */}
-          <div className="order-2 md:order-1">
-            <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-              Eazy Visas is a one stop shop for all your Visa documentation woes. We understand arranging documents for your visa application can be stressful. While your financials may be in place and you may feel confident about your visa application, there is still a possibility for your application to get rejected. In such a situation the flight tickets and hotel bookings are gone for a waste. Barring a huge loss in penalty charged by the Airline or the Hotel or the Travel Agent.
-            </p>
-            <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-              However, what most people are unaware of is that the Embassy does not advise you to book a confirmed ticket or hotel booking. All they want is a flight itinerary and hotel booking along with a day wise itinerary to show that you have every intention of visiting their country and would be returning home.
-            </p>
-            <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
-              Our Flight itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
-            </p>
-          </div>
-
-          {/* Right Side: Logo */}
-          <div className="order-1 md:order-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 sm:p-6 min-h-[150px] sm:min-h-[180px] md:h-full flex items-center justify-center">
-            <Image 
-              src="/logo/logo-white.png" 
-              alt="Eazy Visas Logo" 
-              width={200} 
-              height={80}
-              className="w-auto h-10 sm:h-14 md:h-16 max-w-full"
-            />
-          </div>
-        </div>
-
-        {/* Button Group - Moved outside and centered below */}
-        <div className="flex flex-row gap-3 sm:gap-4 justify-center mt-6 sm:mt-8">
-              <Button
-                onClick={() => handleBookingClick({ type: 'flight' })}
-                className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
-              >
-                Book Flight
-              </Button>
-              <Button
-                onClick={() => handleBookingClick({ type: 'hotel' })}
-                className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
-              >
-                Book Hotels
-              </Button>
-        </div>
-      </div>
-    </div>
-  </Layout>
-</section>
+                {/* Button Group - Left aligned below */}
+                <div className="flex flex-row gap-3 sm:gap-4 justify-start mt-6 sm:mt-8">
+                  <Button
+                    onClick={() => handleBookingClick({ type: 'flight' })}
+                    className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
+                  >
+                    Book Flight
+                  </Button>
+                  <Button
+                    onClick={() => handleBookingClick({ type: 'hotel' })}
+                    className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
+                  >
+                    Book Hotels
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Layout>
+        </section>
 
 
 
@@ -627,65 +616,65 @@ const DummyFlightBookingsAdsPage = () => {
               <div className="absolute bottom-0 right-0 w-80 h-80 bg-white rounded-full translate-x-1/2 translate-y-1/2"></div>
               <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-white rounded-full opacity-50"></div>
             </div>
-            
-                         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between p-4 sm:p-6 lg:p-8">
-               {/* Left Content */}
-               <div className="flex-1 text-white mb-6 lg:mb-0 lg:pr-8 text-center lg:text-left">
-                 <div className="flex flex-col sm:flex-row items-center mb-4">
-                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex items-center justify-center mb-3 sm:mb-0 sm:mr-4">
-                     <FaWhatsapp className="text-blue-600 text-lg sm:text-xl" />
-                   </div>
-                   <div>
-                     <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">Need Help Choosing?</h3>
-                     <p className="text-blue-100 text-sm sm:text-base lg:text-lg">Our visa specialists are available to help you select the perfect plan for your needs.</p>
-                   </div>
-                 </div>
-                 
-                 <div className="mb-4">
-                   <p className="text-white font-medium text-base sm:text-lg mb-1">Get In Touch</p>
-                   <p className="text-blue-100 text-xs sm:text-sm lg:text-base">Email: info@eazyvisas.com & Phone: +918850146905</p>
-                 </div>
-                 
-                 <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                   <a 
-                     href="https://wa.me/918850146905" 
-                     target="_blank" 
-                     rel="noopener noreferrer"
-                     className="inline-flex items-center justify-center px-5 py-2.5 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 shadow-lg text-sm lg:text-base"
-                   >
-                     <FaWhatsapp className="mr-2" />
-                     Chat with us
-                   </a>
-                   <a 
-                     href="tel:+918850146905"
-                     className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-all duration-300 border-2 border-white shadow-lg text-sm lg:text-base"
-                   >
-                     <FaPhoneAlt className="mr-2" />
-                     Call Support
-                   </a>
-                 </div>
-               </div>
-               
-               {/* Right Icon */}
-               <div className="flex-shrink-0">
-                 <div className="relative">
-                   <div className="w-20 h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-2xl">
-                     <FaPlane className="text-blue-600 text-3xl lg:text-4xl transform rotate-12" />
-                   </div>
-                   {/* Decorative elements */}
-                   <div className="absolute -top-2 -right-2 w-4 h-4 bg-white rounded-full opacity-80"></div>
-                   <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-white rounded-full opacity-60"></div>
-                   <div className="absolute top-1/2 -right-3 w-2 h-2 bg-white rounded-full opacity-40"></div>
-                 </div>
-               </div>
-             </div>
+
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between p-4 sm:p-6 lg:p-8">
+              {/* Left Content */}
+              <div className="flex-1 text-white mb-6 lg:mb-0 lg:pr-8 text-center lg:text-left">
+                <div className="flex flex-col sm:flex-row items-center mb-4">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex items-center justify-center mb-3 sm:mb-0 sm:mr-4">
+                    <FaWhatsapp className="text-blue-600 text-lg sm:text-xl" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">Need Help Choosing?</h3>
+                    <p className="text-blue-100 text-sm sm:text-base lg:text-lg">Our visa specialists are available to help you select the perfect plan for your needs.</p>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <p className="text-white font-medium text-base sm:text-lg mb-1">Get In Touch</p>
+                  <p className="text-blue-100 text-xs sm:text-sm lg:text-base">Email: info@eazyvisas.com & Phone: +918850146905</p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                  <a
+                    href="https://wa.me/918850146905"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-5 py-2.5 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 shadow-lg text-sm lg:text-base"
+                  >
+                    <FaWhatsapp className="mr-2" />
+                    Chat with us
+                  </a>
+                  <a
+                    href="tel:+918850146905"
+                    className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-all duration-300 border-2 border-white shadow-lg text-sm lg:text-base"
+                  >
+                    <FaPhoneAlt className="mr-2" />
+                    Call Support
+                  </a>
+                </div>
+              </div>
+
+              {/* Right Icon */}
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="w-20 h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-2xl">
+                    <FaPlane className="text-blue-600 text-3xl lg:text-4xl transform rotate-12" />
+                  </div>
+                  {/* Decorative elements */}
+                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-white rounded-full opacity-80"></div>
+                  <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-white rounded-full opacity-60"></div>
+                  <div className="absolute top-1/2 -right-3 w-2 h-2 bg-white rounded-full opacity-40"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
       </Layout>
-      
+
       <Footer className="relative z-10" />
-      
+
       <style jsx global>{`
         /* Animation styles */
         @keyframes float-slow {

@@ -57,9 +57,7 @@ const AdsBookingContent = () => {
   };
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
-      <div className="p-4 sm:p-6">{renderForm()}</div>
-    </div>
+    <>{renderForm()}</>
   );
 };
 
@@ -69,7 +67,7 @@ const AdsBookingPage = () => {
   return (
     <div className="min-h-screen bg-white">
       <Layout className="pt-8 pb-16">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="mb-6 flex justify-between items-center">
             <Button
               onClick={() => router.push('/dummy-flight/visa-ads')}
