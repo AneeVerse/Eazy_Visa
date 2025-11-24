@@ -207,7 +207,7 @@ const DummyFlightBookingsAdsPage = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* New Hero Section */}
-      <HeroBookingSection onBookingClick={handleBookingClick} />
+      <HeroBookingSection onBookingClick={scrollToPricing} />
 
       {/* Feature Cards Section */}
       <div className="relative z-30 bg-white pt-8 pb-8">
@@ -579,13 +579,13 @@ const DummyFlightBookingsAdsPage = () => {
                 {/* Button Group - Left aligned below */}
                 <div className="flex flex-row gap-3 sm:gap-4 justify-start mt-6 sm:mt-8">
                   <Button
-                    onClick={() => handleBookingClick({ type: 'flight' })}
+                    onClick={scrollToPricing}
                     className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
                   >
                     Book Flight
                   </Button>
                   <Button
-                    onClick={() => handleBookingClick({ type: 'hotel' })}
+                    onClick={scrollToPricing}
                     className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
                   >
                     Book Hotels

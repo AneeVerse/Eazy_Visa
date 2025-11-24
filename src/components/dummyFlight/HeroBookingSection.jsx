@@ -96,7 +96,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
             className="lg:col-span-2 w-full self-start order-1 lg:order-2"
           >
             <div className="max-w-full sm:max-w-lg lg:max-w-xl mx-auto flex flex-col items-center">
-              <div className="relative w-full h-[520px] rounded-3xl overflow-hidden shadow-2xl border border-white/60 bg-white/70 backdrop-blur">
+              <div className="relative w-full h-[300px] sm:h-[520px] rounded-3xl overflow-hidden shadow-2xl border border-white/60 bg-white/70 backdrop-blur">
                 <Image
                   src={bookingImage}
                   alt="Visa assistance bookings"
@@ -107,8 +107,8 @@ const HeroBookingSection = ({ onBookingClick }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                 
-                  
+
+
                 </div>
               </div>
             </div>
