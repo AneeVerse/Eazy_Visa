@@ -1,25 +1,43 @@
-const TableBlock = ({ value }) => {
-  if (!value || !value.header || !value.rows) return null;
-  return (
-    <table className="my-4 border border-gray-300">
-      <thead>
-        <tr>
-          {value.header.map((cell, idx) => (
-            <th key={idx} className="border px-2 py-1">{cell}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {value.rows.map((row, idx) => (
-          <tr key={idx}>
-            {row.cells.map((cell, cidx) => (
-              <td key={cidx} className="border px-2 py-1">{cell}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-};
+import React from 'react';
 
-export default TableBlock; 
+export default function TableBlock({ value }) {
+    if (!value || !value.rows || value.rows.length === 0) {
+        return null;
+    }
+
+    return (
+        <div className="my-8 overflow-x-auto">
+            <table className="min-w-full border-collapse border border-gray-300 shadow-sm rounded-lg overflow-hidden">
+                <thead className="bg-gradient-to-r from-blue-600 to-teal-600">
+                    <tr>
+                        {value.rows[0]?.cells?.map((cell, idx) => (
+                            <th
+                                key={idx}
+                                className="border border-gray-300 px-4 py-3 text-left text-white font-semibold text-sm"
+                            >
+                                {cell || ''}
+                            </th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {value.rows.slice(1).map((row, rowIdx) => (
+                        <tr
+                            key={row._key || rowIdx}
+                            className={rowIdx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}
+                        >
+                            {row.cells?.map((cell, cellIdx) => (
+                                <td
+                                    key={cellIdx}
+                                    className="border border-gray-300 px-4 py-3 text-sm text-gray-700"
+                                >
+                                    {cell || ''}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}

@@ -8,6 +8,7 @@ import FeedbackReviewComponent from "../../../../../components/home/FeedbackRevi
 import { getBlogBySlug, getRelatedBlogs, urlFor } from "../../../../../lib/sanity";
 import { PortableText } from '@portabletext/react';
 import TableBlock from '../../../../../components/blog/TableBlock';
+import TableOfContents from '../../../../../components/blog/TableOfContents';
 import { sanityClient } from "../../../../../lib/sanity";
 import FAQAccordion from '../../../../../components/blog/FAQAccordion';
 import BlogSchema from '../../../../../components/seo/BlogSchema';
@@ -18,6 +19,14 @@ export const revalidate = 60;
 const components = {
   types: {
     table: TableBlock,
+    tableOfContents: ({ value }) => (
+      <TableOfContents
+        title={value.title}
+        includeFAQ={value.includeFAQ}
+        faqTitle={value.faqTitle}
+        excludedHeadings={value.excludedHeadings || []}
+      />
+    ),
   },
 };
 
@@ -78,7 +87,7 @@ export async function generateMetadata({ params }) {
   // Basic metadata
   const metaTitle = post.seo?.metaTitle || post.title;
   const metaDescription = truncate(post.metaDescription || post.seo?.metaDescription || post.shortDescription || "Read this article on Aneeverse.", 155);
-  
+
   // Open Graph
   const ogTitle = metaTitle;
   const ogDescription = truncate(post.metaDescription || post.seo?.ogDescription || post.shortDescription || metaDescription, 155);
@@ -88,8 +97,8 @@ export async function generateMetadata({ params }) {
   const ogLocaleAlternate = (post.seo?.ogLocaleAlternate && post.seo.ogLocaleAlternate.length > 0)
     ? post.seo.ogLocaleAlternate
     : [
-        "en_US", "en_GB", "fr_FR", "de_DE", "es_ES", "it_IT", "pt_PT", "ru_RU", "zh_CN", "ja_JP", "ko_KR", "hi_IN"
-      ];
+      "en_US", "en_GB", "fr_FR", "de_DE", "es_ES", "it_IT", "pt_PT", "ru_RU", "zh_CN", "ja_JP", "ko_KR", "hi_IN"
+    ];
   const ogSiteName = post.seo?.ogSiteName || 'Aneeverse';
   const ogImage = post.seo?.ogImage || post.thumbnail;
 
@@ -98,12 +107,12 @@ export async function generateMetadata({ params }) {
   const twitterTitle = post.seo?.twitterTitle || ogTitle;
   const twitterDescription = post.seo?.twitterDescription || ogDescription;
   const twitterImage = post.seo?.twitterImage || ogImage;
-  
+
   // Other SEO
   const keywords = post.seo?.keywords || [];
   const canonicalUrl = post.seo?.canonicalUrl || ogUrl;
   const publishedTime = post.seo?.articlePublishedTime || post.date;
-  
+
   const metadata = {
     title: metaTitle,
     description: metaDescription,
@@ -139,7 +148,7 @@ export async function generateMetadata({ params }) {
     alternates: { canonical: canonicalUrl },
     robots: post.seo?.noIndex ? { index: false, follow: true } : undefined
   };
-  
+
   return metadata;
 }
 
@@ -163,7 +172,7 @@ async function BlogDetailsPage({ params }) {
       {/* Structured Data */}
       <BlogSchema post={post} />
       {post.faq && post.faq.length > 0 && <FAQSchema faqs={post.faq} pageTitle={post.title} />}
-      
+
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Main Content - Left Side */}
@@ -212,7 +221,7 @@ async function BlogDetailsPage({ params }) {
 
           {/* FAQ Section */}
           {post.faq && post.faq.length > 0 && <FAQAccordion faq={post.faq} />}
-          
+
           <FeedbackReviewComponent />
         </div>
 

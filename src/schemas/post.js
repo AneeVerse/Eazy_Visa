@@ -71,7 +71,8 @@ const post = {
             }
           ]
         },
-        { type: 'table' }
+        { type: 'table' },
+        { type: 'tableOfContents' }
       ],
       validation: Rule => Rule.required()
     },
@@ -112,6 +113,6 @@ const post = {
       return { ...selection, subtitle: author && `by ${author}` };
     }
   }
-}; 
+};
 
 export default post; 
