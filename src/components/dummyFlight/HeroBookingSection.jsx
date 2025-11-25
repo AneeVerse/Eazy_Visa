@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Button from '../common/Button';
 
-const bookingImage =
-  'https://cdn.sanity.io/images/53ejcnpy/production/558e316612bfa1c48d41cba76ab09125b369105a-1536x1024.png';
+const bookingImage = '/images/ads-right-hero.webp';
 
 const HeroBookingSection = ({ onBookingClick }) => {
   const handleHeroCta = (type) => {
