@@ -15,16 +15,16 @@ const HeroBookingSection = ({ onBookingClick }) => {
   return (
     <div className="min-h-screen flex items-start bg-gradient-to-r from-purple-100 to-blue-100 relative">
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8 xl:px-[50px] py-4 sm:py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-7 gap-6 lg:gap-8 items-start">
           {/* Left Content Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-8 sm:mt-16 lg:mt-20 order-2 lg:order-1"
+            className="space-y-6 lg:space-y-8 lg:col-span-3 mt-4 sm:mt-8 lg:mt-8 order-2 lg:order-1"
           >
             <div className="space-y-4 text-center lg:text-left">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.1 }}>
                   {[
                     'Need',
@@ -58,7 +58,7 @@ const HeroBookingSection = ({ onBookingClick }) => {
                 </motion.span>
               </h1>
 
-              <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
                 There are some countries that have flight & hotel reservations as a mandatory requirement while
                 applying for Visa. However denial of visa application can lead to heavy cancellation costs of flight
                 tickets and hotel reservations. But with Eazy Visas, we make this easy and simple for you.
@@ -92,17 +92,17 @@ const HeroBookingSection = ({ onBookingClick }) => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-2 w-full self-start order-1 lg:order-2"
+            className="lg:col-span-4 w-full self-start order-1 lg:order-2"
           >
-            <div className="max-w-full sm:max-w-lg lg:max-w-xl mx-auto flex flex-col items-center">
-              <div className="relative w-full h-[300px] sm:h-[520px] rounded-3xl overflow-hidden shadow-2xl border border-white/60 bg-white/70 backdrop-blur">
+            <div className="w-full flex flex-col items-center">
+              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/60 bg-white/70 backdrop-blur">
                 <Image
                   src={bookingImage}
                   alt="Visa assistance bookings"
                   fill
                   priority
-                  sizes="(max-width: 1024px) 80vw, 480px"
-                  className="object-cover"
+                  sizes="(max-width: 1024px) 80vw, 800px"
+                  className="object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
