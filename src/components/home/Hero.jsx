@@ -100,7 +100,7 @@ export default function HeroSection() {
           </Heading>
 
           <Paragraph className="text-sm sm:text-lg text-gray-600 max-w-2xl">
-          Visa hassles? Not with us! Get dummy flights and visa documentation services. We handle the paperwork, you plan the adventure.
+          Need dummy flights for your visa? We help you get visa documents fast. We handle the work. You plan your trip.
 
           </Paragraph>
 

@@ -42,7 +42,7 @@ const services = [
     id: 4,
     title: "Dummy Flights",
     url: "/dummy-flights",
-    description: "Get verifiable dummy flights and flight tickets for visa applications. Book dummy flights instantly.",
+    description: "Get verifiable dummy flights for visa. Book instantly. Fast delivery.",
     image:
       "/images/home/dummy-flight.webp",
     rating: 4.9,

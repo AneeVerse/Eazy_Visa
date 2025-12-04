@@ -17,7 +17,7 @@ const comfortaa = Comfortaa({
 
 export const metadata = {
   title: "Dummy Flights for Visa - Eazy Visas | Visa Consultant",
-  description: "Get dummy flights and visa consulting services for businesses, families and individuals. Book verifiable dummy flight tickets and hotel reservations for visa applications. We partner with our clients from start to finish.",
+  description: "Get dummy flights for visa applications. Book verifiable dummy flight tickets and hotel reservations. Fast 24-hour delivery. Trusted visa consultant.",
   robots: {
     index: true,
     follow: true,
@@ -25,7 +25,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Dummy Flights for Visa - Eazy Visas | Visa Consultant",
-    description: "Get dummy flights and visa consulting services for businesses, families and individuals. Book verifiable dummy flight tickets and hotel reservations for visa applications. We partner with our clients from start to finish.",
+    description: "Get dummy flights for visa applications. Book verifiable dummy flight tickets and hotel reservations. Fast 24-hour delivery. Trusted visa consultant.",
     type: "website",
     locale: "en_US",
     siteName: "Easy Visa",
@@ -33,7 +33,7 @@ export const metadata = {
   twitter: {
     card: "summary",
     title: "Dummy Flights for Visa - Eazy Visas | Visa Consultant",
-    description: "Get dummy flights and visa consulting services for businesses, families and individuals. Book verifiable dummy flight tickets and hotel reservations for visa applications. We partner with our clients from start to finish.",
+    description: "Get dummy flights for visa applications. Book verifiable dummy flight tickets and hotel reservations. Fast 24-hour delivery. Trusted visa consultant.",
   },
   icons: {
     icon: [
