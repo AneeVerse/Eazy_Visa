@@ -100,8 +100,7 @@ export default function HeroSection() {
           </Heading>
 
           <Paragraph className="text-sm sm:text-lg text-gray-600 max-w-2xl">
-          Need dummy flights for your visa? We help you get visa documents fast. We handle the work. You plan your trip.
-
+          Need dummy flights for your visa? First, we help you get visa documents fast. Also, we handle all the work. Therefore, you can plan your trip easily. Furthermore, our service is quick and simple.
           </Paragraph>
 
           <div className="flex gap-4 justify-center lg:justify-start">

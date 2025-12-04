@@ -10,17 +10,17 @@ const services = [
   {
     iconUrl: "/images/icon/bag.svg",
     title: 'End to End visa solutions',
-    description: 'From dummy flights to visa approval. We handle it all!'
+    description: 'First, get dummy flights. Also, get visa approval. Therefore, we handle it all!'
   },
   {
     iconUrl: "/images/icon/book.svg",
     title: 'Fast track',
-    description: 'Get dummy flights and visa faster. Priority processing available.'
+    description: 'Get dummy flights fast. Also, get visa faster. Furthermore, priority processing is available.'
   },
   {
     iconUrl: "/images/icon/card.svg",
     title: 'Secure Payment',
-    description: 'Safe payments for dummy flights. No hidden fees.'
+    description: 'Pay safely for dummy flights. Also, no hidden fees. Therefore, you know the cost.'
   }
 ];
 

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Layout from '../../../../components/common/Layout';
 import Footer from '../../../../components/Layout/Footer';
@@ -80,17 +80,17 @@ const DummyFlightBookingsAdsPage = () => {
   };
 
   // Function to scroll to pricing section
-  const scrollToPricing = () => {
+  const scrollToPricing = useCallback(() => {
     const pricingSection = document.getElementById('pricing-section');
     if (pricingSection) {
       pricingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  };
+  }, []);
 
   // Function to scroll to booking form (redirect to dedicated page)
-  const scrollToBookingForm = () => {
+  const scrollToBookingForm = useCallback(() => {
     scrollToPricing();
-  };
+  }, [scrollToPricing]);
 
   // Listen for Get Started button clicks from navbar
   useEffect(() => {
@@ -122,7 +122,7 @@ const DummyFlightBookingsAdsPage = () => {
     return () => {
       window.removeEventListener('navbarGetStartedClick', handleNavbarGetStarted);
     };
-  }, []);
+  }, [scrollToBookingForm]);
 
   const plans = [
     {
@@ -543,7 +543,7 @@ const DummyFlightBookingsAdsPage = () => {
             <div className="text-center mb-4 px-4">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">Our Story</h1>
               <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-                Pioneering in solving complex visa application processes and simplifying them for end customers
+                We solve visa problems. Also, we make it simple. Therefore, customers get help easily.
               </p>
             </div>
 
@@ -554,13 +554,13 @@ const DummyFlightBookingsAdsPage = () => {
                   {/* Left Side: Text Only */}
                   <div className="order-2 md:order-1">
                     <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-                      Eazy Visas is a one stop shop for all your Visa documentation woes. We understand arranging documents for your visa application can be stressful. While your financials may be in place and you may feel confident about your visa application, there is still a possibility for your application to get rejected. In such a situation the dummy flights tickets and hotel bookings are gone for a waste. Barring a huge loss in penalty charged by the Airline or the Hotel or the Travel Agent.
+                      Eazy Visas helps with all visa documents. First, we know getting documents is hard. Also, you may have money ready. However, your visa can still get rejected. Therefore, dummy flights tickets and hotel bookings can be wasted. Furthermore, you lose money on airline or hotel fees.
                     </p>
                     <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-                      However, what most people are unaware of is that the Embassy does not advise you to book a confirmed ticket or hotel booking. All they want is dummy flights itinerary and hotel booking along with a day wise itinerary to show that you have every intention of visiting their country and would be returning home.
+                      However, most people don&apos;t know this. First, embassies don&apos;t need real tickets. Also, they want dummy flights itinerary. Furthermore, they want hotel booking. Finally, they want a day plan. Therefore, you show you will visit and return home.
                     </p>
                     <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
-                      Our dummy flights itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
+                      Our dummy flights itineraries are real. Also, hotel bookings are real. Furthermore, day plans are real. Finally, insurance is real. Therefore, customers get visas approved.
                     </p>
                   </div>
 

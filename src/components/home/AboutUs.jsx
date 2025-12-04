@@ -28,7 +28,7 @@ export default function AboutUs() {
             </Button>
             </div>
             <p className="text-gray-600 text-lg leading-relaxed">
-            We make visa documents easy. Get verified dummy flights, flight plans, and hotel bookings. Save time and money. No need for risky real tickets. Embassies accept our real dummy flights documents. Trusted by travelers worldwide.
+            We make visa documents easy. First, get verified dummy flights. Also, get flight plans and hotel bookings. Therefore, you save time and money. However, you don't need risky real tickets. Furthermore, embassies accept our real dummy flights documents. Finally, we are trusted by travelers worldwide.
             </p>
           </div>
 
@@ -40,7 +40,7 @@ export default function AboutUs() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-800">Global Visa access</h3>
-                <p className="text-gray-600">Search and apply for visas to 100+ countries all in one place.</p>
+                <p className="text-gray-600">First, search for visas. Also, apply to 100+ countries. Therefore, everything is in one place.</p>
               </div>
             </div>
 
@@ -50,7 +50,7 @@ export default function AboutUs() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-800">Fast and Simple Process</h3>
-                <p className="text-gray-600">Get personalized visa info in seconds with an easy, guided search.</p>
+                <p className="text-gray-600">Get visa info fast. Also, it takes seconds. Furthermore, our search is easy and guided.</p>
               </div>
             </div>
 
@@ -59,8 +59,8 @@ export default function AboutUs() {
                 <HiOutlineDocumentSearch className="text-2xl text-secondary-500" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">Relaible & Updated Info</h3>
-                <p className="text-gray-600">Stay ahead with the latest visa requirements, trusted by  travelers worldwide.</p>
+                <h3 className="text-xl font-semibold text-gray-800">Reliable & Updated Info</h3>
+                <p className="text-gray-600">Stay ahead with latest visa rules. Also, we update info often. Therefore, travelers trust us worldwide.</p>
               </div>
             </div>
           </div>
