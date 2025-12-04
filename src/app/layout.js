@@ -16,24 +16,24 @@ const comfortaa = Comfortaa({
 });
 
 export const metadata = {
-  title: "Eazy Visas - Visa Consultant",
-  description: "easy visa offers a range of visa consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+  title: "Dummy Flights for Visa - Eazy Visas | Visa Consultant",
+  description: "Get dummy flights and visa consulting services for businesses, families and individuals. Book verifiable dummy flight tickets and hotel reservations for visa applications. We partner with our clients from start to finish.",
   robots: {
     index: true,
     follow: true,
     noimageindex: true,
   },
   openGraph: {
-    title: "Eazy Visas - Visa Consultant",
-    description: "easy visa offers a range of visa consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+    title: "Dummy Flights for Visa - Eazy Visas | Visa Consultant",
+    description: "Get dummy flights and visa consulting services for businesses, families and individuals. Book verifiable dummy flight tickets and hotel reservations for visa applications. We partner with our clients from start to finish.",
     type: "website",
     locale: "en_US",
     siteName: "Easy Visa",
   },
   twitter: {
     card: "summary",
-    title: "Eazy Visas - Visa Consultant",
-    description: "easy visa offers a range of visa consulting services to businesses, families and individuals. We partner with our clients from start to finish, focusing on their needs while developing effective strategies and and solutions.",
+    title: "Dummy Flights for Visa - Eazy Visas | Visa Consultant",
+    description: "Get dummy flights and visa consulting services for businesses, families and individuals. Book verifiable dummy flight tickets and hotel reservations for visa applications. We partner with our clients from start to finish.",
   },
   icons: {
     icon: [

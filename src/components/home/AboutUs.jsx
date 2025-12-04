@@ -28,7 +28,7 @@ export default function AboutUs() {
             </Button>
             </div>
             <p className="text-gray-600 text-lg leading-relaxed">
-            We simplify visa documentation with verified flight itineraries, hotel bookings, and foolproof itineraries—saving you time, money, and stress. No need for risky confirmed tickets; embassies accept our 100% genuine documents for smooth approvals. Trusted by travelers, approved by embassies.
+            We simplify visa documentation with verified dummy flights, flight itineraries, hotel bookings, and foolproof itineraries—saving you time, money, and stress. No need for risky confirmed tickets; embassies accept our 100% genuine dummy flights documents for smooth approvals. Trusted by travelers, approved by embassies.
             </p>
           </div>
 

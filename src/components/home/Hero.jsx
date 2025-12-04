@@ -95,12 +95,12 @@ export default function HeroSection() {
           </Link>
 
           <Heading level={1} className="uppercase font-bold">
-            Stress Free Visa, <br />
+            Dummy Flights & Stress Free Visa, <br />
             <span className="text-blue-600">Every Time.</span>
           </Heading>
 
           <Paragraph className="text-sm sm:text-lg text-gray-600 max-w-2xl">
-          Visa hassles? Not with us! We handle the paperwork, you plan the adventure.
+          Visa hassles? Not with us! Get dummy flights and visa documentation services. We handle the paperwork, you plan the adventure.
 
           </Paragraph>
 
