@@ -216,7 +216,7 @@ const DummyFlightBookingsAdsPage = () => {
           {/* Heading */}
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-              Reason to use our service?
+              Why Choose Our Dummy Flights Service?
             </h2>
 
           </div>
@@ -232,7 +232,7 @@ const DummyFlightBookingsAdsPage = () => {
                 <div className="text-center">
                   <FaShieldAlt className="text-green-500 text-3xl mb-4 mx-auto" />
                   <h4 className="font-semibold text-gray-900 mb-3 text-center">Legitimate & Verifiable</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Book legitimate and verifiable dummy flights and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -242,7 +242,7 @@ const DummyFlightBookingsAdsPage = () => {
                 <div className="text-center">
                   <FaFilePdf className="text-blue-500 text-3xl mb-4 mx-auto" />
                   <h4 className="font-semibold text-gray-900 mb-3 text-center">Instant PDF</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Instantly download PDF confirmations for your dummy flights bookings. Get your dummy flight tickets delivered within minutes of payment confirmation.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -317,10 +317,10 @@ const DummyFlightBookingsAdsPage = () => {
         {/* CTA Section - Moved above pricing */}
         <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-12 sm:mb-22 mt-12 sm:mt-16 text-center">
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Ready to Get Your Visa Documents?
+            Ready to Get Your Dummy Flights for Visa?
           </h3>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            Start your visa application process today with our reliable and verifiable dummy bookings. Trusted by thousands of successful visa applicants worldwide.
+            Start your visa application process today with our reliable and verifiable dummy flights and bookings. Trusted by thousands of successful visa applicants worldwide.
           </p>
         </div>
 
@@ -554,13 +554,13 @@ const DummyFlightBookingsAdsPage = () => {
                   {/* Left Side: Text Only */}
                   <div className="order-2 md:order-1">
                     <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-                      Eazy Visas is a one stop shop for all your Visa documentation woes. We understand arranging documents for your visa application can be stressful. While your financials may be in place and you may feel confident about your visa application, there is still a possibility for your application to get rejected. In such a situation the flight tickets and hotel bookings are gone for a waste. Barring a huge loss in penalty charged by the Airline or the Hotel or the Travel Agent.
+                      Eazy Visas is a one stop shop for all your Visa documentation woes. We understand arranging documents for your visa application can be stressful. While your financials may be in place and you may feel confident about your visa application, there is still a possibility for your application to get rejected. In such a situation the dummy flights tickets and hotel bookings are gone for a waste. Barring a huge loss in penalty charged by the Airline or the Hotel or the Travel Agent.
                     </p>
                     <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-                      However, what most people are unaware of is that the Embassy does not advise you to book a confirmed ticket or hotel booking. All they want is a flight itinerary and hotel booking along with a day wise itinerary to show that you have every intention of visiting their country and would be returning home.
+                      However, what most people are unaware of is that the Embassy does not advise you to book a confirmed ticket or hotel booking. All they want is dummy flights itinerary and hotel booking along with a day wise itinerary to show that you have every intention of visiting their country and would be returning home.
                     </p>
                     <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
-                      Our Flight itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
+                      Our dummy flights itineraries, Hotel bookings, Day wise itinerary and Insurance policies are 100% verifiable and our customers have been successful in getting their visa application approved.
                     </p>
                   </div>
 

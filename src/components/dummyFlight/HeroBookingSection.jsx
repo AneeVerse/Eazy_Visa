@@ -28,9 +28,8 @@ const HeroBookingSection = ({ onBookingClick }) => {
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.1 }}>
                   {[
                     'Need',
-                    ' a',
-                    ' flight',
-                    ' ticket',
+                    ' dummy',
+                    ' flights',
                     ' or',
                     ' hotel',
                     ' reservation',
@@ -59,14 +58,14 @@ const HeroBookingSection = ({ onBookingClick }) => {
               </h1>
 
               <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
-                There are some countries that have flight & hotel reservations as a mandatory requirement while
+                There are some countries that require dummy flights and hotel reservations as a mandatory requirement while
                 applying for Visa. However denial of visa application can lead to heavy cancellation costs of flight
                 tickets and hotel reservations. But with Eazy Visas, we make this easy and simple for you.
                 <br />
                 <br />
-                Book legitimate and verifiable flight tickets and hotel reservations for your visa applications at a
-                fraction of actual cost. You can make reservations for flight & hotel to any destinations or countries
-                instantly. These reservations are acceptable for visa application to any country.
+                Book legitimate and verifiable dummy flights and hotel reservations for your visa applications at a
+                fraction of actual cost. You can make reservations for dummy flights & hotels to any destinations or countries
+                instantly. These dummy flights and reservations are acceptable for visa application to any country.
               </p>
             </div>
 

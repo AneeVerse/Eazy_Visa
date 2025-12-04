@@ -1,16 +1,16 @@
 export const metadata = {
-  title: "Book low fare dummy flight tickets & hotels for visa application - Landing page",
-  description: "Book low fare dummy flight tickets & hotels for visa application",
-  keywords: "dummy flight tickets, hotel reservations, visa application, flight itinerary, hotel booking, visa documents, travel booking",
+  title: "Dummy Flights & Hotels for Visa - Book Now | Eazy Visas",
+  description: "Book dummy flights and hotels for visa applications. Get verifiable dummy flight tickets and hotel reservations at affordable prices. Fast 24-hour delivery.",
+  keywords: "dummy flights, dummy flight tickets, hotel reservations, visa application, flight itinerary, hotel booking, visa documents, travel booking",
   openGraph: {
-    title: "Book low fare dummy flight tickets & hotels for visa application",
-    description: "Book legitimate and verifiable dummy flight tickets and hotel reservations for visa applications at a fraction of actual cost.",
+    title: "Dummy Flights & Hotels for Visa - Book Now | Eazy Visas",
+    description: "Book legitimate and verifiable dummy flights and hotel reservations for visa applications at a fraction of actual cost. Fast 24-hour delivery.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Book low fare dummy flight tickets & hotels for visa application",
-    description: "Book legitimate and verifiable dummy flight tickets and hotel reservations for visa applications at a fraction of actual cost.",
+    title: "Dummy Flights & Hotels for Visa - Book Now | Eazy Visas",
+    description: "Book legitimate and verifiable dummy flights and hotel reservations for visa applications at a fraction of actual cost. Fast 24-hour delivery.",
   }
 };
 
