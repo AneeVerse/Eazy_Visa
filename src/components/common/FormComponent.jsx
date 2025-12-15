@@ -12,7 +12,7 @@ const FormComponent = () => {
   const params = useParams();
   const pathname = usePathname();
   const slug = params?.slug || '';
-  
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -97,7 +97,7 @@ const FormComponent = () => {
         : { ...prev, formSource: meta.from }
     ));
   }, [pathname, countryName]);
-  
+
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isAccepted, setIsAccepted] = useState(true);
@@ -308,7 +308,7 @@ const FormComponent = () => {
     "Zambia",
     "Zimbabwe"
   ];
-  
+
 
   const validateForm = () => {
     const newErrors = {};
@@ -316,8 +316,8 @@ const FormComponent = () => {
     // Phone number regex for  only numbers
     // Adjust the regex as per your requirements
     const phoneRegex = /^[0-9]{10,15}$/;
-    
-   
+
+
 
     if (!formData.firstName.trim()) {
       newErrors.firstName = 'First name is required';
@@ -400,25 +400,25 @@ const FormComponent = () => {
     try {
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
-      
+
       // For Google Sheets compatibility, also create a version without special characters
       const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
-      
-    const response = await fetch('/api/submit-form', {
+
+      const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          ...formData, 
+        body: JSON.stringify({
+          ...formData,
           phone: fullPhoneNumber, // Send the complete phone number with country code for email
-        googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
-        from: formMeta.from,
-        fromCategory: formMeta.from,
-        pageLink: formMeta.pageLink,
-        pageName: formMeta.pageLabel || pathname,
-        serviceSelected: formData.visaType,
-        extraInfo: `source=${formMeta.from || 'others'} | page=${formMeta.pageLabel || formMeta.pageLink || pathname} | country=${formData.country || 'N/A'}`
+          googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
+          from: formMeta.from,
+          fromCategory: formMeta.from,
+          pageLink: formMeta.pageLink,
+          pageName: formMeta.pageLabel || pathname,
+          serviceSelected: formData.visaType,
+          extraInfo: `source=${formMeta.from || 'others'} | page=${formMeta.pageLabel || formMeta.pageLink || pathname} | country=${formData.country || 'N/A'}`
         }),
       });
 
@@ -430,10 +430,10 @@ const FormComponent = () => {
 
       // Set flag in sessionStorage before redirecting
       sessionStorage.setItem('formSubmitted', 'true');
-      
+
       // Redirect to dynamic thank you page based on service context or visa type
       let redirectUrl = '/Confirmation-contact'; // Default fallback
-      
+
       // Check service page context first, then check countries pages, then fallback to visa type selection
       if (pathname && pathname.includes('/services/end-to-end')) {
         redirectUrl = '/Confirmation-end-to-end';
@@ -449,9 +449,9 @@ const FormComponent = () => {
       } else if (formData.visaType === 'Business Visa') {
         redirectUrl = '/Visa-confirmation-business';
       }
-      
+
       window.location.href = redirectUrl;
-      
+
     } catch (error) {
       toast.error(error.message || 'Failed to submit form. Please try again later.', {
         position: "top-right",
@@ -469,7 +469,7 @@ const FormComponent = () => {
 
   return (
     <>
-      <ToastContainer 
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         className={"mt-[70px]"}
@@ -481,7 +481,7 @@ const FormComponent = () => {
         draggable
         pauseOnHover
       />
-      
+
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 transition-all hover:shadow-xl">
         {/* Form Header with Gradient */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-5 relative text-white">
@@ -547,9 +547,8 @@ const FormComponent = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full px-4 py-2 text-sm border rounded-lg ${
-                  errors.email ? "border-red-500" : "border-gray-300"
-                } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                className={`w-full px-4 py-2 text-sm border rounded-lg ${errors.email ? "border-red-500" : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                 placeholder="Email Address*"
               />
               {errors.email && (
@@ -578,9 +577,8 @@ const FormComponent = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2 text-sm border border-l-0 rounded-r-lg ${
-                      errors.phone ? "border-red-500" : "border-gray-300"
-                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                    className={`w-full px-4 py-2 text-sm border border-l-0 rounded-r-lg ${errors.phone ? "border-red-500" : "border-gray-300"
+                      } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                     placeholder="Phone Number*"
                   />
                 </div>
@@ -602,11 +600,10 @@ const FormComponent = () => {
                   name="visaType"
                   value={formData.visaType}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${
-                    errors.visaType ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${errors.visaType ? "border-red-500" : "border-gray-300"
+                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                 >
-                  <option value="">Visa Type*</option>
+                  <option value="" disabled hidden>Visa Type*</option>
                   {visaTypes.map((type, index) => (
                     <option key={index} value={type}>{type}</option>
                   ))}
@@ -634,11 +631,10 @@ const FormComponent = () => {
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${
-                    errors.country ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${errors.country ? "border-red-500" : "border-gray-300"
+                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                 >
-                  <option value="">Destination Country*</option>
+                  <option value="" disabled hidden>Destination Country*</option>
                   {countries.map((country, index) => (
                     <option key={index} value={country}>{country}</option>
                   ))}
@@ -684,11 +680,10 @@ const FormComponent = () => {
             <button
               type="submit"
               disabled={isLoading || !isAccepted}
-              className={`w-full mt-4 py-2 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${
-                isLoading || !isAccepted
+              className={`w-full mt-4 py-2 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
                   ? "bg-gray-300 cursor-not-allowed"
                   : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
-              } transition-all duration-300`}
+                } transition-all duration-300`}
             >
               {isLoading ? (
                 <>

@@ -12,20 +12,20 @@ import CountryCodeDropdown from './CountryCodeDropdown';
 
 const ConsultationForm = () => {
   const pathname = usePathname();
-  const [formData, setFormData] = useState({ 
-    firstName: "", 
-    lastName: "", 
-    email: "", 
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
     phone: "",
     countryCode: "+91", // Default to India
     visaType: ""
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
-  const [errors, setErrors] = useState({ 
-    firstName: "", 
-    lastName: "", 
-    email: "", 
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
     phone: "",
     visaType: ""
   });
@@ -89,10 +89,10 @@ const ConsultationForm = () => {
     try {
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
-      
+
       // For Google Sheets compatibility, also create a version without special characters
       const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
-      
+
       const response = await fetch('/api/submit-visa-form', {
         method: 'POST',
         headers: {
@@ -116,10 +116,10 @@ const ConsultationForm = () => {
 
       // Set flag in sessionStorage before redirecting
       sessionStorage.setItem('formSubmitted', 'true');
-      
+
       // Redirect to dynamic thank you page based on service context or visa type
       let redirectUrl = '/Confirmation-contact'; // Default fallback
-      
+
       // Check service page context first, then check countries pages, then fallback to visa type selection
       if (pathname && pathname.includes('/services/end-to-end')) {
         redirectUrl = '/Confirmation-end-to-end';
@@ -135,9 +135,9 @@ const ConsultationForm = () => {
       } else if (formData.visaType === 'Business Visa') {
         redirectUrl = '/Visa-confirmation-business';
       }
-      
+
       window.location.href = redirectUrl;
-      
+
     } catch (error) {
       toast.error(error.message || "Submission failed. Please try again.", {
         position: "top-right",
@@ -154,7 +154,7 @@ const ConsultationForm = () => {
 
   return (
     <>
-      <ToastContainer 
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         className={"mt-[70px]"}
@@ -166,13 +166,13 @@ const ConsultationForm = () => {
         draggable
         pauseOnHover
       />
-      
+
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 transition-all">
         {/* Form Header with Gradient */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-6 text-white relative overflow-hidden">
           <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full"></div>
           <div className="absolute -right-5 -bottom-5 w-20 h-20 bg-white/5 rounded-full"></div>
-          
+
           <div className="relative z-10 flex items-center space-x-4">
             <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
               <RiVisaLine className="text-3xl" />
@@ -253,9 +253,8 @@ const ConsultationForm = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${
-                    errors.email ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  className={`w-full pl-10 pr-4 py-3 border rounded-lg ${errors.email ? "border-red-500" : "border-gray-300"
+                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                   placeholder="your@email.com"
                 />
                 <BiEnvelope className="absolute left-3 top-4 text-gray-400" />
@@ -290,9 +289,8 @@ const ConsultationForm = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full pl-10 pr-4 py-3 border border-l-0 rounded-r-lg ${
-                      errors.phone ? "border-red-500" : "border-gray-300"
-                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                    className={`w-full pl-10 pr-4 py-3 border border-l-0 rounded-r-lg ${errors.phone ? "border-red-500" : "border-gray-300"
+                      } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                     placeholder="9876543210"
                   />
                   <BiPhone className="absolute left-3 top-4 text-gray-400" />
@@ -321,7 +319,7 @@ const ConsultationForm = () => {
                   onChange={handleChange}
                   className={`w-full pl-10 pr-4 py-3 border rounded-lg ${errors.visaType ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                 >
-                  <option value="">Select Visa Type</option>
+                  <option value="" disabled hidden>Select Visa Type</option>
                   <option value="Tourist Visa">Tourist Visa</option>
                   <option value="Business Visa">Business Visa</option>
                   <option value="Student Visa">Student Visa</option>
@@ -367,11 +365,10 @@ const ConsultationForm = () => {
               disabled={isLoading || !isAccepted}
               whileTap={{ scale: 0.98 }}
               whileHover={{ scale: 1.02 }}
-              className={`w-full mt-6 py-3 px-6 rounded-lg font-medium flex items-center justify-center space-x-2 ${
-                isLoading || !isAccepted
+              className={`w-full mt-6 py-3 px-6 rounded-lg font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
                   ? "bg-gray-300 cursor-not-allowed"
                   : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
-              } transition-all duration-300`}
+                } transition-all duration-300`}
             >
               <span>{isLoading ? "Processing..." : "Get Free Consultation"}</span>
               {!isLoading && <FiArrowRight className="text-lg" />}

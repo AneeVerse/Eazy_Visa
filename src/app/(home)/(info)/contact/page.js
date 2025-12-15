@@ -247,7 +247,7 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           ...formData,
           phone: `${formData.countryCode} ${formData.phone}`, // Combine country code with phone (with space)
           googleSheetsPhone: `${formData.countryCode.replace('+', '')}${formData.phone}` // Clean version for Google Sheets
@@ -260,11 +260,11 @@ const Contact = () => {
         throw new Error(data.message || 'Failed to send message');
       }
 
-     // Set flag in sessionStorage before redirecting
-     sessionStorage.setItem('formSubmitted', 'true');
-      
-     // Redirect to dynamic thank you page for contact form
-     window.location.href = '/Confirmation-contact';
+      // Set flag in sessionStorage before redirecting
+      sessionStorage.setItem('formSubmitted', 'true');
+
+      // Redirect to dynamic thank you page for contact form
+      window.location.href = '/Confirmation-contact';
 
     } catch (error) {
       toast.error(error.message || 'Failed to send message. Please try again.', {
@@ -282,7 +282,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden relative py-20">
-         <ToastContainer
+      <ToastContainer
         position="top-right"
 
         className={"mt-[70px]"}
@@ -295,7 +295,7 @@ const Contact = () => {
         draggable
         pauseOnHover
       />
-      
+
       <div className="absolute blur-[200px] top-[0%] -left-[30px] w-[400px] -z-10 h-[400px] bg-[#0B82E6] opacity-50"></div>
       <Layout className="">
         <div className="text-center mb-16">
@@ -392,7 +392,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Phone Field with Country Code */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number*</label>
@@ -444,7 +444,7 @@ const Contact = () => {
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                   required
                 >
-                  <option value="">Select Visa Type</option>
+                  <option value="" disabled hidden>Select Visa Type</option>
                   {visaTypes.map((type, index) => (
                     <option key={index} value={type}>{type}</option>
                   ))}
@@ -463,7 +463,7 @@ const Contact = () => {
                   className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
                   required
                 >
-                  <option value="">Select Country</option>
+                  <option value="" disabled hidden>Select Country</option>
                   {countries.map((country, index) => (
                     <option key={index} value={country}>{country}</option>
                   ))}

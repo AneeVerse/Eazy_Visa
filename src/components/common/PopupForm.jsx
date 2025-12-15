@@ -243,13 +243,13 @@ const PopupForm = () => {
     "Zambia",
     "Zimbabwe"
   ];
-  
+
 
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[0-9]{10,15}$/;
-    
+
     if (!formData.firstName.trim()) {
       newErrors.firstName = 'First name is required';
     }
@@ -333,10 +333,10 @@ const PopupForm = () => {
     try {
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
-      
+
       // For Google Sheets compatibility, also create a version without special characters
       const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
-      
+
       const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
@@ -356,10 +356,10 @@ const PopupForm = () => {
       }
 
       sessionStorage.setItem('formSubmitted', 'true');
-      
+
       // PopupForm is generally for contact/general inquiries
       window.location.href = '/Confirmation-contact';
-      
+
     } catch (error) {
       toast.error(error.message || 'Failed to submit form. Please try again later.', {
         position: "top-right",
@@ -379,7 +379,7 @@ const PopupForm = () => {
 
   return (
     <>
-      <ToastContainer 
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         className={"mt-[70px]"}
@@ -391,17 +391,17 @@ const PopupForm = () => {
         draggable
         pauseOnHover
       />
-      
+
       <div className="fixed inset-0 bg-black/30 backdrop-blur-[4px] bg-opacity-20 z-50 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl shadow-2xl overflow-hidden max-w-4xl w-full flex flex-col lg:flex-row">
           {/* Close Button */}
-          <button 
+          <button
             onClick={closePopup}
             className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
           >
             <BiX className="text-2xl md:text-4xl bg-white rounded-full p-1" />
           </button>
-          
+
           {/* Image Section - Hidden on mobile, visible on larger screens */}
           <div className="hidden lg:block lg:w-1/3 bg-blue-600 relative">
             <div className="absolute inset-0 bg-gradient-to-b from-blue-600 to-blue-500 opacity-90"></div>
@@ -430,14 +430,14 @@ const PopupForm = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Form Section */}
           <div className="lg:w-2/3 p-6 sm:p-8">
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-gray-800">Free Visa Consultation</h3>
               <p className="text-gray-600 hidden lg:block">Fill out the form and our expert will contact you shortly</p>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -484,9 +484,8 @@ const PopupForm = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 text-sm border rounded-lg ${
-                    errors.email ? "border-red-500" : "border-gray-300"
-                  } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  className={`w-full px-4 py-2 text-sm border rounded-lg ${errors.email ? "border-red-500" : "border-gray-300"
+                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                   placeholder="Email Address*"
                 />
                 {errors.email && (
@@ -514,9 +513,8 @@ const PopupForm = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className={`w-full px-4 py-2 text-sm border border-l-0 rounded-r-lg ${
-                        errors.phone ? "border-red-500" : "border-gray-300"
-                      } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                      className={`w-full px-4 py-2 text-sm border border-l-0 rounded-r-lg ${errors.phone ? "border-red-500" : "border-gray-300"
+                        } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                       placeholder="Phone Number*"
                     />
                   </div>
@@ -537,11 +535,10 @@ const PopupForm = () => {
                     name="visaType"
                     value={formData.visaType}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${
-                      errors.visaType ? "border-red-500" : "border-gray-300"
-                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                    className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${errors.visaType ? "border-red-500" : "border-gray-300"
+                      } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                   >
-                    <option value="">Visa Type*</option>
+                    <option value="" disabled hidden>Visa Type*</option>
                     {visaTypes.map((type, index) => (
                       <option key={index} value={type}>{type}</option>
                     ))}
@@ -568,11 +565,10 @@ const PopupForm = () => {
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${
-                      errors.country ? "border-red-500" : "border-gray-300"
-                    } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                    className={`w-full px-4 py-2 text-sm border rounded-lg appearance-none ${errors.country ? "border-red-500" : "border-gray-300"
+                      } focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
                   >
-                    <option value="">Destination Country*</option>
+                    <option value="" disabled hidden>Destination Country*</option>
                     {countries.map((country, index) => (
                       <option key={index} value={country}>{country}</option>
                     ))}
@@ -618,11 +614,10 @@ const PopupForm = () => {
               <button
                 type="submit"
                 disabled={isLoading || !isAccepted}
-                className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${
-                  isLoading || !isAccepted
+                className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
                     ? "bg-gray-300 cursor-not-allowed"
                     : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
-                } transition-all duration-300`}
+                  } transition-all duration-300`}
               >
                 {isLoading ? (
                   <>
