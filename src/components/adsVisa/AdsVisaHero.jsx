@@ -25,16 +25,12 @@ const AdsVisaHero = ({ onBookingClick }) => {
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight">
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.1 }}>
                   {[
-                    'Need',
-                    ' dummy',
-                    ' flights',
-                    ' or',
-                    ' hotel',
-                    ' reservation',
+                    'Expert',
+                    ' Visa',
+                    ' Consultants',
                     ' for',
-                    ' your',
-                    ' visa',
-                    ' application?',
+                    ' 100+',
+                    ' Countries',
                   ].map((word, wordIndex) => (
                     <span key={wordIndex}>
                       {word.split('').map((char, charIndex) => (
@@ -56,16 +52,34 @@ const AdsVisaHero = ({ onBookingClick }) => {
               </h1>
 
               <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 leading-relaxed">
-                There are some countries that require dummy flights and hotel reservations as a mandatory requirement while
-                applying for Visa. However denial of visa application can lead to heavy cancellation costs of flight
-                tickets and hotel reservations. But with Eazy Visas, we make this easy and simple for you.
+                Get professional visa assistance for tourist, business, and documentation services. Our expert consultants guide you through the entire visa application process with verified flight itineraries and hotel bookings.
               </p>
               
               <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 leading-relaxed">
-                Book legitimate and verifiable dummy flights and hotel reservations for your visa applications at a
-                fraction of actual cost. You can make reservations for dummy flights & hotels to any destinations or countries
-                instantly. These dummy flights and reservations are acceptable for visa application to any country.
+                With 10+ years of experience, we offer fast processing, 24/7 WhatsApp support, and trusted service for destinations like UAE, Schengen, UK, USA, Canada, Singapore, Thailand, and Japan. No guarantees - just expert guidance every step of the way.
               </p>
+
+              {/* Trust Indicators */}
+              <div className="flex flex-wrap gap-4 sm:gap-6 justify-center lg:justify-start text-xs sm:text-sm text-gray-600 pt-2">
+                <div className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>WhatsApp Support</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Fast Processing</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>10+ Years Experience</span>
+                </div>
+              </div>
             </div>
 
             {/* CTA Buttons */}
@@ -74,13 +88,13 @@ const AdsVisaHero = ({ onBookingClick }) => {
                 onClick={() => handleHeroCta('flight')}
                 className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
-                Book Flight
+                Get Free Consultation
               </Button>
               <Button
                 onClick={() => handleHeroCta('hotel')}
-                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
+                className="flex-1 sm:flex-none bg-white text-blue-600 border-2 border-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
               >
-                Book Hotels
+                View Visa Services
               </Button>
             </div>
           </motion.div>

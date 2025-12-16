@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFilePdf, FaEdit, FaTimes } from 'react-icons/fa';
+import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFilePdf, FaEdit, FaTimes, FaUserTie, FaGlobe, FaClock, FaCheckCircle } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import ConsultationForm from "../../../components/common/ConsultationForm";
 import { FcGoogle } from "react-icons/fc";
@@ -136,9 +136,11 @@ const AdsVisaPage = () => {
           {/* Heading */}
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-              Why Choose Our Dummy Flights Service?
+              Why Choose <span className="text-blue-600">Eazy Visas</span>?
             </h2>
-
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              Trusted visa consultancy with expert guidance for 100+ countries
+            </p>
           </div>
 
           {/* Scrollable container on mobile, grid on larger screens */}
@@ -150,9 +152,9 @@ const AdsVisaPage = () => {
                 className="flex-shrink-0 w-72 snap-center flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="text-center">
-                  <FaShieldAlt className="text-green-500 text-3xl mb-4 mx-auto" />
-                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Legitimate & Verifiable</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Book legitimate and verifiable dummy flights and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
+                  <FaUserTie className="text-blue-500 text-3xl mb-4 mx-auto" />
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Expert Consultants</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">10+ years of experience with expert visa consultants guiding you through the entire application process from start to approval.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -160,9 +162,9 @@ const AdsVisaPage = () => {
                 className="flex-shrink-0 w-72 snap-center flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="text-center">
-                  <FaFilePdf className="text-blue-500 text-3xl mb-4 mx-auto" />
-                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Instant PDF</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Instantly download PDF confirmations for your dummy flights bookings. Get your dummy flight tickets delivered within minutes of payment confirmation.</p>
+                  <FaGlobe className="text-green-500 text-3xl mb-4 mx-auto" />
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">100+ Countries</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for UAE, Schengen, UK, USA, Canada, Singapore, Thailand, Japan and 90+ more destinations worldwide.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -170,9 +172,9 @@ const AdsVisaPage = () => {
                 className="flex-shrink-0 w-72 snap-center flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="text-center">
-                  <FaEdit className="text-purple-500 text-3xl mb-4 mx-auto" />
-                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Unlimited Revisions</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
+                  <FaClock className="text-purple-500 text-3xl mb-4 mx-auto" />
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Fast Processing</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Quick turnaround times with priority processing. Get your visa documents verified and application submitted without delays.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -180,9 +182,9 @@ const AdsVisaPage = () => {
                 className="flex-shrink-0 w-72 snap-center flex flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="text-center">
-                  <FaTimes className="text-red-500 text-3xl mb-4 mx-auto" />
-                  <h4 className="font-semibold text-gray-900 mb-3 text-center">No Cancellation Fee</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
+                  <FaWhatsapp className="text-green-600 text-3xl mb-4 mx-auto" />
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">24/7 WhatsApp Support</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Instant WhatsApp support anytime, anywhere. Get instant replies and expert guidance whenever you need assistance with your visa application.</p>
                 </div>
               </motion.div>
             </div>
@@ -193,9 +195,9 @@ const AdsVisaPage = () => {
               className="hidden sm:flex h-full flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
-                <FaShieldAlt className="text-green-500 text-3xl mb-4 mx-auto" />
-                <h4 className="font-semibold text-gray-900 mb-3 text-center">Legitimate & Verifiable</h4>
-                <p className="text-gray-600 text-sm text-center leading-relaxed">Book legitimate and verifiable flight tickets and hotel reservations for your visa applications. All our documents are authentic and can be verified.</p>
+                <FaUserTie className="text-blue-500 text-3xl mb-4 mx-auto" />
+                <h4 className="font-semibold text-gray-900 mb-3 text-center">Expert Consultants</h4>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">10+ years of experience with expert visa consultants guiding you through the entire application process from start to approval.</p>
               </div>
             </motion.div>
             <motion.div
@@ -203,9 +205,9 @@ const AdsVisaPage = () => {
               className="hidden sm:flex h-full flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
-                <FaFilePdf className="text-blue-500 text-3xl mb-4 mx-auto" />
-                <h4 className="font-semibold text-gray-900 mb-3 text-center">Instant PDF</h4>
-                <p className="text-gray-600 text-sm text-center leading-relaxed">Instantly download PDF confirmations for your bookings. Get your dummy tickets delivered within minutes of payment confirmation.</p>
+                <FaGlobe className="text-green-500 text-3xl mb-4 mx-auto" />
+                <h4 className="font-semibold text-gray-900 mb-3 text-center">100+ Countries</h4>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for UAE, Schengen, UK, USA, Canada, Singapore, Thailand, Japan and 90+ more destinations worldwide.</p>
               </div>
             </motion.div>
             <motion.div
@@ -213,9 +215,9 @@ const AdsVisaPage = () => {
               className="hidden sm:flex h-full flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
-                <FaEdit className="text-purple-500 text-3xl mb-4 mx-auto" />
-                <h4 className="font-semibold text-gray-900 mb-3 text-center">Unlimited Revisions</h4>
-                <p className="text-gray-600 text-sm text-center leading-relaxed">Unlimited date revisions, if you happen to change your travel schedule. We understand plans can change and we&apos;re here to help.</p>
+                <FaClock className="text-purple-500 text-3xl mb-4 mx-auto" />
+                <h4 className="font-semibold text-gray-900 mb-3 text-center">Fast Processing</h4>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Quick turnaround times with priority processing. Get your visa documents verified and application submitted without delays.</p>
               </div>
             </motion.div>
             <motion.div
@@ -223,9 +225,9 @@ const AdsVisaPage = () => {
               className="hidden sm:flex h-full flex-col bg-white/90 backdrop-blur-sm p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="text-center">
-                <FaTimes className="text-red-500 text-3xl mb-4 mx-auto" />
-                <h4 className="font-semibold text-gray-900 mb-3 text-center">No Cancellation Fee</h4>
-                <p className="text-gray-600 text-sm text-center leading-relaxed">No hidden charges or cancellation fees involved. What you see is what you pay - transparent pricing with no surprises.</p>
+                <FaWhatsapp className="text-green-600 text-3xl mb-4 mx-auto" />
+                <h4 className="font-semibold text-gray-900 mb-3 text-center">24/7 WhatsApp Support</h4>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Instant WhatsApp support anytime, anywhere. Get instant replies and expert guidance whenever you need assistance with your visa application.</p>
               </div>
             </motion.div>
           </div>

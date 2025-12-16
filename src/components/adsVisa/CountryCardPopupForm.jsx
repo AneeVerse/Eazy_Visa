@@ -16,7 +16,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
     phone: '',
     countryCode: '+91',
     country: selectedCountry || '',
-    visaType: 'Tourist Visa',
+    visaType: '',
     formSource: 'ads-visa-page'
   });
 
@@ -24,15 +24,23 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
   const [isLoading, setIsLoading] = useState(false);
   const [isAccepted, setIsAccepted] = useState(true);
 
-  // Update country when selectedCountry prop changes
+  // Reset form when popup opens or country changes
   useEffect(() => {
-    if (selectedCountry) {
-      setFormData(prev => ({
-        ...prev,
-        country: selectedCountry
-      }));
+    if (isOpen) {
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        countryCode: '+91',
+        country: selectedCountry || '',
+        visaType: '',
+        formSource: 'ads-visa-page'
+      });
+      setErrors({});
+      setIsAccepted(true);
     }
-  }, [selectedCountry]);
+  }, [isOpen, selectedCountry]);
 
   const visaTypes = [
     "Tourist Visa",
