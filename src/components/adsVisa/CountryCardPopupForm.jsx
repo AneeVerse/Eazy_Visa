@@ -1,0 +1,447 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+import { BiSupport, BiCheckShield, BiTask, BiX } from 'react-icons/bi';
+import { FiArrowRight } from 'react-icons/fi';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CountryCodeDropdown from '../common/CountryCodeDropdown';
+import Image from 'next/image';
+
+const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, countryFlag }) => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    countryCode: '+91',
+    country: selectedCountry || '',
+    visaType: 'Tourist Visa',
+    formSource: 'ads-visa-page'
+  });
+
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAccepted, setIsAccepted] = useState(true);
+
+  // Update country when selectedCountry prop changes
+  useEffect(() => {
+    if (selectedCountry) {
+      setFormData(prev => ({
+        ...prev,
+        country: selectedCountry
+      }));
+    }
+  }, [selectedCountry]);
+
+  const visaTypes = [
+    "Tourist Visa",
+    "Business Visa",
+    "End-to-End Visa Assistance",
+    "Dummy Hotel Booking",
+    "Dummy Flight Booking",
+  ];
+
+  const countries = [
+    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
+    "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
+    "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+    "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
+    "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde",
+    "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros",
+    "Congo (Brazzaville)", "Congo (Kinshasa)", "Costa Rica", "Croatia", "Cuba",
+    "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic",
+    "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia",
+    "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia",
+    "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau",
+    "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "Indonesia", "India", "Iran",
+    "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan",
+    "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia",
+    "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
+    "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands",
+    "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia",
+    "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal",
+    "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea",
+    "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama",
+    "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
+    "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
+    "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe",
+    "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore",
+    "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea",
+    "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
+    "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo",
+    "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
+    "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States",
+    "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
+    "Yemen", "Zambia", "Zimbabwe"
+  ];
+
+  const validateForm = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10,15}$/;
+
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    }
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    }
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+    if (!formData.phone) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!phoneRegex.test(formData.phone)) {
+      newErrors.phone = 'Please enter a valid phone number (10-15 digits)';
+    }
+    if (!formData.visaType) {
+      newErrors.visaType = 'Please select a visa type';
+    }
+    if (!formData.country) {
+      newErrors.country = 'Please select a country';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+  };
+
+  const handleCountryCodeChange = (code) => {
+    setFormData({
+      ...formData,
+      countryCode: code
+    });
+  };
+
+  const handleCheckboxChange = () => {
+    setIsAccepted(!isAccepted);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!isAccepted) {
+      toast.error('Please accept the terms and conditions', {
+        position: "top-right",
+        autoClose: 5000,
+      });
+      return;
+    }
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
+      const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
+
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          phone: fullPhoneNumber,
+          googleSheetsPhone: googleSheetsPhone
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to submit form');
+      }
+
+      sessionStorage.setItem('formSubmitted', 'true');
+      window.location.href = '/Confirmation-contact';
+
+    } catch (error) {
+      toast.error(error.message || 'Failed to submit form. Please try again later.', {
+        position: "top-right",
+        autoClose: 5000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        className={"mt-[70px] z-[60]"}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-[4px] z-50 flex items-center justify-center p-4" onClick={onClose}>
+        <div 
+          className="bg-white rounded-xl shadow-2xl overflow-hidden max-w-4xl w-full flex flex-col lg:flex-row relative"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 z-10 text-gray-500 hover:text-gray-700 focus:outline-none bg-white rounded-full p-1 shadow-md"
+          >
+            <BiX className="text-2xl" />
+          </button>
+
+          {/* Image Section - Hidden on mobile */}
+          <div className="hidden lg:block lg:w-2/5 relative overflow-hidden">
+            {countryImage && (
+              <Image
+                src={countryImage}
+                alt={selectedCountry || 'Country'}
+                fill
+                className="object-cover"
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-800/60 to-transparent"></div>
+            <div className="relative h-full p-8 flex flex-col justify-end text-white">
+              <div className="flex items-center gap-3 mb-3">
+                {countryFlag && (
+                  <Image
+                    src={countryFlag}
+                    alt={selectedCountry || 'Flag'}
+                    width={40}
+                    height={40}
+                    className="rounded"
+                  />
+                )}
+                <h3 className="text-2xl font-bold">{selectedCountry || 'Get Your Visa'}</h3>
+              </div>
+              <p className="mb-6 text-blue-100">Our experts will guide you through the entire visa application process.</p>
+              <div className="space-y-3">
+                <div className="flex items-center">
+                  <div className="p-2 bg-white/20 rounded-full mr-3">
+                    <BiCheckShield className="text-lg" />
+                  </div>
+                  <span>100% Secure Process</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="p-2 bg-white/20 rounded-full mr-3">
+                    <BiSupport className="text-lg" />
+                  </div>
+                  <span>24/7 Customer Support</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="p-2 bg-white/20 rounded-full mr-3">
+                    <BiTask className="text-lg" />
+                  </div>
+                  <span>High Success Rate</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Form Section */}
+          <div className="lg:w-3/5 p-6 sm:p-8 max-h-[90vh] overflow-y-auto">
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-gray-800">
+                {selectedCountry ? `${selectedCountry} Visa Inquiry` : 'Free Visa Consultation'}
+              </h3>
+              <p className="text-gray-600 text-sm mt-1">Fill out the form and our expert will contact you shortly</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-2.5 text-sm border rounded-lg ${errors.firstName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                    placeholder="First Name*"
+                  />
+                  {errors.firstName && (
+                    <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-2.5 text-sm border rounded-lg ${errors.lastName ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                    placeholder="Last Name*"
+                  />
+                  {errors.lastName && (
+                    <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-2.5 text-sm border rounded-lg ${errors.email ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  placeholder="Email Address*"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                )}
+              </div>
+
+              <div>
+                <div className="flex">
+                  <CountryCodeDropdown
+                    value={formData.countryCode}
+                    onChange={handleCountryCodeChange}
+                    error={errors.phone}
+                    height="h-[42px]"
+                    borderColor="border-gray-300"
+                  />
+                  <div className="flex-1">
+                    <input
+                      type="number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-2.5 text-sm border border-l-0 rounded-r-lg ${errors.phone ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                      placeholder="Phone Number*"
+                    />
+                  </div>
+                </div>
+                {errors.phone && (
+                  <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+                )}
+              </div>
+
+              <div>
+                <div className="relative">
+                  <select
+                    name="visaType"
+                    value={formData.visaType}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-2.5 text-sm border rounded-lg appearance-none ${errors.visaType ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  >
+                    <option value="" disabled hidden>Visa Type*</option>
+                    {visaTypes.map((type, index) => (
+                      <option key={index} value={type}>{type}</option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                    <svg className="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+                {errors.visaType && (
+                  <p className="text-red-500 text-xs mt-1">{errors.visaType}</p>
+                )}
+              </div>
+
+              <div>
+                <div className="relative">
+                  <select
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-2.5 text-sm border rounded-lg appearance-none ${errors.country ? "border-red-500" : "border-gray-300"} focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all`}
+                  >
+                    <option value="" disabled hidden>Destination Country*</option>
+                    {countries.map((country, index) => (
+                      <option key={index} value={country}>{country}</option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                    <svg className="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+                {errors.country && (
+                  <p className="text-red-500 text-xs mt-1">{errors.country}</p>
+                )}
+              </div>
+
+              {/* Terms Checkbox */}
+              <div className="flex items-start pt-1">
+                <input
+                  type="checkbox"
+                  id="popup-terms"
+                  checked={isAccepted}
+                  onChange={handleCheckboxChange}
+                  className="mt-0.5 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 shrink-0"
+                />
+                <label
+                  htmlFor="popup-terms"
+                  className="ml-2 text-xs leading-tight text-gray-600 flex items-center flex-wrap gap-1"
+                >
+                  <BiCheckShield className="text-blue-500 text-sm" />
+                  <span>I agreed to the</span>
+                  <a href="/terms" className="text-blue-600 hover:underline">
+                    terms and conditions
+                  </a>
+                </label>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isLoading || !isAccepted}
+                className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${
+                  isLoading || !isAccepted
+                    ? "bg-gray-300 cursor-not-allowed"
+                    : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
+                } transition-all duration-300`}
+              >
+                {isLoading ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Processing...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Get Free Consultation</span>
+                    <FiArrowRight className="text-sm" />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default CountryCardPopupForm;
+
