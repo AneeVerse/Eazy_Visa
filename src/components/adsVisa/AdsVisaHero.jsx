@@ -55,11 +55,7 @@ const AdsVisaHero = ({ onBookingClick }) => {
               </h1>
 
               <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 leading-relaxed">
-                Get professional visa assistance for tourist and business travel. Our consultants guide you through the visa application process with clear steps, document checks, and support that keeps your file clean and consistent.
-              </p>
-              
-              <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 leading-relaxed">
-                With 10+ years of experience, we offer fast coordination, 24/7 WhatsApp support, and destination-focused help for the UK, USA, Schengen (Europe), and France. No guarantees, just expert guidance every step of the way.
+                Get professional visa assistance for tourist and business travel with clear steps, document checks, and support that keeps your file consistent, backed by 10+ years of experience, fast coordination, 24/7 WhatsApp support, and destination-focused help for the UK, USA, Schengen, and France no guarantees, just expert guidance every step of the way.
               </p>
 
               {/* Trust Indicators */}
@@ -86,16 +82,16 @@ const AdsVisaHero = ({ onBookingClick }) => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-row gap-3 sm:gap-4 justify-center lg:justify-start mt-6 lg:mt-auto">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mt-6 lg:mt-auto w-full max-w-lg sm:max-w-none">
               <Button
                 onClick={() => handleHeroCta('flight')}
-                className="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
+                className="flex-1 sm:flex-none w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base text-center"
               >
                 Get Free Consultation
               </Button>
               <Button
                 onClick={() => handleHeroCta('hotel')}
-                className="flex-1 sm:flex-none bg-white text-blue-600 border-2 border-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base"
+                className="flex-1 sm:flex-none w-full sm:w-auto bg-white text-blue-600 border-2 border-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base text-center"
               >
                 View Visa Services
               </Button>
