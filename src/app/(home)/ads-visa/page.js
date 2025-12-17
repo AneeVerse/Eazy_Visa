@@ -136,10 +136,10 @@ const AdsVisaPage = () => {
           {/* Heading */}
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-              Why Choose <span className="text-blue-600">Eazy Visas</span>?
+              Why Choose <span className="text-blue-600">Eazy Visas?</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Trusted visa consultancy with expert guidance for 100+ countries
+              Trusted visa consultancy with expert guidance for 100+ countries.
             </p>
           </div>
 
@@ -164,7 +164,7 @@ const AdsVisaPage = () => {
                 <div className="text-center">
                   <FaGlobe className="text-green-500 text-3xl mb-4 mx-auto" />
                   <h4 className="font-semibold text-gray-900 mb-3 text-center">100+ Countries</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for UAE, Schengen, UK, USA, Canada, Singapore, Thailand, Japan and 90+ more destinations worldwide.</p>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for 100+ destinations worldwide (including UK, USA, Schengen/Europe, and France).</p>
                 </div>
               </motion.div>
               <motion.div
@@ -174,7 +174,7 @@ const AdsVisaPage = () => {
                 <div className="text-center">
                   <FaClock className="text-purple-500 text-3xl mb-4 mx-auto" />
                   <h4 className="font-semibold text-gray-900 mb-3 text-center">Fast Processing</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Quick turnaround times with priority processing. Get your visa documents verified and application submitted without delays.</p>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Quick turnaround and priority coordination so your documents can be verified and submitted without avoidable delays.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -184,7 +184,7 @@ const AdsVisaPage = () => {
                 <div className="text-center">
                   <FaWhatsapp className="text-green-600 text-3xl mb-4 mx-auto" />
                   <h4 className="font-semibold text-gray-900 mb-3 text-center">24/7 WhatsApp Support</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Instant WhatsApp support anytime, anywhere. Get instant replies and expert guidance whenever you need assistance with your visa application.</p>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Instant WhatsApp support anytime, anywhere. Get quick replies and guidance whenever you need help.</p>
                 </div>
               </motion.div>
             </div>
@@ -207,7 +207,7 @@ const AdsVisaPage = () => {
               <div className="text-center">
                 <FaGlobe className="text-green-500 text-3xl mb-4 mx-auto" />
                 <h4 className="font-semibold text-gray-900 mb-3 text-center">100+ Countries</h4>
-                <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for UAE, Schengen, UK, USA, Canada, Singapore, Thailand, Japan and 90+ more destinations worldwide.</p>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for 100+ destinations worldwide (including UK, USA, Schengen/Europe, and France).</p>
               </div>
             </motion.div>
             <motion.div
@@ -217,7 +217,7 @@ const AdsVisaPage = () => {
               <div className="text-center">
                 <FaClock className="text-purple-500 text-3xl mb-4 mx-auto" />
                 <h4 className="font-semibold text-gray-900 mb-3 text-center">Fast Processing</h4>
-                <p className="text-gray-600 text-sm text-center leading-relaxed">Quick turnaround times with priority processing. Get your visa documents verified and application submitted without delays.</p>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Quick turnaround and priority coordination so your documents can be verified and submitted without avoidable delays.</p>
               </div>
             </motion.div>
             <motion.div
@@ -227,7 +227,7 @@ const AdsVisaPage = () => {
               <div className="text-center">
                 <FaWhatsapp className="text-green-600 text-3xl mb-4 mx-auto" />
                 <h4 className="font-semibold text-gray-900 mb-3 text-center">24/7 WhatsApp Support</h4>
-                <p className="text-gray-600 text-sm text-center leading-relaxed">Instant WhatsApp support anytime, anywhere. Get instant replies and expert guidance whenever you need assistance with your visa application.</p>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Instant WhatsApp support anytime, anywhere. Get quick replies and guidance whenever you need help.</p>
               </div>
             </motion.div>
           </div>
@@ -373,10 +373,7 @@ const AdsVisaPage = () => {
           <div className="max-w-[1440px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto">
             {/* Hero Section */}
             <div className="text-center mb-4 px-4">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">Our Story</h1>
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-                We solve visa problems. Also, we make it simple. Therefore, customers get help easily.
-              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">Our Story</h2>
             </div>
 
             {/* Mission Section */}
@@ -386,24 +383,24 @@ const AdsVisaPage = () => {
                   {/* Left Side: Text Only */}
                   <div className="order-2 md:order-1">
                     <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-                      Eazy Visas helps with all visa documents. First, we know getting documents is hard. Also, you may have money ready. However, your visa can still get rejected. Therefore, dummy flights tickets and hotel bookings can be wasted. Furthermore, you lose money on airline or hotel fees.
-                    </p>
-                    <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-                      However, most people don&apos;t know this. First, embassies don&apos;t need real tickets. Also, they want dummy flights itinerary. Furthermore, they want hotel booking. Finally, they want a day plan. Therefore, you show you will visit and return home.
+                      Visa documentation is confusing, and small mistakes can slow your process down. We built Eazy Visas to make visa support simple, clear, and easy to follow.
                     </p>
                     <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
-                      Our dummy flights itineraries are real. Also, hotel bookings are real. Furthermore, day plans are real. Finally, insurance is real. Therefore, customers get visas approved.
+                      Many travelers book expensive tickets too early. In many cases, what&apos;s needed is a clear itinerary, a matching hotel plan, and documents that stay consistent across your application.
+                    </p>
+                    <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
+                      Our job is to guide you with the right checklist, document review, and support so that you submit with confidence.
                     </p>
                   </div>
 
                   {/* Right Side: Logo */}
-                  <div className="order-1 md:order-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 sm:p-6 min-h-[150px] sm:min-h-[180px] md:h-full flex items-center justify-center">
+                  <div className="order-1 md:order-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 sm:p-6 min-h-[220px] sm:min-h-[260px] md:h-full flex items-center justify-center">
                     <Image
                       src="/logo/logo-white.png"
                       alt="Eazy Visas Logo"
                       width={200}
                       height={80}
-                      className="w-auto h-10 sm:h-14 md:h-16 max-w-full"
+                      className="w-auto h-16 sm:h-20 md:h-24 max-w-full"
                     />
                   </div>
                 </div>

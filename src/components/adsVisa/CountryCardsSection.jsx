@@ -8,22 +8,13 @@ import CountryCardPopupForm from './CountryCardPopupForm';
 
 const countries = [
   {
-    name: 'United Arab Emirates',
-    shortName: 'UAE / Dubai',
-    image: '/images/landmarks/Burj Khalifa tourist places in UAE Visa.webp',
-    flag: '/images/flags/ae.webp',
-    visaTypes: ['Tourist Visa', 'Business Visa'],
-    processingTime: '3-5 Days',
-    description: 'Quick visa processing for Dubai & UAE. Expert guidance for tourist and business visas.',
-  },
-  {
     name: 'United Kingdom',
     shortName: 'UK',
     image: '/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp',
     flag: '/images/flags/gb.webp',
     visaTypes: ['Tourist Visa', 'Business Visa'],
     processingTime: '15-20 Days',
-    description: 'Complete UK visa assistance with document verification and appointment booking.',
+    description: 'Complete UK visa assistance with document verification and appointment booking support.',
   },
   {
     name: 'United States',
@@ -32,52 +23,25 @@ const countries = [
     flag: '/images/flags/us.webp',
     visaTypes: ['Tourist Visa', 'Business Visa'],
     processingTime: '30-60 Days',
-    description: 'Expert USA visa consultancy. B1/B2 visa assistance with interview preparation.',
-  },
-  {
-    name: 'Canada',
-    shortName: 'Canada',
-    image: '/images/landmarks/Tourist Places in Canada Visa.webp',
-    flag: '/images/flags/ca.webp',
-    visaTypes: ['Tourist Visa', 'Business Visa'],
-    processingTime: '20-30 Days',
-    description: 'Canada visitor visa help with complete documentation and application support.',
+    description: 'Expert USA visa consultancy with B1/B2 assistance and interview preparation support.',
   },
   {
     name: 'Schengen',
-    shortName: 'Europe',
+    shortName: 'Schengen',
+    image: '/images/landmarks/Colosseum in Italy Visa.webp',
+    flag: '/images/flags/eu.png',
+    visaTypes: ['Tourist Visa', 'Business Visa'],
+    processingTime: '15-20 Days',
+    description: 'Schengen visa support for travel across Europe, with guidance plus itinerary and hotel booking documentation when needed.',
+  },
+  {
+    name: 'France',
+    shortName: 'France',
     image: '/images/landmarks/Eiffel Tower in France Visa.webp',
     flag: '/images/flags/fr.webp',
     visaTypes: ['Tourist Visa', 'Business Visa'],
     processingTime: '15-20 Days',
-    description: 'Schengen visa for 27 European countries. Expert itinerary and hotel booking services.',
-  },
-  {
-    name: 'Singapore',
-    shortName: 'Singapore',
-    image: '/images/landmarks/Marina Bay Sands tourist places in Singapore Visa.webp',
-    flag: '/images/flags/sg.webp',
-    visaTypes: ['Tourist Visa', 'Business Visa'],
-    processingTime: '3-5 Days',
-    description: 'Fast Singapore visa processing with verified flight itinerary and hotel bookings.',
-  },
-  {
-    name: 'Thailand',
-    shortName: 'Thailand',
-    image: '/images/landmarks/Grand Palace tourist places in Thailand Visa.webp',
-    flag: '/images/flags/th.webp',
-    visaTypes: ['Tourist Visa', 'Business Visa'],
-    processingTime: '5-7 Days',
-    description: 'Thailand visa assistance with complete document preparation and submission.',
-  },
-  {
-    name: 'Japan',
-    shortName: 'Japan',
-    image: '/images/landmarks/Mount Fuji in Japan Visa.webp',
-    flag: '/images/flags/jp.webp',
-    visaTypes: ['Tourist Visa', 'Business Visa'],
-    processingTime: '7-10 Days',
-    description: 'Japan visa consultancy with detailed itinerary planning and documentation.',
+    description: 'Applying for France? Get Schengen-ready guidance with document review and clear next steps for tourism, meetings, and business travel.',
   },
 ];
 
@@ -103,15 +67,15 @@ const CountryCardsSection = () => {
           {/* Section Header */}
           <div className="text-center mb-10 sm:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Visa Services for <span className="text-blue-600">100+ Countries</span>
+              Visa Services for <span className="text-blue-600">UK, US, Schengen & France</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Expert visa consultancy with WhatsApp support, fast processing & trusted documentation services
+              Choose your destination. Then select Tourist or Business visa support from the form below.
             </p>
           </div>
 
-          {/* Country Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+          {/* Country Cards Grid - 4 larger cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {countries.map((country, index) => (
               <motion.div
                 key={country.name}
@@ -121,9 +85,9 @@ const CountryCardsSection = () => {
                 className="group cursor-pointer"
                 onClick={(e) => handleCardClick(e, country)}
               >
-                <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 h-full flex flex-col">
-                  {/* Image Section */}
-                  <div className="relative h-40 sm:h-44 overflow-hidden">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 h-full flex flex-col">
+                  {/* Image Section - Larger for 4 cards */}
+                  <div className="relative h-48 sm:h-52 lg:h-56 overflow-hidden">
                     <Image
                       src={country.image}
                       alt={`${country.name} Visa`}
@@ -135,56 +99,56 @@ const CountryCardsSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                     
                     {/* Country Name Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <div className="flex items-center gap-2">
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <div className="flex items-center gap-3">
                         <Image
                           src={country.flag}
                           alt={country.name}
-                          width={28}
-                          height={28}
+                          width={36}
+                          height={36}
                           className="rounded-sm shadow"
                         />
                         <div>
-                          <h3 className="text-lg sm:text-xl font-bold text-white leading-tight">
+                          <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">
                             {country.shortName}
                           </h3>
-                          <p className="text-xs text-blue-200">Visa Services</p>
+                          <p className="text-sm text-blue-200">Visa Services</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Content Section */}
-                  <div className="p-4 flex-1 flex flex-col">
+                  {/* Content Section - More padding for larger cards */}
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col">
                     {/* Visa Types */}
-                    <div className="flex flex-wrap gap-1.5 mb-3">
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {country.visaTypes.map((type, i) => (
                         <span 
                           key={i}
-                          className="inline-flex items-center gap-1 text-[10px] font-medium bg-blue-50 text-blue-700 px-2 py-1 rounded-full"
+                          className="inline-flex items-center gap-1.5 text-xs font-medium bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full"
                         >
-                          <FaCheckCircle className="text-green-500 text-[8px]" />
+                          <FaCheckCircle className="text-green-500 text-[10px]" />
                           {type}
                         </span>
                       ))}
                     </div>
 
                     {/* Description */}
-                    <p className="text-xs text-gray-600 leading-relaxed mb-3 line-clamp-2">
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4 line-clamp-3">
                       {country.description}
                     </p>
 
                     {/* Processing Time */}
-                    <div className="flex items-center gap-2 mb-4 text-xs text-gray-500">
-                      <BiSupport className="text-blue-500" />
+                    <div className="flex items-center gap-2 mb-5 text-sm text-gray-500">
+                      <BiSupport className="text-blue-500 text-lg" />
                       <span>Processing: <strong className="text-gray-700">{country.processingTime}</strong></span>
                     </div>
 
                     {/* CTA Button */}
                     <div className="mt-auto">
-                      <button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-2.5 px-4 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 group-hover:gap-3">
+                      <button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-3 px-5 rounded-xl font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 group-hover:gap-3">
                         Get Free Consultation
-                        <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
+                        <FaArrowRight className="text-sm transition-transform group-hover:translate-x-1" />
                       </button>
                     </div>
                   </div>

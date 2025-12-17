@@ -29,8 +29,11 @@ const AdsVisaHero = ({ onBookingClick }) => {
                     ' Visa',
                     ' Consultants',
                     ' for',
-                    ' 100+',
-                    ' Countries',
+                    ' UK,',
+                    ' US,',
+                    ' Schengen',
+                    ' &',
+                    ' France',
                   ].map((word, wordIndex) => (
                     <span key={wordIndex}>
                       {word.split('').map((char, charIndex) => (
@@ -52,11 +55,11 @@ const AdsVisaHero = ({ onBookingClick }) => {
               </h1>
 
               <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 leading-relaxed">
-                Get professional visa assistance for tourist, business, and documentation services. Our expert consultants guide you through the entire visa application process with verified flight itineraries and hotel bookings.
+                Get professional visa assistance for tourist and business travel. Our consultants guide you through the visa application process with clear steps, document checks, and support that keeps your file clean and consistent.
               </p>
               
               <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 leading-relaxed">
-                With 10+ years of experience, we offer fast processing, 24/7 WhatsApp support, and trusted service for destinations like UAE, Schengen, UK, USA, Canada, Singapore, Thailand, and Japan. No guarantees - just expert guidance every step of the way.
+                With 10+ years of experience, we offer fast coordination, 24/7 WhatsApp support, and destination-focused help for the UK, USA, Schengen (Europe), and France. No guarantees, just expert guidance every step of the way.
               </p>
 
               {/* Trust Indicators */}
