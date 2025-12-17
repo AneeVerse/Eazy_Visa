@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useParams, usePathname } from 'next/navigation';
 import CountryCodeDropdown from './CountryCodeDropdown';
 
-const FormComponent = () => {
+const FormComponent = ({ redirectPath }) => {
   const params = useParams();
   const pathname = usePathname();
   const slug = params?.slug || '';
@@ -73,7 +73,10 @@ const FormComponent = () => {
       pageLink: fullUrl
     };
 
-    if (pathname.startsWith('/services/')) {
+    if (pathname.startsWith('/ads-visa')) {
+      meta.from = 'ads-visa';
+      meta.pageLabel = 'ads-visa landing page';
+    } else if (pathname.startsWith('/services/')) {
       const serviceSlug = pathname.replace('/services/', '').split('/')[0];
       meta.from = 'service';
       meta.pageLabel = serviceSlugNameMap[serviceSlug] || formatFromSlug(serviceSlug);
@@ -432,10 +435,12 @@ const FormComponent = () => {
       sessionStorage.setItem('formSubmitted', 'true');
 
       // Redirect to dynamic thank you page based on service context or visa type
-      let redirectUrl = '/Confirmation-contact'; // Default fallback
+      let redirectUrl = redirectPath || '/Confirmation-contact'; // Default fallback or override
 
-      // Check service page context first, then check countries pages, then fallback to visa type selection
-      if (pathname && pathname.includes('/services/end-to-end')) {
+      // Check for ads-visa page first (highest priority)
+      if (pathname && pathname.includes('/ads-visa')) {
+        redirectUrl = '/ads-visa-thankyou';
+      } else if (pathname && pathname.includes('/services/end-to-end')) {
         redirectUrl = '/Confirmation-end-to-end';
       } else if (pathname && pathname.includes('/services/tourist-visa')) {
         redirectUrl = '/Visa-confirmation-tourist';

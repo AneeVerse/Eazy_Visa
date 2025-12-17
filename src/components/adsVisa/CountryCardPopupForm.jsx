@@ -181,7 +181,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
       }
 
       sessionStorage.setItem('formSubmitted', 'true');
-      window.location.href = '/Confirmation-contact';
+      window.location.href = '/ads-visa-thankyou';
 
     } catch (error) {
       toast.error(error.message || 'Failed to submit form. Please try again later.', {

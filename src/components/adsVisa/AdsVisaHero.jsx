@@ -108,7 +108,7 @@ const AdsVisaHero = ({ onBookingClick }) => {
           >
             <div className="w-full flex flex-col items-center lg:items-end">
               <div className="w-full max-w-md">
-                <FormComponent />
+                <FormComponent redirectPath="/ads-visa-thankyou" />
               </div>
             </div>
           </motion.div>
