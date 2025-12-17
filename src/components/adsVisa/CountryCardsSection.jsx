@@ -35,13 +35,13 @@ const countries = [
     description: 'Schengen visa support for travel across Europe, with guidance plus itinerary and hotel booking documentation when needed.',
   },
   {
-    name: 'France',
-    shortName: 'France',
-    image: '/images/landmarks/Eiffel Tower in France Visa.webp',
-    flag: '/images/flags/fr.webp',
+    name: 'Australia',
+    shortName: 'Australia',
+    image: '/images/landmarks/Sydney Opera House in Australia Visa.webp',
+    flag: '/images/flags/au.webp',
     visaTypes: ['Tourist Visa', 'Business Visa'],
     processingTime: '15-20 Days',
-    description: 'Applying for France? Get Schengen-ready guidance with document review and clear next steps for tourism, meetings, and business travel.',
+    description: 'Australia visa assistance with document review, itinerary guidance, and clear next steps for tourism or business travel.',
   },
 ];
 
@@ -67,7 +67,7 @@ const CountryCardsSection = () => {
           {/* Section Header */}
           <div className="text-center mb-10 sm:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Visa Services for <span className="text-blue-600">UK, US, Schengen & France</span>
+              Visa Services for <span className="text-blue-600">UK, US, Schengen & Australia</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
               Choose your destination. Then select Tourist or Business visa support from the form below.

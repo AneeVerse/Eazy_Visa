@@ -79,62 +79,6 @@ export const countryData = [
     sampleVisaCopy: null,
   },
   {
-    id: 1,
-    name: "France",
-    searchName: "France",
-    price: "8219",
-    continent: "Europe",
-    isTop: true,
-    isTrending: true,
-    visasOnTime: "250K+",
-    flag: "/images/flags/fr.webp",
-    landmark: "/images/landmarks/Eiffel Tower in France Visa.webp",
-    landmarkName: "Eiffel Tower",
-    altName: "Eiffel Tower tourist places in France Visa",
-    description:
-      "France is renowned for its art, fashion, gastronomy, and culture, with iconic landmarks like the Eiffel Tower.",
-    visaType: "Sticker Visa",
-    lengthOfStay: "Up to 90 days",
-    validity: "6 months",
-    pdfDownload: "/pdf/France Tourist Visa Checklist.pdf",
-    documentsRequired: [
-      {
-        category: "Mandatory Documents",
-        documents: [
-          "Passport with 2 blank pages",
-          "Completed application form",
-          "Travel itinerary",
-          "Proof of accommodation",
-          "Recent bank statements",
-        ],
-      },
-    ],
-    rejectionReasons: [
-      {
-        title: "Incomplete Application",
-        description: "Missing required documents or information.",
-        icon: "incomplete",
-      },
-      {
-        title: "Suspicious Travel History",
-        description: "Frequent travel to high-risk countries.",
-        icon: "suspicious",
-      },
-    ],
-    faqs: [
-      {
-        question: "Is travel insurance mandatory?",
-        answer: "Yes, it is a requirement for Schengen visa.",
-      },
-      {
-        question: "Can I extend my visa?",
-        answer: "Extensions are possible under specific circumstances.",
-      },
-    ],
-    sampleVisaCopy: null,
-  },
-
-  {
     id: 2,
     name: "Hungary",
     searchName: "Hungary",

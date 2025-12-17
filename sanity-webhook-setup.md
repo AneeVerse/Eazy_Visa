@@ -476,12 +476,6 @@ function getStaticUrls() {
       priority: 0.8,
     },
     {
-      url: `${CONFIG.baseUrl}/country/Europe/France`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: `${CONFIG.baseUrl}/country/Europe/Germany`,
       lastModified: new Date(),
       changeFrequency: 'monthly',

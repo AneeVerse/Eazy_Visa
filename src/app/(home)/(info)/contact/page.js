@@ -92,7 +92,6 @@ const Contact = () => {
     "Ethiopia",
     "Fiji",
     "Finland",
-    "France",
     "Gabon",
     "Gambia",
     "Georgia",

@@ -106,7 +106,6 @@ const PopupForm = () => {
     "Ethiopia",
     "Fiji",
     "Finland",
-    "France",
     "Gabon",
     "Gambia",
     "Georgia",

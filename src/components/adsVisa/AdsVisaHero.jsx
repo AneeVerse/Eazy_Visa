@@ -33,7 +33,7 @@ const AdsVisaHero = ({ onBookingClick }) => {
                     ' US,',
                     ' Schengen',
                     ' &',
-                    ' France',
+                    ' Australia',
                   ].map((word, wordIndex) => (
                     <span key={wordIndex}>
                       {word.split('').map((char, charIndex) => (
@@ -55,7 +55,7 @@ const AdsVisaHero = ({ onBookingClick }) => {
               </h1>
 
               <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 leading-relaxed">
-                Get professional visa assistance for tourist and business travel with clear steps, document checks, and support that keeps your file consistent, backed by 10+ years of experience, fast coordination, 24/7 WhatsApp support, and destination-focused help for the UK, USA, Schengen, and France no guarantees, just expert guidance every step of the way.
+                Get professional visa assistance for tourist and business travel with clear steps, document checks, and support that keeps your file consistent, backed by 10+ years of experience, fast coordination, 24/7 WhatsApp support, and destination-focused help for the UK, USA, Schengen, and Australia—no guarantees, just expert guidance every step of the way.
               </p>
 
               {/* Trust Indicators */}

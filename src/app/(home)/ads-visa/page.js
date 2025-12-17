@@ -164,7 +164,7 @@ const AdsVisaPage = () => {
                 <div className="text-center">
                   <FaGlobe className="text-green-500 text-3xl mb-4 mx-auto" />
                   <h4 className="font-semibold text-gray-900 mb-3 text-center">100+ Countries</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for 100+ destinations worldwide (including UK, USA, Schengen/Europe, and France).</p>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for 100+ destinations worldwide (including UK, USA, Schengen/Europe, and Australia).</p>
                 </div>
               </motion.div>
               <motion.div
@@ -207,7 +207,7 @@ const AdsVisaPage = () => {
               <div className="text-center">
                 <FaGlobe className="text-green-500 text-3xl mb-4 mx-auto" />
                 <h4 className="font-semibold text-gray-900 mb-3 text-center">100+ Countries</h4>
-                <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for 100+ destinations worldwide (including UK, USA, Schengen/Europe, and France).</p>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for 100+ destinations worldwide (including UK, USA, Schengen/Europe, and Australia).</p>
               </div>
             </motion.div>
             <motion.div
