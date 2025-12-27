@@ -242,9 +242,10 @@ body {
 }
 
 .blog-content th {
-  background-color: #f9fafb;
+  background-color: #2563eb !important; /* bg-blue-600 - solid blue background */
   font-weight: 600;
-  color: #111;
+  color: #ffffff !important; /* white text */
+  border-color: #2563eb !important; /* match header border to background */
 }
 
 .blog-content tr:nth-child(even) {
