@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { BiMessageDetail, BiSupport, BiCheckShield } from "react-icons/bi";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
@@ -38,6 +38,25 @@ const CountryDetails = () => {
   const [country, setCountry] = useState(null);
   const [expandedFaqIndex, setExpandedFaqIndex] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isDownloadDropdownOpen, setIsDownloadDropdownOpen] = useState(false);
+  const downloadDropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (downloadDropdownRef.current && !downloadDropdownRef.current.contains(event.target)) {
+        setIsDownloadDropdownOpen(false);
+      }
+    };
+
+    if (isDownloadDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isDownloadDropdownOpen]);
 
   useEffect(() => {
     const fetchCountryData = async () => {
@@ -187,37 +206,64 @@ const CountryDetails = () => {
             </section>
             <div className="mt-6 flex justify-center">
               {(country.pdfDownload || country.pdfDownloads) ? (
-                <button 
-                  onClick={() => {
-                    if (country.pdfDownloads) {
-                      // Download multiple PDFs
-                      country.pdfDownloads.forEach((pdf, index) => {
-                        setTimeout(() => {
-                          const link = document.createElement('a');
-                          link.href = pdf.url;
-                          link.download = pdf.name + '.pdf';
-                          document.body.appendChild(link);
-                          link.click();
-                          document.body.removeChild(link);
-                        }, index * 500); // 500ms delay between downloads
-                      });
-                    } else if (country.pdfDownload) {
-                      // Download single PDF
-                      const link = document.createElement('a');
-                      link.href = country.pdfDownload;
-                      link.download = 'Document Checklist.pdf';
-                      document.body.appendChild(link);
-                      link.click();
-                      document.body.removeChild(link);
-                    }
-                  }}
-                  className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 w-fit"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                  {country.pdfDownloads ? 'Download All Document Checklists' : 'Download Document Checklist'}
-                </button>
+                <div className="relative" ref={downloadDropdownRef}>
+                  <button 
+                    onClick={() => setIsDownloadDropdownOpen(!isDownloadDropdownOpen)}
+                    className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 w-fit relative"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                    {country.pdfDownloads ? 'Download All Document Checklists' : 'Download Document Checklist'}
+                    <FiChevronDown className={`h-4 w-4 transition-transform duration-200 ${isDownloadDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {isDownloadDropdownOpen && (
+                    <div className="absolute z-50 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden top-full left-1/2 transform -translate-x-1/2">
+                      <div className="py-2">
+                        {country.pdfDownloads ? (
+                          country.pdfDownloads.map((pdf, index) => (
+                            <button
+                              key={index}
+                              onClick={() => {
+                                const link = document.createElement('a');
+                                link.href = pdf.url;
+                                link.download = pdf.name + '.pdf';
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                setIsDownloadDropdownOpen(false);
+                              }}
+                              className="w-full px-4 py-3 text-left hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-150 flex items-center gap-3 border-b border-gray-100 last:border-b-0"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                              </svg>
+                              <span className="text-sm font-medium">{pdf.name}</span>
+                            </button>
+                          ))
+                        ) : (
+                          <button
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = country.pdfDownload;
+                              link.download = 'Document Checklist.pdf';
+                              document.body.appendChild(link);
+                              link.click();
+                              document.body.removeChild(link);
+                              setIsDownloadDropdownOpen(false);
+                            }}
+                            className="w-full px-4 py-3 text-left hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-150 flex items-center gap-3"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                            <span className="text-sm font-medium">Document Checklist</span>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <button 
                   disabled
