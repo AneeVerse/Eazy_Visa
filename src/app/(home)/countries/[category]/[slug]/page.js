@@ -206,7 +206,7 @@ const CountryDetails = () => {
             </section>
             <div className="mt-6 flex justify-center">
               {(country.pdfDownload || country.pdfDownloads) ? (
-                <div className="relative" ref={downloadDropdownRef}>
+                <>
                   <button 
                     onClick={() => setIsDownloadDropdownOpen(!isDownloadDropdownOpen)}
                     className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 w-fit relative"
@@ -217,53 +217,115 @@ const CountryDetails = () => {
                     {country.pdfDownloads ? 'Download All Document Checklists' : 'Download Document Checklist'}
                     <FiChevronDown className={`h-4 w-4 transition-transform duration-200 ${isDownloadDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
+                  
+                  {/* Modal Overlay */}
                   {isDownloadDropdownOpen && (
-                    <div className="absolute z-50 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden top-full left-1/2 transform -translate-x-1/2">
-                      <div className="py-2">
-                        {country.pdfDownloads ? (
-                          country.pdfDownloads.map((pdf, index) => (
+                    <div 
+                      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+                      onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                          setIsDownloadDropdownOpen(false);
+                        }
+                      }}
+                    >
+                      <div 
+                        ref={downloadDropdownRef}
+                        className="bg-white rounded-xl shadow-2xl max-w-md w-full relative animate-fadeIn"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {/* Close Button */}
+                        <button
+                          onClick={() => setIsDownloadDropdownOpen(false)}
+                          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none z-10"
+                        >
+                          <IoMdClose className="text-2xl" />
+                        </button>
+
+                        {/* Modal Content */}
+                        <div className="p-6">
+                          <h2 className="text-2xl font-bold text-gray-800 mb-2 pr-8">
+                            Available Document Checklists
+                          </h2>
+                          <p className="text-gray-600 text-sm mb-6">
+                            Select a checklist to download individually
+                          </p>
+
+                          {/* Checklist Items */}
+                          <div className="space-y-3 mb-6">
+                            {country.pdfDownloads ? (
+                              country.pdfDownloads.map((pdf, index) => (
+                                <div
+                                  key={index}
+                                  className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
+                                >
+                                  <span className="text-gray-800 font-medium">{pdf.name}</span>
+                                  <button
+                                    onClick={() => {
+                                      const link = document.createElement('a');
+                                      link.href = pdf.url;
+                                      link.download = pdf.name + '.pdf';
+                                      document.body.appendChild(link);
+                                      link.click();
+                                      document.body.removeChild(link);
+                                    }}
+                                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                                  >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
+                                    Download
+                                  </button>
+                                </div>
+                              ))
+                            ) : (
+                              <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50/50 transition-colors">
+                                <span className="text-gray-800 font-medium">Document Checklist</span>
+                                <button
+                                  onClick={() => {
+                                    const link = document.createElement('a');
+                                    link.href = country.pdfDownload;
+                                    link.download = 'Document Checklist.pdf';
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                  }}
+                                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                                >
+                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                                  </svg>
+                                  Download
+                                </button>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Download All Button */}
+                          {country.pdfDownloads && country.pdfDownloads.length > 1 && (
                             <button
-                              key={index}
                               onClick={() => {
-                                const link = document.createElement('a');
-                                link.href = pdf.url;
-                                link.download = pdf.name + '.pdf';
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                                setIsDownloadDropdownOpen(false);
+                                country.pdfDownloads.forEach((pdf) => {
+                                  const link = document.createElement('a');
+                                  link.href = pdf.url;
+                                  link.download = pdf.name + '.pdf';
+                                  document.body.appendChild(link);
+                                  link.click();
+                                  document.body.removeChild(link);
+                                });
                               }}
-                              className="w-full px-4 py-3 text-left hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-150 flex items-center gap-3 border-b border-gray-100 last:border-b-0"
+                              className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
                             >
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                               </svg>
-                              <span className="text-sm font-medium">{pdf.name}</span>
+                              Download All ({country.pdfDownloads.length})
                             </button>
-                          ))
-                        ) : (
-                          <button
-                            onClick={() => {
-                              const link = document.createElement('a');
-                              link.href = country.pdfDownload;
-                              link.download = 'Document Checklist.pdf';
-                              document.body.appendChild(link);
-                              link.click();
-                              document.body.removeChild(link);
-                              setIsDownloadDropdownOpen(false);
-                            }}
-                            className="w-full px-4 py-3 text-left hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition-colors duration-150 flex items-center gap-3"
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                            <span className="text-sm font-medium">Document Checklist</span>
-                          </button>
-                        )}
+                          )}
+                        </div>
                       </div>
                     </div>
                   )}
-                </div>
+                </>
               ) : (
                 <button 
                   disabled
