@@ -174,7 +174,7 @@ const AdsVisaPage = () => {
                 <div className="text-center">
                   <FaClock className="text-purple-500 text-3xl mb-4 mx-auto" />
                   <h4 className="font-semibold text-gray-900 mb-3 text-center">Quick Response</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Fast replies and clear next steps so you don't lose time due to confusion or back‑and‑forth.</p>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Fast replies and clear next steps so you don&apos;t lose time due to confusion or back‑and‑forth.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -383,7 +383,7 @@ const AdsVisaPage = () => {
                   {/* Left Side: Text Only */}
                   <div className="order-2 md:order-1">
                     <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-                      Visa applications feel stressful because requirements vary and small mistakes can cause delays. We built Eazy Visas to simplify the journey with clear guidance, practical checklists, and responsive support. If you're unsure what applies to your case, we help you understand the process and prepare with confidence without overpromising results.
+                      Visa applications feel stressful because requirements vary and small mistakes can cause delays. We built Eazy Visas to simplify the journey with clear guidance, practical checklists, and responsive support. If you&apos;re unsure what applies to your case, we help you understand the process and prepare with confidence without overpromising results.
                     </p>
                   </div>
 
