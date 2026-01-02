@@ -24,7 +24,7 @@ const socialLinks = [
   { icon: FaYoutube, href: "https://youtube.com" },
 ];
 
-export default function Footer() {
+export default function Footer({ showDisclaimer = false }) {
   const [formData, setFormData] = useState({
       name: 'unknown',
       email: ''
@@ -93,9 +93,21 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 justify-between">
             {/* Left Section - Brand Info and Links */}
             <div className="space-y-4">
-              <Link href={"/"} className="mb-10 block">
-                <Image src="/logo/logo-white.png" alt="Logo" width={100} height={26} draggable={false} />
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+                <Link href={"/"} className="mb-4 sm:mb-0 block flex-shrink-0">
+                  <Image src="/logo/logo-white.png" alt="Logo" width={100} height={26} draggable={false} />
+                </Link>
+                {showDisclaimer && (
+                  <div 
+                    className="flex-1"
+                    style={{ maxWidth: '600px' }}
+                  >
+                    <p className="text-sm sm:text-base text-white/90 leading-tight">
+                      Independent visa consultancy. Not a government website. We do not guarantee visa approvals; decisions are made by the respective authorities.
+                    </p>
+                  </div>
+                )}
+              </div>
               {/* <p className="text-sm sm:text-base">
                 We help travelers explore Norway's wonders effortlessly with smart
                 planning and expert guides.
@@ -103,7 +115,7 @@ export default function Footer() {
 
 
               {/* Footer Links */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 mt-6">
                 {footerLinks.map((link) => (
                   <a
                     key={link.name}

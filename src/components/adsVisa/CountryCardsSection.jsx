@@ -14,7 +14,7 @@ const countries = [
     flag: '/images/flags/gb.webp',
     visaTypes: ['Tourist Visa', 'Business Visa'],
     processingTime: '15-20 Days',
-    description: 'Complete UK visa assistance with document verification and appointment booking support.',
+    description: 'UK visa consultation with clear steps, checklist-based preparation guidance, and support for common applicant questions.',
   },
   {
     name: 'United States',
@@ -23,16 +23,16 @@ const countries = [
     flag: '/images/flags/us.webp',
     visaTypes: ['Tourist Visa', 'Business Visa'],
     processingTime: '30-60 Days',
-    description: 'Expert USA visa consultancy with B1/B2 assistance and interview preparation support.',
+    description: 'US visa consultation for tourist and business travel, with guidance on steps, timelines, and how to prepare confidently.',
   },
   {
     name: 'Schengen',
-    shortName: 'Schengen',
+    shortName: 'Schengen (Europe)',
     image: '/images/landmarks/Colosseum in Italy Visa.webp',
     flag: '/images/flags/eu.png',
     visaTypes: ['Tourist Visa', 'Business Visa'],
     processingTime: '15-20 Days',
-    description: 'Schengen visa support for travel across Europe, with guidance plus itinerary and hotel booking documentation when needed.',
+    description: 'Schengen visa consultation for Europe—structured guidance, checklists, and step-by-step clarity for first-time and repeat travellers.',
   },
   {
     name: 'Australia',
@@ -41,7 +41,7 @@ const countries = [
     flag: '/images/flags/au.webp',
     visaTypes: ['Tourist Visa', 'Business Visa'],
     processingTime: '15-20 Days',
-    description: 'Australia visa assistance with document review, itinerary guidance, and clear next steps for tourism or business travel.',
+    description: 'Australia visa consultation for tourist and business travel with practical, step-by-step guidance and responsive support.',
   },
 ];
 
@@ -67,10 +67,10 @@ const CountryCardsSection = () => {
           {/* Section Header */}
           <div className="text-center mb-10 sm:mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Visa Services for <span className="text-blue-600">UK, US, Schengen & Australia</span>
+              Visa Consultation for <span className="text-blue-600">Popular Destinations</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose your destination. Then select Tourist or Business visa support from the form below.
+              Choose your destination and visa type in the form. We'll guide you from there.
             </p>
           </div>
 

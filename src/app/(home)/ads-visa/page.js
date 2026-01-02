@@ -139,7 +139,7 @@ const AdsVisaPage = () => {
               Why Choose <span className="text-blue-600">Eazy Visas?</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Trusted visa consultancy with expert guidance for 100+ countries.
+              Clear guidance for visa applicants, simple, structured, and responsive.
             </p>
           </div>
 
@@ -154,7 +154,7 @@ const AdsVisaPage = () => {
                 <div className="text-center">
                   <FaUserTie className="text-blue-500 text-3xl mb-4 mx-auto" />
                   <h4 className="font-semibold text-gray-900 mb-3 text-center">Expert Consultants</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">10+ years of experience with expert visa consultants guiding you through the entire application process from start to approval.</p>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Get guidance from experienced consultants who explain each step in plain language.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -163,8 +163,8 @@ const AdsVisaPage = () => {
               >
                 <div className="text-center">
                   <FaGlobe className="text-green-500 text-3xl mb-4 mx-auto" />
-                  <h4 className="font-semibold text-gray-900 mb-3 text-center">100+ Countries</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Visa assistance for 100+ destinations worldwide (including UK, USA, Schengen/Europe, and Australia).</p>
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Multi‑Country Experience</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Consultation support for UK, US, Schengen (Europe), and Australia travel cases.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -173,8 +173,8 @@ const AdsVisaPage = () => {
               >
                 <div className="text-center">
                   <FaClock className="text-purple-500 text-3xl mb-4 mx-auto" />
-                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Fast Processing</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Quick turnaround and priority coordination so your documents can be verified and submitted without avoidable delays.</p>
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">Quick Response</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">Fast replies and clear next steps so you don't lose time due to confusion or back‑and‑forth.</p>
                 </div>
               </motion.div>
               <motion.div
@@ -183,8 +183,8 @@ const AdsVisaPage = () => {
               >
                 <div className="text-center">
                   <FaWhatsapp className="text-green-600 text-3xl mb-4 mx-auto" />
-                  <h4 className="font-semibold text-gray-900 mb-3 text-center">24/7 WhatsApp Support</h4>
-                  <p className="text-gray-600 text-sm text-center leading-relaxed">Instant WhatsApp support anytime, anywhere. Get quick replies and guidance whenever you need help.</p>
+                  <h4 className="font-semibold text-gray-900 mb-3 text-center">WhatsApp Support</h4>
+                  <p className="text-gray-600 text-sm text-center leading-relaxed">WhatsApp support for quick clarifications while you prepare and submit your application.</p>
                 </div>
               </motion.div>
             </div>
@@ -248,7 +248,7 @@ const AdsVisaPage = () => {
             {/* Centered Heading */}
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800">
-                See What Our <span className="text-blue-500">Happy Clients</span> Say
+                See What Our <span className="text-blue-500">Clients</span> Say
               </h2>
             </div>
 
@@ -367,7 +367,7 @@ const AdsVisaPage = () => {
 
 
         {/* About Section */}
-        <section className="min-h-screen relative py-4 sm:py-8 lg:py-12 overflow-hidden mb-12">
+        <section className="min-h-screen relative py-4 sm:py-8 lg:py-12 overflow-hidden mb-6 lg:-mb-50">
           <div className="absolute blur-[200px] top-0 left-0 -z-10 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-white opacity-50 -translate-x-1/2 -translate-y-1/4"></div>
 
           <div className="max-w-[1440px] mx-auto px-[8px] md:px-[16px] lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto">
@@ -377,19 +377,13 @@ const AdsVisaPage = () => {
             </div>
 
             {/* Mission Section */}
-            <div className="mb-6 sm:mb-8 lg:mb-12 px-4">
+            <div className="mb-0 px-4">
               <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl shadow-indigo-100" style={{ boxShadow: '0 -25px 50px -12px rgba(99, 102, 241, 0.25), 0 25px 50px -12px rgba(99, 102, 241, 0.25)' }}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-start">
                   {/* Left Side: Text Only */}
                   <div className="order-2 md:order-1">
-                    <p className="text-sm sm:text-base text-gray-600 mb-2 sm:mb-3 leading-relaxed">
-                      Visa documentation is confusing, and small mistakes can slow your process down. We built Eazy Visas to make visa support simple, clear, and easy to follow.
-                    </p>
-                    <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
-                      Many travelers book expensive tickets too early. In many cases, what&apos;s needed is a clear itinerary, a matching hotel plan, and documents that stay consistent across your application.
-                    </p>
-                    <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed">
-                      Our job is to guide you with the right checklist, document review, and support so that you submit with confidence.
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-600 mb-2 sm:mb-3 leading-relaxed">
+                      Visa applications feel stressful because requirements vary and small mistakes can cause delays. We built Eazy Visas to simplify the journey with clear guidance, practical checklists, and responsive support. If you're unsure what applies to your case, we help you understand the process and prepare with confidence without overpromising results.
                     </p>
                   </div>
 
@@ -405,21 +399,6 @@ const AdsVisaPage = () => {
                   </div>
                 </div>
 
-                {/* Button Group - Left aligned below */}
-                <div className="flex flex-row gap-3 sm:gap-4 justify-start mt-6 sm:mt-8">
-                  <Button
-                    onClick={scrollToCountryCards}
-                    className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
-                  >
-                    Book Flight
-                  </Button>
-                  <Button
-                    onClick={scrollToCountryCards}
-                    className="flex-none bg-gradient-to-r from-blue-600 to-blue-500 text-white px-1 sm:px-8 py-3 sm:py-4 rounded-full hover:from-blue-700 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl font-semibold text-xs sm:text-base w-[85px] sm:w-auto"
-                  >
-                    Book Hotels
-                  </Button>
-                </div>
               </div>
             </div>
           </div>
@@ -434,7 +413,7 @@ const AdsVisaPage = () => {
 
 
         {/* Help Section */}
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-4 sm:mb-6 lg:-mb-8 -mt-16">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[50px] lg:mx-[20px] xl:mx-[50px] 2xl:mx-auto mb-4 sm:mb-6 lg:-mb-8 -mt-4 sm:-mt-6">
           <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 shadow-2xl">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10 overflow-hidden">
@@ -452,7 +431,7 @@ const AdsVisaPage = () => {
                   </div>
                   <div>
                     <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">Need Help Choosing?</h3>
-                    <p className="text-blue-100 text-sm sm:text-base lg:text-lg">Our visa specialists are available to help you select the perfect plan for your needs.</p>
+                    <p className="text-blue-100 text-sm sm:text-base lg:text-lg">Our consultants can help you pick the right visa type and next steps based on your destination and purpose of travel.</p>
                   </div>
                 </div>
 
@@ -499,7 +478,7 @@ const AdsVisaPage = () => {
 
       </div>
 
-      <Footer className="relative z-10" />
+      <Footer className="relative z-10" showDisclaimer={true} />
 
       <style jsx global>{`
         /* Animation styles */

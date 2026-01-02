@@ -55,7 +55,7 @@ const AdsVisaHero = ({ onBookingClick }) => {
               </h1>
 
               <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 leading-relaxed">
-                Get professional visa assistance for tourist and business travel with clear steps, document checks, and support that keeps your file consistent, backed by 10+ years of experience, fast coordination, 24/7 WhatsApp support, and destination-focused help for the UK, USA, Schengen, and Australia—no guarantees, just expert guidance every step of the way.
+                Get visa consultation for tourist and business travel to the UK, US, Schengen (Europe) and Australia with a simple, step-by-step process and fast WhatsApp support whenever you need clarity. We're an independent consultancy (not a government website), and we don't promise approvals; final decisions are always made by the relevant authorities.
               </p>
 
               {/* Trust Indicators */}
@@ -70,13 +70,19 @@ const AdsVisaHero = ({ onBookingClick }) => {
                   <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>Fast Processing</span>
+                  <span>Quick Response</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span>10+ Years Experience</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Multi‑Country Support</span>
                 </div>
               </div>
             </div>
@@ -93,7 +99,7 @@ const AdsVisaHero = ({ onBookingClick }) => {
                 onClick={() => handleHeroCta('hotel')}
                 className="flex-1 sm:flex-none w-full sm:w-auto bg-white text-blue-600 border-2 border-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl font-semibold text-sm sm:text-base text-center"
               >
-                View Visa Services
+                View Visa Consultation Options
               </Button>
             </div>
           </motion.div>
