@@ -422,54 +422,56 @@ const AdsVisaPage = () => {
               <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-white rounded-full opacity-50"></div>
             </div>
 
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between p-4 sm:p-6 lg:p-8">
-              {/* Left Content */}
-              <div className="flex-1 text-white mb-6 lg:mb-0 lg:pr-8 text-center lg:text-left">
-                <div className="flex flex-col sm:flex-row items-center mb-4">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex items-center justify-center mb-3 sm:mb-0 sm:mr-4">
-                    <FaWhatsapp className="text-blue-600 text-lg sm:text-xl" />
+            <div className="relative z-10 p-4 sm:p-5 lg:p-6">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 lg:gap-6">
+                {/* Left Content */}
+                <div className="flex-1 text-white w-full lg:w-auto">
+                  {/* Title and Description */}
+                  <div className="mb-4">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-center lg:text-left">Need Help Choosing?</h3>
+                    <p className="text-blue-100 text-sm sm:text-base lg:text-lg leading-relaxed text-center lg:text-left max-w-2xl">
+                      Our consultants can help you pick the right visa type and next steps based on your destination and purpose of travel.
+                    </p>
                   </div>
-                  <div>
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">Need Help Choosing?</h3>
-                    <p className="text-blue-100 text-sm sm:text-base lg:text-lg">Our consultants can help you pick the right visa type and next steps based on your destination and purpose of travel.</p>
+
+                  {/* Contact Information */}
+                  <div className="mb-4 text-center lg:text-left">
+                    <p className="text-white font-semibold text-sm sm:text-base mb-1">Get In Touch</p>
+                    <p className="text-blue-100 text-xs sm:text-sm">Email: info@eazyvisas.com & Phone: +918850146905</p>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start">
+                    <a
+                      href="https://wa.me/918850146905"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-5 py-2 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base min-w-[140px]"
+                    >
+                      <FaWhatsapp className="mr-2" />
+                      Chat with us
+                    </a>
+                    <a
+                      href="tel:+918850146905"
+                      className="inline-flex items-center justify-center px-5 py-2 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-all duration-300 border-2 border-white shadow-lg hover:shadow-xl text-sm sm:text-base min-w-[140px]"
+                    >
+                      <FaPhoneAlt className="mr-2" />
+                      Call Support
+                    </a>
                   </div>
                 </div>
 
-                <div className="mb-4">
-                  <p className="text-white font-medium text-base sm:text-lg mb-1">Get In Touch</p>
-                  <p className="text-blue-100 text-xs sm:text-sm lg:text-base">Email: info@eazyvisas.com & Phone: +918850146905</p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                  <a
-                    href="https://wa.me/918850146905"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-5 py-2.5 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all duration-300 shadow-lg text-sm lg:text-base"
-                  >
-                    <FaWhatsapp className="mr-2" />
-                    Chat with us
-                  </a>
-                  <a
-                    href="tel:+918850146905"
-                    className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-all duration-300 border-2 border-white shadow-lg text-sm lg:text-base"
-                  >
-                    <FaPhoneAlt className="mr-2" />
-                    Call Support
-                  </a>
-                </div>
-              </div>
-
-              {/* Right Icon */}
-              <div className="flex-shrink-0">
-                <div className="relative">
-                  <div className="w-20 h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-2xl">
-                    <FaPlane className="text-blue-600 text-3xl lg:text-4xl transform rotate-12" />
+                {/* Right Icon - Hidden on mobile, visible on desktop */}
+                <div className="hidden lg:flex flex-shrink-0">
+                  <div className="relative">
+                    <div className="w-20 h-20 xl:w-24 xl:h-24 bg-white rounded-full flex items-center justify-center shadow-2xl">
+                      <FaPlane className="text-blue-600 text-3xl xl:text-4xl transform rotate-12" />
+                    </div>
+                    {/* Decorative elements */}
+                    <div className="absolute -top-2 -right-2 w-4 h-4 bg-white rounded-full opacity-80"></div>
+                    <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-white rounded-full opacity-60"></div>
+                    <div className="absolute top-1/2 -right-3 w-2 h-2 bg-white rounded-full opacity-40"></div>
                   </div>
-                  {/* Decorative elements */}
-                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-white rounded-full opacity-80"></div>
-                  <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-white rounded-full opacity-60"></div>
-                  <div className="absolute top-1/2 -right-3 w-2 h-2 bg-white rounded-full opacity-40"></div>
                 </div>
               </div>
             </div>
