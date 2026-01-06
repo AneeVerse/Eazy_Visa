@@ -72,6 +72,7 @@ const post = {
           ]
         },
         { type: 'table' },
+        { type: 'markdownTable' },
         { type: 'tableOfContents' }
       ],
       validation: Rule => Rule.required()

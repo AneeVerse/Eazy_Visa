@@ -7,7 +7,9 @@ import Layout from "../../../../../components/common/Layout";
 import FeedbackReviewComponent from "../../../../../components/home/FeedbackReviewComponent";
 import { getBlogBySlug, getRelatedBlogs, urlFor } from "../../../../../lib/sanity";
 import { PortableText } from '@portabletext/react';
+import Link from "next/link";
 import TableBlock from '../../../../../components/blog/TableBlock';
+import MarkdownTableBlock from '../../../../../components/blog/MarkdownTableBlock';
 import TableOfContents from '../../../../../components/blog/TableOfContents';
 import { sanityClient } from "../../../../../lib/sanity";
 import FAQAccordion from '../../../../../components/blog/FAQAccordion';
@@ -19,6 +21,7 @@ export const revalidate = 60;
 const components = {
   types: {
     table: TableBlock,
+    markdownTable: MarkdownTableBlock,
     tableOfContents: ({ value }) => (
       <TableOfContents
         title={value.title}
