@@ -35,7 +35,8 @@ const components = {
 
 // ✅ Generate Dynamic Metadata
 export async function generateMetadata({ params }) {
-  const slugParam = params.slug;
+  const { slug } = await params;
+  const slugParam = slug;
   // Fetch post data from Sanity
   const query = `*[_type == "post" && slug.current == $slug][0]{
     title,
@@ -156,8 +157,9 @@ export async function generateMetadata({ params }) {
 }
 
 async function BlogDetailsPage({ params }) {
-  const post = await getBlogBySlug(params.slug);
-  const relatedPosts = await getRelatedBlogs(params.slug);
+  const { slug } = await params;
+  const post = await getBlogBySlug(slug);
+  const relatedPosts = await getRelatedBlogs(slug);
 
   if (!post) {
     return (
