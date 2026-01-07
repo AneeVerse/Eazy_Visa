@@ -1135,7 +1135,7 @@ export const countryData = [
       },
       {
         question: "How much does a Turkey tourist visa cost?",
-        answer: "The single-entry Turkey tourist visa fee is USD 40.",
+        answer: "The single-entry Turkey tourist visa fee is INR 40.",
       },
     ],
 
@@ -1651,7 +1651,7 @@ export const countryData = [
         validity: "10 years",
         visaCategory: "Tourist",
         entry: "Multiple",
-        fees: "USD 160/-",
+        fees: "INR 160/-",
       },
       {
         type: "US Student Visa (F1)",
@@ -1660,7 +1660,7 @@ export const countryData = [
         validity: "5 years",
         visaCategory: "Student",
         entry: "Multiple",
-        fees: "USD 160/-",
+        fees: "INR 160/-",
       },
     ],
   },

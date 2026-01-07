@@ -78,7 +78,7 @@ export default function Terms() {
                   <ul className="space-y-4 text-gray-600">
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">•</span>
-                      <span>All prices are in USD unless otherwise specified</span>
+                      <span>All prices are in INR unless otherwise specified</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-blue-600 mr-2">•</span>

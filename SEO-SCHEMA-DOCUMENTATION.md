@@ -84,7 +84,7 @@ This document provides a comprehensive overview of all SEO schema implementation
     "Student Visa Services"
   ],
   "priceRange": "$$",
-  "currenciesAccepted": ["INR", "USD"],
+  "currenciesAccepted": ["INR", "INR"],
   "paymentAccepted": ["Cash", "Credit Card", "Debit Card", "Bank Transfer"],
   "openingHours": "Mo-Sa 09:00-18:00",
   "sameAs": [

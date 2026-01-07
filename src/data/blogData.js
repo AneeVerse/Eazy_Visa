@@ -24,7 +24,7 @@ export const blogData = [
         <ul>
           <li>Passport with 6 months validity</li>
           <li>Confirmed hotel booking</li>
-          <li>Sufficient funds (USD 100/day)</li>
+          <li>Sufficient funds (INR 100/day)</li>
         </ul>
         
         <h2>Documents You Should Always Carry</h2>
