@@ -15,11 +15,11 @@ export default function AdsVisaThankYouPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-12">
-      {/* Google Ads Conversion Snippet */}
+      {/* Google Ads Conversion Snippet - Sign-up conversion */}
       <Script id="ads-visa-conversion" strategy="afterInteractive">
         {`gtag('event', 'conversion', {
-  'send_to': 'AW-11158930668/zIi1CMymzdIbEOyJ_8gp',
-  'value': 500.0,
+  'send_to': 'AW-17833154075/UY9YCMi8_N4bEJuswbdC',
+  'value': 1.0,
   'currency': 'INR'
 });`}
       </Script>
@@ -60,7 +60,7 @@ export default function AdsVisaThankYouPage() {
                 <p className="text-gray-600 mb-2">
                   Call us at: <br />
                   <Link href="tel:+918850146905" className="font-semibold text-blue-600 hover:text-blue-800">
-                  +91 88501 46905
+                    +91 88501 46905
                   </Link>
                 </p>
               </div>
@@ -89,7 +89,7 @@ export default function AdsVisaThankYouPage() {
         </div>
 
       </Layout>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
