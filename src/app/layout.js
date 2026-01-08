@@ -78,7 +78,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
         
-        {/* Google tag (gtag.js) */}
+        {/* Google tag (gtag.js) - Google Analytics */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-LKQVXEW96C" />
         <Script id="ga-script" strategy="afterInteractive">
           {`
@@ -87,6 +87,18 @@ export default function RootLayout({ children }) {
             gtag('js', new Date());
 
             gtag('config', 'G-LKQVXEW96C');
+          `}
+        </Script>
+
+        {/* Google tag (gtag.js) - Google Ads Conversion */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-17833154075" />
+        <Script id="google-ads-script" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'AW-17833154075');
           `}
         </Script>
 
