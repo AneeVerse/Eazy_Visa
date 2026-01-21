@@ -16,24 +16,24 @@ const comfortaa = Comfortaa({
 });
 
 export const metadata = {
-  title: "Dummy Flights for Visa - Eazy Visas | Visa Consultant",
-  description: "Get dummy flights for visa applications. Book verifiable dummy flight tickets and hotel reservations. Fast 24-hour delivery. Trusted visa consultant.",
+  title: "Visa Consultant for Tourist & Business Visas + Dummy Flight Tickets | Eazy Visas",
+  description: "Visa help made simple. Get document support, application guidance, and dummy flight tickets for visa (verified itinerary) - fast, clear pricing, no stress.",
   robots: {
     index: true,
     follow: true,
     noimageindex: true,
   },
   openGraph: {
-    title: "Dummy Flights for Visa - Eazy Visas | Visa Consultant",
-    description: "Get dummy flights for visa applications. Book verifiable dummy flight tickets and hotel reservations. Fast 24-hour delivery. Trusted visa consultant.",
+    title: "Visa Consultant for Tourist & Business Visas + Dummy Flight Tickets | Eazy Visas",
+    description: "Visa help made simple. Get document support, application guidance, and dummy flight tickets for visa (verified itinerary) - fast, clear pricing, no stress.",
     type: "website",
     locale: "en_US",
-    siteName: "Easy Visa",
+    siteName: "Eazy Visas",
   },
   twitter: {
     card: "summary",
-    title: "Dummy Flights for Visa - Eazy Visas | Visa Consultant",
-    description: "Get dummy flights for visa applications. Book verifiable dummy flight tickets and hotel reservations. Fast 24-hour delivery. Trusted visa consultant.",
+    title: "Visa Consultant for Tourist & Business Visas + Dummy Flight Tickets | Eazy Visas",
+    description: "Visa help made simple. Get document support, application guidance, and dummy flight tickets for visa (verified itinerary) - fast, clear pricing, no stress.",
   },
   icons: {
     icon: [
@@ -62,11 +62,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-          <html lang="en" className={`${comfortaa.variable}`}>
-        <head>
-          <meta name="google-site-verification" content="mzi68Swu3UM_EQoy75guBPrCCFP8GbcSHLlyDFUEE2E" />
-        </head>
-        <body className="font-comfortaa">
+    <html lang="en" className={`${comfortaa.variable}`}>
+      <head>
+        <meta name="google-site-verification" content="mzi68Swu3UM_EQoy75guBPrCCFP8GbcSHLlyDFUEE2E" />
+      </head>
+      <body className="font-comfortaa">
         {/* Google Tag Manager Script */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`
@@ -77,7 +77,7 @@ export default function RootLayout({ children }) {
             })(window,document,'script','dataLayer','GTM-W9FX59F');
           `}
         </Script>
-        
+
         {/* Google tag (gtag.js) - Google Analytics */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-LKQVXEW96C" />
         <Script id="ga-script" strategy="afterInteractive">
@@ -117,7 +117,7 @@ export default function RootLayout({ children }) {
 
         {/* Meta Pixel - Original */}
         <MetaPixel pixelId="1736415037003830" />
-        
+
         {/* Meta Pixel - Additional */}
         <MetaPixel pixelId="2000698917125544" />
 

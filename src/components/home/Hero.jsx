@@ -89,25 +89,47 @@ export default function HeroSection() {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
-          <Link href={"/countries"} className="inline-flex  items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full myshadow border border-gray-200">
+          <Link href={"/countries"} className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full myshadow border border-gray-200">
             <span className="text-blue-500 font-semibold">Explore the world!</span>
             <FaCompass className="text-[#facd49] text-xl" />
           </Link>
 
-          <Heading level={1} className="uppercase font-bold">
-            Dummy Flights & Stress Free Visa, <br />
+          <Heading level={1} className="uppercase font-bold leading-tight">
+            Stress‑Free Visa, <br />
             <span className="text-blue-600">Every Time.</span>
           </Heading>
 
+          <p className="text-lg sm:text-xl text-gray-700 font-medium">
+            Stress‑Free Visas. Verified Dummy Tickets When Needed.
+          </p>
+
           <Paragraph className="text-sm sm:text-lg text-gray-600 max-w-2xl">
-          Need dummy flights for your visa? First, we help you get visa documents fast. Also, we handle all the work. Therefore, you can plan your trip easily. Furthermore, our service is quick and simple.
+            Apply for tourist or business visas with clear guidance, document support, and fast turnaround — plus verified dummy flight tickets for visa when you need flight proof without buying expensive real tickets.
           </Paragraph>
 
-          <div className="flex gap-4 justify-center lg:justify-start">
-            <Link href={"/contact"} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full
-              font-semibold transition-all shadow-lg hover:shadow-xl">
-              Get Started
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <Link href={"/contact"} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl text-center">
+              Get Visa Help
             </Link>
+            <Link href={"/dummy-bookings"} className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl text-center">
+              Get Dummy Flight Ticket
+            </Link>
+          </div>
+
+          {/* Trust Signals */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>Transparent pricing, no hidden fees.</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>Priority processing available.</span>
+            </div>
           </div>
         </motion.div>
       </div>

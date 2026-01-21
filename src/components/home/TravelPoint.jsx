@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const states = [
   {
     number: 500,
-    title: "visa approved",
+    title: "Visas Approved",
     suffix: "+"
   },
   {
@@ -19,12 +19,12 @@ const states = [
   },
   {
     number: 5,
-    title: "Years Of experience",
+    title: "Years of Experience",
     suffix: "+"
   },
   {
     number: 150,
-    title: "Countries Visa assistance",
+    title: "Countries Supported",
     suffix: "+"
   },
 ];
@@ -39,7 +39,7 @@ const useCountUp = (target, duration = 2000) => {
       const elapsed = timestamp - startTimeRef.current;
       const progress = Math.min(elapsed / duration, 1);
       const currentCount = Math.floor(progress * target);
-      
+
       setCount(currentCount);
 
       if (progress < 1) {
@@ -75,7 +75,7 @@ export default function TravelPoint() {
       {/* <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-bl from-[#F6E5C1] via-[#F3F3EC] to-[#F3F3EC]"></div>
       <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-br from-[#F6E5C1] via-transparent to-transparent"></div>
       <div className="absolute blur-[0px] top-[50%] -translate-y-[50%] -left-[0px] -z-10 w-full h-full bg-gradient-to-r from-transparent via-[#F3F3EC] to-transparent"></div> */}
-      
+
       <Layout className="flex flex-col md:flex-row gap-10">
         {/* Left Image - Sticky Container */}
         <div className="md:w-1/2 flex justify-center md:justify-start md:items-start relative">
@@ -90,13 +90,13 @@ export default function TravelPoint() {
                 className="w-full h-auto"
               />
             </div>
-            
+
             {/* Rotating Image */}
             <motion.div
               initial={{ rotate: 10 }}
               animate={{ rotate: [10, 15, 10] }}
-              transition={{ 
-                duration: 5, 
+              transition={{
+                duration: 5,
                 repeat: Infinity,
                 ease: "easeInOut",
                 times: [0, 0.5, 1]
@@ -122,12 +122,12 @@ export default function TravelPoint() {
           {/* <Subheading className="text-primary-500 mb-2 uppercase tracking-widest">
             Travel Point
           </Subheading> */}
-          <Heading level={2} className="text-secondary-500 mb-10 uppercase">
-          Stress Free Visa,<span className="text-blue-500"> Every Time.</span> 
+          <Heading level={2} className="text-secondary-500 mb-6 uppercase">
+            Trusted by Travelers <span className="text-blue-500">Worldwide</span>
           </Heading>
 
-          <p className="text-[#7e7e7e]">
-          Getting your visa just got easier! Count on us for quick processing, expert help, and friendly support every step of the way. </p>
+          <p className="text-[#7e7e7e] mb-8">
+            We've helped hundreds of travelers get their visas with ease. Count on us for quick processing, expert help, and friendly support every step of the way.</p>
 
           {/* Stats Grid */}
           <div id="travel-point-stats" className="grid grid-cols-2 gap-4 sm:gap-6">

@@ -24,7 +24,7 @@ export default function DestinationSlider() {
         // const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjs4OV12cMUkGj_OV7CYQpYE2q5cr9vzPlf5OqQAnowj7hifoxD0w3nrgqRPVIxAMe2ZEet6H2Uojsb-4Fy3gC5ahoF6ICREzopNHQBp20sLfhyWfQ5AFdCjBJS-qDLark3BHaWlzXAoS304j-GtnMHjw0a0g3YHTnZW67poaoPIK45HNUeoJ3lysgCG36e4WUszaLhB4_pkLcE0vcHN13Uv7qR_3nEHcF_JslMjliXHfUS_aL7Uv0jRDOyo3AToAf85CkOiZMl3_xuRkqymvwjN92aIw&lib=MNOr_3U-ifGUiHYeVYNtbhEhiku5JnKVW');
         // const apiCountries = await response.json();
         console.log("API Countries:", countryData.filter(country => country.isTop == true));
-       
+
         setCountries(countryData.filter(country => country.isTop == true));
       } catch (error) {
         console.error("Error fetching countries:", error);
@@ -42,14 +42,14 @@ export default function DestinationSlider() {
   const scroll = (direction) => {
     if (scrollRef.current) {
       const scrollAmount = 300;
-      scrollRef.current.scrollBy({ 
-        left: direction === "left" ? -scrollAmount : scrollAmount, 
-        behavior: "smooth" 
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
       });
     }
   };
 
- 
+
 
   return (
     <section className="py-16">
@@ -57,13 +57,16 @@ export default function DestinationSlider() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <Subheading className="text-primary-500 tracking-wider uppercase mb-2">
-              Countries
+              Visa Search
             </Subheading>
-            <Heading level={2} className="text-secondary-500 mb-10">
-              Explore top destinations
+            <Heading level={2} className="text-secondary-500 mb-4">
+              Search visa requirements for 100+ countries
             </Heading>
+            <p className="text-gray-600 max-w-xl">
+              Find visa info quickly with a guided search, then get help applying with the right documents and travel proof.
+            </p>
           </div>
-          
+
           <Button
             variant="primary"
             icon={<IoIosArrowForward />}
@@ -98,7 +101,7 @@ export default function DestinationSlider() {
           ) : (
             <div className="flex items-center gap-4">
               {countries.slice(0, 15).map((country) => (
-                <VisaCard 
+                <VisaCard
                   key={`${country.continent}-${country.id}`}
                   image={country.landmark}
                   name={country.name}

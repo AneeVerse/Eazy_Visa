@@ -4,6 +4,7 @@ import Layout from "../components/common/Layout";
 import PopupForm from "../components/common/PopupForm";
 import AboutUs from "../components/home/AboutUs";
 import BlogSection from "../components/home/BlogSection";
+import CtaStrip from "../components/home/CtaStrip";
 import Destinations from "../components/home/Destinations";
 import FeedbackReviewComponent from "../components/home/FeedbackReviewComponent";
 import Hero from "../components/home/Hero";
@@ -64,6 +65,7 @@ export default function Home() {
         {/* <div className="absolute blur-[200px] rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div> */}
         <div className="absolute blur-[200px] rounded-full -z-10 top-[30%] md:top-[40%] -left-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
         <BlogSection />
+        <CtaStrip />
         <div className="relative  z-30">
           <Footer />
         </div>
