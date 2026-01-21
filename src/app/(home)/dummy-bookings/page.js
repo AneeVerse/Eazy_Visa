@@ -204,20 +204,20 @@ const PricingPage = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {bestFor.map((item, index) => (
-                    <motion.div 
-                      key={index} 
-                      whileHover={{ y: -5 }}
-                      className="bg-white p-8 rounded-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 flex flex-col items-center gap-6 text-center hover:shadow-[0_20px_40px_rgba(37,99,235,0.06)] hover:border-blue-100 transition-all duration-300"
-                    >
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center flex-shrink-0 text-blue-600 shadow-inner">
-                        <FaCheckCircle size={26} />
-                      </div>
-                      <span className="text-gray-800 font-bold text-base leading-relaxed">{item}</span>
-                    </motion.div>
-                  ))}
+                {bestFor.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ y: -5 }}
+                    className="bg-white p-8 rounded-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 flex flex-col items-center gap-6 text-center hover:shadow-[0_20px_40px_rgba(37,99,235,0.06)] hover:border-blue-100 transition-all duration-300"
+                  >
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center flex-shrink-0 text-blue-600 shadow-inner">
+                      <FaCheckCircle size={26} />
+                    </div>
+                    <span className="text-gray-800 font-bold text-base leading-relaxed">{item}</span>
+                  </motion.div>
+                ))}
               </div>
-              
+
               <div className="max-w-2xl mx-auto pt-4">
                 <div className="inline-flex items-center gap-3 bg-amber-50/80 backdrop-blur-sm px-6 py-3 rounded-2xl border border-amber-200/50">
                   <FaInfoCircle className="text-amber-500 text-lg" />
@@ -237,8 +237,8 @@ const PricingPage = () => {
         <Layout>
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-[12px] font-bold mb-4 uppercase tracking-wider">
-               <FaFileAlt />
-               <span>Comprehensive Package</span>
+              <FaFileAlt />
+              <span>Comprehensive Package</span>
             </div>
             <Heading level={2} className="text-gray-900">What you get with Dummy Bookings</Heading>
           </div>
@@ -274,7 +274,7 @@ const PricingPage = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/grid-pattern.svg')]"></div>
         </div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        
+
         <Layout className="relative z-10">
           <div className="text-center mb-20 text-white">
             <h2 className="text-4xl sm:text-5xl font-black mb-6">How it works</h2>
@@ -284,7 +284,7 @@ const PricingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 relative">
             {/* Connection dashes */}
             <div className="hidden lg:block absolute top-[45px] left-[15%] right-[15%] h-0.5 border-t-2 border-dashed border-white/20"></div>
-            
+
             {howItWorks.map((item, index) => (
               <div key={index} className="text-center group">
                 <div className="w-24 h-24 bg-white text-blue-700 rounded-3xl flex items-center justify-center text-4xl font-black mx-auto mb-8 shadow-2xl transform group-hover:rotate-6 transition-transform">
@@ -311,11 +311,11 @@ const PricingPage = () => {
                   viewport={{ once: true }}
                 >
                   <div className="relative rounded-[32px] overflow-hidden shadow-xl border-4 border-white">
-                    <Image 
-                      src="/images/ads-right-hero.webp" 
-                      alt="Visa Booking illustration" 
-                      width={500} 
-                      height={375} 
+                    <Image
+                      src="/images/ads-right-hero.webp"
+                      alt="Visa Booking illustration"
+                      width={500}
+                      height={375}
                       className="w-full h-auto object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent"></div>
@@ -340,7 +340,7 @@ const PricingPage = () => {
                       <FaPlane size={20} />
                     </div>
                     <p className="text-gray-700 text-lg leading-relaxed">
-                      Many applicants don't want to risk paying full airfare before the visa decision. Dummy bookings let you show a realistic plan while staying flexible.
+                      Many applicants don&apos;t want to risk paying full airfare before the visa decision. Dummy bookings let you show a realistic plan while staying flexible.
                     </p>
                   </div>
                   <div className="flex gap-4">
@@ -404,7 +404,7 @@ const PricingPage = () => {
       {/* 7. CTA Block (Bottom) - Smaller, same as footer */}
       <section className="py-12 lg:py-16">
         <Layout>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -417,18 +417,18 @@ const PricingPage = () => {
             <p className="text-base sm:text-lg text-white/80 mb-8 max-w-xl mx-auto">
               Our visa specialists can recommend the best dummy booking plan based on your destination and timeline.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link 
-                href="/dummy-bookings" 
+              <Link
+                href="/dummy-bookings"
                 className="bg-white text-primary-500 px-6 py-3 rounded-full font-bold text-sm shadow-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
                 <FaPlane />
                 Get Dummy Bookings
               </Link>
-              <Link 
-                href="https://wa.me/918850146905" 
-                target="_blank" 
+              <Link
+                href="https://wa.me/918850146905"
+                target="_blank"
                 className="bg-green-500 text-white px-6 py-3 rounded-full font-bold text-sm shadow-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
                 <FaWhatsapp className="text-lg" />
