@@ -62,7 +62,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
     "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia",
     "Eswatini", "Ethiopia", "Fiji", "Finland", "Gabon", "Gambia", "Georgia",
     "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau",
-    "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "Indonesia", "India", "Iran",
+    "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "Indonesia", "Iran",
     "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan",
     "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia",
     "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
@@ -211,7 +211,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
       />
 
       <div className="fixed inset-0 bg-black/50 backdrop-blur-[4px] z-50 flex items-center justify-center p-4" onClick={onClose}>
-        <div 
+        <div
           className="bg-white rounded-xl shadow-2xl overflow-hidden max-w-4xl w-full flex flex-col lg:flex-row relative"
           onClick={(e) => e.stopPropagation()}
         >
@@ -422,11 +422,10 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
               <button
                 type="submit"
                 disabled={isLoading || !isAccepted}
-                className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${
-                  isLoading || !isAccepted
-                    ? "bg-gray-300 cursor-not-allowed"
-                    : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
-                } transition-all duration-300`}
+                className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
+                  } transition-all duration-300`}
               >
                 {isLoading ? (
                   <>

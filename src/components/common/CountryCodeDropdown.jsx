@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import { getCountries, getCountryCallingCode } from 'react-phone-number-input';
 
-const CountryCodeDropdown = ({ 
-  value, 
-  onChange, 
-  className = "", 
+const CountryCodeDropdown = ({
+  value,
+  onChange,
+  className = "",
   disabled = false,
   error = false,
   height = "h-10", // Default height to match input fields
@@ -50,10 +50,10 @@ const CountryCodeDropdown = ({
   }
 
   // Find the selected country, with better fallback logic
-  const selectedCountry = countryData.find(country => `+${country.callingCode}` === value) || 
-                         countryData.find(country => country.callingCode === value?.replace('+', '')) ||
-                         countryData.find(country => country.code === 'IN') || // Default to India
-                         countryData[0];
+  const selectedCountry = countryData.find(country => `+${country.callingCode}` === value) ||
+    countryData.find(country => country.callingCode === value?.replace('+', '')) ||
+    countryData.find(country => country.code === 'IN') || // Default to India
+    countryData[0];
 
   // Filter countries based on search term
   const filteredCountries = countryData.filter(country =>
@@ -89,7 +89,7 @@ const CountryCodeDropdown = ({
       const isDropdownButton = event.target.closest('.country-dropdown');
       const isDropdownOption = event.target.closest('[data-country-dropdown]');
       const isSearchInput = event.target.closest('input[type="text"]');
-      
+
       if (isOpen && !isDropdownButton && !isDropdownOption && !isSearchInput) {
         setIsOpen(false);
       }
@@ -123,8 +123,8 @@ const CountryCodeDropdown = ({
         <FiChevronDown className={`h-4 w-4 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
-            {isOpen && !disabled && (
-        <div 
+      {isOpen && !disabled && (
+        <div
           data-country-dropdown
           className={`absolute z-50 w-72 bg-white border border-gray-300 rounded-lg shadow-lg max-h-80 overflow-hidden ${direction === 'up' ? 'bottom-full mb-1' : 'top-full mt-1'}`}
         >
@@ -142,14 +142,14 @@ const CountryCodeDropdown = ({
               autoFocus
             />
           </div>
-          
+
           {/* Country List */}
           <div className="max-h-64 overflow-y-auto">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => (
-            <button
-              key={country.code}
-              type="button"
+                <button
+                  key={country.code}
+                  type="button"
                   onClick={() => handleSelect(country.callingCode)}
                   className="w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
                 >
@@ -158,14 +158,14 @@ const CountryCodeDropdown = ({
                     <div className="font-medium text-gray-900">{country.name}</div>
                     <div className="text-gray-500 text-xs">+{country.callingCode}</div>
                   </div>
-            </button>
+                </button>
               ))
             ) : (
               <div className="px-4 py-6 text-sm text-gray-500 text-center">
                 No countries found
               </div>
             )}
-        </div>
+          </div>
         </div>
       )}
     </div>

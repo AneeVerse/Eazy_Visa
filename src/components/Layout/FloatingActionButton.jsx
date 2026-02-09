@@ -42,7 +42,7 @@ const FloatingActionButton = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validation
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
       alert('Please fill in all required fields');
@@ -61,10 +61,10 @@ const FloatingActionButton = () => {
     try {
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
-      
+
       // For Google Sheets compatibility, also create a version without special characters
       const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
-      
+
       const response = await fetch('/api/contact-widget', {
         method: 'POST',
         headers: {
@@ -134,10 +134,10 @@ const FloatingActionButton = () => {
   return (
     <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40">
       {!open && !showForm && (
-        <motion.div 
-          initial="hidden" 
-          animate="visible" 
-          exit="exit" 
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          exit="exit"
           className="flex flex-col items-center gap-3 mb-4"
         >
           <motion.button
@@ -171,10 +171,10 @@ const FloatingActionButton = () => {
 
       {/* Contact Form Modal */}
       {showForm && (
-        <motion.div 
-          initial="hidden" 
-          animate="visible" 
-          exit="exit" 
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          exit="exit"
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
         >
           <motion.div
@@ -209,7 +209,7 @@ const FloatingActionButton = () => {
                     Redirecting to {selectedContactType} in {countdown} seconds...
                   </p>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
+                    <div
                       className="bg-blue-500 h-2 rounded-full transition-all duration-1000"
                       style={{ width: `${((3 - countdown) / 3) * 100}%` }}
                     ></div>
@@ -320,7 +320,7 @@ const FloatingActionButton = () => {
           ) : (
             <IoClose className='self-center h-7 w-7' />
           )}
-        </div> 
+        </div>
       </motion.button>
     </div>
   );

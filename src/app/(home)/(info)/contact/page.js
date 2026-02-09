@@ -108,7 +108,6 @@ const Contact = () => {
     "Hungary",
     "Iceland",
     "Indonesia",
-    "India",
     "Iran",
     "Iraq",
     "Ireland",

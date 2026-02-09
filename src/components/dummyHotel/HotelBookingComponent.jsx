@@ -31,19 +31,7 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
 
   // Popular cities data
   const popularCities = [
-    { id: 1, name: "New Delhi", country: "India" },
-    { id: 2, name: "Mumbai", country: "India" },
-    { id: 3, name: "Bangalore", country: "India" },
-    { id: 4, name: "Hyderabad", country: "India" },
-    { id: 5, name: "Chennai", country: "India" },
-    { id: 6, name: "Kolkata", country: "India" },
-    { id: 7, name: "Pune", country: "India" },
-    { id: 8, name: "Goa", country: "India" },
-    { id: 9, name: "Jaipur", country: "India" },
-    { id: 10, name: "Udaipur", country: "India" },
-    { id: 11, name: "Ahmedabad", country: "India" },
-    { id: 12, name: "Lucknow", country: "India" },
-    { id: 13, name: "Kochi", country: "India" },
+
     { id: 14, name: "Dubai", country: "UAE" },
     { id: 15, name: "Abu Dhabi", country: "UAE" },
     { id: 16, name: "Singapore", country: "Singapore" },
@@ -200,7 +188,7 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
     if (heroFormData) {
       try {
         const parsedData = JSON.parse(heroFormData);
-        
+
         // Pre-fill hotel form with hero form data
         if (parsedData.hotel) {
           setFormData(prev => ({
@@ -215,13 +203,13 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
               adults: parsedData.travelers?.count || 1,
             }
           }));
-          
+
           // Set city search if destination is provided
           if (parsedData.hotel.destination) {
             setCitySearch(parsedData.hotel.destination);
           }
         }
-        
+
         // Clear the hero form data after using it
         sessionStorage.removeItem('heroFormData');
       } catch (error) {
@@ -249,13 +237,13 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
   useEffect(() => {
     const totalPersons = formData.guests.adults + formData.guests.children;
     let calculatedPrice;
-    
+
     if (totalPersons === 1) {
       calculatedPrice = 2000; // INR 2000 for 1 person
     } else {
-      calculatedPrice =( totalPersons * 1000) -1; // INR 999 per person for more than 1
+      calculatedPrice = (totalPersons * 1000) - 1; // INR 999 per person for more than 1
     }
-    
+
     setPrice(calculatedPrice);
   }, [formData.guests.adults, formData.guests.children]);
 
@@ -364,10 +352,10 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
           const toAdd = totalGuests - updatedTravelers.length;
           for (let i = 0; i < toAdd; i++) {
             const isChild = type === 'children' && i >= (updatedTravelers.length - prev.guests.adults);
-            updatedTravelers.push({ 
-              title: isChild ? "Master" : "Mr", 
-              firstName: "", 
-              lastName: "" 
+            updatedTravelers.push({
+              title: isChild ? "Master" : "Mr",
+              firstName: "",
+              lastName: ""
             });
           }
         } else if (totalGuests < updatedTravelers.length) {
@@ -482,15 +470,15 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
 
       if (response.ok) {
         sessionStorage.setItem('formSubmitted', 'true');
-        
-                // Redirect based on origin
-                if (origin === 'landing-flight' || origin === 'landing-hotel' || origin === 'landing-most-preferred') {
-                    // For visa ads page, redirect to thank-you-conversion
-                    window.location.href = '/thank-you-conversion';
-                } else {
-                    // For normal dummy bookings, redirect to dynamic confirmation
-                    window.location.href = '/Confirmation-hotel';
-                }
+
+        // Redirect based on origin
+        if (origin === 'landing-flight' || origin === 'landing-hotel' || origin === 'landing-most-preferred') {
+          // For visa ads page, redirect to thank-you-conversion
+          window.location.href = '/thank-you-conversion';
+        } else {
+          // For normal dummy bookings, redirect to dynamic confirmation
+          window.location.href = '/Confirmation-hotel';
+        }
       } else {
         toast.error(result.error || 'Failed to submit booking');
       }
@@ -527,7 +515,7 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
     <Layout>
       {/* Google Ads Conversion Tracking - Fire when user reaches review step */}
       {currentStep === 3 && <ConversionTracking />}
-      
+
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -553,13 +541,13 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
               <span className="text-gray-600">Flights</span>
             </button>
           ) : (
-          <Link
-            href="/services/dummy-flights"
+            <Link
+              href="/services/dummy-flights"
               className="flex-1 py-3 px-6 cursor-pointer rounded-l-2xl flex flex-col items-center justify-center font-bold text-lg transition-colors text-white bg-white"
-          >
+            >
               <img src="/images/icon/png/aeroplan-black.png" alt="Flight Icon" className="w-16 h-14 object-cover" />
-            <span className="text-gray-600">Flights</span>
-          </Link>
+              <span className="text-gray-600">Flights</span>
+            </Link>
           )}
           {onTabClick ? (
             <button
@@ -570,13 +558,13 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
               <span className="text-primary-500">Hotels</span>
             </button>
           ) : (
-          <Link
+            <Link
               href="/services/dummy-hotel"
               className="flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-tr-2xl text-gray-600 hover:text-blue-600"
-          >
+            >
               <img src="/images/icon/png/hotel-blue.png" alt="Hotel Icon" className="w-16 h-14 object-cover" />
-            <span className="text-primary-500">Hotels</span>
-          </Link>
+              <span className="text-primary-500">Hotels</span>
+            </Link>
           )}
         </div>
 
@@ -909,7 +897,7 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
                       {formData.travelers.list.map((traveler, index) => {
                         const isChild = index >= formData.guests.adults;
                         const availableTitles = isChild ? titlesConfig.children : titlesConfig.adults;
-                        
+
                         return (
                           <motion.div
                             key={index}

@@ -122,7 +122,6 @@ const PopupForm = () => {
     "Hungary",
     "Iceland",
     "Indonesia",
-    "India",
     "Iran",
     "Iraq",
     "Ireland",
@@ -614,8 +613,8 @@ const PopupForm = () => {
                 type="submit"
                 disabled={isLoading || !isAccepted}
                 className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
-                    ? "bg-gray-300 cursor-not-allowed"
-                    : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
                   } transition-all duration-300`}
               >
                 {isLoading ? (

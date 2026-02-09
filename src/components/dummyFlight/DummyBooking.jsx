@@ -59,7 +59,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
         if (heroFormData) {
             try {
                 const parsedData = JSON.parse(heroFormData);
-                
+
                 // Pre-fill flight form with hero form data
                 if (parsedData.flight) {
                     setFormData(prev => ({
@@ -75,17 +75,17 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                         travelers: {
                             ...prev.travelers,
                             count: parsedData.travelers?.count || 1,
-                            list: Array(parsedData.travelers?.count || 1).fill().map(() => ({ 
-                                type: "adult", 
-                                title: "Mr", 
-                                firstName: "", 
-                                lastName: "", 
-                                age: "" 
+                            list: Array(parsedData.travelers?.count || 1).fill().map(() => ({
+                                type: "adult",
+                                title: "Mr",
+                                firstName: "",
+                                lastName: "",
+                                age: ""
                             }))
                         }
                     }));
                 }
-                
+
                 // Clear the hero form data after using it
                 sessionStorage.removeItem('heroFormData');
             } catch (error) {
@@ -323,12 +323,12 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
     // Handle input changes
     const handleInputChange = (path, value) => {
         const [parent, child] = path.split('.');
-    
+
         if (parent === 'flight' && child === 'type') {
             // Handle flight type change
             setFormData(prev => {
                 let legs = [...prev.flight.legs];
-                
+
                 if (value === "one-way") {
                     // For one-way, keep only the first leg
                     legs = legs.slice(0, 1);
@@ -336,15 +336,15 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                     // For round-trip, add return leg if needed
                     legs = [
                         ...legs,
-                        { 
-                            from: legs[0].to, 
-                            to: legs[0].from, 
-                            date: null 
+                        {
+                            from: legs[0].to,
+                            to: legs[0].from,
+                            date: null
                         }
                     ];
                 }
                 // For multi-city, leave legs as they are
-                
+
                 return {
                     ...prev,
                     flight: {
@@ -461,10 +461,10 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                 ...prev,
                 flight: {
                     ...prev.flight,
-                    legs: [...prev.flight.legs, { 
-                        from: prev.flight.legs[prev.flight.legs.length - 1].to, 
-                        to: "", 
-                        date: null 
+                    legs: [...prev.flight.legs, {
+                        from: prev.flight.legs[prev.flight.legs.length - 1].to,
+                        to: "",
+                        date: null
                     }]
                 }
             }));
@@ -559,7 +559,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                 // toast.success('Flight booking submitted successfully!');
                 sessionStorage.setItem('formSubmitted', 'true');
                 sessionStorage.setItem('bookingPrice', price.toString());
-                
+
                 // Redirect based on origin
                 if (origin === 'landing-flight' || origin === 'landing-hotel' || origin === 'landing-most-preferred') {
                     // For visa ads page, redirect to thank-you-conversion
@@ -608,7 +608,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
         <Layout>
             {/* Google Ads Conversion Tracking - Fire when user reaches review step */}
             {currentStep === 3 && <ConversionTracking />}
-            
+
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -634,13 +634,13 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                             <span className="text-primary-500">Flights</span>
                         </button>
                     ) : (
-                    <Link
-                        href="/services/dummy-flights"
+                        <Link
+                            href="/services/dummy-flights"
                             className="flex-1 py-3 px-6 cursor-pointer flex flex-col rounded-l-2xl items-center justify-center font-bold text-lg transition-colors text-white bg-white"
-                    >
+                        >
                             <img src="/images/icon/png/aeroplan-blue.png" alt="Flight Icon" className="w-16 h-14 object-cover" />
-                        <span className="text-primary-500">Flights</span>
-                    </Link>
+                            <span className="text-primary-500">Flights</span>
+                        </Link>
                     )}
                     {onTabClick ? (
                         <button
@@ -651,13 +651,13 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                             <span className="text-gray-600">Hotels</span>
                         </button>
                     ) : (
-                    <Link
+                        <Link
                             href="/services/dummy-hotel"
                             className="flex-1 py-3 px-6 flex flex-col border-l border-gray-200 items-center justify-center font-bold text-lg transition-colors rounded-r-2xl text-gray-600 hover:text-blue-600"
-                    >
+                        >
                             <img src="/images/icon/png/hotel-black.png" alt="Hotel Icon" className="w-16 h-14 object-cover" />
-                        <span className="text-gray-600">Hotels</span>
-                    </Link>
+                            <span className="text-gray-600">Hotels</span>
+                        </Link>
                     )}
                 </div>
 
@@ -704,7 +704,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
 
                                         {/* Flight Type Radio Buttons */}
                                         <div className="flex gap-1 sm:gap-4 mb-0">
-                                            {["one-way","round-trip", "multi-city"].map((type) => (
+                                            {["one-way", "round-trip", "multi-city"].map((type) => (
                                                 <div key={type} className={`rounded-2xl py-[4px] px-[6px] flex items-center ${formData.flight.type === type ? "bg-blue-100" : ""}`}>
                                                     <input
                                                         type="radio"
@@ -767,7 +767,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                                                 <DatePicker
                                                                     value={leg.date}
-                                                                    style={{BiBorderRadius: "30px"}}
+                                                                    style={{ BiBorderRadius: "30px" }}
                                                                     onChange={(newValue) => handleFlightLegChange(index, 'date', newValue)}
                                                                     renderInput={(params) => (
                                                                         <TextField
@@ -776,7 +776,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                                                                             sx={{
                                                                                 '& .MuiOutlinedInput-root': {
 
-                                                                                     borderRadius: '30px', // ✅ Custom border radius
+                                                                                    borderRadius: '30px', // ✅ Custom border radius
                                                                                     height: '56px',
                                                                                     '& fieldset': {
                                                                                         borderColor: 'rgb(255, 253, 252)',
@@ -799,18 +799,18 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                                                 </motion.div>
                                             ))}
 
-{formData.flight.type === "multi-city" && (
-    <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        type="button"
-        className="flex items-center text-blue-600 hover:text-blue-800 font-medium"
-        onClick={addFlightLeg}
-    >
-        <FiPlus className="mr-2" />
-        <span>Add another flight</span>
-    </motion.button>
-)}
+                                            {formData.flight.type === "multi-city" && (
+                                                <motion.button
+                                                    whileHover={{ scale: 1.02 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                    type="button"
+                                                    className="flex items-center text-blue-600 hover:text-blue-800 font-medium"
+                                                    onClick={addFlightLeg}
+                                                >
+                                                    <FiPlus className="mr-2" />
+                                                    <span>Add another flight</span>
+                                                </motion.button>
+                                            )}
                                         </div>
                                     </div>
 
@@ -840,7 +840,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                                                     >
                                                         <FiChevronDown className={`transition-transform ${showTravelersDropdown ? 'rotate-180' : ''}`} />
                                                     </button>
-                                                    
+
                                                     {showTravelersDropdown && (
                                                         <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-[180px] overflow-auto">
                                                             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (

@@ -366,8 +366,8 @@ const ConsultationForm = () => {
               whileTap={{ scale: 0.98 }}
               whileHover={{ scale: 1.02 }}
               className={`w-full mt-6 py-3 px-6 rounded-lg font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
-                  ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
                 } transition-all duration-300`}
             >
               <span>{isLoading ? "Processing..." : "Get Free Consultation"}</span>

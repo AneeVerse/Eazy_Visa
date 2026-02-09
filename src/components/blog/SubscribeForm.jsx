@@ -31,7 +31,7 @@ const SubscribeForm = () => {
 
   const validateForm = () => {
     const errors = {};
-    
+
     if (!formData.firstName.trim()) {
       errors.firstName = 'First Name is required';
     }
@@ -61,7 +61,7 @@ const SubscribeForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       Object.values(errors).forEach(error => toast.error(error));
@@ -73,10 +73,10 @@ const SubscribeForm = () => {
     try {
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
-      
+
       // For Google Sheets compatibility, also create a version without special characters
       const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
-      
+
       const response = await fetch('/api/blog-contact', {
         method: 'POST',
         headers: {
@@ -98,7 +98,7 @@ const SubscribeForm = () => {
 
       // Always redirect to blog confirmation page regardless of selected service
       window.location.href = '/confirmation-blogs';
-      
+
     } catch (error) {
       toast.error(error.message || 'Failed to submit. Please try again later.');
     } finally {
@@ -120,12 +120,12 @@ const SubscribeForm = () => {
             <h3 className="text-2xl font-bold text-center px-4">Get in Touch With Us</h3>
           </div> */}
         </div>
-        
+
         <div className="p-4">
           <p className="text-gray-300 text-sm mb-3 text-left">
             Fill out the form below and our team will contact you shortly
           </p>
-          
+
           <form onSubmit={handleSubmit} className="space-y-3">
             {/* First Name Field */}
             <div>
@@ -230,11 +230,10 @@ const SubscribeForm = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors ${
-                isLoading 
-                  ? 'bg-blue-400 cursor-not-allowed' 
+              className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors ${isLoading
+                  ? 'bg-blue-400 cursor-not-allowed'
                   : 'bg-blue-600 hover:bg-blue-700'
-              }`}
+                }`}
             >
               {isLoading ? 'Submitting...' : 'Get Started'}
             </button>
@@ -242,7 +241,7 @@ const SubscribeForm = () => {
         </div>
       </div>
 
-      <ToastContainer 
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}

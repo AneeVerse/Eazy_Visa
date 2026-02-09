@@ -50,7 +50,7 @@ const services = [
     url: "/dummy-hotel",
     description: "Verifiable hotel booking for visa applications",
     image:
-    "/images/home/dummy-hotel.webp",
+      "/images/home/dummy-hotel.webp",
     rating: 4.6,
     size: "large",
   },
@@ -58,7 +58,7 @@ const services = [
 
 const navLinks = [
   { name: "Home", href: "/" },
-  {name: "Dummy Bookings", href: "/dummy-bookings"},
+  { name: "Dummy Bookings", href: "/dummy-bookings" },
   { name: "Visa Services", href: "/services", hasMegaMenu: true },
   { name: "Countries", href: "/countries" },
   { name: "Blogs", href: "/blogs" },
@@ -83,10 +83,10 @@ export default function Navbar({ transparent = false }) {
     // Check if we're on the dummy flight bookings page
     if (typeof window !== 'undefined' && window.location.pathname === '/dummy-flight/visa-ads') {
       e.preventDefault();
-      
+
       // Dispatch custom event for the page to handle
       window.dispatchEvent(new CustomEvent('navbarGetStartedClick'));
-      
+
       // Close mobile menu if open
       setIsOpen(false);
     }
@@ -106,11 +106,11 @@ export default function Navbar({ transparent = false }) {
           `https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjs4OV12cMUkGj_OV7CYQpYE2q5cr9vzPlf5OqQAnowj7hifoxD0w3nrgqRPVIxAMe2ZEet6H2Uojsb-4Fy3gC5ahoF6ICREzopNHQBp20sLfhyWfQ5AFdCjBJS-qDLark3BHaWlzXAoS304j-GtnMHjw0a0g3YHTnZW67poaoPIK45HNUeoJ3lysgCG36e4WUszaLhB4_pkLcE0vcHN13Uv7qR_3nEHcF_JslMjliXHfUS_aL7Uv0jRDOyo3AToAf85CkOiZMl3_xuRkqymvwjN92aIw&lib=MNOr_3U-ifGUiHYeVYNtbhEhiku5JnKVW`
         );
         const countries = await response.json();
-        
-        const filtered = countries.filter(country => 
+
+        const filtered = countries.filter(country =>
           country.name.toLowerCase().includes(searchQuery.toLowerCase())
         ).slice(0, 5); // Limit to 5 results
-        
+
         setSearchResults(filtered);
       } catch (error) {
         console.error("Error fetching countries:", error);
@@ -152,13 +152,13 @@ export default function Navbar({ transparent = false }) {
     function handleClickOutside(event) {
       // Close mega menu
       if (megaMenuRef.current && !megaMenuRef.current.contains(event.target) &&
-          servicesButtonRef.current && !servicesButtonRef.current.contains(event.target)) {
+        servicesButtonRef.current && !servicesButtonRef.current.contains(event.target)) {
         setIsServicesOpen(false);
       }
-      
+
       // Close search results
       if (searchInputRef.current && !searchInputRef.current.contains(event.target) &&
-          searchResultsRef.current && !searchResultsRef.current.contains(event.target)) {
+        searchResultsRef.current && !searchResultsRef.current.contains(event.target)) {
         setShowSearchResults(false);
       }
     }
@@ -199,9 +199,9 @@ export default function Navbar({ transparent = false }) {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <div className="flex items-center gap-2">
-              <img 
-                src="/logo/main-logo.png" 
-                alt="Eazy Visas" 
+              <img
+                src="/logo/main-logo.png"
+                alt="Eazy Visas"
                 className="h-11 w-auto"
                 width={36}
                 height={36}
@@ -226,8 +226,8 @@ export default function Navbar({ transparent = false }) {
                     <div className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${isServicesOpen ? 'w-full' : 'w-0 group-hover:w-full'}`}></div>
                   </div>
                 ) : (
-                  <Link 
-                    href={link.href} 
+                  <Link
+                    href={link.href}
                     className="group relative"
                     onMouseEnter={() => setIsServicesOpen(false)}
                   >
@@ -264,10 +264,10 @@ export default function Navbar({ transparent = false }) {
                   </button>
                 </div>
               </form>
-              
+
               {/* Search Results Dropdown */}
               {showSearchResults && searchResults.length > 0 && (
-                <div 
+                <div
                   ref={searchResultsRef}
                   className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg z-50 border border-gray-200"
                 >
@@ -287,9 +287,9 @@ export default function Navbar({ transparent = false }) {
                           }}
                         >
                           <div className="flex items-center">
-                            <img 
-                              src={country.flag} 
-                              alt={country.name} 
+                            <img
+                              src={country.flag}
+                              alt={country.name}
                               className="w-5 h-3.5 mr-2 rounded-sm object-cover"
                             />
                             {country.name}
@@ -301,7 +301,7 @@ export default function Navbar({ transparent = false }) {
                 </div>
               )}
             </div>
-            
+
             <Link
               href="/contact"
               onClick={handleGetStartedClick}
@@ -338,7 +338,7 @@ export default function Navbar({ transparent = false }) {
                       <h2 className="text-2xl font-bold text-gray-900">Visa & Travel Services</h2>
                       <p className="text-gray-500 mt-1">Comprehensive solutions for all your travel needs</p>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {services.map((service) => (
                         <Link
@@ -385,7 +385,7 @@ export default function Navbar({ transparent = false }) {
                         </div>
                         <h3 className="text-xl font-bold text-gray-900">Need Help?</h3>
                       </div>
-                      
+
                       <div className="space-y-5">
                         <div className="bg-white p-4 rounded-lg border border-gray-200">
                           <h4 className="font-medium text-gray-900 mb-2">Visa Consultation</h4>
@@ -399,7 +399,7 @@ export default function Navbar({ transparent = false }) {
                             <FiArrowRight className="ml-1.5 group-hover:translate-x-0.5 transition-transform" />
                           </Link>
                         </div>
-                        
+
                         {/* <div className="bg-white p-4 rounded-lg border border-gray-200">
                           <h4 className="font-medium text-gray-900 mb-2">Document Checklist</h4>
                           <p className="text-sm text-gray-500 mb-3">Download our comprehensive visa requirements</p>
@@ -412,7 +412,7 @@ export default function Navbar({ transparent = false }) {
                             <FiArrowRight className="ml-1.5 group-hover:translate-x-0.5 transition-transform" />
                           </Link>
                         </div> */}
-                        
+
                         <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-5 rounded-lg text-white">
                           <h4 className="font-bold text-lg mb-2">24/7 Support</h4>
                           <p className="text-sm text-blue-100 mb-4">Have urgent questions? Our team is always available</p>
@@ -447,13 +447,13 @@ export default function Navbar({ transparent = false }) {
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-100">
               <Link href="/" className="flex items-center" onClick={handleMobileLinkClick}>
-                <img 
-                  src="/logo/main-logo.png" 
-                  alt="Eazy Visas" 
+                <img
+                  src="/logo/main-logo.png"
+                  alt="Eazy Visas"
                   className="h-8 w-auto"
                 />
               </Link>
-              <button 
+              <button
                 className="p-2 text-gray-500 hover:text-gray-700"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close menu"
@@ -461,7 +461,7 @@ export default function Navbar({ transparent = false }) {
                 <FiX className="w-6 h-6" />
               </button>
             </div>
-            
+
             {/* Content */}
             <div className="flex-1 overflow-y-auto py-4 px-5">
               {/* Search */}
@@ -493,7 +493,7 @@ export default function Navbar({ transparent = false }) {
                 >
                   <FiSearch />
                 </button>
-                
+
                 {/* Mobile Search Results */}
                 {showSearchResults && searchResults.length > 0 && (
                   <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-lg z-50 border border-gray-200 max-h-60 overflow-y-auto">
@@ -510,9 +510,9 @@ export default function Navbar({ transparent = false }) {
                           }}
                         >
                           <div className="flex items-center">
-                            <img 
-                              src={country.flag} 
-                              alt={country.name} 
+                            <img
+                              src={country.flag}
+                              alt={country.name}
                               className="w-5 h-3.5 mr-2 rounded-sm object-cover"
                             />
                             {country.name}
@@ -523,7 +523,7 @@ export default function Navbar({ transparent = false }) {
                   </div>
                 )}
               </div>
-              
+
               {/* Navigation - Mobile shows dropdown for services */}
               <nav className="space-y-1">
                 {navLinks.map((link) => (
@@ -532,7 +532,7 @@ export default function Navbar({ transparent = false }) {
                       <>
                         <button
                           className="flex items-center justify-between w-full py-3.5 text-[14px] text-left text-gray-800 hover:text-blue-600 font-bold"
-                          // onClick={() => setIsServicesOpen(!isServicesOpen)}
+                        // onClick={() => setIsServicesOpen(!isServicesOpen)}
                         >
                           <span>{link.name}</span>
                           {/* <FiChevronDown className={`text-gray-500 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} /> */}
@@ -565,7 +565,7 @@ export default function Navbar({ transparent = false }) {
                 ))}
               </nav>
             </div>
-            
+
             {/* Footer */}
             <div className="p-5 border-t border-gray-100">
               <Link
