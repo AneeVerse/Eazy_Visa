@@ -229,7 +229,7 @@ const DummyFlightBookingsAdsPage = () => {
           id="pricing-section"
         >
           {/* Mobile horizontal scroll */}
-          <div className="flex overflow-x-auto gap-4 pb-4 pt-2 sm:hidden scrollbar-hide snap-x snap-mandatory px-4">
+          <div className="flex overflow-x-auto gap-4 pb-4 pt-6 sm:hidden scrollbar-hide snap-x snap-mandatory px-4">
             {plans.map((plan, index) => (
               <motion.div
                 key={index}
