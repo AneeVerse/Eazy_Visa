@@ -6,7 +6,7 @@ import FloatingActionButton from './FloatingActionButton';
 const ConditionalLayout = ({ children }) => {
   const pathname = usePathname();
   const isStudioRoute = pathname?.startsWith('/studio');
-  const isDummyFlightAdsPage = pathname === '/dummy-flight/visa-ads';
+  const isDummyFlightAdsPage = pathname === '/book-flight-hotel-dummy-ticket-for-visa';
 
   if (isStudioRoute) {
     // Studio routes - no navbar, no floating action button, no margin

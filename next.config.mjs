@@ -16,6 +16,20 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/dummy-flight/visa-ads',
+        destination: '/book-flight-hotel-dummy-ticket-for-visa',
+        permanent: true,
+      },
+      {
+        source: '/dummy-flight/visa-ads/bookings',
+        destination: '/book-flight-hotel-dummy-ticket-for-visa/bookings',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

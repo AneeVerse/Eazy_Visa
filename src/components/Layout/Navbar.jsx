@@ -81,7 +81,7 @@ export default function Navbar({ transparent = false }) {
   // Handle Get Started button click
   const handleGetStartedClick = (e) => {
     // Check if we're on the dummy flight bookings page
-    if (typeof window !== 'undefined' && window.location.pathname === '/dummy-flight/visa-ads') {
+    if (typeof window !== 'undefined' && window.location.pathname === '/book-flight-hotel-dummy-ticket-for-visa') {
       e.preventDefault();
 
       // Dispatch custom event for the page to handle

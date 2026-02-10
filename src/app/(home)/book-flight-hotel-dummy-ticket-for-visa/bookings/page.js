@@ -2,12 +2,12 @@
 
 import { useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import Layout from '../../../../../components/common/Layout';
-import Footer from '../../../../../components/Layout/Footer';
-import FlightBookingComponent from '../../../../../components/dummyFlight/DummyBooking';
-import HotelBookingComponent from '../../../../../components/dummyHotel/HotelBookingComponent';
-import MostPreferredBooking from '../../../../../components/dummyFlight/MostPreferredBooking';
-import Button from '../../../../../components/common/Button';
+import Layout from '../../../../components/common/Layout';
+import Footer from '../../../../components/Layout/Footer';
+import FlightBookingComponent from '../../../../components/dummyFlight/DummyBooking';
+import HotelBookingComponent from '../../../../components/dummyHotel/HotelBookingComponent';
+import MostPreferredBooking from '../../../../components/dummyFlight/MostPreferredBooking';
+import Button from '../../../../components/common/Button';
 
 const normalizeType = (type) => {
   if (type === 'most-preferred' || type === 'both') return 'most-preferred';
@@ -26,7 +26,7 @@ const AdsBookingContent = () => {
 
   const handleFormSwitch = (type) => {
     const normalized = normalizeType(type);
-    router.replace(`/dummy-flight/visa-ads/bookings?type=${normalized}`);
+    router.replace(`/book-flight-hotel-dummy-ticket-for-visa/bookings?type=${normalized}`);
   };
 
   const renderForm = () => {
@@ -70,7 +70,7 @@ const AdsBookingPage = () => {
         <div className="max-w-7xl mx-auto">
           <div className="mb-6 flex justify-between items-center">
             <Button
-              onClick={() => router.push('/dummy-flight/visa-ads')}
+              onClick={() => router.push('/book-flight-hotel-dummy-ticket-for-visa')}
               className="bg-white text-blue-600 border border-blue-200 hover:bg-blue-50"
             >
               ← Back to Offers

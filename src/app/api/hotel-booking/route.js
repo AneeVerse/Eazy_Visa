@@ -190,7 +190,7 @@ export const POST = async (req) => {
     const isLanding = formData.formName === 'landing-hotel';
     const leadSource = isLanding ? 'ad@visa-ads' : 'service';
     const sourceCategory = isLanding ? 'ad' : 'service';
-    const pageLink = isLanding ? '/dummy-flight/visa-ads#hotel' : '/services/dummy-hotel';
+    const pageLink = isLanding ? '/book-flight-hotel-dummy-ticket-for-visa#hotel' : '/services/dummy-hotel';
     const pageName = isLanding ? 'Visa Ads Landing – Dummy Hotel' : 'Dummy Hotel Booking';
 
     await sendToGoogleSheets(

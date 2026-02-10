@@ -171,7 +171,7 @@ export const POST = async (req) => {
     const isLanding = formData.formName === 'landing-most-preferred';
     const leadSource = isLanding ? 'ad@visa-ads' : 'service';
     const sourceCategory = isLanding ? 'ad' : 'service';
-    const pageLink = isLanding ? '/dummy-flight/visa-ads#most-preferred' : '/services/dummy-flights';
+    const pageLink = isLanding ? '/book-flight-hotel-dummy-ticket-for-visa#most-preferred' : '/services/dummy-flights';
     const pageName = isLanding ? 'Visa Ads Landing – Most Preferred' : 'Most Preferred Booking';
 
     await sendToGoogleSheets(

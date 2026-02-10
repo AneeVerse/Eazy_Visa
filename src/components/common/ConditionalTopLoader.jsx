@@ -4,12 +4,12 @@ import NextTopLoader from "nextjs-toploader";
 
 const ConditionalTopLoader = () => {
   const pathname = usePathname();
-  
-  // Hide top loader on dummy-flight/visa-ads page
-  if (pathname === '/dummy-flight/visa-ads') {
+
+  // Hide top loader on book-flight-hotel-dummy-ticket-for-visa page
+  if (pathname === '/book-flight-hotel-dummy-ticket-for-visa') {
     return null;
   }
-  
+
   // Show top loader on all other pages
   return (
     <NextTopLoader

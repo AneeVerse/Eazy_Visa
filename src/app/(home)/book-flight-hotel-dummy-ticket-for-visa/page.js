@@ -1,17 +1,17 @@
 "use client";
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import Layout from '../../../../components/common/Layout';
-import Footer from '../../../../components/Layout/Footer';
+import Layout from '../../../components/common/Layout';
+import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaCheck, FaPhoneAlt, FaWhatsapp, FaPlane, FaHotel, FaShieldAlt, FaFilePdf, FaEdit, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import ConsultationForm from "../../../../components/common/ConsultationForm";
+import ConsultationForm from "../../../components/common/ConsultationForm";
 import { FcGoogle } from "react-icons/fc";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import HeroBookingSection from '../../../../components/dummyFlight/HeroBookingSection';
-import Button from '../../../../components/common/Button';
+import HeroBookingSection from '../../../components/dummyFlight/HeroBookingSection';
+import Button from '../../../components/common/Button';
 
 const DummyFlightBookingsAdsPage = () => {
   const router = useRouter();
@@ -76,7 +76,7 @@ const DummyFlightBookingsAdsPage = () => {
 
   const goToBookingPage = (targetType = 'flight') => {
     const normalizedType = targetType === 'both' ? 'most-preferred' : targetType;
-    router.push(`/dummy-flight/visa-ads/bookings?type=${normalizedType}`);
+    router.push(`/book-flight-hotel-dummy-ticket-for-visa/bookings?type=${normalizedType}`);
   };
 
   // Function to scroll to pricing section
@@ -96,7 +96,7 @@ const DummyFlightBookingsAdsPage = () => {
   useEffect(() => {
     const handleGetStartedClick = (event) => {
       // Only handle on this specific page
-      if (window.location.pathname === '/dummy-flight/visa-ads') {
+      if (window.location.pathname === '/book-flight-hotel-dummy-ticket-for-visa') {
         event.preventDefault();
         scrollToBookingForm();
       }
