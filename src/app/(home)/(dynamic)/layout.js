@@ -5,6 +5,23 @@ import Script from 'next/script'
 export const metadata = {
   title: "Blog | Eazy Visas",
   description: "Eazy Visas is a one-stop solution for all your visa needs.",
+  alternates: {
+    canonical: '/blogs',
+  },
+  openGraph: {
+    title: "Blog | Eazy Visas",
+    description: "Eazy Visas is a one-stop solution for all your visa needs.",
+    url: 'https://www.eazyvisas.com/blogs',
+    type: 'website',
+    siteName: 'Eazy Visas',
+    images: [{ url: '/logo/main-logo.png', width: 1200, height: 630, alt: 'Eazy Visas Blog' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Blog | Eazy Visas",
+    description: "Eazy Visas is a one-stop solution for all your visa needs.",
+    images: ['/logo/main-logo.png'],
+  },
 }
 
 const Layout = ({ children }) => {

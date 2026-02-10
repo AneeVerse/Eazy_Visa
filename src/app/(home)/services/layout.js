@@ -5,17 +5,34 @@ import React from 'react'
 
 
 export const metadata = {
-  title: "Tourist / Business Visa application advice from documentation to approval with Eazy Visa - Services",
-  description: "Tourist / Business Visa application advice from documentation to approval with Eazy Visa",
+    title: "Tourist / Business Visa application advice from documentation to approval with Eazy Visa - Services",
+    description: "Tourist / Business Visa application advice from documentation to approval with Eazy Visa",
+    alternates: {
+        canonical: '/services/tourist-visa',
+    },
+    openGraph: {
+        title: "Tourist / Business Visa application advice from documentation to approval with Eazy Visa - Services",
+        description: "Tourist / Business Visa application advice from documentation to approval with Eazy Visa",
+        url: 'https://www.eazyvisas.com/services/tourist-visa',
+        type: 'website',
+        siteName: 'Eazy Visas',
+        images: [{ url: '/logo/main-logo.png', width: 1200, height: 630, alt: 'Eazy Visas Services' }],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: "Tourist / Business Visa application advice from documentation to approval with Eazy Visa - Services",
+        description: "Tourist / Business Visa application advice from documentation to approval with Eazy Visa",
+        images: ['/logo/main-logo.png'],
+    },
 }
 
 const layout = ({ children }) => {
     return (
         <div className='mt-[80px] relative overflow-x-hidden'>
-            
-      <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
 
-      <div className="absolute blur-[200px] -z-10 rounded-full top-[20%] -z-10 -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
+            <div className="absolute blur-[200px] top-[0%] -left-[30px] -z-10 w-[300px] h-[300px] bg-[#0B82E6] opacity-50"></div>
+
+            <div className="absolute blur-[200px] -z-10 rounded-full top-[20%] -z-10 -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
             {children}
             <VisaSolutions />
             <div className="relative overflow-hidden">

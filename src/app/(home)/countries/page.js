@@ -11,6 +11,23 @@ import React from 'react'
 export const metadata = {
   title: "Countries | Eazy Visas",
   description: "Eazy Visas is a one-stop solution for all your visa needs.",
+  alternates: {
+    canonical: '/countries',
+  },
+  openGraph: {
+    title: "Countries | Eazy Visas",
+    description: "Eazy Visas is a one-stop solution for all your visa needs.",
+    url: 'https://www.eazyvisas.com/countries',
+    type: 'website',
+    siteName: 'Eazy Visas',
+    images: [{ url: '/logo/main-logo.png', width: 1200, height: 630, alt: 'Visa Options for Dream Destinations' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Countries | Eazy Visas",
+    description: "Eazy Visas is a one-stop solution for all your visa needs.",
+    images: ['/logo/main-logo.png'],
+  },
 }
 
 const page = () => {

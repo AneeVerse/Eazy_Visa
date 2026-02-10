@@ -8,6 +8,7 @@ import Script from "next/script";
 import ConditionalTopLoader from "../components/common/ConditionalTopLoader";
 import OrganizationSchema from "../components/seo/OrganizationSchema";
 import BreadcrumbSchema from "../components/seo/BreadcrumbSchema";
+import WebSiteSchema from "../components/seo/WebSiteSchema";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -16,24 +17,40 @@ const comfortaa = Comfortaa({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://www.eazyvisas.com'),
   title: "Visa Consultant for Tourist & Business Visas + Dummy Flight Tickets | Eazy Visas",
   description: "Visa help made simple. Get document support, application guidance, and dummy flight tickets for visa (verified itinerary) - fast, clear pricing, no stress.",
   robots: {
     index: true,
     follow: true,
-    noimageindex: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1,
+  },
+  alternates: {
+    canonical: '/',
   },
   openGraph: {
     title: "Visa Consultant for Tourist & Business Visas + Dummy Flight Tickets | Eazy Visas",
     description: "Visa help made simple. Get document support, application guidance, and dummy flight tickets for visa (verified itinerary) - fast, clear pricing, no stress.",
+    url: 'https://www.eazyvisas.com',
     type: "website",
     locale: "en_US",
     siteName: "Eazy Visas",
+    images: [
+      {
+        url: '/logo/main-logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Eazy Visas - Visa Consulting Services',
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Visa Consultant for Tourist & Business Visas + Dummy Flight Tickets | Eazy Visas",
     description: "Visa help made simple. Get document support, application guidance, and dummy flight tickets for visa (verified itinerary) - fast, clear pricing, no stress.",
+    images: ['/logo/main-logo.png'],
   },
   icons: {
     icon: [
@@ -104,6 +121,7 @@ export default function RootLayout({ children }) {
 
         {/* Structured Data */}
         <OrganizationSchema />
+        <WebSiteSchema />
 
         {/* Google Tag Manager (GTM) NoScript */}
         <noscript>

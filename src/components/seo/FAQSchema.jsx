@@ -8,10 +8,10 @@ export default function FAQSchema({ faqs, pageTitle }) {
   // Helper function to extract plain text from Sanity block content
   const extractTextFromBlocks = (blocks) => {
     if (!blocks || !Array.isArray(blocks)) return '';
-    
+
     return blocks
       .filter(block => block._type === 'block' && block.children)
-      .map(block => 
+      .map(block =>
         block.children
           .filter(child => child._type === 'span' && child.text)
           .map(child => child.text)
@@ -31,22 +31,13 @@ export default function FAQSchema({ faqs, pageTitle }) {
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": typeof faq.answer === 'string' 
-          ? faq.answer 
+        "text": typeof faq.answer === 'string'
+          ? faq.answer
           : extractTextFromBlocks(faq.answer),
-        "dateCreated": new Date().toISOString(),
-        "upvoteCount": Math.floor(Math.random() * 50) + 10, // Simulated engagement
         "author": {
           "@type": "Organization",
           "name": "Easy Visa"
         }
-      },
-      "answerCount": 1,
-      "upvoteCount": Math.floor(Math.random() * 100) + 20,
-      "dateCreated": new Date().toISOString(),
-      "author": {
-        "@type": "Organization",
-        "name": "Easy Visa"
       }
     })),
     "about": {
