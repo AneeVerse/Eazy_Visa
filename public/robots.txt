@@ -1,9 +1,31 @@
-# *
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /studio/
+Disallow: /thank-you-conversion
+Disallow: /ads-visa-thankyou
 
-# Host
+# AI Bots - Explicitly Allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Host: https://www.eazyvisas.com
-
-# Sitemaps
 Sitemap: https://www.eazyvisas.com/sitemap.xml

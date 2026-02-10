@@ -3,7 +3,7 @@ const { getAllBlogs } = require('./src/lib/sanity');
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://www.eazyvisas.com',
-  generateRobotsTxt: true, // Generate a robots.txt file
+  generateRobotsTxt: false, // We manage robots.txt manually to include AI bot rules
   sitemapSize: 5000,
   outDir: './public', // Output directory for sitemap
   generateIndex: false, // do not generate index, output only sitemap.xml
