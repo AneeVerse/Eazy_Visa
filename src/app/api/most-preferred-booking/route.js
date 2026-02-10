@@ -33,8 +33,8 @@ export const POST = async (req) => {
     console.log('Flight data received:', formData);
 
     // Validate required fields
-    if (!formData.contact.email || !formData.contact.phone || 
-        !formData.flight.legs[0].from || !formData.flight.legs[0].to) {
+    if (!formData.contact.email || !formData.contact.phone ||
+      !formData.flight.legs[0].from || !formData.flight.legs[0].to) {
       console.log('Missing required fields in most preferred booking', {
         email: formData.contact.email,
         phone: formData.contact.phone,
@@ -42,7 +42,7 @@ export const POST = async (req) => {
         to: formData.flight?.legs?.[0]?.to
       });
       return new Response(
-        JSON.stringify({ 
+        JSON.stringify({
           error: 'Required fields are missing!',
           receivedData: formData
         }),
@@ -113,10 +113,14 @@ export const POST = async (req) => {
               </div>
             `).join('')}
             
-            <h2 style="color: #2563eb; margin-top: 20px;">Additional Information</h2>
             <p><strong>Visa Interview Date:</strong> ${formData.additional.visaInterviewDate ? (formData.additional.visaInterviewDate.includes('T') ? new Date(formData.additional.visaInterviewDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }) : formData.additional.visaInterviewDate) : 'Not specified'}</p>
             <p><strong>Delivery Date:</strong> ${formData.additional.deliveryDate ? (formData.additional.deliveryDate.includes('T') ? new Date(formData.additional.deliveryDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }) : formData.additional.deliveryDate) : 'Not specified'}</p>
             <p><strong>Special Instructions:</strong> ${formData.additional.specialInstructions || 'None'}</p>
+
+            <h2 style="color: #2563eb; margin-top: 20px;">User Location Details (Auto-Fetched)</h2>
+            <p><strong>Location:</strong> ${formData.userLocation || 'Unknown'}</p>
+            <p><strong>Pincode:</strong> ${formData.userPincode || 'Unknown'}</p>
+            <p><strong>IP Address:</strong> ${formData.userIp || 'Unknown'}</p>
           </div>
           
            <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
@@ -137,13 +141,13 @@ export const POST = async (req) => {
 
     // Get the first traveler's name for the Google Sheet
     const firstTraveler = formData.travelers.list[0];
-    
+
     // Create formatted flight info (keep it short for Google Sheets)
-    const flightRoute = formData.flight.legs.map(leg => 
+    const flightRoute = formData.flight.legs.map(leg =>
       `${leg.from} to ${leg.to}`
     ).join(', ');
-    
-    const flightDates = formData.flight.legs.map(leg => 
+
+    const flightDates = formData.flight.legs.map(leg =>
       leg.date ? (leg.date.includes('T') ? new Date(leg.date).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }) : leg.date) : 'Not specified'
     ).join(', ');
 
@@ -160,7 +164,7 @@ export const POST = async (req) => {
       visaType: '',
       extraInfo: `Travelers: ${formData.travelers.count}, Price: ${formData.price}, Special Instructions: ${formData.additional.specialInstructions || 'None'} | Submitted At (IST): ${getIndianTime()}`
     };
-    
+
     console.log('Sending most preferred booking data to Google Sheets:', sheetData);
 
     // Send to Google Sheets
@@ -181,14 +185,17 @@ export const POST = async (req) => {
         serviceSelected: 'Most Preferred Booking',
         countryCode: (formData.contact.phoneCode || '').replace('+', ''),
         phoneWithoutCode: formData.contact.phone,
+        userLocation: formData.userLocation || '',
+        userPincode: formData.userPincode || '',
+        userIp: formData.userIp || '',
         extraInfo: `${sheetData.extraInfo} | Origin: ${formData.formName || 'service-page'}`,
       },
       'most preferred booking'
     );
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
+      JSON.stringify({
+        success: true,
         message: 'Flight booking request submitted successfully!'
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
@@ -196,10 +203,10 @@ export const POST = async (req) => {
   } catch (error) {
     console.error('Error in most preferred booking API:', error);
     return new Response(
-      JSON.stringify({ 
-        success: false, 
+      JSON.stringify({
+        success: false,
         message: 'Error submitting flight booking. Please try again later.',
-        errorDetails: error.message 
+        errorDetails: error.message
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );

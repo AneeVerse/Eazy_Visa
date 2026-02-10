@@ -15,8 +15,10 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
 import { BiPhone } from 'react-icons/bi';
+import useGeoLocation from '../../hooks/useGeoLocation';
 
 const MostPreferredBooking = ({ origin, onTabClick }) => {
+    const userGeo = useGeoLocation();
     // Form steps
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -567,25 +569,21 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
                         visaInterviewDate: formData.additional.visaInterviewDate ? new Date(formData.additional.visaInterviewDate).toISOString() : null,
                         deliveryDate: formData.additional.deliveryDate ? new Date(formData.additional.deliveryDate).toISOString() : null
                     },
-                    price: price // Include the calculated price in the submission
+                    userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
+                    userPincode: userGeo ? userGeo.pincode : 'Unknown',
+                    userIp: userGeo ? userGeo.ip : 'Unknown'
                 }),
             });
 
             const result = await response.json();
 
             if (response.ok) {
-                // toast.success('Flight booking submitted successfully!');
-
-                // Set flag in sessionStorage before redirecting
                 sessionStorage.setItem('formSubmitted', 'true');
                 sessionStorage.setItem('bookingPrice', price.toString());
 
-                // Redirect based on origin
                 if (origin === 'landing-flight' || origin === 'landing-hotel' || origin === 'landing-most-preferred') {
-                    // For visa ads page, redirect to thank-you-conversion
                     window.location.href = '/thank-you-conversion';
                 } else {
-                    // For normal dummy bookings, redirect to dynamic confirmation
                     window.location.href = '/Visa-confirmation-most-preferred';
                 }
             } else {

@@ -31,29 +31,29 @@ export const POST = async (req) => {
     const formData = await req.json();
     console.log('Received form data:', formData);
     // Validate required fields
-    if (!formData.contact?.email || !formData.contact?.phone || 
+    if (!formData.contact?.email || !formData.contact?.phone ||
       !formData.hotels || formData.hotels.length === 0) {
-    return new Response(
-      JSON.stringify({ 
-        error: 'Required fields are missing!',
-        receivedData: formData
-      }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
-  // Validate each hotel
-  for (const hotel of formData.hotels) {
-    if (!hotel.location || !hotel.checkInDate || !hotel.checkOutDate) {
       return new Response(
-        JSON.stringify({ 
-          error: 'All hotels must have location, check-in and check-out dates!',
-          invalidHotel: hotel
+        JSON.stringify({
+          error: 'Required fields are missing!',
+          receivedData: formData
         }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
-  }
+
+    // Validate each hotel
+    for (const hotel of formData.hotels) {
+      if (!hotel.location || !hotel.checkInDate || !hotel.checkOutDate) {
+        return new Response(
+          JSON.stringify({
+            error: 'All hotels must have location, check-in and check-out dates!',
+            invalidHotel: hotel
+          }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+    }
 
 
     // Create transporter
@@ -68,11 +68,11 @@ export const POST = async (req) => {
     // Calculate nights
     // const nights = formData.hotel.checkInDate && formData.hotel.checkOutDate ? 
     //   Math.ceil((new Date(formData.hotel.checkOutDate) - new Date(formData.hotel.checkInDate)) / (1000 * 60 * 60 * 24)) : 1;
-  // Format hotels for email
-  const hotelsHTML = formData.hotels.map((hotel, index) => {
-    const nights = Math.ceil(
-      (new Date(hotel.checkOutDate) - new Date(hotel.checkInDate)) / (1000 * 60 * 60 * 24));
-    return `
+    // Format hotels for email
+    const hotelsHTML = formData.hotels.map((hotel, index) => {
+      const nights = Math.ceil(
+        (new Date(hotel.checkOutDate) - new Date(hotel.checkInDate)) / (1000 * 60 * 60 * 24));
+      return `
       <div style="margin-bottom: 20px; padding: 15px; border: 1px solid #e2e8f0; border-radius: 5px;">
         <h3 style="color: #2563eb; margin-top: 0;">Hotel ${index + 1}</h3>
         <p><strong>Location:</strong> ${hotel.location}</p>
@@ -81,10 +81,10 @@ export const POST = async (req) => {
         <p><strong>Nights:</strong> ${nights}</p>
       </div>
     `;
-  }).join('');
+    }).join('');
 
-  // Format travelers for email
-  const travelersHTML = formData.travelers.list.map((traveler, index) => `
+    // Format travelers for email
+    const travelersHTML = formData.travelers.list.map((traveler, index) => `
     <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #e2e8f0; border-radius: 5px;">
       <h3 style="color: #2563eb; margin-top: 0;">
         ${index < formData.guests.adults ? `Adult ${index + 1}` : `Child ${index - formData.guests.adults + 1}`}
@@ -94,12 +94,12 @@ export const POST = async (req) => {
     </div>
   `).join('');
 
-  // Email options
-  const mailOptions = {
-    from: `"Hotel Booking System" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
-    to: process.env.NEXT_PUBLIC_EMAIL_RECEIVER,
-    subject: `New Hotel Booking Request - ${formData.hotels[0].location}`,
-    html: `
+    // Email options
+    const mailOptions = {
+      from: `"Hotel Booking System" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
+      to: process.env.NEXT_PUBLIC_EMAIL_RECEIVER,
+      subject: `New Hotel Booking Request - ${formData.hotels[0].location}`,
+      html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
         <div style="background: #2563eb; color: white; padding: 20px; text-align: center;">
           <h1 style="margin: 0; font-size: 24px;">New Hotel Booking Request</h1>
@@ -131,11 +131,16 @@ export const POST = async (req) => {
           `).join('')}
           
           <h2 style="color: #2563eb; margin-top: 20px;">Additional Information</h2>
-          <p><strong>Visa Interview Date:</strong> ${formData.additional.visaInterviewDate ? 
-            (formData.additional.visaInterviewDate.includes('T') ? new Date(formData.additional.visaInterviewDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }) : formData.additional.visaInterviewDate) : 'Not specified'}</p>
-          <p><strong>Delivery Date:</strong> ${formData.additional.deliveryDate ? 
-            (formData.additional.deliveryDate.includes('T') ? new Date(formData.additional.deliveryDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }) : formData.additional.deliveryDate) : 'Not specified'}</p>
+          <p><strong>Visa Interview Date:</strong> ${formData.additional.visaInterviewDate ?
+          (formData.additional.visaInterviewDate.includes('T') ? new Date(formData.additional.visaInterviewDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }) : formData.additional.visaInterviewDate) : 'Not specified'}</p>
+          <p><strong>Delivery Date:</strong> ${formData.additional.deliveryDate ?
+          (formData.additional.deliveryDate.includes('T') ? new Date(formData.additional.deliveryDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }) : formData.additional.deliveryDate) : 'Not specified'}</p>
           <p><strong>Special Requests:</strong> ${formData.additional.specialInstructions || 'None'}</p>
+
+          <h2 style="color: #2563eb; margin-top: 20px;">User Location Details (Auto-Fetched)</h2>
+          <p><strong>Location:</strong> ${formData.userLocation || 'Unknown'}</p>
+          <p><strong>Pincode:</strong> ${formData.userPincode || 'Unknown'}</p>
+          <p><strong>IP Address:</strong> ${formData.userIp || 'Unknown'}</p>
         </div>
         
         <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
@@ -143,22 +148,22 @@ export const POST = async (req) => {
         </div>
       </div>
     `,
-  };
+    };
 
     // Send email
     await transporter.sendMail(mailOptions);
 
     // Get the first traveler's name for the Google Sheet
     const firstTraveler = formData.travelers.list[0];
-    
+
     // Create a simplified hotel info (keep it short for Google Sheets)
     const hotelLocations = formData.hotels.map(hotel => hotel.location).join(', ');
-    
-    const checkInDates = formData.hotels.map(hotel => 
+
+    const checkInDates = formData.hotels.map(hotel =>
       hotel.checkInDate ? (hotel.checkInDate.includes('T') ? new Date(hotel.checkInDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }) : hotel.checkInDate) : 'Not specified'
     ).join(', ');
-    
-    const checkOutDates = formData.hotels.map(hotel => 
+
+    const checkOutDates = formData.hotels.map(hotel =>
       hotel.checkOutDate ? (hotel.checkOutDate.includes('T') ? new Date(hotel.checkOutDate).toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }) : hotel.checkOutDate) : 'Not specified'
     ).join(', ');
 
@@ -178,7 +183,7 @@ export const POST = async (req) => {
       visaType: '',
       extraInfo: `Guests: ${formData.guests.adults} Adults, ${formData.guests.children} Children, Rooms: ${formData.guests.rooms}, Price: ₹${formData.price.toLocaleString()}, Special Instructions: ${formData.additional.specialInstructions || 'None'} | Submitted At (IST): ${indianTime}`
     };
-    
+
     console.log('Sending to Google Sheets:', sheetData);
 
     // Send to Google Sheets
@@ -199,14 +204,17 @@ export const POST = async (req) => {
         serviceSelected: 'Dummy Hotel Booking',
         countryCode: (formData.contact.phoneCode || '').replace('+', ''),
         phoneWithoutCode: formData.contact.phone,
+        userLocation: formData.userLocation || '',
+        userPincode: formData.userPincode || '',
+        userIp: formData.userIp || '',
         extraInfo: `${sheetData.extraInfo} | Origin: ${formData.formName || 'service-page'}`,
       },
       'hotel booking'
     );
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
+      JSON.stringify({
+        success: true,
         message: 'Hotel booking request submitted successfully!'
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
@@ -214,10 +222,10 @@ export const POST = async (req) => {
   } catch (error) {
     console.error('Error submitting hotel booking:', error);
     return new Response(
-      JSON.stringify({ 
-        success: false, 
+      JSON.stringify({
+        success: false,
         message: 'Error submitting hotel booking. Please try again later.',
-        errorDetails: error.message 
+        errorDetails: error.message
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );

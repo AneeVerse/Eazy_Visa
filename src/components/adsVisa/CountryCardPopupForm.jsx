@@ -7,8 +7,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
 import Image from 'next/image';
+import useGeoLocation from '../../hooks/useGeoLocation';
 
 const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, countryFlag }) => {
+  const userGeo = useGeoLocation();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -170,7 +172,10 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
         body: JSON.stringify({
           ...formData,
           phone: fullPhoneNumber,
-          googleSheetsPhone: googleSheetsPhone
+          googleSheetsPhone: googleSheetsPhone,
+          userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
+          userPincode: userGeo ? userGeo.pincode : 'Unknown',
+          userIp: userGeo ? userGeo.ip : 'Unknown'
         }),
       });
 

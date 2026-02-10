@@ -18,10 +18,10 @@ export const POST = async (req) => {
     const formData = await req.json();
     const { googleSheetsPhone } = formData;
     console.log('Blog contact form submission:', formData);
-    
+
     // Handle different field formats (either name as single field or firstName+lastName)
     let name, email, phone;
-    
+
     if (formData.name) {
       // If a single name field is provided
       name = formData.name;
@@ -33,14 +33,14 @@ export const POST = async (req) => {
       email = formData.email;
       phone = formData.phone;
     }
-    
+
     console.log('Processed blog contact data:', { name, email, phone });
 
     // Validate required fields
     if (!name || !email || !phone) {
       console.error('Missing required fields:', { name, email, phone, formData });
       return new Response(
-        JSON.stringify({ 
+        JSON.stringify({
           success: false,
           message: 'All fields are required!',
           receivedData: formData
@@ -53,7 +53,7 @@ export const POST = async (req) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(
-        JSON.stringify({ 
+        JSON.stringify({
           success: false,
           message: 'Please enter a valid email address'
         }),
@@ -116,6 +116,11 @@ export const POST = async (req) => {
               <p><strong>Email:</strong> ${email}</p>
               <p><strong>Phone:</strong> ${phone}</p>
               <p style="margin: 5px 0;"><strong>Timestamp:</strong> ${indianTime}</p>
+
+              <h2 style="color: #2563eb; margin-top: 20px;">User Location Details (Auto-Fetched)</h2>
+              <p><strong>Location:</strong> ${formData.userLocation || 'Unknown'}</p>
+              <p><strong>Pincode:</strong> ${formData.userPincode || 'Unknown'}</p>
+              <p><strong>IP Address:</strong> ${formData.userIp || 'Unknown'}</p>
             </div>
             
           </div>
@@ -167,13 +172,16 @@ export const POST = async (req) => {
         pageLink: blogLink || formData.pageLink || '',
         pageName: formData.blogTitle || blogLink || 'blog contact form',
         extraInfo: `Submitted from blog contact form at ${indianTime}`,
+        userLocation: formData.userLocation || '',
+        userPincode: formData.userPincode || '',
+        userIp: formData.userIp || '',
         submittedAt: indianTime,
       },
       'blog contact'
     );
 
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         success: true,
         message: 'Message sent successfully!'
       }),
@@ -183,7 +191,7 @@ export const POST = async (req) => {
   } catch (error) {
     console.error('Error in blog contact form API:', error);
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         success: false,
         message: 'An error occurred while sending your message. Please try again later.',
         error: error.message

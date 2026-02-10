@@ -16,8 +16,10 @@ import CountryCodeDropdown from '../common/CountryCodeDropdown';
 import { BiPhone } from 'react-icons/bi';
 import { format } from 'date-fns';
 import ConversionTracking from '../common/ConversionTracking';
+import useGeoLocation from '../../hooks/useGeoLocation';
 
 export default function HotelBookingComponent({ onTabClick, origin }) {
+  const userGeo = useGeoLocation();
   // Form steps
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -462,7 +464,10 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
             ...formData.additional,
             visaInterviewDate: formData.additional.visaInterviewDate ? new Date(formData.additional.visaInterviewDate).toISOString() : null,
             deliveryDate: formData.additional.deliveryDate ? new Date(formData.additional.deliveryDate).toISOString() : null
-          }
+          },
+          userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
+          userPincode: userGeo ? userGeo.pincode : 'Unknown',
+          userIp: userGeo ? userGeo.ip : 'Unknown'
         }),
       });
 

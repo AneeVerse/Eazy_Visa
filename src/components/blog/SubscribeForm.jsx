@@ -6,8 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BiUser, BiEnvelope, BiPhone, BiTask } from 'react-icons/bi';
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
+import useGeoLocation from '../../hooks/useGeoLocation';
 
 const SubscribeForm = () => {
+  const userGeo = useGeoLocation();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -86,7 +88,10 @@ const SubscribeForm = () => {
           ...formData,
           phone: fullPhoneNumber, // Send the complete phone number with country code for email
           googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
-          service: formData.service // Include selected service
+          service: formData.service, // Include selected service
+          userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
+          userPincode: userGeo ? userGeo.pincode : 'Unknown',
+          userIp: userGeo ? userGeo.ip : 'Unknown'
         }),
       });
 
@@ -231,8 +236,8 @@ const SubscribeForm = () => {
               type="submit"
               disabled={isLoading}
               className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors ${isLoading
-                  ? 'bg-blue-400 cursor-not-allowed'
-                  : 'bg-blue-600 hover:bg-blue-700'
+                ? 'bg-blue-400 cursor-not-allowed'
+                : 'bg-blue-600 hover:bg-blue-700'
                 }`}
             >
               {isLoading ? 'Submitting...' : 'Get Started'}

@@ -7,8 +7,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useParams, usePathname } from 'next/navigation';
 import CountryCodeDropdown from './CountryCodeDropdown';
+import useGeoLocation from '../../hooks/useGeoLocation';
 
-const FormComponent = ({ redirectPath }) => {
+const FormComponent = ({ from, fromCategory, redirectPath }) => {
+  const userGeo = useGeoLocation();
   const params = useParams();
   const pathname = usePathname();
   const slug = params?.slug || '';
@@ -414,12 +416,13 @@ const FormComponent = ({ redirectPath }) => {
           ...formData,
           phone: fullPhoneNumber, // Send the complete phone number with country code for email
           googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
-          from: formMeta.from,
-          fromCategory: formMeta.from,
-          pageLink: formMeta.pageLink,
-          pageName: formMeta.pageLabel || pathname,
-          serviceSelected: formData.visaType,
-          extraInfo: `source=${formMeta.from || 'others'} | page=${formMeta.pageLabel || formMeta.pageLink || pathname} | country=${formData.country || 'N/A'}`
+          country: formData.country,
+          visaType: formData.visaType,
+          from: from || "",
+          fromCategory: fromCategory || "",
+          userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
+          userPincode: userGeo ? userGeo.pincode : 'Unknown',
+          userIp: userGeo ? userGeo.ip : 'Unknown'
         }),
       });
 

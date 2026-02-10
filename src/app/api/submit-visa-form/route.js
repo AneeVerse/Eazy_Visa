@@ -4,31 +4,31 @@ import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
 // Aggressive IST time function - This will definitely work
 const getIndianTime = () => {
   const now = new Date();
-  
+
   // Get current UTC time
   const utcTime = now.getTime();
-  
+
   // IST is UTC + 5 hours 30 minutes
   const istOffset = 5.5 * 60 * 60 * 1000; // 5.5 hours in milliseconds
-  
+
   // Create IST time
   const istTime = new Date(utcTime + istOffset);
-  
+
   // Extract components
   const year = istTime.getUTCFullYear();
   const month = String(istTime.getUTCMonth() + 1).padStart(2, '0');
   const day = String(istTime.getUTCDate()).padStart(2, '0');
-  
+
   let hours = istTime.getUTCHours();
   const minutes = String(istTime.getUTCMinutes()).padStart(2, '0');
   const seconds = String(istTime.getUTCSeconds()).padStart(2, '0');
-  
+
   // Convert to 12-hour format
   const ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12; // 0 should be 12
   const displayHours = String(hours).padStart(2, '0');
-  
+
   return `${day}/${month}/${year}, ${displayHours}:${minutes}:${seconds} ${ampm} (IST)`;
 };
 
@@ -61,6 +61,9 @@ export const POST = async (req) => {
       pageLink,
       pageName,
       extraInfo,
+      userLocation,
+      userPincode,
+      userIp,
     } = await req.json();
     const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
 
@@ -74,11 +77,13 @@ export const POST = async (req) => {
       formSource,
       from,
       pageLink,
+      userLocation,
+      userPincode
     });
 
     if (!firstName || !lastName || !email || !phone || !country || !visaType) {
       return new Response(
-        JSON.stringify({ 
+        JSON.stringify({
           error: 'All fields are required!',
           receivedData: { firstName, lastName, email, phone, country, visaType, formSource }
         }),
@@ -96,7 +101,7 @@ export const POST = async (req) => {
 
     // Get Indian time - this will ALWAYS be IST
     const indianTime = getIndianTime();
-    
+
     // Debug logging to check what's happening
     console.log('=== TIME DEBUG INFO ===');
     console.log('Server UTC time:', new Date().toISOString());
@@ -125,6 +130,11 @@ export const POST = async (req) => {
             <p><strong>Last Name:</strong> ${lastName}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone}</p>
+
+            <h2 style="color: #2563eb; margin-top: 20px;">User Location Details (Auto-Fetched)</h2>
+            <p><strong>Location:</strong> ${userLocation || 'Unknown'}</p>
+            <p><strong>Pincode:</strong> ${userPincode || 'Unknown'}</p>
+            <p><strong>IP Address:</strong> ${userIp || 'Unknown'}</p>
           </div>
           
           <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b;">
@@ -144,6 +154,12 @@ export const POST = async (req) => {
         Name: ${name}
         Email: ${email}
         Phone: ${phone}
+
+        User Location Details:
+        -----------------
+        Location: ${userLocation || 'Unknown'}
+        Pincode: ${userPincode || 'Unknown'}
+        IP Address: ${userIp || 'Unknown'}
         
         This Form was created at ${indianTime}
         
@@ -180,14 +196,17 @@ export const POST = async (req) => {
         pageLink: pageLink || '',
         pageName: pageValue,
         extraInfo: extraInfo || '',
+        userLocation: userLocation || '',
+        userPincode: userPincode || '',
+        userIp: userIp || '',
         submittedAt: indianTime,
       },
       'visa form'
     );
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
+      JSON.stringify({
+        success: true,
         message: 'Form submitted successfully!',
         data: {
           name,
@@ -208,10 +227,10 @@ export const POST = async (req) => {
       message: error.message,
       stack: error.stack,
     });
-    
+
     return new Response(
-      JSON.stringify({ 
-        success: false, 
+      JSON.stringify({
+        success: false,
         message: 'Error submitting form. Please try again later.',
         error: process.env.NODE_ENV === 'development' ? error.message : null
       }),

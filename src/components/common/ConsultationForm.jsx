@@ -9,9 +9,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { usePathname } from 'next/navigation';
 import CountryCodeDropdown from './CountryCodeDropdown';
+import useGeoLocation from '../../hooks/useGeoLocation';
 
 const ConsultationForm = () => {
   const pathname = usePathname();
+  const userGeo = useGeoLocation();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -104,7 +106,10 @@ const ConsultationForm = () => {
           email: formData.email,
           phone: fullPhoneNumber, // Send the complete phone number with country code for email
           googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
-          visaType: formData.visaType
+          visaType: formData.visaType,
+          userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
+          userPincode: userGeo ? userGeo.pincode : 'Unknown',
+          userIp: userGeo ? userGeo.ip : 'Unknown'
         }),
       });
 

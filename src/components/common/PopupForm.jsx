@@ -6,9 +6,11 @@ import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CountryCodeDropdown from './CountryCodeDropdown';
+import useGeoLocation from '../../hooks/useGeoLocation';
 
 const PopupForm = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const userGeo = useGeoLocation();
+  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -26,14 +28,14 @@ const PopupForm = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsVisible(true);
+      setIsOpen(true);
     }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
 
   const closePopup = () => {
-    setIsVisible(false);
+    setIsOpen(false);
   };
 
   // Sample options for dropdowns
@@ -343,7 +345,13 @@ const PopupForm = () => {
         body: JSON.stringify({
           ...formData,
           phone: fullPhoneNumber, // Send the complete phone number with country code for email
-          googleSheetsPhone: googleSheetsPhone // Send clean version for Google Sheets
+          googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
+          country: formData.country,
+          visaType: formData.visaType,
+          formSource: "Popup Form",
+          userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
+          userPincode: userGeo ? userGeo.pincode : 'Unknown',
+          userIp: userGeo ? userGeo.ip : 'Unknown'
         }),
       });
 
@@ -373,7 +381,7 @@ const PopupForm = () => {
     }
   };
 
-  if (!isVisible) return null;
+  if (!isOpen) return null;
 
   return (
     <>
