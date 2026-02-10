@@ -206,10 +206,175 @@ const DummyFlightBookingsAdsPage = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      {/* New Hero Section */}
-      <HeroBookingSection onBookingClick={scrollToPricing} />
 
-      {/* Feature Cards Section */}
+      {/* CTA Section - Now at the top */}
+      <div className="bg-white pt-16 sm:pt-24 pb-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Ready to Get Your Dummy Flights for Visa?
+          </h3>
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+            Start your visa application process today with our reliable and verifiable dummy flights and bookings. Trusted by thousands of successful visa applicants worldwide.
+          </p>
+        </div>
+      </div>
+
+      {/* Pricing Cards Section - Now at the top */}
+      <div className="bg-white pb-8 sm:pb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-2 sm:mt-4 lg:mt-6 px-4 sm:px-6 lg:px-0"
+          id="pricing-section"
+        >
+          {/* Mobile horizontal scroll */}
+          <div className="flex overflow-x-auto gap-4 pb-4 pt-2 sm:hidden scrollbar-hide snap-x snap-mandatory px-4">
+            {plans.map((plan, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 transition-all duration-300 hover:shadow-xl flex-shrink-0 w-[230px] snap-center flex flex-col h-auto
+                  ${plan.popular ? 'ring-2 ring-blue-500/50' : ''}
+                  shadow-[0_8px_30px_rgba(0,0,0,0.12),0_-8px_30px_rgba(0,0,0,0.12)]`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                    <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+                <div className="p-4 pb-2">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      {plan.icon && <plan.icon className="text-blue-600 text-2xl mb-2" />}
+                      <h2 className="text-base mb-2 font-bold text-gray-900">{plan.name}</h2>
+                    </div>
+                    <Image src='/images/pricing/hourly-badge1.png' alt="hourly" width={50} height={50} className="w-12 h-12 -mt-1 -mr-1" />
+                  </div>
+                  <div className="mb-2 flex items-baseline">
+                    <p className="text-2xl font-bold text-blue-600">
+                      ₹{plan.price}
+                    </p>
+                    <p className="text-black font-semibold text-[11px] ml-0.5">/{plan.billing}</p>
+                  </div>
+                  <p
+                    style={{ "color": `${plan.popular ? "#0B82E6" : ""}` }}
+                    className={`${plan.note != "" ? " mt-[-4px]  " : " hidden "}text-black mb-2 font-semibold text-[11px]`}
+                  >
+                    {plan.note}
+                  </p>
+                </div>
+                <div className="border-t border-gray-200/50 px-4 pt-3 pb-4 bg-white/30 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">What&apos;s included:</h3>
+                    <ul className="space-y-2">
+                      {plan.features.map((feature, i) => (
+                        <li key={i} className="flex items-start">
+                          <div className="flex-shrink-0 h-4 w-4 mr-1.5 mt-0.5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                            <FaCheck className="h-2.5 w-2.5" />
+                          </div>
+                          <span className="text-gray-700 text-xs">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mt-4">
+                    <button
+                      onClick={() => handleBookingClick(plan)}
+                      className={`w-full block text-center py-2.5 px-3 rounded-lg font-medium text-xs transition-all duration-200 shadow-sm
+                        ${plan.popular
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-md'
+                          : 'bg-white text-gray-800 border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
+                        }`}
+                    >
+                      Get Started
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Desktop/Tablet grid */}
+          <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 sm:gap-8 sm:gap-y-8 lg:gap-12 max-w-7xl mx-auto">
+            {plans.map((plan, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-[500px] w-full max-w-sm mx-auto
+                  ${plan.popular ? 'ring-2 ring-blue-500/50' : ''}
+                  shadow-[0_8px_30px_rgba(0,0,0,0.12),0_-8px_30px_rgba(0,0,0,0.12)] md:shadow-[0_-8px_30px_rgba(0,0,0,0.08)]`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+                <div className="absolute top-[-50px] right-0 p-2">
+                  <Image src='/images/pricing/hourly-badge1.png' alt="hourly" width={80} height={80} className="w-20 h-20" />
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      {plan.icon && <plan.icon className="text-blue-600 text-3xl mb-3" />}
+                      <h2 className="text-xl mb-5 font-bold text-gray-900">{plan.name}</h2>
+                    </div>
+                  </div>
+                  <div className="mb-3 flex items-baseline">
+                    <p className="text-3xl font-bold text-blue-600">
+                      ₹{plan.price}
+                    </p>
+                    <p className="text-black mb-5 font-semibold text-[13px]">/{plan.billing}</p>
+                  </div>
+                  <p
+                    style={{ "color": `${plan.popular ? "#0B82E6" : ""}` }}
+                    className={`${plan.note != "" ? " mt-[-6px]  " : " hidden "}text-black mb-5 font-semibold text-[12px]`}
+                  >
+                    {plan.note}
+                  </p>
+                </div>
+                <div className="border-t border-gray-200/50 px-6 pt-5 pb-6 bg-white/30 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What&apos;s included:</h3>
+                    <ul className="space-y-3">
+                      {plan.features.map((feature, i) => (
+                        <li key={i} className="flex items-start">
+                          <div className="flex-shrink-0 h-5 w-5 mr-2 mt-0.5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                            <FaCheck className="h-3 w-3" />
+                          </div>
+                          <span className="text-gray-700 text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mt-6">
+                    <button
+                      onClick={() => handleBookingClick(plan)}
+                      className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 shadow-sm
+                        ${plan.popular
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-md'
+                          : 'bg-white text-gray-800 border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
+                        }`}
+                    >
+                      Get Started
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Feature Cards Section - 2nd section */}
       <div className="relative z-30 bg-white pt-8 pb-8">
         {/* Container matching price cards alignment */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
@@ -312,99 +477,10 @@ const DummyFlightBookingsAdsPage = () => {
         </div>
       </div>
 
+      {/* Hero Section - Now 3rd section */}
+      <HeroBookingSection onBookingClick={scrollToPricing} />
+
       <Layout className="relative z-20 bg-white pt-0 lg:pt-4 pb-4 mb-16">
-
-        {/* CTA Section - Moved above pricing */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-12 sm:mb-22 mt-12 sm:mt-16 text-center">
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Ready to Get Your Dummy Flights for Visa?
-          </h3>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            Start your visa application process today with our reliable and verifiable dummy flights and bookings. Trusted by thousands of successful visa applicants worldwide.
-          </p>
-        </div>
-
-        {/* Pricing Cards Section - Moved up to accommodate floating cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-8 sm:mt-6 lg:mt-8 mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-0"
-          id="pricing-section"
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 sm:gap-8 sm:gap-y-8 lg:gap-12 max-w-7xl mx-auto">
-
-            {plans.map((plan, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative rounded-2xl backdrop-blur-sm bg-white/70 border border-white/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-[500px] w-full max-w-sm mx-auto
-                  ${plan.popular ? 'ring-2 ring-blue-500/50' : ''}
-                  shadow-[0_8px_30px_rgba(0,0,0,0.12),0_-8px_30px_rgba(0,0,0,0.12)] md:shadow-[0_-8px_30px_rgba(0,0,0,0.08)]`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                <div className="absolute top-[-50px] right-0 p-2">
-                  <Image src='/images/pricing/hourly-badge1.png' alt="hourly" width={80} height={80} className="w-20 h-20" />
-                </div>
-                <div className="p-6">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      {plan.icon && <plan.icon className="text-blue-600 text-3xl mb-3" />}
-                      <h2 className="text-xl mb-5 font-bold text-gray-900">{plan.name}</h2>
-                    </div>
-                  </div>
-                  <div className="mb-3 flex items-baseline">
-                    <p className="text-3xl font-bold text-blue-600">
-                      ₹{plan.price}
-                    </p>
-                    <p className="text-black mb-5 font-semibold text-[13px]">/{plan.billing}</p>
-                  </div>
-                  <p
-                    style={{ "color": `${plan.popular ? "#0B82E6" : ""}` }}
-                    className={`${plan.note != "" ? " mt-[-6px]  " : " hidden "}text-black mb-5 font-semibold text-[12px]`}
-                  >
-                    {plan.note}
-                  </p>
-                </div>
-                <div className="border-t border-gray-200/50 px-6 pt-5 pb-6 bg-white/30 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">What&apos;s included:</h3>
-                    <ul className="space-y-3">
-                      {plan.features.map((feature, i) => (
-                        <li key={i} className="flex items-start">
-                          <div className="flex-shrink-0 h-5 w-5 mr-2 mt-0.5 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                            <FaCheck className="h-3 w-3" />
-                          </div>
-                          <span className="text-gray-700 text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="mt-6">
-                    <button
-                      onClick={() => handleBookingClick(plan)}
-                      className={`w-full block text-center py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 shadow-sm
-                        ${plan.popular
-                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-md'
-                          : 'bg-white text-gray-800 border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
-                        }`}
-                    >
-                      Get Started
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
 
 
