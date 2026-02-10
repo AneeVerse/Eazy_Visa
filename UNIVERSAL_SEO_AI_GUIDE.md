@@ -21,6 +21,7 @@
 - [ ] AI bots are NOT blocked (GPTBot, Claude-Web, Google-Extended, etc.)
 - [ ] Internal/utility paths ARE blocked (`/api/`, `/admin/`, `/studio/`, `/cms/`)
 - [ ] Sitemap URL is referenced in `robots.txt`
+- [ ] Check if `robots.txt` is managed by a tool/plugin (e.g., `next-sitemap`) and disable auto-generation if manual rules are needed.
 
 ### What to Implement
 
@@ -375,6 +376,21 @@ module.exports = {
 - Load analytics/pixels with `strategy="afterInteractive"` (Next.js) or `defer`
 - Inline critical CSS, defer the rest
 - Preload hero images: `<link rel="preload" as="image" href="/hero.webp">`
+
+---
+
+## 9. Avoiding Configuration Overwrites
+
+Automated tools often manage SEO files and can overwrite manual changes during build or deployment.
+
+### What to Check
+- **Next.js**: Check `next-sitemap.config.js`. If `generateRobotsTxt: true`, it will overwrite your `public/robots.txt`.
+- **Gatsby**: Check `gatsby-plugin-sitemap` in `gatsby-config.js`.
+- **WordPress**: Check Yoast or Rank Math settings for robots.txt management.
+
+### How to Fix
+- Set `generateRobotsTxt: false` in the configuration file if you need custom AI bot rules.
+- Manually place your enhanced `robots.txt` in the static/public folder.
 
 ---
 
