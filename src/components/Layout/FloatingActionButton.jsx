@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FaWhatsapp, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { IoIosClose, IoMdChatboxes } from "react-icons/io";
@@ -7,6 +8,22 @@ import { IoClose } from "react-icons/io5";
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
 
 const FloatingActionButton = () => {
+  const pathname = usePathname();
+
+  const getSource = () => {
+    if (!pathname || pathname === '/') return 'home contact widget';
+    if (pathname === '/contact') return 'contact widget of contact page';
+
+    // Universal dynamic source for all other pages
+    const pathLabel = pathname
+      .split('/')
+      .filter(Boolean)
+      .join(' ')
+      .replace(/-/g, ' ');
+
+    return `${pathLabel} contact widget`;
+  };
+
   const [open, setOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [selectedContactType, setSelectedContactType] = useState('');
@@ -74,7 +91,7 @@ const FloatingActionButton = () => {
           ...formData,
           phone: fullPhoneNumber, // Send the complete phone number with country code for email
           googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
-          source: 'contact widget'
+          source: getSource()
         }),
       });
 
