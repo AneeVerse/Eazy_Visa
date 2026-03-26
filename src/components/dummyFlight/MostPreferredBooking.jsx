@@ -160,7 +160,7 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
         { code: "NCE", name: "Nice Côte d'Azur Airport" },
         { code: "MXP", name: "Milan Malpensa Airport" },
         { code: "FCO", name: "Leonardo da Vinci–Fiumicino Airport, Rome" },
-        { code: "TXL", name: "Berlin Tegel Airport" },
+        { code: "BER", name: "Berlin Brandenburg Airport" },
         { code: "HAM", name: "Hamburg Airport" },
         { code: "DUS", name: "Düsseldorf Airport" },
         { code: "MAN", name: "Manchester Airport" },
