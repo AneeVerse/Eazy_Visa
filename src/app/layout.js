@@ -9,6 +9,7 @@ import ConditionalTopLoader from "../components/common/ConditionalTopLoader";
 import OrganizationSchema from "../components/seo/OrganizationSchema";
 import BreadcrumbSchema from "../components/seo/BreadcrumbSchema";
 import WebSiteSchema from "../components/seo/WebSiteSchema";
+import VisitorTracker from "../components/common/VisitorTracker";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -140,6 +141,7 @@ export default function RootLayout({ children }) {
         <MetaPixel pixelId="2000698917125544" />
 
         {/* Page Content */}
+        <VisitorTracker />
         <ConditionalTopLoader />
         <BreadcrumbSchema />
         <ConditionalLayout>

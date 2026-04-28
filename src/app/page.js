@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useRef } from "react";
 import FlightPathAnimation from "../components/common/FlightPathAnimation";
 import Layout from "../components/common/Layout";
 import PopupForm from "../components/common/PopupForm";
@@ -15,30 +14,8 @@ import TravelPoint from "../components/home/TravelPoint";
 import VisaSolutions from "../components/home/VisaSolutions";
 import Footer from "../components/Layout/Footer";
 import Image from "next/image";
-import useGeoLocation from "../hooks/useGeoLocation";
 
 export default function Home() {
-  const userGeo = useGeoLocation();
-  const visitorTracked = useRef(false);
-
-  useEffect(() => {
-    if (!userGeo || visitorTracked.current) return;
-    visitorTracked.current = true;
-    fetch('/api/track-visitor', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ip:        userGeo.ip,
-        city:      userGeo.city,
-        region:    userGeo.region,
-        country:   userGeo.country,
-        pincode:   userGeo.pincode,
-        pageUrl:   window.location.href,
-        referrer:  document.referrer || 'Direct',
-        userAgent: navigator.userAgent,
-      }),
-    }).catch(() => {});
-  }, [userGeo]);
   return (
     <div className="overflow-hidden">
       {/* blur bg color effect */}
