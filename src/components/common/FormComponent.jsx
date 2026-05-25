@@ -434,6 +434,7 @@ const FormComponent = ({ from, fromCategory, redirectPath }) => {
 
       // Set flag in sessionStorage before redirecting
       sessionStorage.setItem('formSubmitted', 'true');
+      localStorage.setItem('lastFormSubmit', String(Date.now()));
 
       // Redirect to dynamic thank you page based on service context or visa type
       let redirectUrl = redirectPath || '/Confirmation-contact'; // Default fallback or override

@@ -32,6 +32,42 @@ const getIndianTime = () => {
   return `${day}/${month}/${year}, ${displayHours}:${minutes}:${seconds} ${ampm} (IST)`;
 };
 
+// In-memory dedupe store. Keys: "e:<email>" and "p:<digits>" -> last submit timestamp (ms).
+// Pinned to globalThis so the Map survives Next.js dev HMR module reloads. In production
+// each warm serverless instance still has its own Map; that's fine for catching rapid
+// duplicates from the same instance (the common case).
+const DEDUPE_GLOBAL_KEY = Symbol.for('eazyvisa.submitForm.recentSubmissions');
+if (!globalThis[DEDUPE_GLOBAL_KEY]) {
+  globalThis[DEDUPE_GLOBAL_KEY] = new Map();
+}
+const recentSubmissions = globalThis[DEDUPE_GLOBAL_KEY];
+const DEDUPE_WINDOW_MS = 15 * 60 * 1000;
+
+const cleanupOldSubmissions = () => {
+  const cutoff = Date.now() - DEDUPE_WINDOW_MS;
+  for (const [key, ts] of recentSubmissions.entries()) {
+    if (ts < cutoff) recentSubmissions.delete(key);
+  }
+};
+
+const checkAndRecordDuplicate = (email, phone) => {
+  cleanupOldSubmissions();
+  const emailKey = `e:${(email || '').toLowerCase().trim()}`;
+  const phoneDigits = (phone || '').replace(/\D/g, '');
+  const phoneKey = phoneDigits ? `p:${phoneDigits}` : null;
+
+  const isDup =
+    (emailKey !== 'e:' && recentSubmissions.has(emailKey)) ||
+    (phoneKey && recentSubmissions.has(phoneKey));
+
+  if (isDup) return true;
+
+  const now = Date.now();
+  if (emailKey !== 'e:') recentSubmissions.set(emailKey, now);
+  if (phoneKey) recentSubmissions.set(phoneKey, now);
+  return false;
+};
+
 const normalizeCountryCode = (code) =>
   (code || '').toString().replace('+', '').trim();
 
@@ -88,6 +124,21 @@ export const POST = async (req) => {
           receivedData: { firstName, lastName, email, phone, country, visaType, formSource }
         }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Silent dedupe: if the same email or phone submitted in the last 15 minutes,
+    // return success without sending email / writing to the sheet. The user is
+    // redirected to the thank-you page as usual so they don't get frustrated.
+    if (checkAndRecordDuplicate(email, phone)) {
+      console.log('Duplicate submission silently dropped:', { email, phone, formSource });
+      return new Response(
+        JSON.stringify({
+          success: true,
+          message: 'Form already submitted recently.',
+          duplicate: true,
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     }
 

@@ -27,6 +27,12 @@ const PopupForm = () => {
   const [isAccepted, setIsAccepted] = useState(true);
 
   useEffect(() => {
+    // Suppress the popup for 30 minutes after a successful submit on this browser.
+    const lastSubmit = Number(localStorage.getItem('lastFormSubmit') || 0);
+    if (lastSubmit && Date.now() - lastSubmit < 30 * 60 * 1000) {
+      return;
+    }
+
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 5000);
@@ -362,6 +368,7 @@ const PopupForm = () => {
       }
 
       sessionStorage.setItem('formSubmitted', 'true');
+      localStorage.setItem('lastFormSubmit', String(Date.now()));
 
       // PopupForm is generally for contact/general inquiries
       window.location.href = '/Confirmation-contact';

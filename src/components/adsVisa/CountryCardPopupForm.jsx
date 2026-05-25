@@ -186,6 +186,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
       }
 
       sessionStorage.setItem('formSubmitted', 'true');
+      localStorage.setItem('lastFormSubmit', String(Date.now()));
       window.location.href = '/ads-visa-thankyou';
 
     } catch (error) {
