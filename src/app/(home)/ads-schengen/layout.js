@@ -20,18 +20,18 @@ export const metadata = {
 export default function AdsSchengenLayout({ children }) {
   return (
     <>
-      {/* Google tag (gtag.js) */}
+      {/* Google tag (gtag.js) - Schengen ad account */}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=AW-17833154075"
+        src="https://www.googletagmanager.com/gtag/js?id=AW-11158930668"
         strategy="afterInteractive"
         async
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id="google-ads-schengen" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'AW-17833154075');
+          gtag('config', 'AW-11158930668');
         `}
       </Script>
       {children}

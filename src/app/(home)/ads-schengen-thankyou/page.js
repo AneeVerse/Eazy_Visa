@@ -15,16 +15,25 @@ export default function AdsSchengenThankYouPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-12">
-      {/* Google Ads Conversion Snippet - Schengen sign-up conversion */}
-      {/*
-        NOTE: This currently uses the SAME conversion label as /ads-visa-thankyou.
-        To track Schengen as a SEPARATE conversion action, create a new conversion
-        action in Google Ads (under account AW-17833154075), then replace the
-        'send_to' label below with the new 'AW-17833154075/xxxxxxxx' value.
-      */}
+      {/* Google tag (gtag.js) - Schengen ad account */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=AW-11158930668"
+        strategy="afterInteractive"
+        async
+      />
+      <Script id="ads-schengen-gtag" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-11158930668');
+        `}
+      </Script>
+
+      {/* Event snippet for Sign-up (1) conversion page */}
       <Script id="ads-schengen-conversion" strategy="afterInteractive">
         {`gtag('event', 'conversion', {
-  'send_to': 'AW-17833154075/UY9YCMi8_N4bEJuswbdC',
+  'send_to': 'AW-11158930668/kqJSCJu-y8AcEOyJ_8gp',
   'value': 1.0,
   'currency': 'INR'
 });`}

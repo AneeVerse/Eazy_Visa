@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { BiSupport, BiCheckShield, BiTask, BiX } from 'react-icons/bi';
 import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
@@ -205,7 +206,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
 
   if (!isOpen) return null;
 
-  return (
+  const modalContent = (
     <>
       <ToastContainer
         position="top-right"
@@ -458,6 +459,10 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
       </div>
     </>
   );
+
+  return typeof document !== 'undefined'
+    ? createPortal(modalContent, document.body)
+    : null;
 };
 
 export default CountryCardPopupForm;
