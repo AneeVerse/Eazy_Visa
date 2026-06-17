@@ -5,12 +5,14 @@ import { BiSupport, BiCheckShield, BiTask, BiX } from 'react-icons/bi';
 import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { usePathname } from 'next/navigation';
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
 import Image from 'next/image';
 import useGeoLocation from '../../hooks/useGeoLocation';
 
 const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, countryFlag }) => {
   const userGeo = useGeoLocation();
+  const pathname = usePathname();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -187,7 +189,9 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
 
       sessionStorage.setItem('formSubmitted', 'true');
       localStorage.setItem('lastFormSubmit', String(Date.now()));
-      window.location.href = '/ads-visa-thankyou';
+      window.location.href = pathname && pathname.includes('/ads-schengen')
+        ? '/ads-schengen-thankyou'
+        : '/ads-visa-thankyou';
 
     } catch (error) {
       toast.error(error.message || 'Failed to submit form. Please try again later.', {

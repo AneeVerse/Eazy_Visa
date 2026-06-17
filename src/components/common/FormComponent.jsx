@@ -75,7 +75,7 @@ const FormComponent = ({ from, fromCategory, redirectPath }) => {
       pageLink: fullUrl
     };
 
-    if (pathname.startsWith('/ads-visa')) {
+    if (pathname.startsWith('/ads-visa') || pathname.startsWith('/ads-schengen')) {
       meta.from = 'ads-visa';
       meta.pageLabel = 'ads-visa landing page';
     } else if (pathname.startsWith('/services/')) {
@@ -439,8 +439,10 @@ const FormComponent = ({ from, fromCategory, redirectPath }) => {
       // Redirect to dynamic thank you page based on service context or visa type
       let redirectUrl = redirectPath || '/Confirmation-contact'; // Default fallback or override
 
-      // Check for ads-visa page first (highest priority)
-      if (pathname && pathname.includes('/ads-visa')) {
+      // Check for ads landing pages first (highest priority)
+      if (pathname && pathname.includes('/ads-schengen')) {
+        redirectUrl = '/ads-schengen-thankyou';
+      } else if (pathname && pathname.includes('/ads-visa')) {
         redirectUrl = '/ads-visa-thankyou';
       } else if (pathname && pathname.includes('/services/end-to-end')) {
         redirectUrl = '/Confirmation-end-to-end';

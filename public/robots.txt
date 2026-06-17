@@ -4,6 +4,7 @@ Disallow: /api/
 Disallow: /studio/
 Disallow: /thank-you-conversion
 Disallow: /ads-visa-thankyou
+Disallow: /ads-schengen-thankyou
 
 # AI Bots - Explicitly Allowed
 User-agent: GPTBot

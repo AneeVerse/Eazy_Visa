@@ -146,7 +146,7 @@ const CountryCardsSection = () => {
 
                     {/* CTA Button */}
                     <div className="mt-auto">
-                      <button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-3 px-5 rounded-xl font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 group-hover:gap-3">
+                      <button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-3 px-5 rounded-xl font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 group-hover:gap-3 whitespace-nowrap">
                         Get Free Consultation
                         <FaArrowRight className="text-sm transition-transform group-hover:translate-x-1" />
                       </button>
