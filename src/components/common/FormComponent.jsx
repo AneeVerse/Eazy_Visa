@@ -401,9 +401,6 @@ const FormComponent = ({ from, fromCategory, redirectPath }) => {
     setIsLoading(true);
 
     try {
-      // #region agent log
-      fetch('http://127.0.0.1:7491/ingest/fb119253-f691-4d99-ba02-d8d9a057580b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c40d58'},body:JSON.stringify({sessionId:'c40d58',location:'FormComponent.jsx:handleSubmit',message:'submit started',data:{hasUserGeo:!!userGeo,pathname:pathname||''},timestamp:Date.now(),hypothesisId:'A'})}).catch(()=>{});
-      // #endregion
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
 
@@ -430,10 +427,6 @@ const FormComponent = ({ from, fromCategory, redirectPath }) => {
       });
 
       const data = await response.json();
-
-      // #region agent log
-      fetch('http://127.0.0.1:7491/ingest/fb119253-f691-4d99-ba02-d8d9a057580b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c40d58'},body:JSON.stringify({sessionId:'c40d58',location:'FormComponent.jsx:handleSubmit',message:'submit API response',data:{status:response.status,ok:response.ok,message:data?.message,error:data?.error},timestamp:Date.now(),hypothesisId:'B,C,D,E'})}).catch(()=>{});
-      // #endregion
 
       if (!response.ok) {
         throw new Error(data.message || 'Failed to submit form');
@@ -469,9 +462,6 @@ const FormComponent = ({ from, fromCategory, redirectPath }) => {
       window.location.href = redirectUrl;
 
     } catch (error) {
-      // #region agent log
-      fetch('http://127.0.0.1:7491/ingest/fb119253-f691-4d99-ba02-d8d9a057580b',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c40d58'},body:JSON.stringify({sessionId:'c40d58',location:'FormComponent.jsx:handleSubmit',message:'submit catch error',data:{errorName:error?.name,errorMessage:error?.message},timestamp:Date.now(),hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
       toast.error(error.message || 'Failed to submit form. Please try again later.', {
         position: "top-right",
         autoClose: 5000,

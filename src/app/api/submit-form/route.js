@@ -80,14 +80,6 @@ const extractLocalPhone = (googleSheetsPhone, countryCodeDigits, fallbackPhone) 
   return (fallbackPhone || '').replace(/\D/g, '');
 };
 
-const debugLog = (location, message, data, hypothesisId) => {
-  fetch('http://127.0.0.1:7491/ingest/fb119253-f691-4d99-ba02-d8d9a057580b', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': 'c40d58' },
-    body: JSON.stringify({ sessionId: 'c40d58', location, message, data, timestamp: Date.now(), hypothesisId }),
-  }).catch(() => {});
-};
-
 export const POST = async (req) => {
   try {
     const {
@@ -111,17 +103,6 @@ export const POST = async (req) => {
     } = await req.json();
     const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
 
-    // #region agent log
-    debugLog('submit-form/route.js:POST', 'request received', {
-      hasEmail: !!email,
-      hasPhone: !!phone,
-      hasVisaType: !!visaType,
-      hasCountry: !!country,
-      emailUserSet: !!process.env.NEXT_PUBLIC_EMAIL_USER,
-      emailPassSet: !!process.env.NEXT_PUBLIC_EMAIL_APP_PASSWORD,
-    }, 'B,C,E');
-    // #endregion
-
     console.log('Received form submission:', {
       firstName,
       lastName,
@@ -137,16 +118,6 @@ export const POST = async (req) => {
     });
 
     if (!firstName || !lastName || !email || !phone || !country || !visaType) {
-      // #region agent log
-      debugLog('submit-form/route.js:POST', 'validation failed', {
-        firstName: !!firstName,
-        lastName: !!lastName,
-        email: !!email,
-        phone: !!phone,
-        country: !!country,
-        visaType: !!visaType,
-      }, 'E');
-      // #endregion
       return new Response(
         JSON.stringify({
           error: 'All fields are required!',
@@ -251,17 +222,8 @@ export const POST = async (req) => {
     try {
       const info = await transporter.sendMail(mailOptions);
       emailSent = true;
-      // #region agent log
-      debugLog('submit-form/route.js:POST', 'email sent', { messageId: info?.messageId }, 'B');
-      // #endregion
       console.log('Email sent successfully. Message ID:', info.messageId);
     } catch (emailErr) {
-      // #region agent log
-      debugLog('submit-form/route.js:POST', 'email send failed', {
-        errorMessage: emailErr?.message,
-        errorCode: emailErr?.code,
-      }, 'B');
-      // #endregion
       console.error('Email send failed (form will still be saved):', emailErr?.message);
     }
 
@@ -319,13 +281,6 @@ export const POST = async (req) => {
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error) {
-    // #region agent log
-    debugLog('submit-form/route.js:POST', 'handler catch', {
-      errorMessage: error?.message,
-      errorCode: error?.code,
-      errorName: error?.name,
-    }, 'B,C');
-    // #endregion
     console.error('Error submitting form:', {
       message: error.message,
       stack: error.stack,
