@@ -11,7 +11,7 @@ const services = [
   {
     id: 4,
     title: "Dummy Bookings",
-    url: "/dummy-bookings",
+    url: "/visa-itinerary",
     description: "Dummy bookings for visa applications and travel plans",
     image:
       "/images/home/dummy-flight.webp",

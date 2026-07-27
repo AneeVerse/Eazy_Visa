@@ -111,7 +111,7 @@ export default function HeroSection() {
             <Link href={"/contact"} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl text-center">
               Get Visa Help
             </Link>
-            <Link href={"/dummy-bookings"} className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl text-center">
+            <Link href={"/visa-itinerary"} className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl text-center">
               Get Dummy Flight Ticket
             </Link>
           </div>

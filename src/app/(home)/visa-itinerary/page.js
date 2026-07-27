@@ -420,7 +420,7 @@ const PricingPage = () => {
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
-                href="/dummy-bookings"
+                href="/visa-itinerary"
                 className="bg-white text-primary-500 px-6 py-3 rounded-full font-bold text-sm shadow-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
                 <FaPlane />

@@ -58,7 +58,7 @@ const services = [
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Dummy Bookings", href: "/dummy-bookings" },
+  { name: "Dummy Bookings", href: "/visa-itinerary" },
   { name: "Visa Services", href: "/services", hasMegaMenu: true },
   { name: "Countries", href: "/countries" },
   { name: "Blogs", href: "/blogs" },

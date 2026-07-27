@@ -147,7 +147,7 @@ async function getStaticUrls() {
     },
     // Dummy bookings
     {
-      url: `${CONFIG.baseUrl}/dummy-bookings`,
+      url: `${CONFIG.baseUrl}/visa-itinerary`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

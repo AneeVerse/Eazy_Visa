@@ -19,6 +19,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/dummy-bookings',
+        destination: '/visa-itinerary',
+        permanent: true,
+      },
+      {
         source: '/dummy-flight/visa-ads',
         destination: '/book-flight-hotel-dummy-ticket-for-visa',
         permanent: true,

@@ -54,7 +54,7 @@ export default function BreadcrumbSchema() {
       // Custom naming for specific paths
       let name = toTitleCase(segment);
       if (segment === 'blogs') name = 'Blog';
-      if (segment === 'dummy-bookings') name = 'Dummy Bookings';
+      if (segment === 'visa-itinerary') name = 'Visa Itinerary';
       if (segment === 'thank-you-conversion') name = 'Thank You';
       if (segment === 'terms-and-condition') name = 'Terms & Conditions';
       if (segment === 'privacy-policy') name = 'Privacy Policy';
