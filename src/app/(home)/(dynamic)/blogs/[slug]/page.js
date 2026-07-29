@@ -11,6 +11,8 @@ import Link from "next/link";
 import TableBlock from '../../../../../components/blog/TableBlock';
 import MarkdownTableBlock from '../../../../../components/blog/MarkdownTableBlock';
 import TableOfContents from '../../../../../components/blog/TableOfContents';
+import PricingBlock from '../../../../../components/blog/PricingBlock';
+import BlogSidebarPromo from '../../../../../components/blog/BlogSidebarPromo';
 import { sanityClient } from "../../../../../lib/sanity";
 import FAQAccordion from '../../../../../components/blog/FAQAccordion';
 import BlogSchema from '../../../../../components/seo/BlogSchema';
@@ -22,6 +24,7 @@ const components = {
   types: {
     table: TableBlock,
     markdownTable: MarkdownTableBlock,
+    pricing: PricingBlock,
     tableOfContents: ({ value }) => (
       <TableOfContents
         title={value.title}
@@ -117,6 +120,8 @@ export async function generateMetadata({ params }) {
   const canonicalUrl = post.seo?.canonicalUrl || ogUrl;
   const publishedTime = post.seo?.articlePublishedTime || post.date;
 
+  const authorName = post.author?.name || 'Easy Visa';
+
   const metadata = {
     title: metaTitle,
     description: metaDescription,
@@ -132,21 +137,21 @@ export async function generateMetadata({ params }) {
       images: [
         { url: ogImage, width: post.seo?.ogImageWidth || 1200, height: post.seo?.ogImageHeight || 630, alt: post.title, type: post.seo?.ogImageType || 'image/webp' }
       ],
-      article: { publishedTime, modifiedTime: post.seo?.articleModifiedTime, authors: [post.author.name] }
+      article: { publishedTime, modifiedTime: post.seo?.articleModifiedTime, authors: [authorName] }
     },
     twitter: {
       card: twitterCard,
       title: twitterTitle,
       description: twitterDescription,
       images: [twitterImage],
-      creator: post.seo?.twitterAuthor || post.author.name
+      creator: post.seo?.twitterAuthor || authorName
     },
-    authors: [{ name: post.author.name }],
+    authors: [{ name: authorName }],
     other: {
       'twitter:label1': post.seo?.twitterLabel1 || 'Written by',
-      'twitter:data1': post.seo?.twitterData1 || post.author.name,
+      'twitter:data1': post.seo?.twitterData1 || authorName,
       'twitter:label2': post.seo?.twitterLabel2 || 'Est. reading time',
-      'twitter:data2': post.seo?.twitterData2 || `${post.timeToRead} minutes`,
+      'twitter:data2': post.seo?.twitterData2 || `${post.timeToRead || 5} minutes`,
       'msapplication-TileImage': post.seo?.msapplicationTileImage || ''
     },
     alternates: { canonical: canonicalUrl },
@@ -173,33 +178,35 @@ async function BlogDetailsPage({ params }) {
   }
 
   return (
-    <Layout className="py-12">
+    <Layout className="py-8 !px-3 sm:!px-6 lg:!px-8 !mx-auto max-w-[1536px]">
       {/* Structured Data */}
       <BlogSchema post={post} />
       {post.faq && post.faq.length > 0 && <FAQSchema faqs={post.faq} pageTitle={post.title} />}
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
         {/* Main Content - Left Side */}
         <div className="lg:col-span-8 xl:col-span-9">
           {/* Blog Meta */}
           <div className="mb-8">
             {/* Featured Image */}
-            <div className="relative w-full h-[320px] md:h-[480px] lg:h-[590px] mb-6">
-              <Image
-                src={urlFor(post.mainImage).url()}
-                alt={post.title}
-                fill
-                className="object-cover rounded-xl"
-                priority
-              />
-            </div>
+            {post.mainImage && (
+              <div className="relative w-full h-[320px] md:h-[480px] lg:h-[590px] mb-6">
+                <Image
+                  src={urlFor(post.mainImage).url()}
+                  alt={post.title}
+                  fill
+                  className="object-cover rounded-xl"
+                  priority
+                />
+              </div>
+            )}
 
             <div className="flex items-center text-[14px] mb-3 text-gray-400">
               <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
               </svg>
-              <span>Posted on {new Date(post.publishedAt).toLocaleDateString('en-US', {
+              <span>Posted on {new Date(post.publishedAt || Date.now()).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
@@ -210,7 +217,7 @@ async function BlogDetailsPage({ params }) {
               {post.title}
             </h1>
             <div className="flex flex-wrap gap-3 items-center text-sm text-gray-500">
-              <span className="mr-4">By {post.author.name}</span>
+              <span className="mr-4">By {post.author?.name || 'Easy Visa'}</span>
               {post.categories?.map((category) => (
                 <span key={category.title} className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
                   {category.title}
@@ -232,16 +239,21 @@ async function BlogDetailsPage({ params }) {
 
         {/* Sidebar - Right Side */}
         <div className="lg:col-span-4 xl:col-span-3">
-          <div className="sticky top-24 space-y-8">
+          <div className="sticky top-24 max-h-[calc(100vh-6.5rem)] overflow-y-auto space-y-3.5 pr-0.5 [scrollbar-width:none]">
             {/* Consultation Form */}
             <div className="">
-              <FormComponent />
+              <FormComponent compact={true} />
             </div>
 
-            {/* Related Blogs */}
+            {/* Sidebar Promo Card */}
             <div className="">
-              <RelatedBlogs posts={relatedPosts} />
+              <BlogSidebarPromo />
             </div>
+
+            {/* Related Blogs (Hidden for now) */}
+            {/* <div className="">
+              <RelatedBlogs posts={relatedPosts} />
+            </div> */}
           </div>
         </div>
       </div>

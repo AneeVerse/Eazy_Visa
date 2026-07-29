@@ -1,6 +1,8 @@
 import nodemailer from 'nodemailer';
 import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
 
+export const dynamic = 'force-dynamic';
+
 const normalizeCountryCode = (code) =>
   (code || '').toString().replace('+', '').trim();
 

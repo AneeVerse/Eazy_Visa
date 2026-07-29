@@ -73,7 +73,8 @@ const post = {
         },
         { type: 'table' },
         { type: 'markdownTable' },
-        { type: 'tableOfContents' }
+        { type: 'tableOfContents' },
+        { type: 'pricing', title: 'Pricing Cards' }
       ],
       validation: Rule => Rule.required()
     },

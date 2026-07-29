@@ -1,6 +1,8 @@
 import nodemailer from 'nodemailer';
 import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
 
+export const dynamic = 'force-dynamic';
+
 // Aggressive IST time function - This will definitely work
 const getIndianTime = () => {
   const now = new Date();

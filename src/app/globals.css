@@ -182,6 +182,30 @@ body {
   border-bottom-color: #2563eb;
 }
 
+.blog-content a.pricing-btn-standard {
+  background-color: #ffffff;
+  color: #1f2937 !important;
+  border: 1px solid #e5e7eb !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.blog-content a.pricing-btn-standard:hover {
+  background-color: rgba(239, 246, 255, 0.7) !important;
+  border-color: #93c5fd !important;
+  color: #1f2937 !important;
+}
+
+.blog-content a.pricing-btn-popular {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+.blog-content a.pricing-btn-popular:hover {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
 /* Lists */
 .blog-content ul,
 .blog-content ol {

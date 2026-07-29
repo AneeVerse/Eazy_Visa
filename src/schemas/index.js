@@ -4,7 +4,6 @@ import category from './category';
 import table from './table';
 import tableOfContents from './tableOfContents';
 import markdownTable from './markdownTable';
-// - // @ts-ignore
-// - import { table } from '@sanity/table'; 
+import pricing from './pricing';
 
-export const schemaTypes = [post, author, category, table, tableOfContents, markdownTable];
+export const schemaTypes = [post, author, category, table, tableOfContents, markdownTable, pricing];
