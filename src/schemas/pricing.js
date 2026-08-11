@@ -85,7 +85,7 @@ const pricing = {
               name: 'url',
               title: 'Button Link URL',
               type: 'string',
-              initialValue: '/book-flight-hotel-dummy-ticket-for-visa',
+              initialValue: '/book-flight-hotel-dummy-ticket-for-visa/bookings?type=flight',
             },
             {
               name: 'buttonText',

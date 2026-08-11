@@ -2,6 +2,20 @@ import React from 'react';
 import Link from 'next/link';
 import { FaCheck } from 'react-icons/fa';
 
+const getTargetUrl = (url, name) => {
+  if (url && url !== '/book-flight-hotel-dummy-ticket-for-visa') {
+    return url;
+  }
+  const n = (name || '').toLowerCase();
+  if (n.includes('hotel')) {
+    return '/book-flight-hotel-dummy-ticket-for-visa/bookings?type=hotel';
+  }
+  if (n.includes('most preferred') || n.includes('combo') || n.includes('both')) {
+    return '/book-flight-hotel-dummy-ticket-for-visa/bookings?type=most-preferred';
+  }
+  return '/book-flight-hotel-dummy-ticket-for-visa/bookings?type=flight';
+};
+
 const DEFAULT_PLANS = [
   {
     name: "Flight Itinerary",
@@ -14,7 +28,7 @@ const DEFAULT_PLANS = [
       "Unlimited Flights",
       "Name change not allowed"
     ],
-    url: "/book-flight-hotel-dummy-ticket-for-visa",
+    url: "/book-flight-hotel-dummy-ticket-for-visa/bookings?type=flight",
     popular: false
   },
   {
@@ -28,7 +42,7 @@ const DEFAULT_PLANS = [
       "Verifiable Hotel Confirmation",
       "Name change not allowed"
     ],
-    url: "/book-flight-hotel-dummy-ticket-for-visa",
+    url: "/book-flight-hotel-dummy-ticket-for-visa/bookings?type=hotel",
     popular: false
   },
   {
@@ -42,7 +56,7 @@ const DEFAULT_PLANS = [
       "Day wise Sightseeing",
       "Details of the tour for the duration"
     ],
-    url: "/book-flight-hotel-dummy-ticket-for-visa",
+    url: "/book-flight-hotel-dummy-ticket-for-visa/bookings?type=flight",
     popular: false
   },
   {
@@ -58,7 +72,7 @@ const DEFAULT_PLANS = [
       "Day wise Itinerary",
       "Name change not allowed"
     ],
-    url: "/book-flight-hotel-dummy-ticket-for-visa",
+    url: "/book-flight-hotel-dummy-ticket-for-visa/bookings?type=most-preferred",
     popular: true
   }
 ];
@@ -73,7 +87,7 @@ export default function PricingBlock({ value }) {
         billing: p.billing || 'per person',
         note: p.note || '',
         features: p.features || [],
-        url: p.url || '/book-flight-hotel-dummy-ticket-for-visa',
+        url: getTargetUrl(p.url, p.name),
         popular: !!p.popular,
         buttonText: p.buttonText || 'Get Started',
       }))
@@ -171,7 +185,7 @@ export default function PricingBlock({ value }) {
               {/* Action Button */}
               <div className="mt-4">
                 <Link
-                  href={plan.url || "/book-flight-hotel-dummy-ticket-for-visa"}
+                  href={plan.url || "/book-flight-hotel-dummy-ticket-for-visa/bookings?type=flight"}
                   className={`w-full block text-center py-2 px-2.5 rounded-lg font-semibold text-xs transition-all duration-200 shadow-sm ${
                     plan.popular
                       ? 'pricing-btn-popular bg-blue-600 hover:bg-blue-700 !text-white'
