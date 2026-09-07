@@ -8,9 +8,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useParams, usePathname } from 'next/navigation';
 import CountryCodeDropdown from './CountryCodeDropdown';
 import useGeoLocation from '../../hooks/useGeoLocation';
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from './SubmissionProtectionFields';
 
 const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) => {
   const userGeo = useGeoLocation();
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection('visa_lead');
   const params = useParams();
   const pathname = usePathname();
   const slug = params?.slug || '';
@@ -234,6 +242,7 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) =>
     setIsLoading(true);
 
     try {
+      const protectionData = await getProtectionData();
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
       const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
 
@@ -252,7 +261,8 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) =>
           fromCategory: fromCategory || "",
           userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
           userPincode: userGeo ? userGeo.pincode : 'Unknown',
-          userIp: userGeo ? userGeo.ip : 'Unknown'
+          userIp: userGeo ? userGeo.ip : 'Unknown',
+          ...protectionData,
         }),
       });
 
@@ -299,6 +309,7 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) =>
       });
     } finally {
       setIsLoading(false);
+      resetProtection();
     }
   };
 
@@ -500,11 +511,16 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) =>
               </label>
             </div>
 
+            <SubmissionProtectionFields
+              {...protectionFieldProps}
+              className={compact ? "pt-1" : "pt-2"}
+            />
+
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={isLoading || !isAccepted}
-              className={`w-full ${compact ? 'mt-2.5 py-2 px-3 text-xs' : 'mt-4 py-2 px-4 text-sm'} rounded-lg font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
+              disabled={isLoading || isVerifying || !isAccepted}
+              className={`w-full ${compact ? 'mt-2.5 py-2 px-3 text-xs' : 'mt-4 py-2 px-4 text-sm'} rounded-lg font-medium flex items-center justify-center space-x-2 ${isLoading || isVerifying || !isAccepted
                 ? "bg-gray-300 cursor-not-allowed"
                 : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
                 } transition-all duration-300`}

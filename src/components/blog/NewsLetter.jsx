@@ -6,8 +6,16 @@ import { motion } from "framer-motion";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useSubmissionProtection from "../../hooks/useSubmissionProtection";
+import SubmissionProtectionFields from "../common/SubmissionProtectionFields";
 
 const Newsletter = () => {
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection("newsletter");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -30,21 +38,26 @@ const Newsletter = () => {
     setIsLoading(true);
 
     try {
+      const protectionData = await getProtectionData();
       // API call to your subscription endpoint
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, name: "unknown" }),
+        body: JSON.stringify({
+          email,
+          name: "unknown",
+          ...protectionData,
+        }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Subscription failed");
+        throw new Error(data.message || "Subscription failed");
       }
 
-      const data = await response.json();
-      
       setIsSubscribed(true);
       setEmail("");
       toast.success("Thank you for subscribing!");
@@ -52,6 +65,7 @@ const Newsletter = () => {
       setError(error.message || "Failed to subscribe. Please try again.");
     } finally {
       setIsLoading(false);
+      resetProtection();
     }
   };
 
@@ -90,6 +104,10 @@ const Newsletter = () => {
             {error && (
                     <p className="mb-1 text-sm text-red-600">{error}</p>
                   )}
+              <SubmissionProtectionFields
+                {...protectionFieldProps}
+                className="mb-3"
+              />
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1">
                   <input
@@ -103,7 +121,7 @@ const Newsletter = () => {
                 </div>
                 <button
                   type="submit"
-                  disabled={isLoading}
+                  disabled={isLoading || isVerifying}
                   className={`flex-shrink-0 px-6 py-3 rounded-lg font-medium text-white transition-all flex items-center justify-center ${
                     isLoading
                       ? "bg-blue-400 cursor-not-allowed"

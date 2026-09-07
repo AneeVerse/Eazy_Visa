@@ -6,9 +6,17 @@ import { FaWhatsapp, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { IoIosClose, IoMdChatboxes } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
 const FloatingActionButton = () => {
   const pathname = usePathname();
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection('contact_widget');
 
   const getSource = () => {
     if (!pathname || pathname === '/') return 'home contact widget';
@@ -40,6 +48,7 @@ const FloatingActionButton = () => {
   const [countdown, setCountdown] = useState(3);
 
   const handleContactClick = (type) => {
+    resetProtection();
     setSelectedContactType(type);
     setFormData({ ...formData, contactType: type });
     setShowForm(true);
@@ -55,6 +64,11 @@ const FloatingActionButton = () => {
       ...formData,
       countryCode: code
     });
+  };
+
+  const closeForm = () => {
+    resetProtection();
+    setShowForm(false);
   };
 
   const handleSubmit = async (e) => {
@@ -76,6 +90,7 @@ const FloatingActionButton = () => {
     setIsSubmitting(true);
 
     try {
+      const protectionData = await getProtectionData();
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
 
@@ -91,9 +106,12 @@ const FloatingActionButton = () => {
           ...formData,
           phone: fullPhoneNumber, // Send the complete phone number with country code for email
           googleSheetsPhone: googleSheetsPhone, // Send clean version for Google Sheets
-          source: getSource()
+          source: getSource(),
+          ...protectionData,
         }),
       });
+
+      const data = await response.json();
 
       if (response.ok) {
         setShowSuccess(true);
@@ -108,13 +126,14 @@ const FloatingActionButton = () => {
           }
         }, 1000);
       } else {
-        alert('Something went wrong. Please try again.');
+        alert(data.message || 'Something went wrong. Please try again.');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
+      resetProtection();
     }
   };
 
@@ -195,7 +214,7 @@ const FloatingActionButton = () => {
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
         >
           <motion.div
-            className="bg-white relative rounded-xl shadow-lg p-8 max-w-md w-full mx-4"
+            className="bg-white relative rounded-xl shadow-lg p-8 max-w-md max-h-[90vh] overflow-y-auto w-full mx-4"
             variants={containerVariants}
           >
             <div className="flex justify-between items-center mb-6">
@@ -205,7 +224,7 @@ const FloatingActionButton = () => {
               {!showSuccess && (
                 <motion.button
                   className="text-gray-500 hover:text-gray-700 p-1"
-                  onClick={() => setShowForm(false)}
+                  onClick={closeForm}
                   whileHover={{ scale: 1.2 }}
                 >
                   <IoIosClose className="h-8 w-8" />
@@ -302,17 +321,22 @@ const FloatingActionButton = () => {
                   </div>
                 </div>
 
+                <SubmissionProtectionFields
+                  {...protectionFieldProps}
+                  className="pt-1"
+                />
+
                 <div className="flex gap-3 pt-4">
                   <button
                     type="button"
-                    onClick={() => setShowForm(false)}
+                    onClick={closeForm}
                     className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isVerifying}
                     className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50"
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit'}

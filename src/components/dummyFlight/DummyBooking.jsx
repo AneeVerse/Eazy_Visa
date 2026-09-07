@@ -18,9 +18,17 @@ import CountryCodeDropdown from '../common/CountryCodeDropdown';
 import { BiPhone } from 'react-icons/bi';
 import useGeoLocation from '../../hooks/useGeoLocation';
 import airports from '../../data/airports';
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
 const FlightBookingComponent = ({ onTabClick, origin }) => {
     const userGeo = useGeoLocation();
+    const {
+        getProtectionData,
+        resetProtection,
+        isVerifying,
+        protectionFieldProps,
+    } = useSubmissionProtection('flight_booking');
     // Form steps
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -341,6 +349,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
         setIsLoading(true);
 
         try {
+            const protectionData = await getProtectionData();
             const response = await fetch('/api/flight-booking', {
                 method: 'POST',
                 headers: {
@@ -364,7 +373,8 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                     },
                     userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
                     userPincode: userGeo ? userGeo.pincode : 'Unknown',
-                    userIp: userGeo ? userGeo.ip : 'Unknown'
+                    userIp: userGeo ? userGeo.ip : 'Unknown',
+                    ...protectionData,
                 }),
             });
 
@@ -391,9 +401,10 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
             }
         } catch (error) {
             console.error('Error submitting form:', error);
-            toast.error('An error occurred while submitting your booking');
+            toast.error(error.message || 'An error occurred while submitting your booking');
         } finally {
             setIsLoading(false);
+            resetProtection();
         }
     };
 
@@ -409,6 +420,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
     };
 
     const prevStep = () => {
+        if (currentStep === 3) resetProtection();
         if (currentStep > 1) setCurrentStep(currentStep - 1);
     };
 
@@ -799,6 +811,11 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                                         </div>
                                     </div>
 
+                                    <SubmissionProtectionFields
+                                        {...protectionFieldProps}
+                                        className="pt-2"
+                                    />
+
                                     <div className="flex justify-between pt-4">
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
@@ -1000,7 +1017,7 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                                             <Button
                                                 type="submit"
                                                 className="w-full md:w-auto px-8 py-3"
-                                                disabled={isLoading ? true : false}
+                                                disabled={isLoading || isVerifying}
                                             >
                                                 {!isLoading ? "Complete Booking" : "Submiting..."}
 

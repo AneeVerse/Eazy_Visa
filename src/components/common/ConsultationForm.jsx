@@ -10,10 +10,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import { usePathname } from 'next/navigation';
 import CountryCodeDropdown from './CountryCodeDropdown';
 import useGeoLocation from '../../hooks/useGeoLocation';
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from './SubmissionProtectionFields';
 
 const ConsultationForm = () => {
   const pathname = usePathname();
   const userGeo = useGeoLocation();
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection('legacy_visa');
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -89,6 +97,7 @@ const ConsultationForm = () => {
 
     setIsLoading(true);
     try {
+      const protectionData = await getProtectionData();
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
 
@@ -109,7 +118,8 @@ const ConsultationForm = () => {
           visaType: formData.visaType,
           userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
           userPincode: userGeo ? userGeo.pincode : 'Unknown',
-          userIp: userGeo ? userGeo.ip : 'Unknown'
+          userIp: userGeo ? userGeo.ip : 'Unknown',
+          ...protectionData,
         }),
       });
 
@@ -154,6 +164,7 @@ const ConsultationForm = () => {
       });
     } finally {
       setIsLoading(false);
+      resetProtection();
     }
   };
 
@@ -364,13 +375,18 @@ const ConsultationForm = () => {
               </label>
             </div>
 
+            <SubmissionProtectionFields
+              {...protectionFieldProps}
+              className="pt-1"
+            />
+
             {/* Submit Button */}
             <motion.button
               type="submit"
-              disabled={isLoading || !isAccepted}
+              disabled={isLoading || isVerifying || !isAccepted}
               whileTap={{ scale: 0.98 }}
               whileHover={{ scale: 1.02 }}
-              className={`w-full mt-6 py-3 px-6 rounded-lg font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
+              className={`w-full mt-6 py-3 px-6 rounded-lg font-medium flex items-center justify-center space-x-2 ${isLoading || isVerifying || !isAccepted
                 ? "bg-gray-300 cursor-not-allowed"
                 : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
                 } transition-all duration-300`}

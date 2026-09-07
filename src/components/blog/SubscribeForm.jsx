@@ -7,9 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BiUser, BiEnvelope, BiPhone, BiTask } from 'react-icons/bi';
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
 import useGeoLocation from '../../hooks/useGeoLocation';
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
 const SubscribeForm = () => {
   const userGeo = useGeoLocation();
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection('blog_contact');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -73,6 +81,7 @@ const SubscribeForm = () => {
     setIsLoading(true);
 
     try {
+      const protectionData = await getProtectionData();
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
 
@@ -91,7 +100,8 @@ const SubscribeForm = () => {
           service: formData.service, // Include selected service
           userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
           userPincode: userGeo ? userGeo.pincode : 'Unknown',
-          userIp: userGeo ? userGeo.ip : 'Unknown'
+          userIp: userGeo ? userGeo.ip : 'Unknown',
+          ...protectionData,
         }),
       });
 
@@ -108,6 +118,7 @@ const SubscribeForm = () => {
       toast.error(error.message || 'Failed to submit. Please try again later.');
     } finally {
       setIsLoading(false);
+      resetProtection();
     }
   };
 
@@ -232,10 +243,15 @@ const SubscribeForm = () => {
               </div>
             </div>
 
+            <SubmissionProtectionFields
+              {...protectionFieldProps}
+              className="pt-1"
+            />
+
             <button
               type="submit"
-              disabled={isLoading}
-              className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors ${isLoading
+              disabled={isLoading || isVerifying}
+              className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors ${isLoading || isVerifying
                 ? 'bg-blue-400 cursor-not-allowed'
                 : 'bg-blue-600 hover:bg-blue-700'
                 }`}

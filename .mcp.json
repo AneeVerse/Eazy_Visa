@@ -1,0 +1,9 @@
+﻿{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx.cmd",
+      "args": ["-y", "@playwright/mcp@latest", "--browser", "msedge"],
+      "type": "stdio"
+    }
+  }
+}

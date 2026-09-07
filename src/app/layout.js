@@ -10,6 +10,7 @@ import OrganizationSchema from "../components/seo/OrganizationSchema";
 import BreadcrumbSchema from "../components/seo/BreadcrumbSchema";
 import WebSiteSchema from "../components/seo/WebSiteSchema";
 import VisitorTracker from "../components/common/VisitorTracker";
+import { DEFAULT_SCRIPT_ID, SCRIPT_URL } from "@marsidev/react-turnstile";
 
 const comfortaa = Comfortaa({
   subsets: ["latin"],
@@ -85,6 +86,12 @@ export default function RootLayout({ children }) {
         <meta name="google-site-verification" content="mzi68Swu3UM_EQoy75guBPrCCFP8GbcSHLlyDFUEE2E" />
       </head>
       <body className="font-comfortaa">
+        <Script
+          id={DEFAULT_SCRIPT_ID}
+          src={SCRIPT_URL}
+          strategy="afterInteractive"
+        />
+
         {/* Google Tag Manager Script */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`

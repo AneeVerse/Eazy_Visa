@@ -7,9 +7,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CountryCodeDropdown from './CountryCodeDropdown';
 import useGeoLocation from '../../hooks/useGeoLocation';
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from './SubmissionProtectionFields';
 
 const PopupForm = () => {
   const userGeo = useGeoLocation();
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection('visa_lead');
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -41,6 +49,7 @@ const PopupForm = () => {
   }, []);
 
   const closePopup = () => {
+    resetProtection();
     setIsOpen(false);
   };
 
@@ -337,6 +346,7 @@ const PopupForm = () => {
     setIsLoading(true);
 
     try {
+      const protectionData = await getProtectionData();
       // Combine country code with phone number (with space)
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
 
@@ -357,7 +367,8 @@ const PopupForm = () => {
           formSource: "Popup Form",
           userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
           userPincode: userGeo ? userGeo.pincode : 'Unknown',
-          userIp: userGeo ? userGeo.ip : 'Unknown'
+          userIp: userGeo ? userGeo.ip : 'Unknown',
+          ...protectionData,
         }),
       });
 
@@ -385,6 +396,7 @@ const PopupForm = () => {
       });
     } finally {
       setIsLoading(false);
+      resetProtection();
     }
   };
 
@@ -406,7 +418,7 @@ const PopupForm = () => {
       />
 
       <div className="fixed inset-0 bg-black/30 backdrop-blur-[4px] bg-opacity-20 z-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-xl shadow-2xl overflow-hidden max-w-4xl w-full flex flex-col lg:flex-row">
+        <div className="bg-white rounded-xl shadow-2xl overflow-hidden max-w-4xl max-h-[90vh] w-full flex flex-col lg:flex-row">
           {/* Close Button */}
           <button
             onClick={closePopup}
@@ -445,7 +457,7 @@ const PopupForm = () => {
           </div>
 
           {/* Form Section */}
-          <div className="lg:w-2/3 p-6 sm:p-8">
+          <div className="lg:w-2/3 p-6 sm:p-8 overflow-y-auto">
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-gray-800">Free Visa Consultation</h3>
               <p className="text-gray-600 hidden lg:block">Fill out the form and our expert will contact you shortly</p>
@@ -623,11 +635,16 @@ const PopupForm = () => {
                 </label>
               </div>
 
+              <SubmissionProtectionFields
+                {...protectionFieldProps}
+                className="pt-1"
+              />
+
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isLoading || !isAccepted}
-                className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
+                disabled={isLoading || isVerifying || !isAccepted}
+                className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${isLoading || isVerifying || !isAccepted
                   ? "bg-gray-300 cursor-not-allowed"
                   : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
                   } transition-all duration-300`}

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Layout from "../common/Layout";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import useSubmissionProtection from "../../hooks/useSubmissionProtection";
+import SubmissionProtectionFields from "../common/SubmissionProtectionFields";
 
 const reviews = [
   {
@@ -79,6 +81,12 @@ const reviews = [
 ];
 
 const FeedbackReviewComponent = () => {
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection("feedback");
   const [showPopup, setShowPopup] = useState(false);
   const [showThankYouPopup, setShowThankYouPopup] = useState(false);
   const [selectedRating, setSelectedRating] = useState(0);
@@ -186,23 +194,33 @@ const FeedbackReviewComponent = () => {
   const handleSubmitMessage = async () => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/submitFeedback", {
+      const protectionData = await getProtectionData();
+      const response = await fetch("/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({
+          message,
+          rating: selectedRating,
+          ...protectionData,
+        }),
       });
 
-      if (response.ok) {
-        setNotification({ type: "success", message: "Your message has been submitted." });
-      } else {
-        setNotification({ type: "error", message: "Error submitting your message." });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Error submitting your message.");
       }
-    } catch (error) {
-      setNotification({ type: "error", message: "Error submitting your message." });
-    } finally {
-      setIsSubmitting(false);
+
+      setNotification({ type: "success", message: "Your message has been submitted." });
       setShowThankYouPopup(false);
       setMessage("");
+    } catch (error) {
+      setNotification({
+        type: "error",
+        message: error.message || "Error submitting your message.",
+      });
+    } finally {
+      setIsSubmitting(false);
+      resetProtection();
 
       setTimeout(() => setNotification(null), 4000);
     }
@@ -349,7 +367,10 @@ const FeedbackReviewComponent = () => {
             <div className="fixed w-full h-screen z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
               <div className="bg-white p-6 rounded-lg shadow-lg z-50 relative">
                 <button
-                  onClick={() => setShowThankYouPopup(false)}
+                  onClick={() => {
+                    resetProtection();
+                    setShowThankYouPopup(false);
+                  }}
                   className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
                 >
                   ✖
@@ -365,10 +386,14 @@ const FeedbackReviewComponent = () => {
                       className="w-full p-3 border rounded-md border-gray-300"
                       rows={4}
                     ></textarea>
+                    <SubmissionProtectionFields
+                      {...protectionFieldProps}
+                      className="mt-3"
+                    />
                     <button
                       onClick={handleSubmitMessage}
                       className="mt-4 px-6 py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600"
-                      disabled={!message.trim() || isSubmitting}
+                      disabled={!message.trim() || isSubmitting || isVerifying}
                     >
                       {isSubmitting ? "Submitting..." : "Submit Message"}
                     </button>

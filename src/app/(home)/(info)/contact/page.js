@@ -9,8 +9,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import CountryCodeDropdown from '../../../../components/common/CountryCodeDropdown';
+import useSubmissionProtection from '../../../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from '../../../../components/common/SubmissionProtectionFields';
 
 const Contact = () => {
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection('contact');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -240,6 +248,7 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
+      const protectionData = await getProtectionData();
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -248,7 +257,8 @@ const Contact = () => {
         body: JSON.stringify({
           ...formData,
           phone: `${formData.countryCode} ${formData.phone}`, // Combine country code with phone (with space)
-          googleSheetsPhone: `${formData.countryCode.replace('+', '')}${formData.phone}` // Clean version for Google Sheets
+          googleSheetsPhone: `${formData.countryCode.replace('+', '')}${formData.phone}`, // Clean version for Google Sheets
+          ...protectionData,
         }),
       });
 
@@ -275,6 +285,7 @@ const Contact = () => {
       });
     } finally {
       setIsLoading(false);
+      resetProtection();
     }
   };
 
@@ -480,9 +491,14 @@ const Contact = () => {
                 />
               </div>
 
+              <SubmissionProtectionFields
+                {...protectionFieldProps}
+                className="pt-1"
+              />
+
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || isVerifying}
                 className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (

@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
+import { protectSubmissionRequest } from '../../../lib/security/protectSubmission';
 
 // Aggressive IST time function - This will definitely work
 const getIndianTime = () => {
@@ -46,6 +47,9 @@ const extractLocalPhone = (googleSheetsPhone, countryCodeDigits, fallbackPhone) 
 
 export const POST = async (req) => {
   try {
+    const protection = await protectSubmissionRequest(req, 'legacy_visa');
+    if (!protection.ok) return protection.response;
+
     const {
       firstName,
       lastName,
@@ -64,7 +68,7 @@ export const POST = async (req) => {
       userLocation,
       userPincode,
       userIp,
-    } = await req.json();
+    } = protection.body;
     const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
 
     console.log('Received visa form submission:', {

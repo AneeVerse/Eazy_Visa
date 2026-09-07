@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import dbConnect from '../../../lib/dbConnect';
+import { protectSubmissionRequest } from '../../../lib/security/protectSubmission';
 
 // Define Subscriber schema
 const subscriberSchema = new mongoose.Schema({
@@ -37,9 +38,11 @@ try {
 
 export const POST = async (req) => {
   try {
-    await dbConnect();
+    const protection = await protectSubmissionRequest(req, 'newsletter');
+    if (!protection.ok) return protection.response;
 
-    const { email, name } = await req.json();
+    const { email, name } = protection.body;
+    await dbConnect();
 
     // Validate required fields
     if (!email) {

@@ -17,9 +17,17 @@ import CountryCodeDropdown from '../common/CountryCodeDropdown';
 import { BiPhone } from 'react-icons/bi';
 import useGeoLocation from '../../hooks/useGeoLocation';
 import airports from '../../data/airports';
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
 const MostPreferredBooking = ({ origin, onTabClick }) => {
     const userGeo = useGeoLocation();
+    const {
+        getProtectionData,
+        resetProtection,
+        isVerifying,
+        protectionFieldProps,
+    } = useSubmissionProtection('preferred_booking');
     // Form steps
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -356,6 +364,7 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
         setIsLoading(true);
 
         try {
+            const protectionData = await getProtectionData();
             const response = await fetch('/api/most-preferred-booking', {
                 method: 'POST',
                 headers: {
@@ -379,7 +388,8 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
                     },
                     userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
                     userPincode: userGeo ? userGeo.pincode : 'Unknown',
-                    userIp: userGeo ? userGeo.ip : 'Unknown'
+                    userIp: userGeo ? userGeo.ip : 'Unknown',
+                    ...protectionData,
                 }),
             });
 
@@ -399,9 +409,10 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
             }
         } catch (error) {
             console.error('Error submitting form:', error);
-            toast.error('An error occurred while submitting your booking');
+            toast.error(error.message || 'An error occurred while submitting your booking');
         } finally {
             setIsLoading(false);
+            resetProtection();
         }
     };
 
@@ -417,6 +428,7 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
     };
 
     const prevStep = () => {
+        if (currentStep === 3) resetProtection();
         if (currentStep > 1) setCurrentStep(currentStep - 1);
     };
 
@@ -820,6 +832,11 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
                                         </div>
                                     </div>
 
+                                    <SubmissionProtectionFields
+                                        {...protectionFieldProps}
+                                        className="pt-2"
+                                    />
+
                                     <div className="flex justify-between pt-4">
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
@@ -1021,7 +1038,7 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
                                             <Button
                                                 type="submit"
                                                 className="w-full md:w-auto px-8 py-3"
-                                                disabled={isLoading ? true : false}
+                                                disabled={isLoading || isVerifying}
                                             >
                                                 {!isLoading ? "Complete Booking" : "Submiting..."}
 

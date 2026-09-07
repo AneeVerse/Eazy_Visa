@@ -1,6 +1,7 @@
 // app/api/flight-booking/route.js
 import nodemailer from 'nodemailer';
 import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
+import { protectSubmissionRequest } from '../../../lib/security/protectSubmission';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,7 +32,10 @@ const getIndianTime = () => {
 export const POST = async (req) => {
   try {
     console.log('Flight booking API called');
-    const formData = await req.json();
+    const protection = await protectSubmissionRequest(req, 'flight_booking');
+    if (!protection.ok) return protection.response;
+
+    const formData = protection.body;
     console.log('Flight data received:', formData);
 
     // Validate required fields

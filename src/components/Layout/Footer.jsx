@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Link from "next/link";
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
 const footerLinks = [
   { name: "Home", href: "/" },
@@ -25,6 +27,12 @@ const socialLinks = [
 ];
 
 export default function Footer({ showDisclaimer = false }) {
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection('newsletter');
   const [formData, setFormData] = useState({
       name: 'unknown',
       email: ''
@@ -50,12 +58,16 @@ export default function Footer({ showDisclaimer = false }) {
       setIsLoading(true);
   
       try {
+        const protectionData = await getProtectionData();
         const response = await fetch('/api/subscribe', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            ...formData,
+            ...protectionData,
+          }),
         });
   
         const data = await response.json();
@@ -70,6 +82,7 @@ export default function Footer({ showDisclaimer = false }) {
         toast.error(error.message);
       } finally {
         setIsLoading(false);
+        resetProtection();
       }
     };
   
@@ -131,23 +144,28 @@ export default function Footer({ showDisclaimer = false }) {
             {/* Right Section - Newsletter Subscription */}
             <div className="space-y-4">
               <h3 className="font-bold text-lg">Stay up to date</h3>
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <input
-                  type="email"
-
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  
-                  placeholder="Enter your email"
-                  className="w-full sm:w-64 p-2 border border-white rounded-lg text-white bg-transparent focus:outline-none placeholder:text-gray-200"
+              <form onSubmit={handleSubmit} className="space-y-2">
+                <div className="flex flex-col sm:flex-row items-center gap-2">
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="Enter your email"
+                    className="w-full sm:w-64 p-2 border border-white rounded-lg text-white bg-transparent focus:outline-none placeholder:text-gray-200"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isLoading || isVerifying}
+                    className="w-full sm:w-auto bg-white text-blue-500 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-60"
+                  >
+                    {isLoading ? 'Subscribing...' : 'Subscribe'}
+                  </button>
+                </div>
+                <SubmissionProtectionFields
+                  {...protectionFieldProps}
+                  className="max-w-sm"
                 />
-                <button 
-                onClick={handleSubmit}
-                 disabled={isLoading}
-                 className="w-full sm:w-auto bg-white text-blue-500 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-                 {isLoading ? 'Subscribing...' : 'Subscribe'}
-                </button>
-              </div>
+              </form>
 
               {/* Social Media Icons */}
               <div className="flex gap-4">

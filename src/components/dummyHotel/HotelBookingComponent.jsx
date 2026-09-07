@@ -17,9 +17,17 @@ import { BiPhone } from 'react-icons/bi';
 import { format } from 'date-fns';
 import ConversionTracking from '../common/ConversionTracking';
 import useGeoLocation from '../../hooks/useGeoLocation';
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
 export default function HotelBookingComponent({ onTabClick, origin }) {
   const userGeo = useGeoLocation();
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection('hotel_booking');
   // Form steps
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -446,6 +454,7 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
     console.log("Submitting form data:", formData);
 
     try {
+      const protectionData = await getProtectionData();
       const response = await fetch('/api/hotel-booking', {
         method: 'POST',
         headers: {
@@ -467,7 +476,8 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
           },
           userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
           userPincode: userGeo ? userGeo.pincode : 'Unknown',
-          userIp: userGeo ? userGeo.ip : 'Unknown'
+          userIp: userGeo ? userGeo.ip : 'Unknown',
+          ...protectionData,
         }),
       });
 
@@ -489,9 +499,10 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      toast.error('An error occurred while submitting your booking');
+      toast.error(error.message || 'An error occurred while submitting your booking');
     } finally {
       setIsLoading(false);
+      resetProtection();
     }
   };
 
@@ -506,6 +517,7 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
   };
 
   const prevStep = () => {
+    if (currentStep === 3) resetProtection();
     if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
@@ -963,6 +975,11 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
                     </div>
                   </div>
 
+                  <SubmissionProtectionFields
+                    {...protectionFieldProps}
+                    className="pt-2"
+                  />
+
                   <div className="flex justify-between pt-4">
                     <motion.div
                       whileHover={{ scale: 1.02 }}
@@ -1176,7 +1193,7 @@ export default function HotelBookingComponent({ onTabClick, origin }) {
                       <Button
                         type="submit"
                         className="w-full md:w-auto px-3 sm:px-8 py-3"
-                        disabled={isLoading}
+                        disabled={isLoading || isVerifying}
                       >
                         {!isLoading ? "Complete Booking" : "Submitting..."}
                         {!isLoading && <FiArrowRight className="ml-3 text-xl" />}

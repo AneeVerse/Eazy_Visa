@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
+import { protectSubmissionRequest } from '../../../lib/security/protectSubmission';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,7 +18,10 @@ const extractLocalPhone = (googleSheetsPhone, countryCodeDigits, fallbackPhone) 
 
 export const POST = async (req) => {
   try {
-    const formData = await req.json();
+    const protection = await protectSubmissionRequest(req, 'blog_contact');
+    if (!protection.ok) return protection.response;
+
+    const formData = protection.body;
     const { googleSheetsPhone } = formData;
     console.log('Blog contact form submission:', formData);
 

@@ -1,6 +1,7 @@
 // app/api/hotel-booking/route.js
 import nodemailer from 'nodemailer';
 import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
+import { protectSubmissionRequest } from '../../../lib/security/protectSubmission';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,7 +31,10 @@ const getIndianTime = () => {
 
 export const POST = async (req) => {
   try {
-    const formData = await req.json();
+    const protection = await protectSubmissionRequest(req, 'hotel_booking');
+    if (!protection.ok) return protection.response;
+
+    const formData = protection.body;
     console.log('Received form data:', formData);
     // Validate required fields
     if (!formData.contact?.email || !formData.contact?.phone ||

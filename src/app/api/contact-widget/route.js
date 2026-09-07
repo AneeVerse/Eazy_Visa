@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
+import { protectSubmissionRequest } from '../../../lib/security/protectSubmission';
 
 const normalizeCountryCode = (code) =>
   (code || '').toString().replace('+', '').trim();
@@ -15,6 +16,9 @@ const extractLocalPhone = (googleSheetsPhone, countryCodeDigits, fallbackPhone) 
 
 export async function POST(req) {
   try {
+    const protection = await protectSubmissionRequest(req, 'contact_widget');
+    if (!protection.ok) return protection.response;
+
     const {
       firstName,
       lastName,
@@ -24,7 +28,7 @@ export async function POST(req) {
       contactType,
       source,
       countryCode,
-    } = await req.json();
+    } = protection.body;
     console.log('Received contact widget submission:', { firstName, lastName, email, phone, contactType, source });
 
     // Validation

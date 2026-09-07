@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { sendToGoogleSheets } from '../../../lib/googleSheetsClient';
+import { protectSubmissionRequest } from '../../../lib/security/protectSubmission';
 
 export const dynamic = 'force-dynamic';
 
@@ -84,6 +85,9 @@ const extractLocalPhone = (googleSheetsPhone, countryCodeDigits, fallbackPhone) 
 
 export const POST = async (req) => {
   try {
+    const protection = await protectSubmissionRequest(req, 'visa_lead');
+    if (!protection.ok) return protection.response;
+
     const {
       firstName,
       lastName,
@@ -102,7 +106,7 @@ export const POST = async (req) => {
       userLocation,
       userPincode,
       userIp,
-    } = await req.json();
+    } = protection.body;
     const name = `${firstName ? firstName : ''} ${lastName ? lastName : ''}`.trim();
 
     console.log('Received form submission:', {

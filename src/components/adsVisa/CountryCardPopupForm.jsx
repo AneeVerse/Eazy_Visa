@@ -10,9 +10,17 @@ import { usePathname } from 'next/navigation';
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
 import Image from 'next/image';
 import useGeoLocation from '../../hooks/useGeoLocation';
+import useSubmissionProtection from '../../hooks/useSubmissionProtection';
+import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
 const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, countryFlag }) => {
   const userGeo = useGeoLocation();
+  const {
+    getProtectionData,
+    resetProtection,
+    isVerifying,
+    protectionFieldProps,
+  } = useSubmissionProtection('visa_lead');
   const pathname = usePathname();
   const [formData, setFormData] = useState({
     firstName: '',
@@ -44,8 +52,14 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
       });
       setErrors({});
       setIsAccepted(true);
+      resetProtection();
     }
-  }, [isOpen, selectedCountry]);
+  }, [isOpen, selectedCountry, resetProtection]);
+
+  const handleClose = () => {
+    resetProtection();
+    onClose();
+  };
 
   const visaTypes = [
     "Tourist Visa",
@@ -164,6 +178,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
     setIsLoading(true);
 
     try {
+      const protectionData = await getProtectionData();
       const fullPhoneNumber = `${formData.countryCode} ${formData.phone}`;
       const googleSheetsPhone = `${formData.countryCode.replace('+', '')}${formData.phone}`;
 
@@ -178,7 +193,8 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
           googleSheetsPhone: googleSheetsPhone,
           userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
           userPincode: userGeo ? userGeo.pincode : 'Unknown',
-          userIp: userGeo ? userGeo.ip : 'Unknown'
+          userIp: userGeo ? userGeo.ip : 'Unknown',
+          ...protectionData,
         }),
       });
 
@@ -201,6 +217,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
       });
     } finally {
       setIsLoading(false);
+      resetProtection();
     }
   };
 
@@ -221,14 +238,14 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
         pauseOnHover
       />
 
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-[4px] z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-[4px] z-50 flex items-center justify-center p-4" onClick={handleClose}>
         <div
           className="bg-white rounded-xl shadow-2xl overflow-hidden max-w-4xl w-full flex flex-col lg:flex-row relative"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close Button */}
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute top-3 right-3 z-10 text-gray-500 hover:text-gray-700 focus:outline-none bg-white rounded-full p-1 shadow-md"
           >
             <BiX className="text-2xl" />
@@ -429,11 +446,16 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
                 </label>
               </div>
 
+              <SubmissionProtectionFields
+                {...protectionFieldProps}
+                className="pt-1"
+              />
+
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isLoading || !isAccepted}
-                className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${isLoading || !isAccepted
+                disabled={isLoading || isVerifying || !isAccepted}
+                className={`w-full mt-4 py-3 px-4 rounded-lg text-sm font-medium flex items-center justify-center space-x-2 ${isLoading || isVerifying || !isAccepted
                   ? "bg-gray-300 cursor-not-allowed"
                   : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md"
                   } transition-all duration-300`}
