@@ -42,6 +42,10 @@ export const useSubmissionProtection = (action) => {
     setIsReady(true);
   }, []);
 
+  const handleWidgetUnload = useCallback(() => {
+    setIsReady(false);
+  }, []);
+
   const handleError = useCallback(
     () => {
       const verificationError = new Error(DEFAULT_ERROR);
@@ -162,6 +166,7 @@ export const useSubmissionProtection = (action) => {
       onWebsiteChange: setWebsite,
       error,
       onWidgetLoad: handleWidgetLoad,
+      onWidgetUnload: handleWidgetUnload,
       onSuccess: handleSuccess,
       onError: handleError,
       onExpire: handleExpire,

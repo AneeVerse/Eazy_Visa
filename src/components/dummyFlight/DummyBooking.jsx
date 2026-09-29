@@ -811,11 +811,6 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                                         </div>
                                     </div>
 
-                                    <SubmissionProtectionFields
-                                        {...protectionFieldProps}
-                                        className="pt-2"
-                                    />
-
                                     <div className="flex justify-between pt-4">
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
@@ -995,6 +990,11 @@ const FlightBookingComponent = ({ onTabClick, origin }) => {
                                             </div>
                                         </div>
                                     </div>
+
+                                    <SubmissionProtectionFields
+                                        {...protectionFieldProps}
+                                        className="pt-2"
+                                    />
 
                                     <div className="flex justify-between pt-4">
                                         <motion.div

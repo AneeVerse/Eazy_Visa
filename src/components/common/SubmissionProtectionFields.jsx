@@ -13,6 +13,7 @@ const SubmissionProtectionFields = ({
   onWebsiteChange,
   error,
   onWidgetLoad,
+  onWidgetUnload,
   onSuccess,
   onError,
   onExpire,
@@ -22,6 +23,8 @@ const SubmissionProtectionFields = ({
   const generatedId = useId().replace(/:/g, '');
   const containerRef = useRef(null);
   const [widgetSize, setWidgetSize] = useState('flexible');
+
+  useEffect(() => () => onWidgetUnload?.(), [onWidgetUnload]);
 
   useEffect(() => {
     if (!containerRef.current || typeof ResizeObserver === 'undefined') return;

@@ -832,11 +832,6 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
                                         </div>
                                     </div>
 
-                                    <SubmissionProtectionFields
-                                        {...protectionFieldProps}
-                                        className="pt-2"
-                                    />
-
                                     <div className="flex justify-between pt-4">
                                         <motion.div
                                             whileHover={{ scale: 1.02 }}
@@ -1016,6 +1011,11 @@ const MostPreferredBooking = ({ origin, onTabClick }) => {
                                             </div>
                                         </div>
                                     </div>
+
+                                    <SubmissionProtectionFields
+                                        {...protectionFieldProps}
+                                        className="pt-2"
+                                    />
 
                                     <div className="flex justify-between pt-4">
                                         <motion.div
