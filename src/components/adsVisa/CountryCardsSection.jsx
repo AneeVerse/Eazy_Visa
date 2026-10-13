@@ -11,7 +11,7 @@ export const ukDestinationCard = {
   shortName: 'UK',
   image: '/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp',
   flag: '/images/flags/gb.webp',
-  visaTypes: ['Tourist Visa', 'Business Visa'],
+  visaTypes: ['Tourist Visa'],
   processingTime: '15-20 Days',
   description: 'UK visa consultation with clear steps, checklist-based preparation guidance, and support for common applicant questions.',
 };
@@ -21,7 +21,7 @@ export const usDestinationCard = {
   shortName: 'USA',
   image: '/images/landmarks/Tourist Places in United States Visa.webp',
   flag: '/images/flags/us.webp',
-  visaTypes: ['Tourist Visa', 'Business Visa'],
+  visaTypes: ['Tourist Visa'],
   processingTime: '30-60 Days',
   description: 'US visa consultation for tourist and business travel, with guidance on steps, timelines, and how to prepare confidently.',
 };
@@ -31,7 +31,7 @@ export const schengenDestinationCard = {
   shortName: 'Schengen (Europe)',
   image: '/images/landmarks/Colosseum in Italy Visa.webp',
   flag: '/images/flags/eu.png',
-  visaTypes: ['Tourist Visa', 'Business Visa'],
+  visaTypes: ['Tourist Visa'],
   processingTime: '15-20 Days',
   description: 'Schengen visa consultation for Europe—structured guidance, checklists, and step-by-step clarity for first-time and repeat travellers.',
 };
@@ -41,7 +41,7 @@ export const australiaDestinationCard = {
   shortName: 'Australia',
   image: '/images/landmarks/Sydney Opera House in Australia Visa.webp',
   flag: '/images/flags/au.webp',
-  visaTypes: ['Tourist Visa', 'Business Visa'],
+  visaTypes: ['Tourist Visa'],
   processingTime: '15-20 Days',
   description: 'Australia visa consultation for tourist and business travel with practical, step-by-step guidance and responsive support.',
 };
@@ -52,7 +52,7 @@ export const vietnamDestinationCard = {
   formCountry: 'Vietnam',
   image: '/images/landmarks/Ha Long Bay tourist places in Vietnam Visa.webp',
   flag: '/images/flags/vn.webp',
-  visaTypes: ['Tourist Visa', 'Business Visa'],
+  visaTypes: ['Tourist Visa'],
   processingTime: '15-20 Days',
   description: 'Vietnam visa consultation for tourist and business travel, with clear steps, checklists, and support for common applicant questions.',
 };
@@ -64,7 +64,7 @@ export const baliDestinationCard = {
   popupTitle: 'Bali (Indonesia)',
   image: '/images/landmarks/Tanah Lot tourist places in Bali Indonesia Visa.webp',
   flag: '/images/flags/id.webp',
-  visaTypes: ['Tourist Visa', 'Business Visa'],
+  visaTypes: ['Tourist Visa'],
   processingTime: '15-20 Days',
   description: 'Bali (Indonesia) visa consultation for tourist and business travel, with practical steps and responsive support.',
 };
