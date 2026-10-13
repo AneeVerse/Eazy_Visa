@@ -13,7 +13,15 @@ import useGeoLocation from '../../hooks/useGeoLocation';
 import useSubmissionProtection from '../../hooks/useSubmissionProtection';
 import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
-const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, countryFlag }) => {
+const CountryCardPopupForm = ({
+  isOpen,
+  onClose,
+  selectedCountry,
+  displayName,
+  countryImage,
+  countryFlag,
+  formSource = 'ads-visa-page',
+}) => {
   const userGeo = useGeoLocation();
   const {
     getProtectionData,
@@ -30,7 +38,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
     countryCode: '+91',
     country: selectedCountry || '',
     visaType: '',
-    formSource: 'ads-visa-page'
+    formSource
   });
 
   const [errors, setErrors] = useState({});
@@ -48,13 +56,13 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
         countryCode: '+91',
         country: selectedCountry || '',
         visaType: '',
-        formSource: 'ads-visa-page'
+        formSource
       });
       setErrors({});
       setIsAccepted(true);
       resetProtection();
     }
-  }, [isOpen, selectedCountry, resetProtection]);
+  }, [isOpen, selectedCountry, formSource, resetProtection]);
 
   const handleClose = () => {
     resetProtection();
@@ -191,6 +199,9 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
           ...formData,
           phone: fullPhoneNumber,
           googleSheetsPhone: googleSheetsPhone,
+          from: formSource,
+          pageLink: typeof window !== 'undefined' ? window.location.href : '',
+          pageName: formSource,
           userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
           userPincode: userGeo ? userGeo.pincode : 'Unknown',
           userIp: userGeo ? userGeo.ip : 'Unknown',
@@ -256,7 +267,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
             {countryImage && (
               <Image
                 src={countryImage}
-                alt={selectedCountry || 'Country'}
+                alt={displayName || selectedCountry || 'Country'}
                 fill
                 className="object-cover"
               />
@@ -267,13 +278,13 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
                 {countryFlag && (
                   <Image
                     src={countryFlag}
-                    alt={selectedCountry || 'Flag'}
+                    alt={displayName || selectedCountry || 'Flag'}
                     width={40}
                     height={40}
                     className="rounded"
                   />
                 )}
-                <h3 className="text-2xl font-bold">{selectedCountry || 'Get Your Visa'}</h3>
+                <h3 className="text-2xl font-bold">{displayName || selectedCountry || 'Get Your Visa'}</h3>
               </div>
               <p className="mb-6 text-blue-100">Our experts will guide you through the entire visa application process.</p>
               <div className="space-y-3">
@@ -303,7 +314,7 @@ const CountryCardPopupForm = ({ isOpen, onClose, selectedCountry, countryImage, 
           <div className="lg:w-3/5 p-6 sm:p-8 max-h-[90vh] overflow-y-auto">
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-gray-800">
-                {selectedCountry ? `${selectedCountry} Visa Inquiry` : 'Free Visa Consultation'}
+                {(displayName || selectedCountry) ? `${displayName || selectedCountry} Visa Inquiry` : 'Free Visa Consultation'}
               </h3>
               <p className="text-gray-600 text-sm mt-1">Fill out the form and our expert will contact you shortly</p>
             </div>

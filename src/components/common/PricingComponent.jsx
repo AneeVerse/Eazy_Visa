@@ -36,7 +36,7 @@ const PricingComponent = ({
 
           {showBadge && (
             <div className="absolute top-[-50px] right-0 p-2">
-              <img src='/images/pricing/hourly-badge1.png' alt="hourly" className="w-20 h-20" />
+              <img src='/images/pricing/fast-delivery-30mins.svg' alt="30 Mins Fast Delivery" className="w-20 h-20" />
             </div>
           )}
           

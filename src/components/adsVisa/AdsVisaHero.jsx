@@ -3,7 +3,28 @@ import { motion } from 'framer-motion';
 import Button from '../common/Button';
 import FormComponent from '../common/FormComponent';
 
-const AdsVisaHero = ({ onBookingClick }) => {
+const DEFAULT_TITLE_WORDS = [
+  'Expert',
+  ' Visa',
+  ' Consultants',
+  ' for',
+  ' UK,',
+  ' US,',
+  ' Schengen',
+  ' &',
+  ' Australia',
+];
+
+const DEFAULT_DESCRIPTION =
+  "Get visa consultation for tourist and business travel to the UK, US, Schengen (Europe) and Australia with a simple, step-by-step process and fast WhatsApp support whenever you need clarity. We're an independent consultancy (not a government website), and we don't promise approvals; final decisions are always made by the relevant authorities.";
+
+const AdsVisaHero = ({
+  onBookingClick,
+  titleWords = DEFAULT_TITLE_WORDS,
+  description = DEFAULT_DESCRIPTION,
+  redirectPath = '/ads-visa-thankyou',
+  from,
+}) => {
   const handleHeroCta = (type) => {
     if (onBookingClick) {
       onBookingClick({ type });
@@ -24,17 +45,7 @@ const AdsVisaHero = ({ onBookingClick }) => {
             <div className="space-y-5 text-center lg:text-left">
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight">
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.1 }}>
-                  {[
-                    'Expert',
-                    ' Visa',
-                    ' Consultants',
-                    ' for',
-                    ' UK,',
-                    ' US,',
-                    ' Schengen',
-                    ' &',
-                    ' Australia',
-                  ].map((word, wordIndex) => (
+                  {titleWords.map((word, wordIndex) => (
                     <span key={wordIndex}>
                       {word.split('').map((char, charIndex) => (
                         <motion.span
@@ -55,7 +66,7 @@ const AdsVisaHero = ({ onBookingClick }) => {
               </h1>
 
               <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg text-gray-700 leading-relaxed">
-                Get visa consultation for tourist and business travel to the UK, US, Schengen (Europe) and Australia with a simple, step-by-step process and fast WhatsApp support whenever you need clarity. We're an independent consultancy (not a government website), and we don't promise approvals; final decisions are always made by the relevant authorities.
+                {description}
               </p>
 
               {/* Trust Indicators */}
@@ -113,7 +124,7 @@ const AdsVisaHero = ({ onBookingClick }) => {
           >
             <div className="w-full flex flex-col items-center lg:items-end">
               <div className="w-full max-w-md">
-                <FormComponent redirectPath="/ads-visa-thankyou" />
+                <FormComponent redirectPath={redirectPath} from={from} />
               </div>
             </div>
           </motion.div>

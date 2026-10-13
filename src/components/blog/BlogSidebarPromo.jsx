@@ -20,7 +20,7 @@ export default function BlogSidebarPromo() {
           Instant Visa Itineraries & Bookings
         </h3>
         <p className="text-gray-600 text-[11px] mb-3 leading-tight">
-          Get verified flight, hotel, and daywise itineraries delivered in 24 hours starting at ₹999.
+          Get verified flight, hotel, and daywise itineraries delivered in 30 mins starting at ₹999.
         </p>
 
         {/* CTA Button */}

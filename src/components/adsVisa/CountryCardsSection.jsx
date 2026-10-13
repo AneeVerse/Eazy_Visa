@@ -6,46 +6,80 @@ import { FaStar, FaCheckCircle, FaArrowRight } from 'react-icons/fa';
 import { BiSupport } from 'react-icons/bi';
 import CountryCardPopupForm from './CountryCardPopupForm';
 
-const countries = [
-  {
-    name: 'United Kingdom',
-    shortName: 'UK',
-    image: '/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp',
-    flag: '/images/flags/gb.webp',
-    visaTypes: ['Tourist Visa', 'Business Visa'],
-    processingTime: '15-20 Days',
-    description: 'UK visa consultation with clear steps, checklist-based preparation guidance, and support for common applicant questions.',
-  },
-  {
-    name: 'United States',
-    shortName: 'USA',
-    image: '/images/landmarks/Tourist Places in United States Visa.webp',
-    flag: '/images/flags/us.webp',
-    visaTypes: ['Tourist Visa', 'Business Visa'],
-    processingTime: '30-60 Days',
-    description: 'US visa consultation for tourist and business travel, with guidance on steps, timelines, and how to prepare confidently.',
-  },
-  {
-    name: 'Schengen',
-    shortName: 'Schengen (Europe)',
-    image: '/images/landmarks/Colosseum in Italy Visa.webp',
-    flag: '/images/flags/eu.png',
-    visaTypes: ['Tourist Visa', 'Business Visa'],
-    processingTime: '15-20 Days',
-    description: 'Schengen visa consultation for Europe—structured guidance, checklists, and step-by-step clarity for first-time and repeat travellers.',
-  },
-  {
-    name: 'Australia',
-    shortName: 'Australia',
-    image: '/images/landmarks/Sydney Opera House in Australia Visa.webp',
-    flag: '/images/flags/au.webp',
-    visaTypes: ['Tourist Visa', 'Business Visa'],
-    processingTime: '15-20 Days',
-    description: 'Australia visa consultation for tourist and business travel with practical, step-by-step guidance and responsive support.',
-  },
+export const ukDestinationCard = {
+  name: 'United Kingdom',
+  shortName: 'UK',
+  image: '/images/landmarks/Big Ben tourist places in United Kingdom UK Visa.webp',
+  flag: '/images/flags/gb.webp',
+  visaTypes: ['Tourist Visa', 'Business Visa'],
+  processingTime: '15-20 Days',
+  description: 'UK visa consultation with clear steps, checklist-based preparation guidance, and support for common applicant questions.',
+};
+
+export const usDestinationCard = {
+  name: 'United States',
+  shortName: 'USA',
+  image: '/images/landmarks/Tourist Places in United States Visa.webp',
+  flag: '/images/flags/us.webp',
+  visaTypes: ['Tourist Visa', 'Business Visa'],
+  processingTime: '30-60 Days',
+  description: 'US visa consultation for tourist and business travel, with guidance on steps, timelines, and how to prepare confidently.',
+};
+
+export const schengenDestinationCard = {
+  name: 'Schengen',
+  shortName: 'Schengen (Europe)',
+  image: '/images/landmarks/Colosseum in Italy Visa.webp',
+  flag: '/images/flags/eu.png',
+  visaTypes: ['Tourist Visa', 'Business Visa'],
+  processingTime: '15-20 Days',
+  description: 'Schengen visa consultation for Europe—structured guidance, checklists, and step-by-step clarity for first-time and repeat travellers.',
+};
+
+export const australiaDestinationCard = {
+  name: 'Australia',
+  shortName: 'Australia',
+  image: '/images/landmarks/Sydney Opera House in Australia Visa.webp',
+  flag: '/images/flags/au.webp',
+  visaTypes: ['Tourist Visa', 'Business Visa'],
+  processingTime: '15-20 Days',
+  description: 'Australia visa consultation for tourist and business travel with practical, step-by-step guidance and responsive support.',
+};
+
+export const vietnamDestinationCard = {
+  name: 'Vietnam',
+  shortName: 'Vietnam',
+  formCountry: 'Vietnam',
+  image: '/images/landmarks/Ha Long Bay tourist places in Vietnam Visa.webp',
+  flag: '/images/flags/vn.webp',
+  visaTypes: ['Tourist Visa', 'Business Visa'],
+  processingTime: '15-20 Days',
+  description: 'Vietnam visa consultation for tourist and business travel, with clear steps, checklists, and support for common applicant questions.',
+};
+
+export const baliDestinationCard = {
+  name: 'Indonesia',
+  shortName: 'Bali (Indonesia)',
+  formCountry: 'Indonesia',
+  popupTitle: 'Bali (Indonesia)',
+  image: '/images/landmarks/Tanah Lot tourist places in Bali Indonesia Visa.webp',
+  flag: '/images/flags/id.webp',
+  visaTypes: ['Tourist Visa', 'Business Visa'],
+  processingTime: '15-20 Days',
+  description: 'Bali (Indonesia) visa consultation for tourist and business travel, with practical steps and responsive support.',
+};
+
+const defaultCountries = [
+  ukDestinationCard,
+  usDestinationCard,
+  schengenDestinationCard,
+  australiaDestinationCard,
 ];
 
-const CountryCardsSection = () => {
+const CountryCardsSection = ({
+  countries = defaultCountries,
+  formSource = 'ads-visa-page',
+}) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(null);
 
@@ -78,7 +112,7 @@ const CountryCardsSection = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {countries.map((country, index) => (
               <motion.div
-                key={country.name}
+                key={country.shortName || country.name}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
@@ -90,7 +124,7 @@ const CountryCardsSection = () => {
                   <div className="relative h-48 sm:h-52 lg:h-56 overflow-hidden">
                     <Image
                       src={country.image}
-                      alt={`${country.name} Visa`}
+                      alt={`${country.shortName || country.name} Visa`}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -183,9 +217,11 @@ const CountryCardsSection = () => {
       <CountryCardPopupForm
         isOpen={isPopupOpen}
         onClose={handleClosePopup}
-        selectedCountry={selectedCountry?.name}
+        selectedCountry={selectedCountry?.formCountry || selectedCountry?.name}
+        displayName={selectedCountry?.popupTitle}
         countryImage={selectedCountry?.image}
         countryFlag={selectedCountry?.flag}
+        formSource={formSource}
       />
     </>
   );

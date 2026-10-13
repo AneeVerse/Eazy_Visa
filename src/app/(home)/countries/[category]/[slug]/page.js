@@ -80,7 +80,7 @@ const CountryDetails = () => {
         // const apiCountries = await apiResponse.json();
         // console.log("API Countries:", apiCountries);
 
-        setCountry(countryData.find((c) => c.name.toLowerCase().replace(" ","") === slug));
+        setCountry(countryData.find((c) => (c.slug || c.name.toLowerCase().replace(" ", "")) === slug));
 
       } catch (error) {
         console.error("Error fetching country data:", error);

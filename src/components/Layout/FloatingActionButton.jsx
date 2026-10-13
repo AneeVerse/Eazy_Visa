@@ -6,11 +6,17 @@ import { FaWhatsapp, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { IoIosClose, IoMdChatboxes } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import CountryCodeDropdown from '../common/CountryCodeDropdown';
+import FormComponent from '../common/FormComponent';
 import useSubmissionProtection from '../../hooks/useSubmissionProtection';
 import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
+const adsLandingPaths = ['/ads-visa', '/Vietnam-touristvisa', '/bali-touristvisa', '/ads-schengen'];
+
 const FloatingActionButton = () => {
   const pathname = usePathname();
+  const isAdsLandingPage = adsLandingPaths.some(
+    (path) => pathname === path || pathname?.startsWith(`${path}/`)
+  );
   const {
     getProtectionData,
     resetProtection,
@@ -67,8 +73,8 @@ const FloatingActionButton = () => {
   };
 
   const closeForm = () => {
-    resetProtection();
     setShowForm(false);
+    resetProtection();
   };
 
   const handleSubmit = async (e) => {
@@ -168,7 +174,7 @@ const FloatingActionButton = () => {
   }, [showSuccess, countdown, selectedContactType]);
 
   return (
-    <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40">
+    <div className={`fixed bottom-3 right-3 sm:bottom-6 sm:right-6 ${showForm ? 'z-[80]' : 'z-40'}`}>
       {!open && !showForm && (
         <motion.div
           initial="hidden"
@@ -205,8 +211,22 @@ const FloatingActionButton = () => {
         </motion.div>
       )}
 
+      {showForm && isAdsLandingPage && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+          onClick={closeForm}
+        >
+          <div
+            className="relative w-full max-w-md max-h-[90vh] overflow-y-auto"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <FormComponent onClose={closeForm} />
+          </div>
+        </div>
+      )}
+
       {/* Contact Form Modal */}
-      {showForm && (
+      {showForm && !isAdsLandingPage && (
         <motion.div
           initial="hidden"
           animate="visible"

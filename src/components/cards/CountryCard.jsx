@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function CountryCard({
   name,
+  slug,
   price,
   continent,
   visaType,
@@ -12,8 +13,11 @@ export default function CountryCard({
   visasOnTime,
   isTrending,
 }) {
+  const countrySlug = slug || name.toLowerCase().replace(" ", "");
+  const continentSlug = continent.toLowerCase().replace(" ", "");
+
   return (
-    <Link href={`/countries/${continent.toLowerCase().replace(" ", "")}/${name.toLowerCase().replace(" ", "")}`}
+    <Link href={`/countries/${continentSlug}/${countrySlug}`}
     
 
      className="bg-white hover-myshadow rounded-xl cursor-pointer relative border border-gray-200">

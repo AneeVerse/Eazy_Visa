@@ -19,12 +19,12 @@ const PricingPage = () => {
   const plans = [
     {
       name: "Flight Itinerary",
-      description: "24 Hours Delivery",
+      description: "30 Mins Delivery",
       price: "999",
       billing: "per person",
       note: "",
       features: [
-        "24 Hours Delivery",
+        "30 Mins Delivery",
         "Unlimited Flights",
         "Name change not allowed"
       ],
@@ -33,12 +33,12 @@ const PricingPage = () => {
     },
     {
       name: "Hotel Booking",
-      description: "24 Hours Delivery",
+      description: "30 Mins Delivery",
       price: "999",
       billing: "per person",
       note: "*Price applicable for 2+ passengers",
       features: [
-        "24 Hours Delivery",
+        "30 Mins Delivery",
         "Verifiable Hotel Confirmation",
         "Name change not allowed"
       ],
@@ -47,12 +47,12 @@ const PricingPage = () => {
     },
     {
       name: "Daywise Itinerary",
-      description: "24 Hours Delivery",
+      description: "30 Mins Delivery",
       price: "999",
       billing: "per person",
       note: "",
       features: [
-        "24 Hours Delivery",
+        "30 Mins Delivery",
         "Day wise Sightseeing",
         "Details of the tour for the duration",
       ],
@@ -61,12 +61,12 @@ const PricingPage = () => {
     },
     {
       name: "Most Preferred",
-      description: "24 Hours Delivery",
+      description: "30 Mins Delivery",
       price: "1499",
       billing: "per person",
       note: "*Price applicable for 2+ passengers",
       features: [
-        "24 Hours Delivery",
+        "30 Mins Delivery",
         "Flight Itinerary",
         "Hotel Confirmation",
         "Day wise Itinerary",

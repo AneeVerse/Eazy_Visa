@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { BiSupport, BiCheckShield } from 'react-icons/bi';
+import { IoIosClose } from 'react-icons/io';
 import { FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,7 +12,7 @@ import useGeoLocation from '../../hooks/useGeoLocation';
 import useSubmissionProtection from '../../hooks/useSubmissionProtection';
 import SubmissionProtectionFields from './SubmissionProtectionFields';
 
-const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) => {
+const FormComponent = ({ from, fromCategory, redirectPath, compact = false, onClose }) => {
   const userGeo = useGeoLocation();
   const {
     getProtectionData,
@@ -83,9 +84,17 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) =>
       pageLink: fullUrl
     };
 
+    const destinationAdSources = {
+      '/Vietnam-touristvisa': 'Vietnam-touristvisa',
+      '/bali-touristvisa': 'bali-touristvisa',
+    };
+
     if (pathname.startsWith('/ads-visa') || pathname.startsWith('/ads-schengen')) {
       meta.from = 'ads-visa';
       meta.pageLabel = 'ads-visa landing page';
+    } else if (destinationAdSources[pathname]) {
+      meta.from = destinationAdSources[pathname];
+      meta.pageLabel = destinationAdSources[pathname];
     } else if (pathname.startsWith('/services/')) {
       const serviceSlug = pathname.replace('/services/', '').split('/')[0];
       meta.from = 'service';
@@ -259,6 +268,13 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) =>
           visaType: formData.visaType,
           from: from || "",
           fromCategory: fromCategory || "",
+          ...(pathname === '/Vietnam-touristvisa' || pathname === '/bali-touristvisa'
+            ? {
+                from: from || formMeta.from || "",
+                pageLink: formMeta.pageLink,
+                pageName: formMeta.pageLabel,
+              }
+            : {}),
           userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',
           userPincode: userGeo ? userGeo.pincode : 'Unknown',
           userIp: userGeo ? userGeo.ip : 'Unknown',
@@ -279,7 +295,13 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) =>
 
       if (pathname && pathname.includes('/ads-schengen')) {
         redirectUrl = '/ads-schengen-thankyou';
-      } else if (pathname && pathname.includes('/ads-visa')) {
+      } else if (
+        pathname && (
+          pathname.includes('/ads-visa') ||
+          pathname === '/Vietnam-touristvisa' ||
+          pathname === '/bali-touristvisa'
+        )
+      ) {
         redirectUrl = '/ads-visa-thankyou';
       } else if (pathname && pathname.includes('/services/end-to-end')) {
         redirectUrl = '/Confirmation-end-to-end';
@@ -331,8 +353,8 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) =>
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 transition-all hover:shadow-xl">
         {/* Form Header with Gradient */}
         <div className={`bg-gradient-to-r from-blue-600 to-blue-500 ${compact ? 'p-2.5 px-3' : 'p-5'} relative text-white`}>
-          <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full"></div>
-          <div className="absolute -right-5 -bottom-5 w-20 h-20 bg-white/5 rounded-full"></div>
+          <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full pointer-events-none"></div>
+          <div className="absolute -right-5 -bottom-5 w-20 h-20 bg-white/5 rounded-full pointer-events-none"></div>
           <div className="flex items-center space-x-2 relative z-10">
             <div className={`bg-white/20 rounded-full flex-shrink-0 ${compact ? 'p-1' : 'p-2'}`}>
               <BiSupport className={compact ? "text-base" : "text-xl"} />
@@ -346,6 +368,20 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false }) =>
               </p>
             </div>
           </div>
+          {onClose && (
+            <button
+              type="button"
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                onClose();
+              }}
+              className={`absolute z-20 flex items-center justify-center text-white ${compact ? 'top-1.5 right-1.5 h-7 w-7' : 'top-3 right-3 h-10 w-10'}`}
+              aria-label="Close"
+            >
+              <IoIosClose className={compact ? 'h-6 w-6' : 'h-8 w-8'} />
+            </button>
+          )}
         </div>
 
         {/* Form Content */}

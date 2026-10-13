@@ -215,6 +215,8 @@ export default function CountrySection() {
     country.description.toLowerCase().includes(search.toLowerCase())
   );
 
+  const pinnedMostPopular = ["Vietnam", "Bali (Indonesia)"];
+
   // Sorting Logic
   const sortedCountries = [...searchedCountries].sort((a, b) => {
     if (sortBy === "Lowest Price") {
@@ -223,8 +225,12 @@ export default function CountrySection() {
     if (sortBy === "Highest Price") {
       return parseInt(b.price) - parseInt(a.price);
     }
-    // Default: Most Popular
-    return (b.visasOnTime || 0) - (a.visasOnTime || 0);
+    // Most Popular: keep the current list order, with Vietnam and Bali pinned first
+    const aPin = pinnedMostPopular.indexOf(a.name);
+    const bPin = pinnedMostPopular.indexOf(b.name);
+    const aRank = aPin === -1 ? pinnedMostPopular.length : aPin;
+    const bRank = bPin === -1 ? pinnedMostPopular.length : bPin;
+    return aRank - bRank;
   });
 
   // Get visible countries based on current count
@@ -279,6 +285,7 @@ export default function CountrySection() {
             key={`${country.continent}-${country.id}`} 
             image={country.landmark}
             name={country.name}
+            slug={country.slug}
             continent={country.continent}
             price={`₹${country.price}`}
             visasOnTime={country.visasOnTime}

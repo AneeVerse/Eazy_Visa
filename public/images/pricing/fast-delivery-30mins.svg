@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="31 18 142 154" width="240" height="240" fill="none">
+  <!-- Top Stopwatch Button -->
+  <g fill="#0066FF" stroke="#0066FF">
+    <!-- Flared base collar on circle -->
+    <path d="M 113 48 L 127 48 L 123 40 L 117 40 Z" fill="#0066FF" stroke="none" />
+    <!-- Stem -->
+    <line x1="120" y1="40" x2="120" y2="28" stroke-width="4.5" stroke-linecap="round" />
+    <!-- Top button cap (rounded pill) -->
+    <rect x="108" y="21" width="24" height="8" rx="4" fill="#0066FF" stroke="none" />
+  </g>
+
+  <!-- Speed Lines on Left (Even spacing, gentle gap to circle) -->
+  <g stroke="#0066FF" stroke-width="5.5" stroke-linecap="round">
+    <!-- Line 1 (top, short) -->
+    <line x1="62" y1="74" x2="75" y2="74" />
+    <!-- Line 2 (medium) -->
+    <line x1="48" y1="88" x2="72" y2="88" />
+    <!-- Line 3 (longest) -->
+    <line x1="36" y1="102" x2="72" y2="102" />
+    <!-- Line 4 (bottom, medium-short) -->
+    <line x1="50" y1="116" x2="75" y2="116" />
+  </g>
+
+  <!-- Stopwatch Body (Circle) - Center: (120, 95), Radius: 47, Stroke: 7.5 -->
+  <circle cx="120" cy="95" r="47" 
+          stroke="#0066FF" 
+          stroke-width="7.5" 
+          fill="none" />
+
+  <!-- Inside Circle: 30 -->
+  <text x="120" y="93" 
+        text-anchor="middle" 
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+        font-weight="900" 
+        font-size="39" 
+        fill="#1e2436">30</text>
+  
+  <!-- Inside Circle: MINS -->
+  <text x="120" y="117" 
+        text-anchor="middle" 
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+        font-weight="800" 
+        font-size="15" 
+        letter-spacing="0.5"
+        fill="#1e2436">MINS</text>
+
+  <!-- FAST DELIVERY Text (Subtle Italic, perfectly centered under whole graphic) -->
+  <text x="108" y="165" 
+        text-anchor="middle" 
+        transform="skewX(-6)"
+        transform-origin="108 165"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+        font-weight="800" 
+        font-size="15" 
+        letter-spacing="1.2"
+        fill="#1e2436">FAST DELIVERY</text>
+</svg>

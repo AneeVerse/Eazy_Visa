@@ -1,5 +1,143 @@
 export const countryData = [
   {
+    id: 1001,
+    name: "Vietnam",
+    slug: "vietnam",
+    searchName: "Vietnam VN",
+    price: "500",
+    continent: "Asia",
+    isTrending: true,
+    isTop: false,
+    visasOnTime: "250K+",
+    flag: "/images/flags/vn.webp",
+    landmark: "/images/landmarks/Ha Long Bay tourist places in Vietnam Visa.webp",
+    landmarkName: "Ha Long Bay",
+    altName: "Ha Long Bay tourist places in Vietnam Visa",
+    description:
+      "Vietnam offers lantern-lit old towns, limestone bays, and busy street-food cities, with an e-visa process for tourist travel.",
+
+    visaType: "E Visa",
+    lengthOfStay: "Up to 90 days",
+    validity: "3 months",
+    entry: "Single/Multiple",
+
+    documentsRequired: [
+      {
+        category: "Basic Requirements",
+        documents: [
+          "Passport (6+ months validity)",
+          "Completed application form",
+          "Recent color photo",
+          "Flight itinerary",
+          "Bank statements (6 months)",
+        ],
+      },
+      {
+        category: "Additional Documents",
+        documents: [
+          "Hotel reservations",
+          "Daily schedule plan",
+          "Letter of employment (if working)",
+        ],
+      },
+    ],
+
+    rejectionReasons: [
+      {
+        title: "Insufficient Financial Proof",
+        description: "Bank statements do not show enough funds for the trip",
+        icon: "money",
+      },
+      {
+        title: "Unclear Itinerary",
+        description: "Vague or unrealistic travel plans",
+        icon: "itinerary",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Is Vietnam an e-visa?",
+        answer: "Yes. Tourist travel is commonly handled as an e-visa, and we help you prepare the application.",
+      },
+      {
+        question: "How long can I stay?",
+        answer: "Stay length depends on the visa issued. Check the latest rules for your travel dates before you apply.",
+      },
+    ],
+
+    sampleVisaCopy: null,
+  },
+  {
+    id: 1002,
+    name: "Bali (Indonesia)",
+    slug: "indonesia",
+    searchName: "Bali Indonesia ID",
+    price: "500",
+    continent: "Asia",
+    isTrending: true,
+    isTop: false,
+    visasOnTime: "240K+",
+    flag: "/images/flags/id.webp",
+    landmark: "/images/landmarks/Tanah Lot tourist places in Bali Indonesia Visa.webp",
+    landmarkName: "Tanah Lot",
+    altName: "Tanah Lot tourist places in Bali Indonesia Visa",
+    description:
+      "Bali, Indonesia is known for rice terraces, temples, and beach towns. Indonesia visa guidance covers travel to Bali and the rest of the country.",
+
+    visaType: "E Visa",
+    lengthOfStay: "Up to 60 days",
+    validity: "3 months",
+    entry: "Single/Multiple",
+
+    documentsRequired: [
+      {
+        category: "Basic Requirements",
+        documents: [
+          "Passport (6+ months validity)",
+          "Completed application form",
+          "Recent color photo",
+          "Flight itinerary",
+          "Bank statements (6 months)",
+        ],
+      },
+      {
+        category: "Additional Documents",
+        documents: [
+          "Hotel reservations",
+          "Daily schedule plan",
+          "Letter of employment (if working)",
+        ],
+      },
+    ],
+
+    rejectionReasons: [
+      {
+        title: "Insufficient Financial Proof",
+        description: "Bank statements do not show enough funds for the trip",
+        icon: "money",
+      },
+      {
+        title: "Unclear Itinerary",
+        description: "Vague or unrealistic travel plans",
+        icon: "itinerary",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Does this cover Bali?",
+        answer: "Yes. Bali is part of Indonesia, and the Indonesia visa covers travel to Bali.",
+      },
+      {
+        question: "Is this an e-visa?",
+        answer: "Tourist travel to Indonesia is commonly handled as an e-visa. We help you prepare the application.",
+      },
+    ],
+
+    sampleVisaCopy: null,
+  },
+  {
     id: 111,
     name: "Japan",
     searchName: "Japan JP",

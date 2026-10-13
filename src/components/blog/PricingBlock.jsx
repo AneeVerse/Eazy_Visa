@@ -19,12 +19,12 @@ const getTargetUrl = (url, name) => {
 const DEFAULT_PLANS = [
   {
     name: "Flight Itinerary",
-    description: "24 Hours Delivery",
+    description: "30 Mins Delivery",
     price: "999",
     billing: "per person",
     note: "",
     features: [
-      "24 Hours Delivery",
+      "30 Mins Delivery",
       "Unlimited Flights",
       "Name change not allowed"
     ],
@@ -33,12 +33,12 @@ const DEFAULT_PLANS = [
   },
   {
     name: "Hotel Booking",
-    description: "24 Hours Delivery",
+    description: "30 Mins Delivery",
     price: "999",
     billing: "per person",
     note: "*Price applicable for 2+ passengers",
     features: [
-      "24 Hours Delivery",
+      "30 Mins Delivery",
       "Verifiable Hotel Confirmation",
       "Name change not allowed"
     ],
@@ -47,12 +47,12 @@ const DEFAULT_PLANS = [
   },
   {
     name: "Daywise Itinerary",
-    description: "24 Hours Delivery",
+    description: "30 Mins Delivery",
     price: "999",
     billing: "per person",
     note: "",
     features: [
-      "24 Hours Delivery",
+      "30 Mins Delivery",
       "Day wise Sightseeing",
       "Details of the tour for the duration"
     ],
@@ -61,12 +61,12 @@ const DEFAULT_PLANS = [
   },
   {
     name: "Most Preferred",
-    description: "24 Hours Delivery",
+    description: "30 Mins Delivery",
     price: "1499",
     billing: "per person",
     note: "*Price applicable for 2+ passengers",
     features: [
-      "24 Hours Delivery",
+      "30 Mins Delivery",
       "Flight Itinerary",
       "Hotel Confirmation",
       "Day wise Itinerary",
@@ -127,12 +127,12 @@ export default function PricingBlock({ value }) {
               </div>
             )}
 
-            {/* 24 FAST DELIVERY Badge */}
+            {/* 30 MINS FAST DELIVERY Badge */}
             {showBadge && (
               <div className="absolute -top-6 -right-1 p-1 z-10 pointer-events-none">
                 <img
-                  src="/images/pricing/hourly-badge1.png"
-                  alt="24 Fast Delivery"
+                  src="/images/pricing/fast-delivery-30mins.svg"
+                  alt="30 Mins Fast Delivery"
                   className="w-12 h-12 sm:w-14 sm:h-14"
                 />
               </div>

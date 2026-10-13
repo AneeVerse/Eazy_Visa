@@ -127,12 +127,12 @@ const DummyFlightBookingsAdsPage = () => {
   const plans = [
     {
       name: "Flight Itinerary",
-      description: "24 Hours Delivery",
+      description: "30 Mins Delivery",
       price: "999",
       billing: "per person",
       note: "",
       features: [
-        "24 Hours Delivery",
+        "30 Mins Delivery",
         "Unlimited Flights",
         "Name change not allowed"
       ],
@@ -141,12 +141,12 @@ const DummyFlightBookingsAdsPage = () => {
     },
     {
       name: "Hotel Booking",
-      description: "24 Hours Delivery",
+      description: "30 Mins Delivery",
       price: "999",
       billing: "per person",
       note: "*Price applicable for 2+ passengers",
       features: [
-        "24 Hours Delivery",
+        "30 Mins Delivery",
         "Verifiable Hotel Confirmation",
         "Name change not allowed"
       ],
@@ -155,12 +155,12 @@ const DummyFlightBookingsAdsPage = () => {
     },
     {
       name: "Daywise Itinerary",
-      description: "24 Hours Delivery",
+      description: "30 Mins Delivery",
       price: "999",
       billing: "per person",
       note: "",
       features: [
-        "24 Hours Delivery",
+        "30 Mins Delivery",
         "Day wise Sightseeing",
         "Details of the tour for the duration"
       ],
@@ -169,12 +169,12 @@ const DummyFlightBookingsAdsPage = () => {
     },
     {
       name: "Most Preferred",
-      description: "24 Hours Delivery",
+      description: "30 Mins Delivery",
       price: "1499",
       billing: "per person",
       note: "*Price applicable for 2+ passengers",
       features: [
-        "24 Hours Delivery",
+        "30 Mins Delivery",
         "Flight Itinerary",
         "Hotel Confirmation",
         "Day wise Itinerary",
@@ -253,7 +253,7 @@ const DummyFlightBookingsAdsPage = () => {
                       {plan.icon && <plan.icon className="text-blue-600 text-2xl mb-2" />}
                       <h2 className="text-base mb-2 font-bold text-gray-900">{plan.name}</h2>
                     </div>
-                    <Image src='/images/pricing/hourly-badge1.png' alt="hourly" width={50} height={50} className="w-12 h-12 -mt-1 -mr-1" />
+                    <Image src='/images/pricing/fast-delivery-30mins.svg' alt="30 Mins Fast Delivery" width={50} height={50} className="w-12 h-12 -mt-1 -mr-1" />
                   </div>
                   <div className="mb-2 flex items-baseline">
                     <p className="text-2xl font-bold text-blue-600">
@@ -319,7 +319,7 @@ const DummyFlightBookingsAdsPage = () => {
                   </div>
                 )}
                 <div className="absolute top-[-50px] right-0 p-2">
-                  <Image src='/images/pricing/hourly-badge1.png' alt="hourly" width={80} height={80} className="w-20 h-20" />
+                  <Image src='/images/pricing/fast-delivery-30mins.svg' alt="30 Mins Fast Delivery" width={80} height={80} className="w-20 h-20" />
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start">
