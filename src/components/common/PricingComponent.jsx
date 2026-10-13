@@ -8,7 +8,7 @@ const PricingComponent = ({
   onPlanClick, 
   buttonText = "Get Started",
   enableAnimation = false,
-  className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4 md:gap-y-8 gap-x-4 md:gap-x-8 px-4 sm:px-0 justify-items-center"
+  className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-20 md:gap-y-28 gap-x-4 md:gap-x-8 px-4 sm:px-0 pt-6 justify-items-center"
 }) => {
   const CardComponent = enableAnimation ? motion.div : 'div';
   
@@ -35,12 +35,12 @@ const PricingComponent = ({
           )}
 
           {showBadge && (
-            <div className="absolute top-[-50px] right-0 p-2">
-              <img src='/images/pricing/fast-delivery-30mins.svg' alt="30 Mins Fast Delivery" className="w-20 h-20" />
+            <div className="pointer-events-none absolute -top-10 right-3 z-10 md:-top-16 md:right-2">
+              <img src='/images/pricing/fast-delivery-30mins.svg' alt="30 Mins Fast Delivery" className="h-16 w-16 md:h-20 md:w-20" />
             </div>
           )}
           
-          <div className="p-6">
+          <div className="px-6 pt-8 pb-6 md:p-6">
             <div className="flex justify-between items-start">
               <div>
                 {plan.icon && <plan.icon className="text-blue-600 text-3xl mb-3" />}

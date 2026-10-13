@@ -33,6 +33,16 @@ const nextConfig = {
         destination: '/book-flight-hotel-dummy-ticket-for-visa/bookings',
         permanent: true,
       },
+      {
+        source: '/Vietnam-touirstvisa',
+        destination: '/Vietnam-touristvisa',
+        permanent: true,
+      },
+      {
+        source: '/bali-touirstvisa',
+        destination: '/bali-touristvisa',
+        permanent: true,
+      },
     ];
   },
 };
