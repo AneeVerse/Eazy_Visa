@@ -12,7 +12,7 @@ import useGeoLocation from '../../hooks/useGeoLocation';
 import useSubmissionProtection from '../../hooks/useSubmissionProtection';
 import SubmissionProtectionFields from './SubmissionProtectionFields';
 
-const FormComponent = ({ from, fromCategory, redirectPath, compact = false, onClose }) => {
+const FormComponent = ({ from, fromCategory, redirectPath, compact = false, onClose, widgetSource }) => {
   const userGeo = useGeoLocation();
   const {
     getProtectionData,
@@ -273,6 +273,16 @@ const FormComponent = ({ from, fromCategory, redirectPath, compact = false, onCl
                 from: from || formMeta.from || "",
                 pageLink: formMeta.pageLink,
                 pageName: formMeta.pageLabel,
+              }
+            : {}),
+          ...(widgetSource
+            ? {
+                formSource: widgetSource,
+                from: widgetSource,
+                fromCategory: widgetSource,
+                source: widgetSource,
+                pageLink: widgetSource,
+                pageName: widgetSource,
               }
             : {}),
           userLocation: userGeo ? `${userGeo.city}, ${userGeo.region}, ${userGeo.country}` : 'Unknown',

@@ -7,13 +7,8 @@ import { IoMdChatboxes } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import FormComponent from '../common/FormComponent';
 
-const adsLandingPaths = ['/ads-visa', '/Vietnam-touristvisa', '/bali-touristvisa', '/ads-schengen'];
-
 const FloatingActionButton = () => {
   const pathname = usePathname();
-  const isAdsLandingPage = adsLandingPaths.some(
-    (path) => pathname === path || pathname?.startsWith(`${path}/`)
-  );
   const [open, setOpen] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
@@ -95,7 +90,7 @@ const FloatingActionButton = () => {
           >
             <FormComponent
               onClose={closeForm}
-              from={isAdsLandingPage ? undefined : getSource()}
+              widgetSource={getSource()}
             />
           </div>
         </div>
