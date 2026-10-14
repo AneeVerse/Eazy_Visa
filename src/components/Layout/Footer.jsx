@@ -12,7 +12,7 @@ import SubmissionProtectionFields from '../common/SubmissionProtectionFields';
 
 const footerLinks = [
   { name: "Home", href: "/" },
-  { name: "Blog", href: "/blog" },
+  { name: "Blogs", href: "/blogs" },
   { name: "Dummy Bookings", href: "/visa-itinerary" },
   { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
