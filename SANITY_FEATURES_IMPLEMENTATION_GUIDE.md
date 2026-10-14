@@ -553,7 +553,7 @@ export function TablePasteInput(props) {
             if (isMarkdown) {
                 lines = lines.filter(line => {
                     const cleaned = line.replace(/\|/g, '').trim();
-                    return !(/^[-–—\s]+$/.test(cleaned));
+                    return !(/^[-–-\s]+$/.test(cleaned));
                 });
                 delimiter = '|';
             } else if (lines[0].includes('\t')) {

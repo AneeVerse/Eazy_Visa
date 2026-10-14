@@ -1,4 +1,4 @@
-# Ads Visa Landing Page — Complete Architecture & Replication Guide
+# Ads Visa Landing Page - Complete Architecture & Replication Guide
 
 This document contains the complete technical blueprint, UI components, copywriting, form logic, visitor tracking, backend API routes, and standalone Google Apps Scripts for the **`ads-visa`** landing page (`https://www.eazyvisas.com/ads-visa`).
 

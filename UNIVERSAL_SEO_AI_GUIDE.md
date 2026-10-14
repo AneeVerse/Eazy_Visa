@@ -1,15 +1,15 @@
 # Universal SEO & AI Optimization Guide
 
-> **Purpose**: Hand this file to any AI coding agent along with a website codebase. The agent should audit the site against every checklist item and implement all missing optimizations — **without changing any visible text or UI**.
+> **Purpose**: Hand this file to any AI coding agent along with a website codebase. The agent should audit the site against every checklist item and implement all missing optimizations - **without changing any visible text or UI**.
 
 ---
 
 ## How to Use This Guide
 
-1. **Audit first** — Go through each section's "What to Check" items
-2. **Fix what's missing** — Follow the "What to Implement" instructions
-3. **Verify** — Use the verification steps at the bottom
-4. **Do NOT change** — Any visible text, design, layout, colors, or UI behavior
+1. **Audit first** - Go through each section's "What to Check" items
+2. **Fix what's missing** - Follow the "What to Implement" instructions
+3. **Verify** - Use the verification steps at the bottom
+4. **Do NOT change** - Any visible text, design, layout, colors, or UI behavior
 
 ---
 
@@ -26,7 +26,7 @@
 ### What to Implement
 
 ```txt
-# robots.txt — TEMPLATE
+# robots.txt - TEMPLATE
 
 User-agent: *
 Allow: /
@@ -72,7 +72,7 @@ Sitemap: https://www.YOURDOMAIN.com/sitemap.xml
 
 ### What to Implement
 
-Create `public/llms.txt` — a plain-text file that AI models read to understand your site:
+Create `public/llms.txt` - a plain-text file that AI models read to understand your site:
 
 ```txt
 # [Company Name]
@@ -322,7 +322,7 @@ Allow crawlers to cache public pages:
 
 ---
 
-## 6. Content & Accessibility (Audit Only — Don't Change Text)
+## 6. Content & Accessibility (Audit Only - Don't Change Text)
 
 ### What to Check
 - [ ] Pages have real HTML text content (not just images/canvas/animations)
@@ -400,7 +400,7 @@ Execute in this order for maximum impact:
 
 | Priority | Action | Impact |
 |----------|--------|--------|
-| 🔴 P0 | Fix `robots.txt` — don't block bots | Critical |
+| 🔴 P0 | Fix `robots.txt` - don't block bots | Critical |
 | 🔴 P0 | Remove right-click / selection / copy blocking | Critical |
 | 🔴 P0 | Remove aggressive no-cache headers on public pages | Critical |
 | 🟠 P1 | Add/fix `<meta name="robots">` on every page | High |

@@ -31,18 +31,10 @@ export async function POST(request) {
       // Revalidate the sitemap route to force regeneration
       revalidatePath('/sitemap.xml');
       
-      // Also revalidate blog pages if it's a post
       if (body._type === 'post') {
-        revalidatePath('/blog');
+        revalidatePath('/blogs');
         if (body.slug?.current) {
-          revalidatePath(`/blog/${body.slug.current}`);
-        }
-      }
-      
-      // Revalidate category pages if it's a category
-      if (body._type === 'category') {
-        if (body.slug?.current) {
-          revalidatePath(`/blog/category/${body.slug.current}`);
+          revalidatePath(`/blogs/${body.slug.current}`);
         }
       }
       

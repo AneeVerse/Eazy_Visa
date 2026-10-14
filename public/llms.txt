@@ -1,6 +1,6 @@
 # Eazy Visas
 
-> Visa consulting services for tourist, business, and student visas — plus dummy flight tickets and hotel bookings for visa applications.
+> Visa consulting services for tourist, business, and student visas - plus dummy flight tickets and hotel bookings for visa applications.
 
 ## About
 Eazy Visas is a one-stop solution for all visa documentation needs. We provide end-to-end visa consulting services including document preparation, application guidance, dummy flight ticket bookings (verified itineraries), and dummy hotel bookings for visa applications. Based in Navi Mumbai, India, we serve clients globally.

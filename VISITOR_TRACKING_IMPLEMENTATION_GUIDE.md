@@ -1,4 +1,4 @@
-# Passive Visitor Tracking — Implementation Guide
+# Passive Visitor Tracking - Implementation Guide
 
 This guide documents the complete visitor analytics system built for BookMyCorporateParty.
 Hand this file to any agent and it can implement the identical system in a different Next.js project.
@@ -13,7 +13,7 @@ Every time a visitor opens the page, the system silently:
 2. Reads their page URL, referrer, and user agent from the browser
 3. Fires a single POST to a Next.js API route (invisible to the user)
 4. That API route forwards everything to a Google Apps Script webhook
-5. The Apps Script writes one row to a Google Sheet — timestamped in IST
+5. The Apps Script writes one row to a Google Sheet - timestamped in IST
 
 Result: a permanent log of every visitor with location, source, and device info, stored in Google Sheets for free, with no third-party analytics account needed.
 
@@ -32,7 +32,7 @@ Browser
 
 ---
 
-## File 1 — Geolocation Hook
+## File 1 - Geolocation Hook
 
 **Path:** `src/hooks/useGeoLocation.ts`
 
@@ -79,13 +79,13 @@ export default useGeoLocation;
 ```
 
 **Notes:**
-- Uses [ipapi.co](https://ipapi.co) — free tier allows 1,000 requests/day, no API key needed.
+- Uses [ipapi.co](https://ipapi.co) - free tier allows 1,000 requests/day, no API key needed.
 - Returns `null` until the fetch resolves, so callers must check for null.
 - The `"use client"` directive is required for Next.js App Router.
 
 ---
 
-## File 2 — API Route
+## File 2 - API Route
 
 **Path:** `src/app/api/track-visitor/route.js`
 
@@ -130,7 +130,7 @@ export async function POST(req) {
 
     return Response.json({ success: true });
   } catch (err) {
-    // Silent — analytics must never crash or block the user experience
+    // Silent - analytics must never crash or block the user experience
     console.error('track-visitor error:', err);
     return Response.json({ success: false });
   }
@@ -138,13 +138,13 @@ export async function POST(req) {
 ```
 
 **Notes:**
-- If `WEBHOOK_URL` is not set, it silently skips — safe for local dev.
+- If `WEBHOOK_URL` is not set, it silently skips - safe for local dev.
 - All errors are caught and suppressed so a Sheets failure never shows a 500 to the user.
 - `getIndianTime()` produces IST timestamps. For other timezones change the `+ 5.5 * 60 * 60 * 1000` offset or use `toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })`.
 
 ---
 
-## File 3 — Usage in the Page Component
+## File 3 - Usage in the Page Component
 
 **Path:** `src/app/page.tsx` (or any client component)
 
@@ -182,7 +182,7 @@ useEffect(() => {
 **Why `visitorTracked` ref?**
 The `useEffect` fires every time `userGeo` changes. Without the ref guard it would send a new row every re-render. The ref ensures exactly one tracking call per page load.
 
-**Bonus — reuse `userGeo` for form submissions:**
+**Bonus - reuse `userGeo` for form submissions:**
 The same `userGeo` object can be passed into your lead form's submit payload to attach location data to every lead:
 ```typescript
 body: JSON.stringify({
@@ -195,7 +195,7 @@ body: JSON.stringify({
 
 ---
 
-## File 4 — Environment Variable
+## File 4 - Environment Variable
 
 **File:** `.env.local`
 
@@ -207,19 +207,19 @@ For Vercel: add this in **Project Settings → Environment Variables** (mark as 
 
 ---
 
-## File 5 — Google Apps Script (the webhook)
+## File 5 - Google Apps Script (the webhook)
 
-### Step A — Create the Sheet
+### Step A - Create the Sheet
 
 1. Open [sheets.google.com](https://sheets.google.com) → New spreadsheet.
 2. Copy the Sheet ID from the URL: `https://docs.google.com/spreadsheets/d/SHEET_ID_HERE/edit`
 
-### Step B — Open Apps Script
+### Step B - Open Apps Script
 
 1. In the sheet: **Extensions → Apps Script**
 2. Delete all existing code, paste the script below.
 
-### Step C — The Script
+### Step C - The Script
 
 ```javascript
 const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE';
@@ -283,7 +283,7 @@ function setupHeaders() {
 }
 ```
 
-### Step D — Deploy
+### Step D - Deploy
 
 1. Click **Deploy → New deployment**
 2. Type: **Web app**
@@ -292,11 +292,11 @@ function setupHeaders() {
 5. Click **Deploy** → copy the URL that ends in `/exec`
 6. Paste it into your `.env.local` as `NEXT_PUBLIC_VISITOR_TRACKING_WEBHOOK_URL`
 
-### Step E — One-time setup
+### Step E - One-time setup
 
 Back in the Apps Script editor, select `setupHeaders` from the function dropdown → click **Run**. This creates the styled header row in your sheet.
 
-### Step F — Test the webhook
+### Step F - Test the webhook
 
 In your browser visit:
 ```
@@ -342,6 +342,6 @@ You should see `{"status":"OK"}`. That means the webhook is live.
 | Free tier | ipapi.co allows 1,000 req/day free. For higher traffic use `ip-api.com` (45 req/min free) or `ipinfo.io` (50k/month free with API key). |
 | Accuracy | IP geolocation is city-level accurate ~80% of the time. VPN users will show the VPN server location. |
 | Privacy | No personal data beyond IP is collected. No cookies set. Compliant with most jurisdictions without a banner. For full GDPR compliance, anonymize the last octet of the IP. |
-| Bot traffic | `userAgent` column will reveal bots (Googlebot, etc.) — filter these out in Sheets with `=FILTER(...)` if needed. |
+| Bot traffic | `userAgent` column will reveal bots (Googlebot, etc.) - filter these out in Sheets with `=FILTER(...)` if needed. |
 | Duplicate visits | The system tracks every page load, not unique visitors. To deduplicate, check if the IP already exists in column B before writing. |
 | Timezone | Change `+ 5.5 * 60 * 60 * 1000` to your offset, or replace `getIndianTime()` with `new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })` etc. |

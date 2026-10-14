@@ -2,11 +2,10 @@
 
 import { useEffect } from 'react';
 import { FaCheckCircle, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
-import { useRouter, useParams } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import Layout from '../../../components/common/Layout';
 import Footer from '../../../components/Layout/Footer';
 import Link from 'next/link';
-import Image from "next/image";
 import Script from 'next/script';
 
 // Configuration for different confirmation types
@@ -76,21 +75,18 @@ const confirmationConfig = {
 };
 
 export default function DynamicThankYouPage() {
-  const router = useRouter();
   const params = useParams();
   const confirmationType = params.confirmationType;
-  
-  // Get configuration for this confirmation type, fallback to default
-  const config = confirmationConfig[confirmationType] || {
-    title: 'Thank You for Connecting With Us!',
-    description: 'One of our visa experts will contact you within 30 minutes.',
-    serviceName: 'Visa Service'
-  };
+  const config = confirmationConfig[confirmationType];
 
-  // Set dynamic metadata based on confirmation type
   useEffect(() => {
+    if (!config) return;
     document.title = `${config.serviceName} - Confirmation | Eazy Visa`;
-  }, [config.serviceName]);
+  }, [config]);
+
+  if (!config) {
+    redirect('/');
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-12">

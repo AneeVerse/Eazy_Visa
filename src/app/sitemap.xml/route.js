@@ -27,35 +27,13 @@ async function fetchBlogPosts() {
     `);
 
     return posts.map(post => ({
-      url: `${CONFIG.baseUrl}/blog/${post.slug}`,
+      url: `${CONFIG.baseUrl}/blogs/${post.slug}`,
       lastModified: new Date(post._updatedAt || post.publishedAt),
       changeFrequency: 'weekly',
       priority: 0.7
     }));
   } catch (error) {
     console.error(`Error fetching blog posts: ${error.message}`);
-    return [];
-  }
-}
-
-// Function to fetch categories from Sanity
-async function fetchCategories() {
-  try {
-    const categories = await sanityClient.fetch(`
-      *[_type == "category"] {
-        "slug": slug.current,
-        _updatedAt
-      }
-    `);
-
-    return categories.map(category => ({
-      url: `${CONFIG.baseUrl}/blog/category/${category.slug}`,
-      lastModified: new Date(category._updatedAt),
-      changeFrequency: 'weekly',
-      priority: 0.6
-    }));
-  } catch (error) {
-    console.error(`Error fetching categories: ${error.message}`);
     return [];
   }
 }
@@ -217,14 +195,10 @@ export async function GET() {
     // Get static URLs
     const staticUrls = await getStaticUrls();
 
-    // Fetch dynamic content from Sanity
-    const [blogPosts, categories] = await Promise.all([
-      fetchBlogPosts(),
-      fetchCategories()
-    ]);
+    const blogPosts = await fetchBlogPosts();
 
     // Combine all URLs
-    const allUrls = [...staticUrls, ...blogPosts, ...categories];
+    const allUrls = [...staticUrls, ...blogPosts];
 
     // Generate XML content
     const sitemapXML = generateSitemapXML(allUrls);

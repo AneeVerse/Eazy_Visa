@@ -92,7 +92,7 @@ const PricingPage = () => {
     },
     {
       question: "Is it a real confirmed booking?",
-      answer: "No—these are for visa documentation and are not a substitute for a paid ticket/confirmed stay."
+      answer: "No-these are for visa documentation and are not a substitute for a paid ticket/confirmed stay."
     }
   ];
 

@@ -20,7 +20,7 @@ export default function CtaStrip() {
                         Ready to Apply?
                     </h2>
                     <p className="text-base sm:text-lg text-white/80 mb-8 max-w-xl mx-auto">
-                        Get visa support now — and add dummy flight tickets for visa only if your checklist requires flight proof.
+                        Get visa support now - and add dummy flight tickets for visa only if your checklist requires flight proof.
                     </p>
 
                     <Link

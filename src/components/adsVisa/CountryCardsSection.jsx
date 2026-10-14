@@ -33,7 +33,7 @@ export const schengenDestinationCard = {
   flag: '/images/flags/eu.png',
   visaTypes: ['Tourist Visa'],
   processingTime: '15-20 Days',
-  description: 'Schengen visa consultation for Europe—structured guidance, checklists, and step-by-step clarity for first-time and repeat travellers.',
+  description: 'Schengen visa consultation for Europe-structured guidance, checklists, and step-by-step clarity for first-time and repeat travellers.',
 };
 
 export const australiaDestinationCard = {

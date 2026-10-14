@@ -109,7 +109,7 @@ export default useGeoLocation;
 
 ### Key Details:
 - **Returns `null`** initially (while fetching), then an object with `{ city, region, pincode, country, ip }`.
-- **Gracefully degrades** — if the API call fails, `location` stays `null` and forms still submit with `'Unknown'` as fallback.
+- **Gracefully degrades** - if the API call fails, `location` stays `null` and forms still submit with `'Unknown'` as fallback.
 - **Only calls once** per component mount (empty dependency array `[]`).
 - The component using this hook **must be a client component** (`"use client"` directive).
 
@@ -168,7 +168,7 @@ export { GOOGLE_SHEETS_WEBHOOK_URL };
 ### Key Details:
 - The `context` parameter is for logging (e.g., `'visa form'`, `'contact form'`).
 - The webhook URL is stored in an environment variable.
-- Errors are logged but **do not throw** — form submission continues even if Google Sheets fails.
+- Errors are logged but **do not throw** - form submission continues even if Google Sheets fails.
 
 ---
 
@@ -179,7 +179,7 @@ This is the **receiving end** that lives inside Google Sheets, accepting POST re
 ### 4.1 Create a Google Sheet
 
 1. Go to [Google Sheets](https://sheets.google.com) and create a new spreadsheet.
-2. Name the first sheet (tab) — e.g., `Form Submissions`.
+2. Name the first sheet (tab) - e.g., `Form Submissions`.
 3. Add headers in **Row 1**. The columns should match what your API sends. Example headers:
 
 ```
@@ -244,7 +244,7 @@ function doGet(e) {
    - **Execute as:** Me (your Google account)
    - **Who has access:** Anyone
 4. Click **Deploy**.
-5. **Copy the Web App URL** — this is your webhook URL. It looks like:
+5. **Copy the Web App URL** - this is your webhook URL. It looks like:
    ```
    https://script.google.com/macros/s/AKfycbw.../exec
    ```
@@ -314,14 +314,14 @@ const handleSubmit = async (e) => {
 
 You must identify **every** form component in the target website. In the Eazy Visa project, these were:
 
-1. `ConsultationForm.jsx` — Main visa consultation form
-2. `FormComponent.jsx` — Generic reusable form
-3. `PopupForm.jsx` — Modal/popup form
-4. `CountryCardPopupForm.jsx` — Country-specific popup form
-5. `SubscribeForm.jsx` — Blog subscribe form
-6. `HotelBookingComponent.jsx` — Hotel booking form
-7. `DummyBooking.jsx` — Flight dummy booking form
-8. `MostPreferredBooking.jsx` — Most preferred booking form
+1. `ConsultationForm.jsx` - Main visa consultation form
+2. `FormComponent.jsx` - Generic reusable form
+3. `PopupForm.jsx` - Modal/popup form
+4. `CountryCardPopupForm.jsx` - Country-specific popup form
+5. `SubscribeForm.jsx` - Blog subscribe form
+6. `HotelBookingComponent.jsx` - Hotel booking form
+7. `DummyBooking.jsx` - Flight dummy booking form
+8. `MostPreferredBooking.jsx` - Most preferred booking form
 
 **→ Scan the target website codebase for ALL form components and apply the same pattern to each one.**
 
@@ -540,29 +540,29 @@ NEXT_PUBLIC_EMAIL_RECEIVER=receiver-email@gmail.com
   - [ ] Added geo data section to email HTML template
   - [ ] Added geo data section to email plain text template
   - [ ] Included `userLocation`, `userPincode`, `userIp` in `sendToGoogleSheets()` payload
-- [ ] **Tested** form submission — geo data shows in email
-- [ ] **Tested** Google Sheets — new row appears with geo data columns filled
+- [ ] **Tested** form submission - geo data shows in email
+- [ ] **Tested** Google Sheets - new row appears with geo data columns filled
 
 ### 🧪 Testing Steps
 
 1. **Test Geo Hook independently:**
    - Add a temporary `console.log(userGeo)` in a form component.
-   - Open the page in browser and check the console — you should see the location object after ~1 second.
+   - Open the page in browser and check the console - you should see the location object after ~1 second.
 
 2. **Test Form Submission:**
    - Fill out and submit each form.
-   - Check the email received — it should have the "User Location Details" section.
-   - Check Google Sheets — a new row should appear with `userLocation`, `userPincode`, `userIp` columns populated.
+   - Check the email received - it should have the "User Location Details" section.
+   - Check Google Sheets - a new row should appear with `userLocation`, `userPincode`, `userIp` columns populated.
 
 3. **Test Fallback (geo blocked):**
    - Block `ipapi.co` in browser DevTools (Network tab → Block request URL).
-   - Submit the form — it should still work, with `'Unknown'` in the geo fields.
+   - Submit the form - it should still work, with `'Unknown'` in the geo fields.
 
 ---
 
 ## 11. Full Reference Code Snippets
 
-### Geolocation Hook — `src/hooks/useGeoLocation.js`
+### Geolocation Hook - `src/hooks/useGeoLocation.js`
 
 ```javascript
 import { useState, useEffect } from 'react';
@@ -596,7 +596,7 @@ const useGeoLocation = () => {
 export default useGeoLocation;
 ```
 
-### Google Sheets Client — `src/lib/googleSheetsClient.js`
+### Google Sheets Client - `src/lib/googleSheetsClient.js`
 
 ```javascript
 const GOOGLE_SHEETS_WEBHOOK_URL =
@@ -681,7 +681,7 @@ const MyFormComponent = () => {
 
 **Dependencies needed:** `nodemailer` (for email sending)
 
-**No new npm packages needed for geolocation** — it uses the native `fetch` API with a free external service.
+**No new npm packages needed for geolocation** - it uses the native `fetch` API with a free external service.
 
 ---
 

@@ -104,7 +104,7 @@ export default function HeroSection() {
           </p>
 
           <Paragraph className="text-sm sm:text-lg text-gray-600 max-w-2xl">
-            Apply for tourist or business visas with clear guidance, document support, and fast turnaround — plus verified dummy flight tickets for visa when you need flight proof without buying expensive real tickets.
+            Apply for tourist or business visas with clear guidance, document support, and fast turnaround - plus verified dummy flight tickets for visa when you need flight proof without buying expensive real tickets.
           </Paragraph>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">

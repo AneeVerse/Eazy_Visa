@@ -121,7 +121,7 @@ function cleanMarkdownTable(text: string): string {
     // Remove separator lines and rebuild
     const dataLines = lines.filter(line => {
         const cleaned = line.replace(/\|/g, '').trim();
-        return !(/^[-–—\s]+$/.test(cleaned));
+        return !(/^[-–-\s]+$/.test(cleaned));
     });
 
     if (dataLines.length === 0) return '';
@@ -169,7 +169,7 @@ function parseMarkdownTableForPreview(markdown: string): string[][] | null {
 
     const dataLines = lines.filter(line => {
         const cleaned = line.replace(/\|/g, '').trim();
-        return !(/^[-–—\s]+$/.test(cleaned));
+        return !(/^[-–-\s]+$/.test(cleaned));
     });
 
     return dataLines.map(line => {

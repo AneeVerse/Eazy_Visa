@@ -11,7 +11,7 @@ const services = [
     id: 1,
     title: "Tourist Visa Assistance",
     url: "/tourist-visa",
-    description: "Get end-to-end help for tourist visa applications—right from document checklist to submission-ready file preparation.",
+    description: "Get end-to-end help for tourist visa applications-right from document checklist to submission-ready file preparation.",
     image:
       "/images/home/tourist-visa.png",
     rating: 4.9,
