@@ -1,5 +1,5 @@
 "use client"
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import Layout from "../common/Layout";
 import { useState } from 'react';
 import Image from 'next/image';
@@ -34,61 +34,61 @@ export default function Footer({ showDisclaimer = false }) {
     protectionFieldProps,
   } = useSubmissionProtection('newsletter');
   const [formData, setFormData] = useState({
-      name: 'unknown',
-      email: ''
-    });
-    const [isLoading, setIsLoading] = useState(false);
-  
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      
-      // Validate email
-      if (!formData.email) {
-        toast.error('Email is required!');
-        return;
+    name: 'unknown',
+    email: ''
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate email
+    if (!formData.email) {
+      toast.error('Email is required!');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const protectionData = await getProtectionData();
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          ...protectionData,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Subscription failed');
       }
-  
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        toast.error('Please enter a valid email address');
-        return;
-      }
-  
-      setIsLoading(true);
-  
-      try {
-        const protectionData = await getProtectionData();
-        const response = await fetch('/api/subscribe', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            ...formData,
-            ...protectionData,
-          }),
-        });
-  
-        const data = await response.json();
-  
-        if (!response.ok) {
-          throw new Error(data.message || 'Subscription failed');
-        }
-  
-        toast.success('Thank you for subscribing!');
-        setFormData({ name: '', email: '' });
-      } catch (error) {
-        toast.error(error.message);
-      } finally {
-        setIsLoading(false);
-        resetProtection();
-      }
-    };
-  
+
+      toast.success('Thank you for subscribing!');
+      setFormData({ name: '', email: '' });
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+      resetProtection();
+    }
+  };
+
   return (
     <footer className="text-white py-10">
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         className="mt-[70px]"
@@ -111,7 +111,7 @@ export default function Footer({ showDisclaimer = false }) {
                   <Image src="/logo/logo-white.png" alt="Logo" width={100} height={26} draggable={false} />
                 </Link>
                 {showDisclaimer && (
-                  <div 
+                  <div
                     className="flex-1"
                     style={{ maxWidth: '600px' }}
                   >
@@ -138,6 +138,24 @@ export default function Footer({ showDisclaimer = false }) {
                     {link.name}
                   </a>
                 ))}
+              </div>
+
+              {/* Contact Information */}
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2 text-sm sm:text-base">
+                <a
+                  href="mailto:info@eazyvisas.com"
+                  className="flex items-center gap-2 text-white/90 hover:text-white hover:underline transition-colors"
+                >
+                  <FaEnvelope className="text-sm sm:text-base flex-shrink-0" />
+                  <span>info@eazyvisas.com</span>
+                </a>
+                <a
+                  href="tel:+918850146905"
+                  className="flex items-center gap-2 text-white/90 hover:text-white hover:underline transition-colors"
+                >
+                  <FaPhoneAlt className="text-sm sm:text-base flex-shrink-0" />
+                  <span>+91 88501 46905</span>
+                </a>
               </div>
             </div>
 

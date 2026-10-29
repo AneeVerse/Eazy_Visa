@@ -1,4 +1,3 @@
-"use client";
 import FlightPathAnimation from "../components/common/FlightPathAnimation";
 import Layout from "../components/common/Layout";
 import PopupForm from "../components/common/PopupForm";
@@ -9,13 +8,23 @@ import Destinations from "../components/home/Destinations";
 import FeedbackReviewComponent from "../components/home/FeedbackReviewComponent";
 import Hero from "../components/home/Hero";
 import MediaTestimonials from "../components/home/MediaTestimonials";
-import OneStopSolutions from "../components/home/OneStopSolutions"
+import OneStopSolutions from "../components/home/OneStopSolutions";
 import TravelPoint from "../components/home/TravelPoint";
 import VisaSolutions from "../components/home/VisaSolutions";
 import Footer from "../components/Layout/Footer";
 import Image from "next/image";
+import { getAllBlogs } from "../lib/sanity";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  let blogs = [];
+  try {
+    blogs = await getAllBlogs();
+  } catch (error) {
+    console.error("Error fetching blogs for landing page:", error);
+  }
+
   return (
     <div className="overflow-hidden">
       {/* blur bg color effect */}
@@ -64,7 +73,7 @@ export default function Home() {
 
         {/* <div className="absolute blur-[200px] rounded-full top-[20%] -right-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div> */}
         <div className="absolute blur-[200px] rounded-full -z-10 top-[30%] md:top-[40%] -left-[14%]  w-[500px] h-[500px] bg-[#0B82E6] opacity-50"></div>
-        <BlogSection />
+        <BlogSection initialBlogs={blogs} />
         <CtaStrip />
         <div className="relative  z-30">
           <Footer />
