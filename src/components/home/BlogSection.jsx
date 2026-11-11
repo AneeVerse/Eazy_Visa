@@ -8,63 +8,58 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import BlogCard from "../cards/BlogCard";
-import { getAllBlogs } from "../../lib/sanity";
 
-// const blogs = [
-//   {
-//     title: "Burj Khalifa",
-//     location: "Dubai",
-//     description: "Where dreams touch the sky.",
-//     image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-//     rating: "4.5",
-//   },
-//   {
-//     title: "Paris - Eiffel Tower",
-//     location: "Paris",
-//     description: "The city of love and lights.",
-//     image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-//     rating: "4.5",
-//   },
-//   {
-//     title: "India - Agra",
-//     location: "Agra",
-//     description: "A land of unity in diversity.",
-//     image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-//     rating: "4.5",
-//   },
-//   {
-//     title: "Dubai - Burj Khalifa",
-//     location: "Dubai",
-//     description: "Where dreams touch the sky.",
-//     image: "/images/landmarks/Wawel Castle tourist places in Poland Visa.webp",
-//     rating: "4.5",
-//   },
-// ];
-
-export default function BlogSection() {
-  const [blogData, setBlogData] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function BlogSection({ initialBlogs = [] }) {
+  const [blogData, setBlogData] = useState(initialBlogs);
+  const [loading, setLoading] = useState(!initialBlogs || initialBlogs.length === 0);
 
   useEffect(() => {
+    if (initialBlogs && initialBlogs.length > 0) {
+      setBlogData(initialBlogs);
+      setLoading(false);
+      return;
+    }
+
     async function fetchBlogs() {
       try {
-        const blogs = await getAllBlogs();
-        setBlogData(blogs);
+        const response = await fetch("/api/blogs");
+        if (response.ok) {
+          const data = await response.json();
+          setBlogData(Array.isArray(data) ? data : []);
+        } else {
+          console.error("Failed to fetch blogs from API route");
+        }
       } catch (error) {
-        console.error("Error fetching blogs from Sanity:", error);
+        console.error("Error fetching blogs:", error);
       } finally {
         setLoading(false);
       }
     }
     fetchBlogs();
-  }, []);
+  }, [initialBlogs]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <section className="pt-8 md:pt-16">
+        <Layout>
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-blue-600">BLOGS</h2>
+            <Button variant="primary" icon={<IoIosArrowForward />} size="medium" href="/blogs">
+              View All
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] xl:gap-[15px]">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="bg-gray-100 rounded-2xl h-72 animate-pulse" />
+            ))}
+          </div>
+        </Layout>
+      </section>
+    );
   }
 
   if (!blogData || blogData.length === 0) {
-    return <p>No blogs found.</p>;
+    return null;
   }
 
   return (
@@ -93,15 +88,15 @@ export default function BlogSection() {
               <BlogCard
                 key={post._id}
                 title={post.title}
-                url={post.slug.current}
+                url={post.slug?.current || post.slug}
                 category={post.categories?.[0]?.title || ''}
                 description={post.excerpt}
                 imageUrl={post.mainImage}
-                date={new Date(post.publishedAt).toLocaleDateString('en-US', {
+                date={post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
-                })}
+                }) : ''}
               />
             ))}
           </div>
