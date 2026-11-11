@@ -18,7 +18,7 @@ const PricingPage = () => {
 
   const plans = [
     {
-      name: "Flight Itinerary",
+      name: "Verifiable Flight Itinerary",
       description: "30 Mins Delivery",
       price: "999",
       billing: "per person",
@@ -67,7 +67,7 @@ const PricingPage = () => {
       note: "*Price applicable for 2+ passengers",
       features: [
         "30 Mins Delivery",
-        "Flight Itinerary",
+        "Verifiable Flight Itinerary",
         "Hotel Confirmation",
         "Day wise Itinerary",
         "Name change not allowed"

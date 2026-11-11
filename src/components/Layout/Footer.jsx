@@ -139,6 +139,15 @@ export default function Footer({ showDisclaimer = false }) {
                   </a>
                 ))}
               </div>
+
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-4 text-sm sm:text-base">
+                <a href="tel:+918850146905" className="hover:underline">
+                  +91 88501 46905
+                </a>
+                <a href="mailto:info@eazyvisas.com" className="hover:underline">
+                  info@eazyvisas.com
+                </a>
+              </div>
             </div>
 
             {/* Right Section - Newsletter Subscription */}

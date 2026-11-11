@@ -19,14 +19,24 @@ export default function OrganizationSchema() {
     "telephone": "+91 88501 46905",
     "email": "info@eazyvisas.com",
     "foundingDate": "2020",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "61, CITI TOWER, SECTOR 15, CBD BELAPUR",
-      "addressLocality": "NAVI MUMBAI",
-      "addressRegion": "MAHARASHTRA",
-      "postalCode": "400614",
-      "addressCountry": "IN"
-    },
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "61, CITI TOWER, SECTOR 15, CBD BELAPUR",
+        "addressLocality": "NAVI MUMBAI",
+        "addressRegion": "MAHARASHTRA",
+        "postalCode": "400614",
+        "addressCountry": "IN"
+      },
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "Third Floor, 34 SukhShine Complex, Near Sunrise, Vastrapur Road",
+        "addressLocality": "Ahmedabad",
+        "addressRegion": "Gujarat",
+        "postalCode": "380015",
+        "addressCountry": "IN"
+      }
+    ],
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": "19.0176",

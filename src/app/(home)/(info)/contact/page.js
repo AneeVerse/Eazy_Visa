@@ -334,6 +334,16 @@ const Contact = () => {
 
                 <div className="flex items-start space-x-4">
                   <div className="p-3 bg-blue-100 rounded-xl">
+                    <FiMapPin className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Ahmedabad Office</h3>
+                    <p className="text-gray-600">Third Floor, 34 SukhShine Complex, Near Sunrise, Vastrapur Road, Ahmedabad 380015</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-blue-100 rounded-xl">
                     <FiPhone className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
