@@ -50,14 +50,17 @@ const FloatingActionButton = () => {
           exit="exit"
           className="flex flex-col items-center gap-3 mb-4"
         >
-          <motion.button
-            onClick={handleContactClick}
+          <motion.a
+            href="https://wa.me/918850146905"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
             className="w-14 h-14 bg-white text-blue-500 rounded-full flex items-center justify-center shadow-lg border border-blue-500"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <FaWhatsapp size={26} />
-          </motion.button>
+          </motion.a>
 
           <motion.button
             onClick={handleContactClick}
@@ -68,14 +71,15 @@ const FloatingActionButton = () => {
             <FaEnvelope size={26} />
           </motion.button>
 
-          <motion.button
-            onClick={handleContactClick}
+          <motion.a
+            href="tel:+918850146905"
+            aria-label="Call"
             className="w-14 h-14 bg-white text-blue-500 rounded-full flex items-center justify-center shadow-lg border border-blue-500"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <FaPhone size={26} />
-          </motion.button>
+          </motion.a>
         </motion.div>
       )}
 
